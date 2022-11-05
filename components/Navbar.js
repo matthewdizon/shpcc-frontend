@@ -11,13 +11,13 @@ function Navbar() {
         </h1>
       </div>
       <div className="flex text-center items-center uppercase font-semibold">
-        <p className="hover:bg-[#AC0F15] hover:text-shpccYellow hover:cursor-pointer h-full flex items-center px-8">
+        <p className="hover:bg-shpccDarkRed hover:text-shpccYellow hover:cursor-pointer h-full flex items-center px-8">
           Home
         </p>
-        <p className="hover:bg-[#AC0F15] hover:text-shpccYellow hover:cursor-pointer h-full flex items-center px-8">
+        <p className="hover:bg-shpccDarkRed hover:text-shpccYellow hover:cursor-pointer h-full flex items-center px-8">
           Services and Requirements
         </p>
-        <p className="hover:bg-[#AC0F15] hover:text-shpccYellow hover:cursor-pointer h-full flex items-center px-8">
+        <p className="hover:bg-shpccDarkRed hover:text-shpccYellow hover:cursor-pointer h-full flex items-center px-8">
           Contact Us
         </p>
       </div>

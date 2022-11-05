@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       colors: {
         shpccRed: "#C4141C",
+        shpccDarkRed: "#AC0F15",
         shpccYellow: "#FFD700",
       },
     },

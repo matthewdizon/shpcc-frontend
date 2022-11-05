@@ -9,9 +9,7 @@ export default function Layout({ children }) {
       </Head>
       <Navbar />
       <div className="bg-white min-h-screen">
-        <main className="max-w-3xl mx-auto text-center text-black text-opacity-70">
-          {children}
-        </main>
+        <main className="px-24">{children}</main>
       </div>
     </>
   );
