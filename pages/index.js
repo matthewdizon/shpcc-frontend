@@ -1,4 +1,5 @@
 import Layout from "../components/Layout";
+import MemberStories from "../components/MemberStories";
 
 export default function Home() {
   return (
@@ -85,6 +86,13 @@ export default function Home() {
             finances.
           </p>
         </div>
+      </div>
+      <div className="text-black py-8">
+        <div className="text-center py-4">
+          <h2 className="font-bold text-3xl">Member Stories</h2>
+          <p className="font-thin">Get to know our members.</p>
+        </div>
+        <MemberStories></MemberStories>
       </div>
     </Layout>
   );
