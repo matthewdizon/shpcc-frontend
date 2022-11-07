@@ -4,7 +4,7 @@ import MemberStories from "../components/MemberStories";
 export default function Home() {
   return (
     <Layout>
-      <div className="grid bg-black !bg-[url('/images/hero.svg')] text-white -mx-24 px-24 py-24 gap-4">
+      <div className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-24 px-24 py-24 gap-4">
         <p className="text-6xl font-bold max-w-sm leading-snug">
           Together we fulfill our dreams
         </p>
@@ -60,7 +60,7 @@ export default function Home() {
             ullamcorper purus nec enim molestie imperdiet.
           </p>
         </div>
-        <div className="!bg-[url('/images/cogs.svg')] bg-center rounded-3xl text-white relative">
+        <div className="bg-cover !bg-[url('/images/cogs.svg')] bg-center rounded-3xl text-white relative">
           <div className="absolute bottom-12 left-12">
             <p>Image Title</p>
             <p>Image Description</p>
@@ -87,7 +87,7 @@ export default function Home() {
           </p>
         </div>
       </div>
-      <div className="text-black py-8">
+      <div className="text-black py-8 -mx-24">
         <div className="text-center py-4">
           <h2 className="font-bold text-3xl">Member Stories</h2>
           <p className="font-thin">Get to know our members.</p>

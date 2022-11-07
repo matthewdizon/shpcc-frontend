@@ -39,7 +39,7 @@ const members = [
 
 const Member = ({ name, description, image }) => {
   return (
-    <div className="bg-black text-white py-72 relative">
+    <div className="bg-cover !bg-[url('/images/hero.svg')] text-white py-72 relative">
       <div className="absolute top-12 left-12 max-w-xl">
         <h3 className="font-black text-3xl">{name}</h3>
         <p>{description}</p>
@@ -55,20 +55,20 @@ export default function MemberStories() {
     <>
       <Swiper
         slidesPerView={1}
-        spaceBetween={30}
+        spaceBetween={50}
         centeredSlides={true}
         pagination={{
           clickable: true,
         }}
         autoplay={{
-          delay: 4000,
+          delay: 10000,
           disableOnInteraction: false,
         }}
         modules={[Pagination]}
         style={{
           "--swiper-navigation-color": "black",
           "--swiper-pagination-color": "#000",
-          padding: "48px",
+          padding: "48px 120px",
           paddingBottom: "48px",
         }}
       >
