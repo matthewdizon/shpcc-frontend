@@ -6,13 +6,13 @@ function ServicesAndRequirements() {
       <div className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-24 px-24 py-36 gap-4">
         <h1 className="text-6xl font-bold">Requirements</h1>
       </div>
-      <div className="grid grid-cols-3 py-16">
+      <div className="grid grid-cols-3 py-16 gap-16">
         <div className="grid gap-8">
           <div>
             <h2 className="text-shpccDarkRed font-bold text-3xl mb-6">
               Regular Member
             </h2>
-            <ol className="list-disc">
+            <ol className="list-disc pl-4">
               <li>A Filipino Citizen</li>
               <li>18 to 65 Years Old</li>
               <li>Has An Occupation</li>
@@ -27,7 +27,7 @@ function ServicesAndRequirements() {
             <h2 className="text-shpccDarkRed font-bold text-3xl mb-6">
               Must be submitted with the membership application
             </h2>
-            <ol className="list-disc">
+            <ol className="list-disc pl-4">
               <li>2 Pcs. 1x1 And 2x2 Picture</li>
               <li>Government Issued ID And TIN</li>
               <li>Barangay Clearance</li>
@@ -40,12 +40,12 @@ function ServicesAndRequirements() {
               Additional Requirements
             </h2>
             <h3 className="font-bold text-xl mb-4">Employee</h3>
-            <ol className="list-disc">
+            <ol className="list-disc pl-4">
               <li>Certificate Of Employment</li>
               <li>2 Months Lates Pay Slip</li>
             </ol>
             <h3 className="font-bold text-xl my-4">Owns A Business</h3>
-            <ol className="list-disc">
+            <ol className="list-disc pl-4">
               <li>Business PErmit</li>
               <li>SEC, DTI Permit / Certificate</li>
               <li>CR & OR Of Vehicles</li>
@@ -104,8 +104,8 @@ function ServicesAndRequirements() {
           <h2 className="text-shpccDarkRed font-bold text-3xl mb-6">
             Low-Interest Loans
           </h2>
-          <div className="grid grid-cols-2">
-            <div className="list-disc grid gap-4">
+          <div className="grid grid-cols-2 gap-8">
+            <div className="list-disc grid gap-4 pl-4">
               <div>
                 <li className="font-bold">Loan Products</li>
                 <p className="indent-6">Basic Loans</p>
@@ -172,7 +172,7 @@ function ServicesAndRequirements() {
           <h2 className="text-shpccDarkRed font-bold text-3xl mb-6">
             High Interest On Deposits
           </h2>
-          <div className="grid">
+          <div className="grid pl-4">
             <div>
               <li className="font-bold">Savings Deposit</li>
               <p className="indent-6 italic">
