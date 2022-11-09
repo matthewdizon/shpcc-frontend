@@ -67,7 +67,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-shpccDarkRed grid grid-cols-2 text-center -mx-24 px-24 py-12 divide-x-4 ">
+      <div className="bg-shpccDarkRed grid grid-cols-2 text-center -mx-24 px-24 py-12 divide-x-4 text-white">
         <div className="grid gap-4 px-24">
           <h2 className="font-bold text-3xl">Vision</h2>
           <p className="text-left font-thin">
