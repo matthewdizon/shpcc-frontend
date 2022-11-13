@@ -13,7 +13,9 @@ function Navbar() {
       </Link>
       <div className="flex text-center items-center uppercase font-semibold">
         <div className="hover:bg-shpccDarkRed hover:text-shpccYellow hover:cursor-pointer h-full flex items-center px-8 group relative">
-          <Link href={"/"}>Home</Link>
+          <Link href={"/"} className="h-full flex items-center">
+            Home
+          </Link>
           <div className="group-hover:block hidden hover:cursor-default absolute top-[5.5rem] left-0 bg-[#FAFAFA] py-4 px-6 text-shpccDarkRed text-left normal-case min-w-max">
             <div className="grid divide-y-[1px] divide-shpccDarkRed">
               <Link
@@ -37,18 +39,41 @@ function Navbar() {
             </div>
           </div>
         </div>
-        <Link
-          href={"/services-and-requirements"}
-          className="hover:bg-shpccDarkRed hover:text-shpccYellow hover:cursor-pointer h-full flex items-center px-8"
-        >
-          Services and Requirements
-        </Link>
-        <Link
-          href={"/contact-us"}
-          className="hover:bg-shpccDarkRed hover:text-shpccYellow hover:cursor-pointer h-full flex items-center px-8"
-        >
-          Contact Us
-        </Link>
+        <div className="hover:bg-shpccDarkRed hover:text-shpccYellow hover:cursor-pointer h-full flex items-center px-8 group relative">
+          <Link
+            href={"/services-and-requirements"}
+            className="h-full flex items-center"
+          >
+            Services and Requirements
+          </Link>
+          <div className="group-hover:block hidden hover:cursor-default absolute top-[5.5rem] left-0 bg-[#FAFAFA] py-4 px-12 text-shpccDarkRed text-left normal-case min-w-max">
+            <div className="grid divide-y-[1px] divide-shpccDarkRed">
+              <Link
+                href="/services-and-requirements#requirements"
+                className="py-2 hover:cursor-pointer hover:underline"
+              >
+                Requirements
+              </Link>
+              <Link
+                href="/services-and-requirements#products-services"
+                className="py-2 hover:cursor-pointer hover:underline"
+              >
+                Products & Services
+              </Link>
+              <Link
+                href="/services-and-requirements#benefits-services"
+                className="py-2 hover:cursor-pointer hover:underline"
+              >
+                Community Benefits & Services
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className="hover:bg-shpccDarkRed hover:text-shpccYellow hover:cursor-pointer h-full flex items-center px-8 group relative">
+          <Link href={"/contact-us"} className="h-full flex items-center">
+            Contact Us
+          </Link>
+        </div>
       </div>
     </nav>
   );

@@ -3,7 +3,10 @@ import Layout from "../components/Layout";
 function ServicesAndRequirements() {
   return (
     <Layout>
-      <div className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-24 px-24 py-36 gap-4">
+      <div
+        className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-24 px-24 py-36 gap-4"
+        id="requirements"
+      >
         <h1 className="text-6xl font-bold">Requirements</h1>
       </div>
       <div className="grid grid-cols-3 py-16 gap-16">
@@ -96,7 +99,10 @@ function ServicesAndRequirements() {
           </p>
         </div>
       </div>
-      <div className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-24 px-24 py-36 gap-4">
+      <div
+        className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-24 px-24 py-36 gap-4"
+        id="products-services"
+      >
         <h1 className="text-6xl font-bold">Products & Services</h1>
       </div>
       <div className="grid grid-cols-2 py-16 gap-16">
@@ -188,7 +194,10 @@ function ServicesAndRequirements() {
           </div>
         </div>
       </div>
-      <div className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-24 px-24 py-36 gap-4">
+      <div
+        className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-24 px-24 py-36 gap-4"
+        id="benefits-services"
+      >
         <h1 className="text-6xl font-bold">Community Benefits & Services</h1>
       </div>
       <div className="py-16">
