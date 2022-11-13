@@ -25,7 +25,7 @@ function Navbar() {
           Services and Requirements
         </Link>
         <Link
-          href={"/"}
+          href={"/contact-us"}
           className="hover:bg-shpccDarkRed hover:text-shpccYellow hover:cursor-pointer h-full flex items-center px-8"
         >
           Contact Us
