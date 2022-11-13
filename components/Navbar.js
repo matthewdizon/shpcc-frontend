@@ -12,12 +12,31 @@ function Navbar() {
         </h1>
       </Link>
       <div className="flex text-center items-center uppercase font-semibold">
-        <Link
-          href={"/"}
-          className="hover:bg-shpccDarkRed hover:text-shpccYellow hover:cursor-pointer h-full flex items-center px-8"
-        >
-          Home
-        </Link>
+        <div className="hover:bg-shpccDarkRed hover:text-shpccYellow hover:cursor-pointer h-full flex items-center px-8 group relative">
+          <Link href={"/"}>Home</Link>
+          <div className="group-hover:block hidden hover:cursor-default absolute top-[5.5rem] left-0 bg-[#FAFAFA] py-4 px-6 text-shpccDarkRed text-left normal-case min-w-max">
+            <div className="grid divide-y-[1px] divide-shpccDarkRed">
+              <Link
+                href="/#history"
+                className="py-2 hover:cursor-pointer hover:underline"
+              >
+                History
+              </Link>
+              <Link
+                href="/#vision-mission"
+                className="py-2 hover:cursor-pointer hover:underline"
+              >
+                Vision & Mission
+              </Link>
+              <Link
+                href="/#member-stories"
+                className="py-2 hover:cursor-pointer hover:underline"
+              >
+                Member Stories
+              </Link>
+            </div>
+          </div>
+        </div>
         <Link
           href={"/services-and-requirements"}
           className="hover:bg-shpccDarkRed hover:text-shpccYellow hover:cursor-pointer h-full flex items-center px-8"

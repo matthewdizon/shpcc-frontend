@@ -24,7 +24,7 @@ export default function Home() {
           </svg>
         </button>
       </div>
-      <div className="grid grid-cols-2 text-black py-12 gap-8">
+      <div className="grid grid-cols-2 text-black py-12 gap-8" id="history">
         <div className="grid gap-4">
           <h2 className="text-shpccDarkRed font-bold text-3xl text-center max-w-xl mx-auto mb-8">
             History Of The Sacred Heart Of Parish Credit Cooperative
@@ -67,7 +67,10 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-shpccDarkRed grid grid-cols-2 text-center -mx-24 px-24 py-12 divide-x-4 text-white">
+      <div
+        className="bg-shpccDarkRed grid grid-cols-2 text-center -mx-24 px-24 py-12 divide-x-4 text-white"
+        id="vision-mission"
+      >
         <div className="grid gap-4 px-24">
           <h2 className="font-bold text-3xl">Vision</h2>
           <p className="text-left font-thin">
@@ -87,7 +90,7 @@ export default function Home() {
           </p>
         </div>
       </div>
-      <div className="text-black py-8 -mx-24">
+      <div className="text-black py-8 -mx-24" id="member-stories">
         <div className="text-center py-4">
           <h2 className="font-bold text-3xl">Member Stories</h2>
           <p className="font-thin">Get to know our members.</p>
