@@ -74,6 +74,14 @@ function Navbar() {
             Contact Us
           </Link>
         </div>
+        <button>
+          <Link
+            href={"/login"}
+            className="uppercase bg-white text-shpccDarkRed py-2 px-6 rounded-lg mx-8 hover:bg-shpccYellow font-bold"
+          >
+            Login
+          </Link>
+        </button>
       </div>
     </nav>
   );
