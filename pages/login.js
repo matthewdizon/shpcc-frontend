@@ -1,6 +1,54 @@
+import { useState, useContext } from "react";
 import Layout from "../components/Layout";
+import Router from "next/router";
+import { UserContext } from "../context/userContext";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { setUser } = useContext(UserContext);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log(e);
+
+    const userDetails = {
+      email,
+      password,
+    };
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/users/login`,
+      {
+        method: "POST",
+        body: JSON.stringify(userDetails),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (res.ok) {
+      // Get the JWT from the response
+      const { accessToken } = await res.json();
+
+      // Set the JWT in local storage
+      localStorage.setItem("accessToken", accessToken);
+
+      // Update User Context
+      setUser(email);
+
+      // Redirect the user to the home page
+      Router.push("/dashboard");
+    } else {
+      // Set error message
+      // setMessage("Error: Invalid email or password");
+      // setShowMessage(true);
+    }
+  };
+
   return (
     <Layout>
       <div className="h-[90vh] !bg-[url('/images/login.svg')] bg-cover -mx-24 px-24 py-24 items-center flex">
@@ -14,12 +62,12 @@ function Login() {
           </div>
           <div className="bg-white p-8 rounded-3xl shadow-2xl">
             <p className="font-bold text-3xl">Log into SHPCC</p>
-            <form action="" className="grid gap-3 my-8">
+            <form action="" className="grid gap-3 my-8" onSubmit={handleSubmit}>
               <div className="grid">
                 <input
                   type="text"
                   placeholder="Username"
-                  onChange={(e) => console.log(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="bg-white border-gray-400 border rounded-lg p-2"
                 />
               </div>
@@ -27,12 +75,12 @@ function Login() {
                 <input
                   type="password"
                   placeholder="Password (6-20 characters)"
-                  onChange={(e) => console.log(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="bg-white border-gray-400 border rounded-lg p-2"
                 />
               </div>
 
-              <button className="bg-shpccDarkRed rounded-lg text-white text-xl py-2 mt-4 font-thin">
+              <button className="bg-shpccDarkRed rounded-lg text-white text-xl py-2 mt-4 font-thin hover:cursor-pointer">
                 Log In
               </button>
             </form>
