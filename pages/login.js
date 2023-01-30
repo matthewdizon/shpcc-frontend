@@ -41,7 +41,7 @@ function Login() {
       setUser(email);
 
       // Redirect the user to the home page
-      Router.push("/dashboard");
+      Router.push("/dashboard/home");
     } else {
       // Set error message
       // setMessage("Error: Invalid email or password");
@@ -66,7 +66,7 @@ function Login() {
               <div className="grid">
                 <input
                   type="text"
-                  placeholder="Username"
+                  placeholder="Email"
                   onChange={(e) => setEmail(e.target.value)}
                   className="bg-white border-gray-400 border rounded-lg p-2"
                 />
