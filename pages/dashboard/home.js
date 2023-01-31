@@ -1,8 +1,10 @@
 import Layout from "../../components/dashboard/Layout";
 import { UserContext } from "../../context/userContext";
 import { useEffect, useContext } from "react";
+import { getAnnouncements } from "../../lib/api";
+import Link from "next/link";
 
-function Dashboard() {
+function Dashboard({ announcements }) {
   const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
@@ -45,30 +47,27 @@ function Dashboard() {
           <p className="font-bold text-2xl">Announcements</p>
           <hr className="bg-black h-[2px] my-2" />
           <div className="grid gap-4">
-            <div>
-              <div className="grid gap-2">
-                <h2 className="font-bold text-lg">Paskuhan sa Koop</h2>
-                <span className="font-thin">November 5, 2022</span>
-                <p className="font-thin">
-                  Deserunt nisi aute irure minim et incididunt aliqua.
-                  Exercitation non adipisicing voluptate occaecat fugiat magna
-                  aute in sit magna Lorem non amet voluptate nisi. Minim cillum
-                  occaecat labore commodo aliquip consequat aute.
-                </p>
-              </div>
-            </div>
-            <div>
-              <div className="grid gap-2">
-                <h2 className="font-bold text-lg">Ugnayang Koop Virtual</h2>
-                <span className="font-thin">October 12, 2022</span>
-                <p className="font-thin">
-                  Deserunt nisi aute irure minim et incididunt aliqua.
-                  Exercitation non adipisicing voluptate occaecat fugiat magna
-                  aute in sit magna Lorem non amet voluptate nisi. Minim cillum
-                  occaecat labore commodo aliquip consequat aute.
-                </p>
-              </div>
-            </div>
+            {announcements.map((announcement, index) => {
+              const { title, dateAndTime, description, slug } = announcement;
+              return (
+                <Link key={index} href={`/dashboard/announcements/${slug}`}>
+                  <div className="grid gap-2">
+                    <h2 className="font-bold text-lg">{title}</h2>
+                    <span className="font-thin">
+                      {Intl.DateTimeFormat("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                        hour: "numeric",
+                        minute: "numeric",
+                        hour12: true,
+                      }).format(new Date(dateAndTime))}
+                    </span>
+                    <p className="font-thin">{description}</p>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -77,3 +76,13 @@ function Dashboard() {
 }
 
 export default Dashboard;
+
+export async function getServerSideProps() {
+  const announcements = (await getAnnouncements()) ?? [];
+
+  return {
+    props: {
+      announcements,
+    },
+  };
+}

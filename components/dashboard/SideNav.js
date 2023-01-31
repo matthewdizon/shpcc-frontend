@@ -2,11 +2,12 @@ import Logo from "../../assets/images/logo.svg";
 import Image from "next/image";
 import { UserContext } from "../../context/userContext";
 import { useEffect, useContext } from "react";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import Link from "next/link";
 
 export default function SideNav() {
   const { user, setUser } = useContext(UserContext);
+  const router = useRouter();
 
   useEffect(() => {
     async function getUser() {
@@ -211,7 +212,7 @@ export default function SideNav() {
       svg: <LoanSVG />,
     },
     {
-      link: "Announcement",
+      link: "Announcements",
       svg: <AnnouncementSVG />,
     },
     // {
@@ -231,7 +232,13 @@ export default function SideNav() {
         {links.map((link, index) => {
           return (
             <Link
-              className="flex items-center gap-2 hover:text-shpccYellow hover:cursor-pointer hover:bg-black p-4 rounded-lg font-semibold uppercase"
+              className={`flex items-center gap-2 hover:text-shpccYellow hover:cursor-pointer hover:bg-black p-4 rounded-lg font-semibold uppercase transition duration-200 ${
+                router.pathname.includes(
+                  `/dashboard/${link.link.toLowerCase()}`
+                )
+                  ? "text-shpccYellow cursor-pointer bg-black"
+                  : ""
+              }`}
               key={index}
               href={`/dashboard/${link.link.toLowerCase()}`}
             >
