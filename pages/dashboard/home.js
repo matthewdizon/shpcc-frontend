@@ -51,7 +51,7 @@ function Dashboard({ announcements }) {
               const { title, dateAndTime, description, slug } = announcement;
               return (
                 <Link key={index} href={`/dashboard/announcements/${slug}`}>
-                  <div className="grid gap-2">
+                  <div className="grid gap-2 hover:bg-gray-200 rounded-lg p-2">
                     <h2 className="font-bold text-lg">{title}</h2>
                     <span className="font-thin">
                       {Intl.DateTimeFormat("en-US", {
