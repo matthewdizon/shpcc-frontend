@@ -1,37 +1,10 @@
 import Logo from "../../assets/images/logo.svg";
 import Image from "next/image";
-import { UserContext } from "../../context/userContext";
-import { useEffect, useContext } from "react";
 import Router, { useRouter } from "next/router";
 import Link from "next/link";
 
 export default function SideNav() {
-  const { user, setUser } = useContext(UserContext);
   const router = useRouter();
-
-  useEffect(() => {
-    async function getUser() {
-      const jwt = localStorage.getItem("accessToken");
-
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/users/user`,
-        {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        }
-      );
-      try {
-        const data = await res.json();
-        if (!data.error) {
-          setUser(data);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getUser();
-  }, []);
 
   const logout = () => {
     localStorage.removeItem("accessToken");

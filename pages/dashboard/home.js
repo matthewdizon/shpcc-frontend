@@ -1,35 +1,11 @@
 import Layout from "../../components/dashboard/Layout";
 import { UserContext } from "../../context/userContext";
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import { getAnnouncements } from "../../lib/api";
 import Link from "next/link";
 
 function Dashboard({ announcements }) {
-  const { user, setUser } = useContext(UserContext);
-
-  useEffect(() => {
-    async function getUser() {
-      const jwt = localStorage.getItem("accessToken");
-
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/users/user`,
-        {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        }
-      );
-      try {
-        const data = await res.json();
-        if (!data.error) {
-          setUser(data);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getUser();
-  }, []);
+  const { user } = useContext(UserContext);
 
   return (
     <Layout>
