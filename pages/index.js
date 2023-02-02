@@ -1,7 +1,8 @@
 import Layout from "../components/Layout";
 import MemberStories from "../components/MemberStories";
+import { getMemberStories } from "../lib/api";
 
-export default function Home() {
+export default function Home({ members }) {
   return (
     <Layout>
       <div className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-24 px-24 py-24 gap-4">
@@ -95,8 +96,18 @@ export default function Home() {
           <h2 className="font-bold text-3xl">Member Stories</h2>
           <p className="font-thin">Get to know our members.</p>
         </div>
-        <MemberStories></MemberStories>
+        <MemberStories members={members} />
       </div>
     </Layout>
   );
+}
+
+export async function getServerSideProps() {
+  const members = (await getMemberStories()) ?? [];
+
+  return {
+    props: {
+      members,
+    },
+  };
 }

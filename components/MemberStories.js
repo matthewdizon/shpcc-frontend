@@ -1,3 +1,6 @@
+import Link from "next/link";
+import Image from "next/image";
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay } from "swiper";
@@ -9,46 +12,35 @@ import "swiper/css/pagination";
 // import required modules
 import { Pagination } from "swiper";
 
-const members = [
-  {
-    name: "Member 1 Name",
-    description:
-      "Quis voluptate commodo voluptate nostrud pariatur ipsum ex aliqua eu commodo nulla. Laboris incididunt excepteur nulla duis irure officia sit exercitation nostrud sit minim. Culpa occaecat veniam officia laborum et esse in deserunt aute labore. Ad culpa ipsum velit ea sint tempor consequat aliqua sint laborum. Nisi ad est est nisi non ad pariatur consectetur consequat. Esse in anim anim sint excepteur ipsum qui fugiat ea veniam esse.",
-  },
-  {
-    name: "Member 2 Name",
-    description:
-      "Quis voluptate commodo voluptate nostrud pariatur ipsum ex aliqua eu commodo nulla. Laboris incididunt excepteur nulla duis irure officia sit exercitation nostrud sit minim. Culpa occaecat veniam officia laborum et esse in deserunt aute labore. Ad culpa ipsum velit ea sint tempor consequat aliqua sint laborum. Nisi ad est est nisi non ad pariatur consectetur consequat. Esse in anim anim sint excepteur ipsum qui fugiat ea veniam esse.",
-  },
-  {
-    name: "Member 3 Name",
-    description:
-      "Quis voluptate commodo voluptate nostrud pariatur ipsum ex aliqua eu commodo nulla. Laboris incididunt excepteur nulla duis irure officia sit exercitation nostrud sit minim. Culpa occaecat veniam officia laborum et esse in deserunt aute labore. Ad culpa ipsum velit ea sint tempor consequat aliqua sint laborum. Nisi ad est est nisi non ad pariatur consectetur consequat. Esse in anim anim sint excepteur ipsum qui fugiat ea veniam esse.",
-  },
-  {
-    name: "Member 4 Name",
-    description:
-      "Quis voluptate commodo voluptate nostrud pariatur ipsum ex aliqua eu commodo nulla. Laboris incididunt excepteur nulla duis irure officia sit exercitation nostrud sit minim. Culpa occaecat veniam officia laborum et esse in deserunt aute labore. Ad culpa ipsum velit ea sint tempor consequat aliqua sint laborum. Nisi ad est est nisi non ad pariatur consectetur consequat. Esse in anim anim sint excepteur ipsum qui fugiat ea veniam esse.",
-  },
-  {
-    name: "Member 5 Name",
-    description:
-      "Quis voluptate commodo voluptate nostrud pariatur ipsum ex aliqua eu commodo nulla. Laboris incididunt excepteur nulla duis irure officia sit exercitation nostrud sit minim. Culpa occaecat veniam officia laborum et esse in deserunt aute labore. Ad culpa ipsum velit ea sint tempor consequat aliqua sint laborum. Nisi ad est est nisi non ad pariatur consectetur consequat. Esse in anim anim sint excepteur ipsum qui fugiat ea veniam esse.",
-  },
-];
-
-const Member = ({ name, description, image }) => {
+const Member = ({ name, description, image, slug }) => {
   return (
-    <div className="bg-cover !bg-[url('/images/hero.svg')] text-white py-72 relative">
-      <div className="absolute top-12 left-12 max-w-xl">
+    <div
+      className={`bg-cover text-white bg-gray-600 py-72 relative backdrop-blur-lg`}
+    >
+      <div>
+        <Image
+          src={image?.url}
+          alt={`Image of ${name}`}
+          fill
+          objectFit="cover"
+          className="opacity-60"
+        />
+      </div>
+      <div className="absolute top-12 left-12 max-w-xl flex flex-col gap-4">
         <h3 className="font-black text-3xl">{name}</h3>
         <p>{description}</p>
+        <Link
+          className="bg-white text-black px-4 py-2 rounded-full max-w-max"
+          href={`/member-stories/${slug}`}
+        >
+          Read More
+        </Link>
       </div>
     </div>
   );
 };
 
-export default function MemberStories() {
+export default function MemberStories({ members }) {
   SwiperCore.use([Autoplay]);
 
   return (
@@ -73,10 +65,15 @@ export default function MemberStories() {
         }}
       >
         {members.map((member, index) => {
-          const { name, description } = member;
+          const { memberName, description, slug, image } = member;
           return (
             <SwiperSlide key={index}>
-              <Member name={name} description={description} />
+              <Member
+                name={memberName}
+                description={description}
+                image={image}
+                slug={slug}
+              />
             </SwiperSlide>
           );
         })}
