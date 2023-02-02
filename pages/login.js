@@ -42,7 +42,9 @@ function Login() {
       setUser({ email, firstName, lastName, isAdmin, membershipType });
 
       // Redirect the user to the home page
-      Router.push("/dashboard/home");
+      isAdmin
+        ? Router.push("/dashboard/admin/home")
+        : Router.push("/dashboard/home");
     } else {
       // Set error message
       // setMessage("Error: Invalid email or password");

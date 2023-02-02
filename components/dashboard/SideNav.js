@@ -2,9 +2,12 @@ import Logo from "../../assets/images/logo.svg";
 import Image from "next/image";
 import Router, { useRouter } from "next/router";
 import Link from "next/link";
+import { UserContext } from "../../context/userContext";
+import { useContext } from "react";
 
 export default function SideNav() {
   const router = useRouter();
+  const { user } = useContext(UserContext);
 
   const logout = () => {
     localStorage.removeItem("accessToken");
@@ -126,6 +129,32 @@ export default function SideNav() {
     );
   };
 
+  const UserSVG = () => {
+    return (
+      <svg
+        width={svgSize}
+        height={svgSize}
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M8 11C10.2091 11 12 9.20914 12 7C12 4.79086 10.2091 3 8 3C5.79086 3 4 4.79086 4 7C4 9.20914 5.79086 11 8 11ZM8 9C9.10457 9 10 8.10457 10 7C10 5.89543 9.10457 5 8 5C6.89543 5 6 5.89543 6 7C6 8.10457 6.89543 9 8 9Z"
+          fill="currentColor"
+        />
+        <path
+          d="M11 14C11.5523 14 12 14.4477 12 15V21H14V15C14 13.3431 12.6569 12 11 12H5C3.34315 12 2 13.3431 2 15V21H4V15C4 14.4477 4.44772 14 5 14H11Z"
+          fill="currentColor"
+        />
+        <path d="M22 11H16V13H22V11Z" fill="currentColor" />
+        <path d="M16 15H22V17H16V15Z" fill="currentColor" />
+        <path d="M22 7H16V9H22V7Z" fill="currentColor" />
+      </svg>
+    );
+  };
+
   const RequestSVG = () => {
     return (
       <svg
@@ -188,6 +217,10 @@ export default function SideNav() {
       link: "Announcements",
       svg: <AnnouncementSVG />,
     },
+    {
+      link: "Users",
+      svg: <UserSVG />,
+    },
     // {
     //   link: "Request",
     //   svg: <RequestSVG />,
@@ -203,6 +236,7 @@ export default function SideNav() {
       <Image src={Logo} alt="Logo" width={100} height={100} />
       <div className="grid gap-4">
         {links.map((link, index) => {
+          if (!user.isAdmin && link.link === "Users") return null;
           return (
             <Link
               className={`flex items-center gap-2 hover:text-shpccYellow hover:cursor-pointer hover:bg-black p-4 rounded-lg font-semibold uppercase transition duration-200 ${
@@ -213,7 +247,9 @@ export default function SideNav() {
                   : ""
               }`}
               key={index}
-              href={`/dashboard/${link.link.toLowerCase()}`}
+              href={`/dashboard/${
+                user.isAdmin ? "admin/" : ""
+              }${link.link.toLowerCase()}`}
             >
               {link.svg}
               <p>{link.link}</p>

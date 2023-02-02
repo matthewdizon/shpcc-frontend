@@ -3,9 +3,11 @@ import Head from "next/head";
 import { UserContext } from "../../context/userContext";
 import { useContext, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Layout({ children }) {
   const { user, setUser } = useContext(UserContext);
+  const router = useRouter();
 
   useEffect(() => {
     async function getUser() {
@@ -40,6 +42,20 @@ export default function Layout({ children }) {
           href={"/login"}
         >
           Login
+        </Link>
+      </div>
+    );
+
+  if (!user.isAdmin && router.pathname.includes("/admin"))
+    return (
+      <div className="flex flex-col gap-4 items-center justify-center h-screen bg-[#f1f1f2] text-black">
+        <span className="font-bold text-3xl">Unauthorized Content!</span>
+        <p>You are not an adminstrator</p>
+        <Link
+          className="bg-shpccRed text-white p-4 py-2 rounded-lg hover:cursor-pointer"
+          href={"/dashboard/home"}
+        >
+          Go Home
         </Link>
       </div>
     );
