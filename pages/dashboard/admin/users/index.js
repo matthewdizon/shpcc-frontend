@@ -30,7 +30,7 @@ function Users() {
   return (
     <Layout>
       <div className="p-24">
-        <p className="font-bold text-3xl">Users</p>
+        <p className="font-black text-3xl bg-white p-8 rounded-3xl">Users</p>
         <div>
           {data.map((user, index) => {
             console.log(user);
