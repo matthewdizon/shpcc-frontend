@@ -1,14 +1,12 @@
-import { useState, useContext } from "react";
 import Layout from "../components/Layout";
-import Router from "next/router";
-import { UserContext } from "../context/userContext";
 import Link from "next/link";
+import { useState } from "react";
+import Router from "next/router";
 
-function Login() {
+function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const { setUser } = useContext(UserContext);
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +17,7 @@ function Login() {
     };
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/users/login`,
+      `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/users/signup`,
       {
         method: "POST",
         body: JSON.stringify(userDetails),
@@ -30,21 +28,9 @@ function Login() {
     );
 
     if (res.ok) {
-      // Get the JWT from the response
-      const { accessToken, firstName, lastName, isAdmin, membershipType } =
-        await res.json();
-
-      // Set the JWT in local storage
-      localStorage.setItem("accessToken", accessToken);
-
-      // Update User Context
-      setUser({ email, firstName, lastName, isAdmin, membershipType });
-
-      // Redirect the user to the home page
-      isAdmin
-        ? Router.push("/dashboard/admin/home")
-        : Router.push("/dashboard/home");
+      Router.push("/verifyEmail");
     } else {
+      console.log(res);
       // Set error message
       // setMessage("Error: Invalid email or password");
       // setShowMessage(true);
@@ -63,7 +49,7 @@ function Login() {
             </p>
           </div>
           <div className="bg-white p-8 rounded-3xl shadow-2xl">
-            <p className="font-bold text-3xl">Log into SHPCC</p>
+            <p className="font-bold text-3xl">Create your Account</p>
             <form action="" className="grid gap-3 my-8" onSubmit={handleSubmit}>
               <div className="grid">
                 <input
@@ -82,18 +68,24 @@ function Login() {
                 />
               </div>
 
+              <div className="grid">
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className="bg-white border-gray-400 border rounded-lg p-2"
+                />
+              </div>
+
               <button className="bg-shpccDarkRed rounded-lg text-white text-xl py-2 mt-4 font-thin hover:cursor-pointer">
-                Log In
+                Create Account
               </button>
             </form>
             <div>
-              Don&apos;t have an account?{" "}
-              <Link className="text-shpccRed hover:underline" href={"signup"}>
-                Sign Up
+              Already have an account?{" "}
+              <Link className="text-shpccRed hover:underline" href={"/login"}>
+                Sign In
               </Link>
-            </div>
-            <div className="hover:underline max-w-max hover:cursor-pointer">
-              Forgot Password?
             </div>
           </div>
         </div>
@@ -102,4 +94,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default SignUp;
