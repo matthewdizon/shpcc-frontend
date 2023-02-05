@@ -60,6 +60,26 @@ export default function Layout({ children }) {
       </div>
     );
 
+  if (user.status === "unverified")
+    return (
+      <div className="flex flex-col gap-4 items-center justify-center h-screen bg-[#f1f1f2] text-black">
+        <span className="font-bold text-3xl">Unauthorized Content!</span>
+        <p>
+          Kindly check your email to verify your account and access our
+          application.
+        </p>
+        <p>
+          Try to login once again if you have clicked the verification link.
+        </p>
+        <Link
+          className="bg-shpccRed text-white p-4 py-2 rounded-lg hover:cursor-pointer"
+          href={"/login"}
+        >
+          Login
+        </Link>
+      </div>
+    );
+
   return (
     <div className="flex">
       <Head>

@@ -31,14 +31,20 @@ function Login() {
 
     if (res.ok) {
       // Get the JWT from the response
-      const { accessToken, firstName, lastName, isAdmin, membershipType } =
-        await res.json();
+      const {
+        accessToken,
+        firstName,
+        lastName,
+        isAdmin,
+        membershipType,
+        status,
+      } = await res.json();
 
       // Set the JWT in local storage
       localStorage.setItem("accessToken", accessToken);
 
       // Update User Context
-      setUser({ email, firstName, lastName, isAdmin, membershipType });
+      setUser({ email, firstName, lastName, isAdmin, membershipType, status });
 
       // Redirect the user to the home page
       isAdmin
