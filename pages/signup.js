@@ -28,6 +28,9 @@ function SignUp() {
     );
 
     if (res.ok) {
+      const json = await res.json();
+      const { email } = json.user;
+      localStorage.setItem("email", email);
       Router.push("/verifyEmail");
     } else {
       console.log(res);

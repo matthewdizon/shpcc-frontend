@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import Router from "next/router";
 
 const VerifyEmail = () => {
-  const [seconds, setSeconds] = useState(120);
+  const [seconds, setSeconds] = useState(5);
   const [isActive, setIsActive] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     let interval = null;
@@ -16,9 +18,37 @@ const VerifyEmail = () => {
     return () => clearInterval(interval);
   }, [isActive, seconds]);
 
-  const handleResend = () => {
-    setSeconds(120);
-    setIsActive(true);
+  useEffect(() => {
+    const email = localStorage.getItem("email");
+    if (!email) {
+      Router.push("/");
+    }
+  }, []);
+
+  const handleResend = async () => {
+    setLoading(true);
+
+    const email = localStorage.getItem("email");
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/users/resendVerificationLink`,
+      {
+        method: "POST",
+        body: JSON.stringify({ email }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (res.ok) {
+      setLoading(false);
+      setSeconds(120);
+      setIsActive(true);
+    } else {
+      setLoading(false);
+      console.error(err);
+    }
   };
 
   return (
@@ -31,17 +61,25 @@ const VerifyEmail = () => {
           A verification link has been sent to your email. Please check your
           inbox and follow the instructions.
         </p>
-        {seconds <= 0 ? (
-          <button
-            className="w-full mt-5 py-2 bg-shpccRed hover:bg-shpccDarkRed text-white font-medium rounded-lg focus:outline-none"
-            onClick={handleResend}
-          >
-            Resend Link
-          </button>
-        ) : (
+        {loading ? (
           <p className="text-base font-medium text-center text-gray-600 mt-5">
-            You can resend the link in {seconds} seconds.
+            Resending verification link...
           </p>
+        ) : (
+          <>
+            {seconds <= 0 ? (
+              <button
+                className="w-full mt-5 py-2 bg-shpccRed hover:bg-shpccDarkRed text-white font-medium rounded-lg focus:outline-none"
+                onClick={handleResend}
+              >
+                Resend Link
+              </button>
+            ) : (
+              <p className="text-base font-medium text-center text-gray-600 mt-5">
+                You can resend the link in {seconds} seconds.
+              </p>
+            )}
+          </>
         )}
       </div>
     </div>
