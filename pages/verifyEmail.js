@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Router from "next/router";
 
 const VerifyEmail = () => {
-  const [seconds, setSeconds] = useState(5);
+  const [seconds, setSeconds] = useState(120);
   const [isActive, setIsActive] = useState(true);
   const [loading, setLoading] = useState(false);
 
