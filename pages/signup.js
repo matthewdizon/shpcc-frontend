@@ -59,6 +59,7 @@ function SignUp() {
                   type="email"
                   placeholder="Email"
                   onChange={(e) => setEmail(e.target.value)}
+                  value={email}
                   className="bg-white border-gray-400 border rounded-lg p-2"
                 />
               </div>
@@ -67,6 +68,7 @@ function SignUp() {
                   type="password"
                   placeholder="Password (6-20 characters)"
                   onChange={(e) => setPassword(e.target.value)}
+                  value={password}
                   className="bg-white border-gray-400 border rounded-lg p-2"
                 />
               </div>
@@ -76,6 +78,7 @@ function SignUp() {
                   type="password"
                   placeholder="Confirm Password"
                   onChange={(e) => setConfirmPassword(e.target.value)}
+                  value={confirmPassword}
                   className="bg-white border-gray-400 border rounded-lg p-2"
                 />
               </div>
