@@ -5,11 +5,11 @@ import { getMemberStories } from "../lib/api";
 export default function Home({ members }) {
   return (
     <Layout>
-      <div className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-6 md:-mx-12 lg:-mx-24 px-24 py-24 gap-4">
-        <p className="text-6xl font-bold max-w-sm leading-snug">
+      <div className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4">
+        <p className="text-5xl lg:text-6xl font-bold lg:max-w-sm lg:leading-snug">
           Together we fulfill our dreams
         </p>
-        <button className="flex bg-shpccDarkRed max-w-max py-4 px-6 rounded-full uppercase font-bold gap-2">
+        <button className="flex bg-shpccDarkRed max-w-max py-4 px-4 lg:px-6 rounded-full uppercase font-bold gap-2">
           Become a Member{" "}
           <svg
             width="24"
