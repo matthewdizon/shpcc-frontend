@@ -10,7 +10,7 @@ export default function Layout({ children }) {
       </Head>
       <Navbar />
       <div className="bg-white text-black">
-        <main className="px-24">{children}</main>
+        <main className="px-6 md:px-12 lg:px-24">{children}</main>
       </div>
       <Footer />
     </>

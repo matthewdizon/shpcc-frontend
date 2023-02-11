@@ -5,7 +5,7 @@ import { getMemberStories } from "../lib/api";
 export default function Home({ members }) {
   return (
     <Layout>
-      <div className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-24 px-24 py-24 gap-4">
+      <div className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-6 md:-mx-12 lg:-mx-24 px-24 py-24 gap-4">
         <p className="text-6xl font-bold max-w-sm leading-snug">
           Together we fulfill our dreams
         </p>
@@ -25,7 +25,7 @@ export default function Home({ members }) {
           </svg>
         </button>
       </div>
-      <div className="grid grid-cols-2 text-black py-12 gap-8" id="history">
+      <div className="grid lg:grid-cols-2 text-black py-12 gap-8" id="history">
         <div className="grid gap-4">
           <h2 className="text-shpccDarkRed font-bold text-3xl text-center max-w-xl mx-auto mb-8">
             History Of The Sacred Heart Of Parish Credit Cooperative
@@ -61,7 +61,7 @@ export default function Home({ members }) {
             ullamcorper purus nec enim molestie imperdiet.
           </p>
         </div>
-        <div className="bg-cover !bg-[url('/images/cogs.svg')] bg-center rounded-3xl text-white relative">
+        <div className="bg-cover !bg-[url('/images/cogs.svg')] bg-center rounded-3xl text-white relative h-96 lg:h-auto">
           <div className="absolute bottom-12 left-12">
             <p>Image Title</p>
             <p>Image Description</p>
@@ -69,21 +69,21 @@ export default function Home({ members }) {
         </div>
       </div>
       <div
-        className="bg-shpccDarkRed grid grid-cols-2 text-center -mx-24 px-24 py-12 divide-x-4 text-white"
+        className="bg-shpccDarkRed grid lg:grid-cols-2 text-center -mx-6 md:-mx-12 lg:-mx-24 px-6 md:px-12 lg:px-24 py-12 divide-y-4 lg:divide-y-0 lg:divide-x-4 gap-8 text-white"
         id="vision-mission"
       >
-        <div className="grid gap-4 px-24">
+        <div className="grid gap-4 lg:px-12">
           <h2 className="font-bold text-3xl">Vision</h2>
-          <p className="text-left font-thin">
+          <p className="text-center font-thin">
             The Sacred Heart Parish Credit Cooperative envisions itself that
             every household member is part of the credit cooperative and forms a
             community that aims to educate, empower, and improve the quality of
             life.
           </p>
         </div>
-        <div className="grid gap-4 px-24">
+        <div className="grid gap-4 lg:px-12 pt-8 lg:pt-0">
           <h2 className="font-bold text-3xl">Mission</h2>
-          <p className="text-left font-thin">
+          <p className="text-center font-thin">
             The Sacred Heart Parish Credit Cooperative sets its mission to have
             a holistic approach and growth with its products and services that
             aim to improve, educate, and empower its members in dealing with
@@ -91,7 +91,10 @@ export default function Home({ members }) {
           </p>
         </div>
       </div>
-      <div className="text-black py-8 -mx-24" id="member-stories">
+      <div
+        className="text-black py-8 -mx-6 md:-mx-12 lg:-mx-24"
+        id="member-stories"
+      >
         <div className="text-center py-4">
           <h2 className="font-bold text-3xl">Member Stories</h2>
           <p className="font-thin">Get to know our members.</p>

@@ -26,7 +26,7 @@ const Member = ({ name, description, image, slug }) => {
           className="opacity-60"
         />
       </div>
-      <div className="absolute top-12 left-12 max-w-xl flex flex-col gap-4">
+      <div className="absolute bottom-0 md:top-0 left-0 p-4 lg:p-8 max-w-xl flex flex-col gap-4">
         <h3 className="font-black text-3xl">{name}</h3>
         <p>{description}</p>
         <Link
@@ -60,9 +60,10 @@ export default function MemberStories({ members }) {
         style={{
           "--swiper-navigation-color": "black",
           "--swiper-pagination-color": "#000",
-          padding: "48px 120px",
+          // padding: "48px 120px",
           paddingBottom: "48px",
         }}
+        className="!py-12 !px-8 md:!px-20"
       >
         {members.map((member, index) => {
           const { memberName, description, slug, image } = member;
