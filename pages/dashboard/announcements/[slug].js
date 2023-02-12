@@ -1,5 +1,6 @@
 import Layout from "../../../components/dashboard/Layout";
 import { getAnnouncements, getSingleAnnouncement } from "../../../lib/api";
+import WriteUp from "../../../components/WriteUp";
 
 function AnnouncementSlug({ announcement }) {
   const { title, dateAndTime, description, writeUp } = announcement[0];
@@ -23,7 +24,8 @@ function AnnouncementSlug({ announcement }) {
             </p>
           </div>
           <hr className="bg-shpccDarkRed h-[3px] my-2" />
-          <p>{description}</p>
+          <p className="font-thin">{description}</p>
+          <WriteUp content={writeUp} />
         </div>
       </div>
     </Layout>

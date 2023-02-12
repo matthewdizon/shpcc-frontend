@@ -1,9 +1,11 @@
 import { getMemberStories, getSingleMemberStory } from "../../lib/api";
 import Layout from "../../components/Layout";
 import Image from "next/image";
+import WriteUp from "../../components/WriteUp";
 
 function MemberStory({ memberStory }) {
   const { memberName, description, image, writeUp } = memberStory[0];
+  console.log(writeUp);
   return (
     <Layout>
       <div className="min-h-screen -mx-24 px-24 py-24">
@@ -22,6 +24,7 @@ function MemberStory({ memberStory }) {
             <p>{description}</p>
           </div>
         </div>
+        <WriteUp content={writeUp} />
       </div>
     </Layout>
   );
