@@ -4,12 +4,12 @@ function ServicesAndRequirements() {
   return (
     <Layout>
       <div
-        className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-24 px-24 py-36 gap-4"
+        className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4"
         id="requirements"
       >
-        <h1 className="text-6xl font-bold">Requirements</h1>
+        <h1 className="text-4xl md:text-6xl font-bold">Requirements</h1>
       </div>
-      <div className="grid grid-cols-3 py-16 gap-16">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 py-16 gap-16">
         <div className="grid gap-8">
           <div>
             <h2 className="text-shpccDarkRed font-bold text-3xl mb-6">
@@ -100,17 +100,17 @@ function ServicesAndRequirements() {
         </div>
       </div>
       <div
-        className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-24 px-24 py-36 gap-4"
+        className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4"
         id="products-services"
       >
-        <h1 className="text-6xl font-bold">Products & Services</h1>
+        <h1 className="text-4xl md:text-6xl font-bold">Products & Services</h1>
       </div>
-      <div className="grid grid-cols-2 py-16 gap-16">
+      <div className="grid lg:grid-cols-2 py-16 gap-16">
         <div>
           <h2 className="text-shpccDarkRed font-bold text-3xl mb-6">
             Low-Interest Loans
           </h2>
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             <div className="list-disc grid gap-4 pl-4">
               <div>
                 <li className="font-bold">Loan Products</li>
@@ -143,7 +143,7 @@ function ServicesAndRequirements() {
                 </p>
               </div>
             </div>
-            <div className="grid">
+            <div className="grid px-4 md:px-0">
               <div>
                 <li className="font-bold">Back To Back/Scured Loan</li>
                 <p className="indent-6 italic">
@@ -195,13 +195,15 @@ function ServicesAndRequirements() {
         </div>
       </div>
       <div
-        className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-24 px-24 py-36 gap-4"
+        className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4"
         id="benefits-services"
       >
-        <h1 className="text-6xl font-bold">Community Benefits & Services</h1>
+        <h1 className="text-4xl md:text-6xl font-bold">
+          Community Benefits & Services
+        </h1>
       </div>
       <div className="py-16">
-        <div className="grid grid-cols-3 gap-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-16">
           <div className="grid gap-16">
             <div>
               <h2 className="text-shpccDarkRed font-bold text-3xl mb-4">
@@ -239,8 +241,6 @@ function ServicesAndRequirements() {
               professional members and the local barangays.
             </p>
           </div>
-        </div>
-        <div className="grid grid-cols-3 gap-16 mt-12">
           <div>
             <h2 className="text-shpccDarkRed font-bold text-3xl mb-4">
               Scholarship Assistance
