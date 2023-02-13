@@ -124,7 +124,7 @@ function Navbar() {
           <div
             className={`${
               open ? "block" : "hidden"
-            } flex flex-col absolute top-[86px] left-0 w-full bg-shpccRed gap-4 py-8 px-6 md:px-12`}
+            } flex flex-col absolute top-[86px] left-0 w-full bg-shpccRed gap-4 py-8 px-6 md:px-12 z-20`}
           >
             <div className="flex justify-end">
               <Link

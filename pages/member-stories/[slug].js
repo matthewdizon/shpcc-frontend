@@ -8,9 +8,9 @@ function MemberStory({ memberStory }) {
   console.log(writeUp);
   return (
     <Layout>
-      <div className="min-h-screen -mx-24 px-24 py-24">
-        <div className="grid grid-cols-[1fr_2fr] gap-8 items-center">
-          <div className="relative h-64">
+      <div className="min-h-screen py-24 max-w mx-2 sm:mx-12 md:mx-24 lg:mx-36">
+        <div className="grid xl:grid-cols-[1fr_2fr] gap-8 items-center">
+          <div className="relative h-64 order-2">
             <Image
               src={image?.url}
               alt={`Image of ${memberName}`}
@@ -19,9 +19,9 @@ function MemberStory({ memberStory }) {
               className="rounded-xl shadow-xl"
             />
           </div>
-          <div>
-            <p className="font-bold text-3xl">{memberName}</p>
-            <p>{description}</p>
+          <div className="grid gap-4 xl:order-2">
+            <p className="font-bold text-3xl md:text-5xl">{memberName}</p>
+            <p className="font-thin">{description}</p>
           </div>
         </div>
         <WriteUp content={writeUp} />
