@@ -42,10 +42,12 @@ function SignUp() {
 
   return (
     <Layout>
-      <div className="h-[90vh] !bg-[url('/images/login.svg')] bg-cover -mx-24 px-24 py-24 items-center flex">
-        <div className="grid grid-cols-[2fr_1.2fr] items-center gap-24">
-          <div>
-            <h2 className="font-bold text-5xl">Lorem ipsum dolor sit amet</h2>
+      <div className="h-[90vh] !bg-[url('/images/login.svg')] bg-cover -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 items-center flex">
+        <div className="grid lg:grid-cols-[2fr_1.2fr] items-center gap-8 lg:gap-24">
+          <div className="text-center lg:text-left grid gap-2">
+            <h2 className="font-bold text-3xl lg:text-5xl">
+              Lorem ipsum dolor sit amet
+            </h2>
             <p className="text-xl">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Quibusdam, quisquam cum? Quisquam saepe nostrum ipsum libero.
@@ -60,7 +62,8 @@ function SignUp() {
                   placeholder="Email"
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
-                  className="bg-white border-gray-400 border rounded-lg p-2"
+                  required
+                  className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
                 />
               </div>
               <div className="grid">
@@ -69,7 +72,8 @@ function SignUp() {
                   placeholder="Password (6-20 characters)"
                   onChange={(e) => setPassword(e.target.value)}
                   value={password}
-                  className="bg-white border-gray-400 border rounded-lg p-2"
+                  required
+                  className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
                 />
               </div>
 
@@ -79,7 +83,8 @@ function SignUp() {
                   placeholder="Confirm Password"
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   value={confirmPassword}
-                  className="bg-white border-gray-400 border rounded-lg p-2"
+                  required
+                  className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
                 />
               </div>
 
