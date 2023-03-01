@@ -32,8 +32,7 @@ function MemberStory({ memberStory, allMemberStories }) {
         <p className="font-bold text-2xl py-4">Check Out Other Stories</p>
         <div className="pb-12 rounded-lg grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {otherMemberStories.map((otherMemberStory, index) => {
-            const { memberName, description, image, writeUp, slug } =
-              otherMemberStory;
+            const { memberName, description, image, slug } = otherMemberStory;
             return (
               <div key={index} className=" grid gap-4">
                 <Link

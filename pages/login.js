@@ -51,6 +51,7 @@ function Login() {
         ? Router.push("/dashboard/admin/home")
         : Router.push("/dashboard/home");
     } else {
+      console.log("error", res);
       // Set error message
       // setMessage("Error: Invalid email or password");
       // setShowMessage(true);

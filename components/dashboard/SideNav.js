@@ -242,6 +242,9 @@ export default function SideNav() {
               className={`flex items-center gap-2 hover:text-shpccYellow hover:cursor-pointer hover:bg-black p-4 rounded-lg font-semibold uppercase transition duration-200 ${
                 router.pathname.includes(
                   `/dashboard/${link.link.toLowerCase()}`
+                ) ||
+                router.pathname.includes(
+                  `/dashboard/admin/${link.link.toLowerCase()}`
                 )
                   ? "text-shpccYellow cursor-pointer bg-black"
                   : ""
