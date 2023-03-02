@@ -1,12 +1,70 @@
 import Layout from "../../../components/dashboard/Layout";
 import PersonalInformation from "../../../components/associate-application/PersonalInformation";
 import CompanyInformation from "../../../components/associate-application/CompanyInformation";
-import { useState } from "react";
-import { useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../../context/userContext";
 
 function AssociateApplication() {
   const { user } = useContext(UserContext);
+
+  // grab initial form data if there's a draft
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    async function fetchData() {
+      if (user) {
+        // Retrieve the JWT from local storage
+        const jwt = localStorage.getItem("accessToken");
+
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/memberApplications/associate/` +
+            user.email,
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        );
+        try {
+          const data = await res.json();
+          setData(data);
+          setFormData({
+            personalInformation: {
+              lastName: data?.lastName || "",
+              firstName: data?.firstName || "",
+              middleName: data?.middleName || "",
+              suffix: data?.suffix || "",
+              maidenName: data?.maidenName || "",
+              address: data?.address || "",
+              dateOfBirth: data?.dateOfBirth || "",
+              age: data?.age || "",
+              placeOfBirth: data?.placeOfBirth || "",
+              gender: data?.gender || "",
+              civilStatus: data?.civilStatus || "",
+              contactNumber: data?.contactNumber || "",
+              facebookName: data?.facebookName || "",
+              viberMessenger: data?.viberMessenger || "",
+              religion: data?.religion || "",
+              educationalAttainment: data?.educationalAttainment || "",
+              inTrustFor: data?.inTrustFor || "",
+            },
+            companyInformation: {
+              business: data?.business || "",
+              companyName: data?.companyName || "",
+              companyAddress: data?.companyAddress || "",
+              companyIdNumber: data?.companyIdNumber || "",
+              companyIdValidUntil: data?.companyIdValidUntil || "",
+            },
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
+
+    fetchData();
+  }, [user]);
+
+  console.log("data", data);
 
   const [formData, setFormData] = useState({
     personalInformation: {
@@ -32,6 +90,8 @@ function AssociateApplication() {
       business: "",
       companyName: "",
       companyAddress: "",
+      companyIdNumber: "",
+      companyIdValidUntil: "",
     },
   });
 

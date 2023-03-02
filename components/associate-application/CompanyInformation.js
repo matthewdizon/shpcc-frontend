@@ -44,8 +44,8 @@ function CompanyInformation({ companyInfo, onChange }) {
           </label>
           <input
             type="text"
-            value={companyInfo?.companyAddress}
-            onChange={(e) => onChange("companyAddress", e.target.value)}
+            value={companyInfo?.companyIdNumber}
+            onChange={(e) => onChange("companyIdNumber", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
         </div>
@@ -55,8 +55,8 @@ function CompanyInformation({ companyInfo, onChange }) {
           </label>
           <input
             type="date"
-            value={companyInfo?.companyAddress}
-            onChange={(e) => onChange("companyAddress", e.target.value)}
+            value={companyInfo?.companyIdValidUntil}
+            onChange={(e) => onChange("companyIdValidUntil", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
         </div>
