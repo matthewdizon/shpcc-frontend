@@ -1,6 +1,7 @@
 import Layout from "../../../components/dashboard/Layout";
 import PersonalInformation from "../../../components/associate-application/PersonalInformation";
 import CompanyInformation from "../../../components/associate-application/CompanyInformation";
+import AccountInformation from "../../../components/associate-application/AccountInformation";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../../context/userContext";
 
@@ -54,6 +55,23 @@ function AssociateApplication() {
               companyIdNumber: data?.companyIdNumber || "",
               companyIdValidUntil: data?.companyIdValidUntil || "",
             },
+            accountInformation: {
+              accountType: data?.accountType || "",
+              monthlyIncome: data?.monthlyIncome || "",
+              sssGsisNumber: data?.sssGsisNumber || "",
+              tinNumber: data?.tinNumber || "",
+              barangay: data?.barangay || "",
+              voterId: data?.voterId || "",
+              idType: data?.idType || "",
+              idNumber: data?.idNumber || "",
+              idValidUntil: data?.idValidUntil || "",
+              otherSourcesOfIncome: data?.otherSourcesOfIncome || [
+                {
+                  source: "",
+                  amountPerMonth: "",
+                },
+              ],
+            },
           });
         } catch (error) {
           console.log(error);
@@ -63,8 +81,6 @@ function AssociateApplication() {
 
     fetchData();
   }, [user]);
-
-  console.log("data", data);
 
   const [formData, setFormData] = useState({
     personalInformation: {
@@ -93,24 +109,50 @@ function AssociateApplication() {
       companyIdNumber: "",
       companyIdValidUntil: "",
     },
+    accountInformation: {
+      accountType: "",
+      monthlyIncome: "",
+      sssGsisNumber: "",
+      tinNumber: "",
+      barangay: "",
+      voterId: "",
+      idType: "",
+      idNumber: "",
+      idValidUntil: "",
+      otherSourcesOfIncome: [
+        {
+          source: "",
+          amountPerMonth: "",
+        },
+      ],
+    },
   });
 
-  function handlePersonalInfoChange(field, value) {
+  function handleChange(subObject, field, value) {
     setFormData((prevData) => ({
       ...prevData,
-      personalInformation: {
-        ...prevData.personalInformation,
+      [subObject]: {
+        ...prevData[subObject],
         [field]: value,
       },
     }));
   }
 
-  function handleCompanyInfoChange(field, value) {
+  function handleChangeArray(subObject, field, subfield, value) {
+    console.log(subObject, field, value);
     setFormData((prevData) => ({
       ...prevData,
-      companyInformation: {
-        ...prevData.companyInformation,
-        [field]: value,
+      [subObject]: {
+        ...prevData[subObject],
+        [field]: prevData[subObject][field].map((item, index) => {
+          if (index !== 0) {
+            return item;
+          }
+          return {
+            ...item,
+            [subfield]: value,
+          };
+        }),
       },
     }));
   }
@@ -128,14 +170,17 @@ function AssociateApplication() {
     const applicationDetails = {
       ...formData.personalInformation,
       ...formData.companyInformation,
+      ...formData.accountInformation,
       user: user.email,
       isDraft: true,
     };
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/memberApplications/associate`,
+      `${
+        process.env.NEXT_PUBLIC_BACKEND_SERVER
+      }/api/memberApplications/associate/${data ? user.email : ""}`,
       {
-        method: "POST",
+        method: data ? "PATCH" : "POST",
         body: JSON.stringify(applicationDetails),
         headers: {
           "Content-Type": "application/json",
@@ -147,6 +192,11 @@ function AssociateApplication() {
     console.log(res);
   };
 
+  console.log(formData.personalInformation);
+  console.log(formData.companyInformation);
+  console.log(formData.accountInformation);
+  console.log("data", data);
+
   return (
     <Layout>
       <div className="p-24 min-h-screen">
@@ -157,18 +207,29 @@ function AssociateApplication() {
           <form action="" onSubmit={handleSubmit}>
             <PersonalInformation
               personalInfo={formData.personalInformation}
-              onChange={handlePersonalInfoChange}
+              onChange={(field, value) =>
+                handleChange("personalInformation", field, value)
+              }
             />
             <hr className="mt-4" />
             <CompanyInformation
               companyInfo={formData.companyInformation}
-              onChange={handleCompanyInfoChange}
+              onChange={(field, value) =>
+                handleChange("companyInformation", field, value)
+              }
+            />
+            <hr className="mt-4" />
+            <AccountInformation
+              accountInfo={formData.accountInformation}
+              onChange={(field, value) =>
+                handleChange("accountInformation", field, value)
+              }
+              onChangeArray={(field, subfield, value) =>
+                handleChangeArray("accountInformation", field, subfield, value)
+              }
             />
             <div className="flex justify-between">
-              <button
-                className="bg-gray-200 text-black p-2 rounded-lg my-4 px-8 hover:opacity-40"
-                //   onClick={handleSaveDraft}
-              >
+              <button className="bg-gray-200 text-black p-2 rounded-lg my-4 px-8 hover:opacity-40">
                 Cancel
               </button>
               <div className="flex gap-4">
