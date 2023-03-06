@@ -2,6 +2,7 @@ import Layout from "../../../components/dashboard/Layout";
 import PersonalInformation from "../../../components/associate-application/PersonalInformation";
 import CompanyInformation from "../../../components/associate-application/CompanyInformation";
 import AccountInformation from "../../../components/associate-application/AccountInformation";
+import BeneficiariesDependents from "../../../components/associate-application/BeneficiariesDependents";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../../context/userContext";
 import Link from "next/link";
@@ -73,6 +74,22 @@ function AssociateApplication() {
                 },
               ],
             },
+            beneficiariesDependents: {
+              beneficiaries: data?.beneficiaries || [
+                {
+                  fullName: "",
+                  address: "",
+                  relationship: "",
+                  age: "",
+                  dateOfBirth: "",
+                },
+              ],
+              shpccFamilyMembers: data?.shpccFamilyMembers || [
+                {
+                  name: "",
+                },
+              ],
+            },
           });
         } catch (error) {
           console.log(error);
@@ -127,6 +144,22 @@ function AssociateApplication() {
         },
       ],
     },
+    beneficiariesDependents: {
+      beneficiaries: [
+        {
+          fullName: "",
+          address: "",
+          relationship: "",
+          age: "",
+          dateOfBirth: "",
+        },
+      ],
+      shpccFamilyMembers: [
+        {
+          name: "",
+        },
+      ],
+    },
   });
 
   function handleChange(subObject, field, value) {
@@ -140,7 +173,6 @@ function AssociateApplication() {
   }
 
   function handleChangeArray(subObject, field, subfield, value, index) {
-    console.log(subObject, field, value);
     setFormData((prevData) => ({
       ...prevData,
       [subObject]: {
@@ -194,6 +226,7 @@ function AssociateApplication() {
       ...formData.personalInformation,
       ...formData.companyInformation,
       ...formData.accountInformation,
+      ...formData.beneficiariesDependents,
       user: user.email,
       isDraft: true,
     };
@@ -215,11 +248,6 @@ function AssociateApplication() {
     console.log(res);
   };
 
-  //   console.log(formData.personalInformation);
-  //   console.log(formData.companyInformation);
-  console.log(formData.accountInformation);
-  console.log("data", data);
-
   return (
     <Layout>
       <div className="p-24 min-h-screen">
@@ -229,21 +257,21 @@ function AssociateApplication() {
           </h1>
           <form action="" onSubmit={handleSubmit}>
             <PersonalInformation
-              personalInfo={formData.personalInformation}
+              info={formData.personalInformation}
               onChange={(field, value) =>
                 handleChange("personalInformation", field, value)
               }
             />
             <hr className="mt-4" />
             <CompanyInformation
-              companyInfo={formData.companyInformation}
+              info={formData.companyInformation}
               onChange={(field, value) =>
                 handleChange("companyInformation", field, value)
               }
             />
             <hr className="mt-4" />
             <AccountInformation
-              accountInfo={formData.accountInformation}
+              info={formData.accountInformation}
               onChange={(field, value) =>
                 handleChange("accountInformation", field, value)
               }
@@ -263,7 +291,29 @@ function AssociateApplication() {
                 handleRemoveItem("accountInformation", field, index)
               }
             />
-            <div className="flex justify-between">
+            <hr className="mt-4" />
+            <BeneficiariesDependents
+              info={formData.beneficiariesDependents}
+              onChange={(field, value) =>
+                handleChange("beneficiariesDependents", field, value)
+              }
+              onChangeArray={(field, subfield, value, index) =>
+                handleChangeArray(
+                  "beneficiariesDependents",
+                  field,
+                  subfield,
+                  value,
+                  index
+                )
+              }
+              addRow={(field, newRow) =>
+                handleAddItem("beneficiariesDependents", field, newRow)
+              }
+              removeRow={(field, index) =>
+                handleRemoveItem("beneficiariesDependents", field, index)
+              }
+            />
+            <div className="flex flex-wrap justify-between">
               <Link
                 href={`/dashboard/membership`}
                 className="bg-gray-200 text-black p-2 rounded-lg my-4 px-8 hover:opacity-40"

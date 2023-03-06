@@ -1,4 +1,4 @@
-function CompanyInformation({ companyInfo, onChange }) {
+function CompanyInformation({ info, onChange }) {
   return (
     <div className="grid gap-2 py-2">
       <h2 className="text-gray-500 font-bold text-xl py-4">
@@ -11,7 +11,7 @@ function CompanyInformation({ companyInfo, onChange }) {
           </label>
           <input
             type="text"
-            value={companyInfo?.business}
+            value={info?.business}
             onChange={(e) => onChange("business", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 w-1/2"
           />
@@ -22,7 +22,7 @@ function CompanyInformation({ companyInfo, onChange }) {
           </label>
           <input
             type="text"
-            value={companyInfo?.companyName}
+            value={info?.companyName}
             onChange={(e) => onChange("companyName", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -33,7 +33,7 @@ function CompanyInformation({ companyInfo, onChange }) {
           </label>
           <input
             type="text"
-            value={companyInfo?.companyAddress}
+            value={info?.companyAddress}
             onChange={(e) => onChange("companyAddress", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -44,7 +44,7 @@ function CompanyInformation({ companyInfo, onChange }) {
           </label>
           <input
             type="text"
-            value={companyInfo?.companyIdNumber}
+            value={info?.companyIdNumber}
             onChange={(e) => onChange("companyIdNumber", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -55,7 +55,7 @@ function CompanyInformation({ companyInfo, onChange }) {
           </label>
           <input
             type="date"
-            value={companyInfo?.companyIdValidUntil}
+            value={info?.companyIdValidUntil}
             onChange={(e) => onChange("companyIdValidUntil", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />

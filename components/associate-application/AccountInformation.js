@@ -1,5 +1,5 @@
 function AccountInformation({
-  accountInfo,
+  info,
   onChange,
   onChangeArray,
   addRow,
@@ -17,7 +17,7 @@ function AccountInformation({
           </label>
           <select
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full"
-            value={accountInfo?.accountType}
+            value={info?.accountType}
             onChange={(e) => onChange("accountType", e.target.value)}
           >
             <option value="" disabled selected></option>
@@ -31,7 +31,7 @@ function AccountInformation({
           </label>
           <input
             type="text"
-            value={accountInfo?.monthlyIncome}
+            value={info?.monthlyIncome}
             onChange={(e) => onChange("monthlyIncome", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -42,7 +42,7 @@ function AccountInformation({
           </label>
           <input
             type="text"
-            value={accountInfo?.sssGsisNumber}
+            value={info?.sssGsisNumber}
             onChange={(e) => onChange("sssGsisNumber", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -51,7 +51,7 @@ function AccountInformation({
           <label className=" font-light text-gray-400 text-sm">Tin No.</label>
           <input
             type="text"
-            value={accountInfo?.tinNumber}
+            value={info?.tinNumber}
             onChange={(e) => onChange("tinNumber", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -60,7 +60,7 @@ function AccountInformation({
           <label className=" font-light text-gray-400 text-sm">Barangay</label>
           <input
             type="text"
-            value={accountInfo?.barangay}
+            value={info?.barangay}
             onChange={(e) => onChange("barangay", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -71,7 +71,7 @@ function AccountInformation({
           </label>
           <input
             type="text"
-            value={accountInfo?.voterId}
+            value={info?.voterId}
             onChange={(e) => onChange("voterId", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -82,7 +82,7 @@ function AccountInformation({
           </label>
           <select
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full"
-            value={accountInfo?.idType}
+            value={info?.idType}
             onChange={(e) => onChange("idType", e.target.value)}
           >
             <option value="" disabled selected></option>
@@ -94,7 +94,7 @@ function AccountInformation({
           <label className=" font-light text-gray-400 text-sm">ID Number</label>
           <input
             type="text"
-            value={accountInfo?.idNumber}
+            value={info?.idNumber}
             onChange={(e) => onChange("idNumber", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -105,29 +105,37 @@ function AccountInformation({
           </label>
           <input
             type="date"
-            value={accountInfo?.idValidUntil}
+            value={info?.idValidUntil}
             onChange={(e) => onChange("idValidUntil", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
         </div>
-        <button
-          type="button"
-          onClick={() =>
-            addRow("otherSourcesOfIncome", {
-              source: "",
-              amountPerMonth: "",
-            })
-          }
-          className="bg-gray-200 rounded-xl p-2 px-6"
-        >
-          Add Another Item
-        </button>
-        {accountInfo?.otherSourcesOfIncome.map((source, index) => {
+        <div className="flex items-center gap-4 w-full">
+          <label className=" font-medium text-gray-400 text-sm">
+            Income Sources
+          </label>
+          <button
+            type="button"
+            onClick={() =>
+              addRow("otherSourcesOfIncome", {
+                source: "",
+                amountPerMonth: "",
+              })
+            }
+            className="bg-gray-200 rounded-xl p-2 px-6 hover:opacity-50"
+          >
+            Add Another Source
+          </button>
+        </div>
+        {info?.otherSourcesOfIncome.map((source, index) => {
           return (
-            <div key={index} className="flex justify-between w-full">
-              <div className="flex flex-col">
+            <div
+              key={index}
+              className="flex flex-wrap w-full items-center gap-4"
+            >
+              <div className="flex flex-col flex-grow">
                 <label className=" font-light text-gray-400 text-sm">
-                  Other Sources of Income
+                  Source of Income
                 </label>
                 <input
                   type="text"
@@ -161,13 +169,27 @@ function AccountInformation({
                   className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
                 />
               </div>
-              {accountInfo?.otherSourcesOfIncome.length > 1 && (
-                <button
-                  type="button"
+              {info?.otherSourcesOfIncome.length > 1 && (
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
                   onClick={() => removeRow("otherSourcesOfIncome", index)}
+                  className="hover:cursor-pointer text-shpccRed hover:opacity-50"
                 >
-                  -
-                </button>
+                  <path
+                    d="M8 11C7.44772 11 7 11.4477 7 12C7 12.5523 7.44772 13 8 13H16C16.5523 13 17 12.5523 17 12C17 11.4477 16.5523 11 16 11H8Z"
+                    fill="currentColor"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12ZM21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                    fill="currentColor"
+                  />
+                </svg>
               )}
             </div>
           );

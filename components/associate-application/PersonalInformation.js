@@ -1,4 +1,4 @@
-function PersonalInformation({ personalInfo, onChange }) {
+function PersonalInformation({ info, onChange }) {
   return (
     <div className="grid gap-2 py-2">
       <h2 className="text-gray-500 font-bold text-xl py-4">
@@ -9,7 +9,7 @@ function PersonalInformation({ personalInfo, onChange }) {
           <label className=" font-light text-gray-400 text-sm">Last Name</label>
           <input
             type="text"
-            value={personalInfo?.lastName}
+            value={info?.lastName}
             onChange={(e) => onChange("lastName", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -20,7 +20,7 @@ function PersonalInformation({ personalInfo, onChange }) {
           </label>
           <input
             type="text"
-            value={personalInfo?.firstName}
+            value={info?.firstName}
             onChange={(e) => onChange("firstName", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -31,7 +31,7 @@ function PersonalInformation({ personalInfo, onChange }) {
           </label>
           <input
             type="text"
-            value={personalInfo?.middleName}
+            value={info?.middleName}
             onChange={(e) => onChange("middleName", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -40,7 +40,7 @@ function PersonalInformation({ personalInfo, onChange }) {
           <label className=" font-light text-gray-400 text-sm">Suffix</label>
           <input
             type="text"
-            value={personalInfo?.suffix}
+            value={info?.suffix}
             onChange={(e) => onChange("suffix", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -51,7 +51,7 @@ function PersonalInformation({ personalInfo, onChange }) {
           </label>
           <input
             type="text"
-            value={personalInfo?.maidenName}
+            value={info?.maidenName}
             onChange={(e) => onChange("maidenName", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -60,7 +60,7 @@ function PersonalInformation({ personalInfo, onChange }) {
           <label className=" font-light text-gray-400 text-sm">Address</label>
           <input
             type="text"
-            value={personalInfo?.address}
+            value={info?.address}
             onChange={(e) => onChange("address", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -71,7 +71,7 @@ function PersonalInformation({ personalInfo, onChange }) {
           </label>
           <input
             type="date"
-            value={personalInfo?.dateOfBirth}
+            value={info?.dateOfBirth}
             onChange={(e) => onChange("dateOfBirth", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -80,7 +80,7 @@ function PersonalInformation({ personalInfo, onChange }) {
           <label className=" font-light text-gray-400 text-sm">Age</label>
           <input
             type="text"
-            value={personalInfo?.age}
+            value={info?.age}
             onChange={(e) => onChange("age", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -91,7 +91,7 @@ function PersonalInformation({ personalInfo, onChange }) {
           </label>
           <input
             type="text"
-            value={personalInfo?.placeOfBirth}
+            value={info?.placeOfBirth}
             onChange={(e) => onChange("placeOfBirth", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -100,7 +100,7 @@ function PersonalInformation({ personalInfo, onChange }) {
           <label className="font-light text-gray-400 text-sm">Gender</label>
           <select
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full"
-            value={personalInfo?.gender}
+            value={info?.gender}
             onChange={(e) => onChange("gender", e.target.value)}
           >
             <option value="" disabled selected></option>
@@ -117,7 +117,7 @@ function PersonalInformation({ personalInfo, onChange }) {
           </label>
           <select
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full"
-            value={personalInfo?.civilStatus}
+            value={info?.civilStatus}
             onChange={(e) => onChange("civilStatus", e.target.value)}
           >
             <option value="" disabled selected></option>
@@ -134,7 +134,7 @@ function PersonalInformation({ personalInfo, onChange }) {
           </label>
           <input
             type="text"
-            value={personalInfo?.contactNumber}
+            value={info?.contactNumber}
             onChange={(e) => onChange("contactNumber", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -145,7 +145,7 @@ function PersonalInformation({ personalInfo, onChange }) {
           </label>
           <input
             type="text"
-            value={personalInfo?.facebookName}
+            value={info?.facebookName}
             onChange={(e) => onChange("facebookName", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -156,7 +156,7 @@ function PersonalInformation({ personalInfo, onChange }) {
           </label>
           <input
             type="text"
-            value={personalInfo?.viberMessenger}
+            value={info?.viberMessenger}
             onChange={(e) => onChange("viberMessenger", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -165,7 +165,7 @@ function PersonalInformation({ personalInfo, onChange }) {
           <label className=" font-light text-gray-400 text-sm">Religion</label>
           <input
             type="text"
-            value={personalInfo?.religion}
+            value={info?.religion}
             onChange={(e) => onChange("religion", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
@@ -176,7 +176,7 @@ function PersonalInformation({ personalInfo, onChange }) {
           </label>
           <select
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full"
-            value={personalInfo?.educationalAttainment}
+            value={info?.educationalAttainment}
             onChange={(e) => onChange("educationalAttainment", e.target.value)}
           >
             <option value="" disabled selected></option>
@@ -192,7 +192,7 @@ function PersonalInformation({ personalInfo, onChange }) {
           </label>
           <input
             type="text"
-            value={personalInfo?.inTrustFor}
+            value={info?.inTrustFor}
             onChange={(e) => onChange("inTrustFor", e.target.value)}
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
