@@ -1,4 +1,10 @@
-function AccountInformation({ accountInfo, onChange, onChangeArray }) {
+function AccountInformation({
+  accountInfo,
+  onChange,
+  onChangeArray,
+  addRow,
+  removeRow,
+}) {
   return (
     <div className="grid gap-2 py-2">
       <h2 className="text-gray-500 font-bold text-xl py-4">
@@ -104,6 +110,18 @@ function AccountInformation({ accountInfo, onChange, onChangeArray }) {
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
           />
         </div>
+        <button
+          type="button"
+          onClick={() =>
+            addRow("otherSourcesOfIncome", {
+              source: "",
+              amountPerMonth: "",
+            })
+          }
+          className="bg-gray-200 rounded-xl p-2 px-6"
+        >
+          Add Another Item
+        </button>
         {accountInfo?.otherSourcesOfIncome.map((source, index) => {
           return (
             <div key={index} className="flex justify-between w-full">
@@ -118,7 +136,8 @@ function AccountInformation({ accountInfo, onChange, onChangeArray }) {
                     onChangeArray(
                       "otherSourcesOfIncome",
                       "source",
-                      e.target.value
+                      e.target.value,
+                      index
                     )
                   }
                   className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
@@ -135,12 +154,21 @@ function AccountInformation({ accountInfo, onChange, onChangeArray }) {
                     onChangeArray(
                       "otherSourcesOfIncome",
                       "amountPerMonth",
-                      e.target.value
+                      e.target.value,
+                      index
                     )
                   }
                   className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
                 />
               </div>
+              {accountInfo?.otherSourcesOfIncome.length > 1 && (
+                <button
+                  type="button"
+                  onClick={() => removeRow("otherSourcesOfIncome", index)}
+                >
+                  -
+                </button>
+              )}
             </div>
           );
         })}

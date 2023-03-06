@@ -4,6 +4,7 @@ import CompanyInformation from "../../../components/associate-application/Compan
 import AccountInformation from "../../../components/associate-application/AccountInformation";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../../context/userContext";
+import Link from "next/link";
 
 function AssociateApplication() {
   const { user } = useContext(UserContext);
@@ -138,14 +139,14 @@ function AssociateApplication() {
     }));
   }
 
-  function handleChangeArray(subObject, field, subfield, value) {
+  function handleChangeArray(subObject, field, subfield, value, index) {
     console.log(subObject, field, value);
     setFormData((prevData) => ({
       ...prevData,
       [subObject]: {
         ...prevData[subObject],
-        [field]: prevData[subObject][field].map((item, index) => {
-          if (index !== 0) {
+        [field]: prevData[subObject][field].map((item, i) => {
+          if (i !== index) {
             return item;
           }
           return {
@@ -156,6 +157,28 @@ function AssociateApplication() {
       },
     }));
   }
+
+  const handleAddItem = (subObject, field, newRow) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [subObject]: {
+        ...prevData[subObject],
+        [field]: [...prevData[subObject][field], newRow],
+      },
+    }));
+  };
+
+  const handleRemoveItem = (subObject, field, indexToRemove) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [subObject]: {
+        ...prevData[subObject],
+        [field]: prevData[subObject][field].filter(
+          (_, index) => index !== indexToRemove
+        ),
+      },
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -192,8 +215,8 @@ function AssociateApplication() {
     console.log(res);
   };
 
-  console.log(formData.personalInformation);
-  console.log(formData.companyInformation);
+  //   console.log(formData.personalInformation);
+  //   console.log(formData.companyInformation);
   console.log(formData.accountInformation);
   console.log("data", data);
 
@@ -224,14 +247,29 @@ function AssociateApplication() {
               onChange={(field, value) =>
                 handleChange("accountInformation", field, value)
               }
-              onChangeArray={(field, subfield, value) =>
-                handleChangeArray("accountInformation", field, subfield, value)
+              onChangeArray={(field, subfield, value, index) =>
+                handleChangeArray(
+                  "accountInformation",
+                  field,
+                  subfield,
+                  value,
+                  index
+                )
+              }
+              addRow={(field, newRow) =>
+                handleAddItem("accountInformation", field, newRow)
+              }
+              removeRow={(field, index) =>
+                handleRemoveItem("accountInformation", field, index)
               }
             />
             <div className="flex justify-between">
-              <button className="bg-gray-200 text-black p-2 rounded-lg my-4 px-8 hover:opacity-40">
-                Cancel
-              </button>
+              <Link
+                href={`/dashboard/membership`}
+                className="bg-gray-200 text-black p-2 rounded-lg my-4 px-8 hover:opacity-40"
+              >
+                Back
+              </Link>
               <div className="flex gap-4">
                 <button
                   className="bg-shpccRed opacity-80 text-white p-2 rounded-lg my-4 px-8 hover:opacity-40"
