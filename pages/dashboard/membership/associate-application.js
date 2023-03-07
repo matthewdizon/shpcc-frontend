@@ -6,6 +6,12 @@ import BeneficiariesDependents from "../../../components/associate-application/B
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../../context/userContext";
 import Link from "next/link";
+import {
+  handleChange,
+  handleChangeArray,
+  handleAddItem,
+  handleRemoveItem,
+} from "../../../utils/helpers";
 
 function AssociateApplication() {
   const { user } = useContext(UserContext);
@@ -162,56 +168,6 @@ function AssociateApplication() {
     },
   });
 
-  function handleChange(subObject, field, value) {
-    setFormData((prevData) => ({
-      ...prevData,
-      [subObject]: {
-        ...prevData[subObject],
-        [field]: value,
-      },
-    }));
-  }
-
-  function handleChangeArray(subObject, field, subfield, value, index) {
-    setFormData((prevData) => ({
-      ...prevData,
-      [subObject]: {
-        ...prevData[subObject],
-        [field]: prevData[subObject][field].map((item, i) => {
-          if (i !== index) {
-            return item;
-          }
-          return {
-            ...item,
-            [subfield]: value,
-          };
-        }),
-      },
-    }));
-  }
-
-  const handleAddItem = (subObject, field, newRow) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [subObject]: {
-        ...prevData[subObject],
-        [field]: [...prevData[subObject][field], newRow],
-      },
-    }));
-  };
-
-  const handleRemoveItem = (subObject, field, indexToRemove) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [subObject]: {
-        ...prevData[subObject],
-        [field]: prevData[subObject][field].filter(
-          (_, index) => index !== indexToRemove
-        ),
-      },
-    }));
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
@@ -259,21 +215,21 @@ function AssociateApplication() {
             <PersonalInformation
               info={formData.personalInformation}
               onChange={(field, value) =>
-                handleChange("personalInformation", field, value)
+                handleChange("personalInformation", field, value, setFormData)
               }
             />
             <hr className="mt-4" />
             <CompanyInformation
               info={formData.companyInformation}
               onChange={(field, value) =>
-                handleChange("companyInformation", field, value)
+                handleChange("companyInformation", field, value, setFormData)
               }
             />
             <hr className="mt-4" />
             <AccountInformation
               info={formData.accountInformation}
               onChange={(field, value) =>
-                handleChange("accountInformation", field, value)
+                handleChange("accountInformation", field, value, setFormData)
               }
               onChangeArray={(field, subfield, value, index) =>
                 handleChangeArray(
@@ -281,21 +237,32 @@ function AssociateApplication() {
                   field,
                   subfield,
                   value,
-                  index
+                  index,
+                  setFormData
                 )
               }
               addRow={(field, newRow) =>
-                handleAddItem("accountInformation", field, newRow)
+                handleAddItem("accountInformation", field, newRow, setFormData)
               }
               removeRow={(field, index) =>
-                handleRemoveItem("accountInformation", field, index)
+                handleRemoveItem(
+                  "accountInformation",
+                  field,
+                  index,
+                  setFormData
+                )
               }
             />
             <hr className="mt-4" />
             <BeneficiariesDependents
               info={formData.beneficiariesDependents}
               onChange={(field, value) =>
-                handleChange("beneficiariesDependents", field, value)
+                handleChange(
+                  "beneficiariesDependents",
+                  field,
+                  value,
+                  setFormData
+                )
               }
               onChangeArray={(field, subfield, value, index) =>
                 handleChangeArray(
@@ -303,14 +270,25 @@ function AssociateApplication() {
                   field,
                   subfield,
                   value,
-                  index
+                  index,
+                  setFormData
                 )
               }
               addRow={(field, newRow) =>
-                handleAddItem("beneficiariesDependents", field, newRow)
+                handleAddItem(
+                  "beneficiariesDependents",
+                  field,
+                  newRow,
+                  setFormData
+                )
               }
               removeRow={(field, index) =>
-                handleRemoveItem("beneficiariesDependents", field, index)
+                handleRemoveItem(
+                  "beneficiariesDependents",
+                  field,
+                  index,
+                  setFormData
+                )
               }
             />
             <div className="flex flex-wrap justify-between">
