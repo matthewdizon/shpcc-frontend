@@ -1,8 +1,8 @@
 import Layout from "../../../components/dashboard/Layout";
-import PersonalInformation from "../../../components/associate-application/PersonalInformation";
-import CompanyInformation from "../../../components/associate-application/CompanyInformation";
-import AccountInformation from "../../../components/associate-application/AccountInformation";
-import BeneficiariesDependents from "../../../components/associate-application/BeneficiariesDependents";
+import PersonalInformation from "../../../components/forms/associate-application/PersonalInformation";
+import CompanyInformation from "../../../components/forms/associate-application/CompanyInformation";
+import AccountInformation from "../../../components/forms/associate-application/AccountInformation";
+import BeneficiariesDependents from "../../../components/forms/associate-application/BeneficiariesDependents";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../../context/userContext";
 import Link from "next/link";
@@ -12,12 +12,15 @@ import {
   handleAddItem,
   handleRemoveItem,
 } from "../../../utils/helpers";
+import TermsAndConditions from "../../../components/forms/TermsAndConditions";
 
 function AssociateApplication() {
   const { user } = useContext(UserContext);
 
-  // grab initial form data if there's a draft
+  const [showModal, setShowModal] = useState(false);
   const [data, setData] = useState(null);
+
+  // grab initial form data if there's a draft
   useEffect(() => {
     async function fetchData() {
       if (user) {
@@ -170,7 +173,33 @@ function AssociateApplication() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    const jwt = localStorage.getItem("accessToken");
+
+    const applicationDetails = {
+      ...formData.personalInformation,
+      ...formData.companyInformation,
+      ...formData.accountInformation,
+      ...formData.beneficiariesDependents,
+      user: user.email,
+      isDraft: false,
+    };
+
+    const res = await fetch(
+      `${
+        process.env.NEXT_PUBLIC_BACKEND_SERVER
+      }/api/memberApplications/associate/${data ? user.email : ""}`,
+      {
+        method: data ? "PATCH" : "POST",
+        body: JSON.stringify(applicationDetails),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+
+    console.log(res);
   };
 
   const handleSaveDraft = async (e) => {
@@ -203,6 +232,18 @@ function AssociateApplication() {
 
     console.log(res);
   };
+
+  console.log(data?.isDraft, data);
+
+  if (!data?.isDraft) {
+    return (
+      <Layout>
+        <div className="p-24">
+          <p>You have submitted, please wait for further instructions</p>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
@@ -294,25 +335,32 @@ function AssociateApplication() {
             <div className="flex flex-wrap justify-between">
               <Link
                 href={`/dashboard/membership`}
-                className="bg-gray-200 text-black p-2 rounded-lg my-4 px-8 hover:opacity-40"
+                className="bg-gray-200 text-black p-2 rounded-lg my-4 px-8 hover:bg-gray-300 active:bg-gray-400 transition duration-200"
               >
                 Back
               </Link>
               <div className="flex gap-4">
                 <button
-                  className="bg-shpccRed opacity-80 text-white p-2 rounded-lg my-4 px-8 hover:opacity-40"
+                  className="bg-white text-shpccRed border-shpccRed border-2 p-2 rounded-lg my-4 px-8 hover:opacity-40"
                   onClick={handleSaveDraft}
                 >
                   Save Draft
                 </button>
                 <button
-                  className="bg-shpccRed text-white p-2 rounded-lg my-4 px-8 hover:opacity-40"
+                  className="bg-shpccRed text-white p-2 rounded-lg my-4 px-8 hover:bg-shpccDarkRed active:bg-red-800"
+                  onClick={() => setShowModal(true)}
                   type="submit"
                 >
-                  Submit
+                  Next
                 </button>
               </div>
             </div>
+            {showModal && (
+              <TermsAndConditions
+                setShowModal={setShowModal}
+                handleSubmit={handleSubmit}
+              />
+            )}
           </form>
         </div>
       </div>
