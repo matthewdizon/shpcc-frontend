@@ -233,8 +233,6 @@ function AssociateApplication() {
     console.log(res);
   };
 
-  console.log(data?.isDraft, data);
-
   if (!data?.isDraft) {
     return (
       <Layout>
@@ -252,7 +250,7 @@ function AssociateApplication() {
           <h1 className="font-black text-3xl">
             Associate Membership Application
           </h1>
-          <form action="" onSubmit={handleSubmit}>
+          <div>
             <PersonalInformation
               info={formData.personalInformation}
               onChange={(field, value) =>
@@ -349,7 +347,6 @@ function AssociateApplication() {
                 <button
                   className="bg-shpccRed text-white p-2 rounded-lg my-4 px-8 hover:bg-shpccDarkRed active:bg-red-800"
                   onClick={() => setShowModal(true)}
-                  type="submit"
                 >
                   Next
                 </button>
@@ -361,7 +358,7 @@ function AssociateApplication() {
                 handleSubmit={handleSubmit}
               />
             )}
-          </form>
+          </div>
         </div>
       </div>
     </Layout>
