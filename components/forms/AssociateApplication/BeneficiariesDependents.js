@@ -1,24 +1,32 @@
-function BeneficiariesDependents({ info, onChangeArray, addRow, removeRow }) {
+function BeneficiariesDependents({
+  info,
+  onChangeArray,
+  addRow,
+  removeRow,
+  isDisabled,
+}) {
   return (
     <div className="grid gap-2 py-2">
       <h2 className="text-gray-500 font-bold text-xl py-4">
         Beneficiaries / Dependents
       </h2>
-      <button
-        type="button"
-        onClick={() =>
-          addRow("beneficiaries", {
-            fullName: "",
-            address: "",
-            relationship: "",
-            age: "",
-            dateOfBirth: "",
-          })
-        }
-        className="bg-gray-200 rounded-xl p-2 px-6 max-w-max hover:opacity-50"
-      >
-        Add Another Beneficiary
-      </button>
+      {!isDisabled && (
+        <button
+          type="button"
+          onClick={() =>
+            addRow("beneficiaries", {
+              fullName: "",
+              address: "",
+              relationship: "",
+              age: "",
+              dateOfBirth: "",
+            })
+          }
+          className="bg-gray-200 rounded-xl p-2 px-6 max-w-max hover:opacity-50"
+        >
+          Add Another Beneficiary
+        </button>
+      )}
       <div className="flex flex-wrap justify-between gap-4">
         {info?.beneficiaries.map((beneficiary, index) => {
           return (
@@ -41,7 +49,10 @@ function BeneficiariesDependents({ info, onChangeArray, addRow, removeRow }) {
                       index
                     )
                   }
-                  className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+                  className={`${
+                    isDisabled ? "bg-gray-200" : "bg-white"
+                  } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                  disabled={isDisabled}
                 />
               </div>
               <div className="flex flex-col flex-grow">
@@ -59,7 +70,10 @@ function BeneficiariesDependents({ info, onChangeArray, addRow, removeRow }) {
                       index
                     )
                   }
-                  className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+                  className={`${
+                    isDisabled ? "bg-gray-200" : "bg-white"
+                  } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                  disabled={isDisabled}
                 />
               </div>
               <div className="flex flex-col">
@@ -77,7 +91,10 @@ function BeneficiariesDependents({ info, onChangeArray, addRow, removeRow }) {
                       index
                     )
                   }
-                  className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+                  className={`${
+                    isDisabled ? "bg-gray-200" : "bg-white"
+                  } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                  disabled={isDisabled}
                 />
               </div>
               <div className="flex flex-col w-16">
@@ -88,7 +105,10 @@ function BeneficiariesDependents({ info, onChangeArray, addRow, removeRow }) {
                   onChange={(e) =>
                     onChangeArray("beneficiaries", "age", e.target.value, index)
                   }
-                  className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+                  className={`${
+                    isDisabled ? "bg-gray-200" : "bg-white"
+                  } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                  disabled={isDisabled}
                 />
               </div>
               <div className="flex flex-col">
@@ -106,10 +126,13 @@ function BeneficiariesDependents({ info, onChangeArray, addRow, removeRow }) {
                       index
                     )
                   }
-                  className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+                  className={`${
+                    isDisabled ? "bg-gray-200" : "bg-white"
+                  } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                  disabled={isDisabled}
                 />
               </div>
-              {info?.beneficiaries.length > 1 && (
+              {!isDisabled && info?.beneficiaries.length > 1 && (
                 <svg
                   width="24"
                   height="24"
@@ -134,17 +157,19 @@ function BeneficiariesDependents({ info, onChangeArray, addRow, removeRow }) {
             </div>
           );
         })}
-        <button
-          type="button"
-          onClick={() =>
-            addRow("shpccFamilyMembers", {
-              name: "",
-            })
-          }
-          className="bg-gray-200 rounded-xl p-2 px-6 hover:opacity-50"
-        >
-          Add Another Family Member
-        </button>
+        {!isDisabled && (
+          <button
+            type="button"
+            onClick={() =>
+              addRow("shpccFamilyMembers", {
+                name: "",
+              })
+            }
+            className="bg-gray-200 rounded-xl p-2 px-6 hover:opacity-50"
+          >
+            Add Another Family Member
+          </button>
+        )}
         {info?.shpccFamilyMembers.map((familyMember, index) => {
           return (
             <div key={index} className="flex justify-between w-full">
@@ -163,10 +188,13 @@ function BeneficiariesDependents({ info, onChangeArray, addRow, removeRow }) {
                       index
                     )
                   }
-                  className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+                  className={`${
+                    isDisabled ? "bg-gray-200" : "bg-white"
+                  } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                  disabled={isDisabled}
                 />
               </div>
-              {info?.shpccFamilyMembers.length > 1 && (
+              {!isDisabled && info?.shpccFamilyMembers.length > 1 && (
                 <svg
                   width="24"
                   height="24"

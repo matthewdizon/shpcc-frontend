@@ -15,7 +15,7 @@ import AccountInformation from "./AccountInformation";
 import BeneficiariesDependents from "./BeneficiariesDependents";
 import TermsAndConditions from "../TermsAndConditions";
 
-function AssociateApplication({ data, formData, setFormData }) {
+function AssociateApplication({ data, formData, setFormData, isDisabled }) {
   const { user } = useContext(UserContext);
 
   const [showModal, setShowModal] = useState(false);
@@ -85,12 +85,14 @@ function AssociateApplication({ data, formData, setFormData }) {
   return (
     <div className="bg-white p-8 rounded-3xl">
       <h1 className="font-black text-3xl">Associate Membership Application</h1>
+      {isDisabled && <span className="font-thin italic">View Only</span>}
       <div>
         <PersonalInformation
           info={formData?.personalInformation}
           onChange={(field, value) =>
             handleChange("personalInformation", field, value, setFormData)
           }
+          isDisabled={isDisabled}
         />
         <hr className="mt-4" />
         <CompanyInformation
@@ -98,6 +100,7 @@ function AssociateApplication({ data, formData, setFormData }) {
           onChange={(field, value) =>
             handleChange("companyInformation", field, value, setFormData)
           }
+          isDisabled={isDisabled}
         />
         <hr className="mt-4" />
         <AccountInformation
@@ -121,6 +124,7 @@ function AssociateApplication({ data, formData, setFormData }) {
           removeRow={(field, index) =>
             handleRemoveItem("accountInformation", field, index, setFormData)
           }
+          isDisabled={isDisabled}
         />
         <hr className="mt-4" />
         <BeneficiariesDependents
@@ -149,7 +153,10 @@ function AssociateApplication({ data, formData, setFormData }) {
               setFormData
             )
           }
+          isDisabled={isDisabled}
         />
+      </div>
+      {!isDisabled && (
         <div className="flex flex-wrap justify-between">
           <Link
             href={`/dashboard/membership`}
@@ -171,14 +178,14 @@ function AssociateApplication({ data, formData, setFormData }) {
               Next
             </button>
           </div>
+          {showModal && (
+            <TermsAndConditions
+              setShowModal={setShowModal}
+              handleSubmit={handleSubmit}
+            />
+          )}
         </div>
-        {showModal && (
-          <TermsAndConditions
-            setShowModal={setShowModal}
-            handleSubmit={handleSubmit}
-          />
-        )}
-      </div>
+      )}
     </div>
   );
 }

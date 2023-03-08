@@ -105,7 +105,7 @@ function AssociateApplicationView() {
           Viewing Application: {slug}
         </p>
         <div className="grid grid-cols-[2fr_1fr] gap-8 relative">
-          <AssociateApplication formData={formData} />
+          <AssociateApplication formData={formData} isDisabled={true} />
           <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-lg p-4 h-max sticky top-12">
             <p className="font-bold text-2xl">Member Care Assistant</p>
             <div className="grid gap-4 py-4">

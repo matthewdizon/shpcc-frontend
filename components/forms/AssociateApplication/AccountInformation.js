@@ -4,6 +4,7 @@ function AccountInformation({
   onChangeArray,
   addRow,
   removeRow,
+  isDisabled,
 }) {
   return (
     <div className="grid gap-2 py-2">
@@ -16,7 +17,10 @@ function AccountInformation({
             Type of Accuont
           </label>
           <select
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full`}
+            disabled={isDisabled}
             value={info?.accountType}
             onChange={(e) => onChange("accountType", e.target.value)}
           >
@@ -33,7 +37,10 @@ function AccountInformation({
             type="text"
             value={info?.monthlyIncome}
             onChange={(e) => onChange("monthlyIncome", e.target.value)}
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col">
@@ -44,7 +51,10 @@ function AccountInformation({
             type="text"
             value={info?.sssGsisNumber}
             onChange={(e) => onChange("sssGsisNumber", e.target.value)}
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col">
@@ -53,7 +63,10 @@ function AccountInformation({
             type="text"
             value={info?.tinNumber}
             onChange={(e) => onChange("tinNumber", e.target.value)}
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col">
@@ -62,7 +75,10 @@ function AccountInformation({
             type="text"
             value={info?.barangay}
             onChange={(e) => onChange("barangay", e.target.value)}
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col">
@@ -73,7 +89,10 @@ function AccountInformation({
             type="text"
             value={info?.voterId}
             onChange={(e) => onChange("voterId", e.target.value)}
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col">
@@ -81,7 +100,10 @@ function AccountInformation({
             Type of Valid ID
           </label>
           <select
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full`}
+            disabled={isDisabled}
             value={info?.idType}
             onChange={(e) => onChange("idType", e.target.value)}
           >
@@ -96,7 +118,10 @@ function AccountInformation({
             type="text"
             value={info?.idNumber}
             onChange={(e) => onChange("idNumber", e.target.value)}
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col">
@@ -107,25 +132,30 @@ function AccountInformation({
             type="date"
             value={info?.idValidUntil}
             onChange={(e) => onChange("idValidUntil", e.target.value)}
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            disabled={isDisabled}
           />
         </div>
         <div className="flex items-center gap-4 w-full">
           <label className=" font-medium text-gray-400 text-sm">
             Income Sources
           </label>
-          <button
-            type="button"
-            onClick={() =>
-              addRow("otherSourcesOfIncome", {
-                source: "",
-                amountPerMonth: "",
-              })
-            }
-            className="bg-gray-200 rounded-xl p-2 px-6 hover:opacity-50"
-          >
-            Add Another Source
-          </button>
+          {!isDisabled && (
+            <button
+              type="button"
+              onClick={() =>
+                addRow("otherSourcesOfIncome", {
+                  source: "",
+                  amountPerMonth: "",
+                })
+              }
+              className="bg-gray-200 rounded-xl p-2 px-6 hover:opacity-50"
+            >
+              Add Another Source
+            </button>
+          )}
         </div>
         {info?.otherSourcesOfIncome.map((source, index) => {
           return (
@@ -148,7 +178,10 @@ function AccountInformation({
                       index
                     )
                   }
-                  className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+                  className={`${
+                    isDisabled ? "bg-gray-200" : "bg-white"
+                  } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                  disabled={isDisabled}
                 />
               </div>
               <div className="flex flex-col">
@@ -166,10 +199,13 @@ function AccountInformation({
                       index
                     )
                   }
-                  className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+                  className={`${
+                    isDisabled ? "bg-gray-200" : "bg-white"
+                  } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                  disabled={isDisabled}
                 />
               </div>
-              {info?.otherSourcesOfIncome.length > 1 && (
+              {!isDisabled && info?.otherSourcesOfIncome.length > 1 && (
                 <svg
                   width="24"
                   height="24"

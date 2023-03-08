@@ -170,7 +170,16 @@ function AssociateApplicationPage() {
     return (
       <Layout>
         <div className="p-24">
-          <p>You have submitted, please wait for further instructions</p>
+          <p className="pb-8 italic">
+            Your form has been submitted and is being reviewed by SHPCC, please
+            wait for further instructions. Thank you!
+          </p>
+          <AssociateApplication
+            data={data}
+            formData={formData}
+            setFormData={setFormData}
+            isDisabled={true}
+          />
         </div>
       </Layout>
     );

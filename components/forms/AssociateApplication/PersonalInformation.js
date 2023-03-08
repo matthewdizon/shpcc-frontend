@@ -1,4 +1,4 @@
-function PersonalInformation({ info, onChange }) {
+function PersonalInformation({ info, onChange, isDisabled }) {
   return (
     <div className="grid gap-2 py-2">
       <h2 className="text-gray-500 font-bold text-xl py-4">
@@ -11,7 +11,10 @@ function PersonalInformation({ info, onChange }) {
             type="text"
             value={info?.lastName}
             onChange={(e) => onChange("lastName", e.target.value)}
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col">
@@ -22,7 +25,10 @@ function PersonalInformation({ info, onChange }) {
             type="text"
             value={info?.firstName}
             onChange={(e) => onChange("firstName", e.target.value)}
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col">
@@ -33,7 +39,10 @@ function PersonalInformation({ info, onChange }) {
             type="text"
             value={info?.middleName}
             onChange={(e) => onChange("middleName", e.target.value)}
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col w-16">
@@ -42,7 +51,10 @@ function PersonalInformation({ info, onChange }) {
             type="text"
             value={info?.suffix}
             onChange={(e) => onChange("suffix", e.target.value)}
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col">
@@ -53,7 +65,10 @@ function PersonalInformation({ info, onChange }) {
             type="text"
             value={info?.maidenName}
             onChange={(e) => onChange("maidenName", e.target.value)}
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col w-[40%] flex-grow">
@@ -62,7 +77,10 @@ function PersonalInformation({ info, onChange }) {
             type="text"
             value={info?.address}
             onChange={(e) => onChange("address", e.target.value)}
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col w-[20%]">
@@ -73,7 +91,10 @@ function PersonalInformation({ info, onChange }) {
             type="date"
             value={info?.dateOfBirth}
             onChange={(e) => onChange("dateOfBirth", e.target.value)}
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col w-16">
@@ -82,7 +103,10 @@ function PersonalInformation({ info, onChange }) {
             type="text"
             value={info?.age}
             onChange={(e) => onChange("age", e.target.value)}
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col">
@@ -93,17 +117,23 @@ function PersonalInformation({ info, onChange }) {
             type="text"
             value={info?.placeOfBirth}
             onChange={(e) => onChange("placeOfBirth", e.target.value)}
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col">
           <label className="font-light text-gray-400 text-sm">Gender</label>
           <select
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full`}
+            disabled={isDisabled}
             value={info?.gender}
             onChange={(e) => onChange("gender", e.target.value)}
           >
-            <option value="" disabled selected></option>
+            <option value="" disabled defaultValue></option>
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="nonBinary">Non-Binary</option>
@@ -116,11 +146,14 @@ function PersonalInformation({ info, onChange }) {
             Civil Status
           </label>
           <select
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full`}
+            disabled={isDisabled}
             value={info?.civilStatus}
             onChange={(e) => onChange("civilStatus", e.target.value)}
           >
-            <option value="" disabled selected></option>
+            <option value="" disabled defaultValue></option>
             <option value="single">Single</option>
             <option value="married">Married</option>
             <option value="separated">Separated</option>
@@ -136,7 +169,10 @@ function PersonalInformation({ info, onChange }) {
             type="text"
             value={info?.contactNumber}
             onChange={(e) => onChange("contactNumber", e.target.value)}
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col">
@@ -147,7 +183,10 @@ function PersonalInformation({ info, onChange }) {
             type="text"
             value={info?.facebookName}
             onChange={(e) => onChange("facebookName", e.target.value)}
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col">
@@ -158,7 +197,10 @@ function PersonalInformation({ info, onChange }) {
             type="text"
             value={info?.viberMessenger}
             onChange={(e) => onChange("viberMessenger", e.target.value)}
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col">
@@ -167,7 +209,10 @@ function PersonalInformation({ info, onChange }) {
             type="text"
             value={info?.religion}
             onChange={(e) => onChange("religion", e.target.value)}
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col w-[20%]">
@@ -175,11 +220,14 @@ function PersonalInformation({ info, onChange }) {
             Educational Attainment
           </label>
           <select
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full`}
+            disabled={isDisabled}
             value={info?.educationalAttainment}
             onChange={(e) => onChange("educationalAttainment", e.target.value)}
           >
-            <option value="" disabled selected></option>
+            <option value="" disabled defaultValue></option>
             <option value="elementary">Elementary</option>
             <option value="highSchool">High School</option>
             <option value="college">College</option>
@@ -194,7 +242,10 @@ function PersonalInformation({ info, onChange }) {
             type="text"
             value={info?.inTrustFor}
             onChange={(e) => onChange("inTrustFor", e.target.value)}
-            className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            disabled={isDisabled}
           />
         </div>
       </div>
