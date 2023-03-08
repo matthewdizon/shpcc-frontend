@@ -1,11 +1,7 @@
 import Layout from "../../../components/dashboard/Layout";
-import PersonalInformation from "../../../components/forms/associate-application/PersonalInformation";
-import CompanyInformation from "../../../components/forms/associate-application/CompanyInformation";
-import AccountInformation from "../../../components/forms/associate-application/AccountInformation";
-import BeneficiariesDependents from "../../../components/forms/associate-application/BeneficiariesDependents";
+import AssociateApplication from "../../../components/forms/AssociateApplication";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../../context/userContext";
-import Link from "next/link";
 import {
   handleChange,
   handleChangeArray,
@@ -14,10 +10,9 @@ import {
 } from "../../../utils/helpers";
 import TermsAndConditions from "../../../components/forms/TermsAndConditions";
 
-function AssociateApplication() {
+function AssociateApplicationPage() {
   const { user } = useContext(UserContext);
 
-  const [showModal, setShowModal] = useState(false);
   const [data, setData] = useState(null);
 
   // grab initial form data if there's a draft
@@ -171,68 +166,6 @@ function AssociateApplication() {
     },
   });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const jwt = localStorage.getItem("accessToken");
-
-    const applicationDetails = {
-      ...formData.personalInformation,
-      ...formData.companyInformation,
-      ...formData.accountInformation,
-      ...formData.beneficiariesDependents,
-      user: user.email,
-      isDraft: false,
-    };
-
-    const res = await fetch(
-      `${
-        process.env.NEXT_PUBLIC_BACKEND_SERVER
-      }/api/memberApplications/associate/${data ? user.email : ""}`,
-      {
-        method: data ? "PATCH" : "POST",
-        body: JSON.stringify(applicationDetails),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${jwt}`,
-        },
-      }
-    );
-
-    console.log(res);
-  };
-
-  const handleSaveDraft = async (e) => {
-    e.preventDefault();
-
-    const jwt = localStorage.getItem("accessToken");
-
-    const applicationDetails = {
-      ...formData.personalInformation,
-      ...formData.companyInformation,
-      ...formData.accountInformation,
-      ...formData.beneficiariesDependents,
-      user: user.email,
-      isDraft: true,
-    };
-
-    const res = await fetch(
-      `${
-        process.env.NEXT_PUBLIC_BACKEND_SERVER
-      }/api/memberApplications/associate/${data ? user.email : ""}`,
-      {
-        method: data ? "PATCH" : "POST",
-        body: JSON.stringify(applicationDetails),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${jwt}`,
-        },
-      }
-    );
-
-    console.log(res);
-  };
-
   if (!data?.isDraft) {
     return (
       <Layout>
@@ -246,123 +179,14 @@ function AssociateApplication() {
   return (
     <Layout>
       <div className="p-24 min-h-screen">
-        <div className="bg-white p-8 rounded-3xl">
-          <h1 className="font-black text-3xl">
-            Associate Membership Application
-          </h1>
-          <div>
-            <PersonalInformation
-              info={formData.personalInformation}
-              onChange={(field, value) =>
-                handleChange("personalInformation", field, value, setFormData)
-              }
-            />
-            <hr className="mt-4" />
-            <CompanyInformation
-              info={formData.companyInformation}
-              onChange={(field, value) =>
-                handleChange("companyInformation", field, value, setFormData)
-              }
-            />
-            <hr className="mt-4" />
-            <AccountInformation
-              info={formData.accountInformation}
-              onChange={(field, value) =>
-                handleChange("accountInformation", field, value, setFormData)
-              }
-              onChangeArray={(field, subfield, value, index) =>
-                handleChangeArray(
-                  "accountInformation",
-                  field,
-                  subfield,
-                  value,
-                  index,
-                  setFormData
-                )
-              }
-              addRow={(field, newRow) =>
-                handleAddItem("accountInformation", field, newRow, setFormData)
-              }
-              removeRow={(field, index) =>
-                handleRemoveItem(
-                  "accountInformation",
-                  field,
-                  index,
-                  setFormData
-                )
-              }
-            />
-            <hr className="mt-4" />
-            <BeneficiariesDependents
-              info={formData.beneficiariesDependents}
-              onChange={(field, value) =>
-                handleChange(
-                  "beneficiariesDependents",
-                  field,
-                  value,
-                  setFormData
-                )
-              }
-              onChangeArray={(field, subfield, value, index) =>
-                handleChangeArray(
-                  "beneficiariesDependents",
-                  field,
-                  subfield,
-                  value,
-                  index,
-                  setFormData
-                )
-              }
-              addRow={(field, newRow) =>
-                handleAddItem(
-                  "beneficiariesDependents",
-                  field,
-                  newRow,
-                  setFormData
-                )
-              }
-              removeRow={(field, index) =>
-                handleRemoveItem(
-                  "beneficiariesDependents",
-                  field,
-                  index,
-                  setFormData
-                )
-              }
-            />
-            <div className="flex flex-wrap justify-between">
-              <Link
-                href={`/dashboard/membership`}
-                className="bg-gray-200 text-black p-2 rounded-lg my-4 px-8 hover:bg-gray-300 active:bg-gray-400 transition duration-200"
-              >
-                Back
-              </Link>
-              <div className="flex gap-4">
-                <button
-                  className="bg-white text-shpccRed border-shpccRed border-2 p-2 rounded-lg my-4 px-8 hover:opacity-40"
-                  onClick={handleSaveDraft}
-                >
-                  Save Draft
-                </button>
-                <button
-                  className="bg-shpccRed text-white p-2 rounded-lg my-4 px-8 hover:bg-shpccDarkRed active:bg-red-800"
-                  onClick={() => setShowModal(true)}
-                >
-                  Next
-                </button>
-              </div>
-            </div>
-            {showModal && (
-              <TermsAndConditions
-                setShowModal={setShowModal}
-                handleSubmit={handleSubmit}
-              />
-            )}
-          </div>
-        </div>
+        <AssociateApplication
+          data={data}
+          formData={formData}
+          setFormData={setFormData}
+        />
       </div>
     </Layout>
   );
 }
 
-export default AssociateApplication;
+export default AssociateApplicationPage;
