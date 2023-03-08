@@ -281,6 +281,14 @@ export default function SideNav() {
           </svg>
           <p>Logout</p>
         </div>
+        <div className="p-4 bg-black rounded-lg text-shpccYellow text-xs font-light text-center">
+          {user.email}
+        </div>
+        {user.isAdmin && (
+          <div className="p-4 bg-shpccYellow rounded-lg text-black text-xs font-black text-center uppercase">
+            Administrator
+          </div>
+        )}
       </div>
     </nav>
   );

@@ -39,40 +39,40 @@ function Users() {
             <span className="font-thin text-sm">Sort by: Account Number</span>
           </div>
         </div>
-        <div class="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-lg p-4">
-          <table class="min-w-full divide-y-2 divide-gray-200">
+        <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-lg p-4">
+          <table className="min-w-full divide-y-2 divide-gray-200">
             <thead>
               <tr>
-                <th class="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
+                <th className="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
                   Email
                 </th>
-                <th class="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
+                <th className="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
                   Name
                 </th>
-                <th class="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
+                <th className="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
                   Cellphone No.
                 </th>
-                <th class="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
+                <th className="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
                   Account Type
                 </th>
               </tr>
             </thead>
 
             <tbody>
-              {data.map((user, index) => {
+              {data?.map((user, index) => {
                 console.log(user);
                 return (
                   <tr key={index}>
-                    <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                    <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                       {user.email}
                     </td>
-                    <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
+                    <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
                       Name
                     </td>
-                    <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
+                    <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
                       Cellphone No.
                     </td>
-                    <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
+                    <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
                       Account Type
                     </td>
                   </tr>
