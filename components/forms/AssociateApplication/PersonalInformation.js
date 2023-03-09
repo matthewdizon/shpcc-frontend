@@ -1,4 +1,10 @@
-function PersonalInformation({ info, onChange, isDisabled }) {
+function PersonalInformation({
+  info,
+  onChange,
+  isDisabled,
+  handleBlur,
+  touchedFields,
+}) {
   return (
     <div className="grid gap-2 py-2">
       <h2 className="text-gray-500 font-bold text-xl py-4">
@@ -6,28 +12,42 @@ function PersonalInformation({ info, onChange, isDisabled }) {
       </h2>
       <div className="flex flex-wrap justify-between gap-4">
         <div className="flex flex-col">
-          <label className=" font-light text-gray-400 text-sm">Last Name</label>
+          <label
+            className={`font-light text-gray-400 text-sm ${
+              touchedFields.lastName && !info?.lastName ? "text-red-500" : ""
+            }`}
+          >
+            Last Name *
+          </label>
           <input
             type="text"
             value={info?.lastName}
             onChange={(e) => onChange("lastName", e.target.value)}
-            className={`${
-              isDisabled ? "bg-gray-200" : "bg-white"
+            className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+              touchedFields.lastName && !info?.lastName ? "border-red-500" : ""
             } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            onBlur={() => handleBlur("lastName")}
             disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col">
-          <label className=" font-light text-gray-400 text-sm">
-            First Name
+          <label
+            className={`font-light text-gray-400 text-sm ${
+              touchedFields.firstName && !info?.firstName ? "text-red-500" : ""
+            }`}
+          >
+            First Name *
           </label>
           <input
             type="text"
             value={info?.firstName}
             onChange={(e) => onChange("firstName", e.target.value)}
-            className={`${
-              isDisabled ? "bg-gray-200" : "bg-white"
+            className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+              touchedFields.firstName && !info?.firstName
+                ? "border-red-500"
+                : ""
             } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            onBlur={() => handleBlur("firstName")}
             disabled={isDisabled}
           />
         </div>
@@ -72,63 +92,102 @@ function PersonalInformation({ info, onChange, isDisabled }) {
           />
         </div>
         <div className="flex flex-col w-[40%] flex-grow">
-          <label className=" font-light text-gray-400 text-sm">Address</label>
+          <label
+            className={`font-light text-gray-400 text-sm ${
+              touchedFields.address && !info?.address ? "text-red-500" : ""
+            }`}
+          >
+            Address *
+          </label>
           <input
             type="text"
             value={info?.address}
             onChange={(e) => onChange("address", e.target.value)}
-            className={`${
-              isDisabled ? "bg-gray-200" : "bg-white"
+            className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+              touchedFields.address && !info?.address ? "border-red-500" : ""
             } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            onBlur={() => handleBlur("address")}
             disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col w-[20%]">
-          <label className=" font-light text-gray-400 text-sm">
-            Date of Birth
+          <label
+            className={`font-light text-gray-400 text-sm ${
+              touchedFields.dateOfBirth && !info?.dateOfBirth
+                ? "text-red-500"
+                : ""
+            }`}
+          >
+            Date of Birth *
           </label>
           <input
             type="date"
             value={info?.dateOfBirth}
             onChange={(e) => onChange("dateOfBirth", e.target.value)}
-            className={`${
-              isDisabled ? "bg-gray-200" : "bg-white"
+            className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+              touchedFields.dateOfBirth && !info?.dateOfBirth
+                ? "border-red-500"
+                : ""
             } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            onBlur={() => handleBlur("dateOfBirth")}
             disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col w-16">
-          <label className=" font-light text-gray-400 text-sm">Age</label>
+          <label
+            className={`font-light text-gray-400 text-sm ${
+              touchedFields.age && !info?.age ? "text-red-500" : ""
+            }`}
+          >
+            Age *
+          </label>
           <input
             type="text"
             value={info?.age}
             onChange={(e) => onChange("age", e.target.value)}
-            className={`${
-              isDisabled ? "bg-gray-200" : "bg-white"
+            className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+              touchedFields.age && !info?.age ? "border-red-500" : ""
             } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            onBlur={() => handleBlur("age")}
             disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col">
-          <label className=" font-light text-gray-400 text-sm">
-            Place of Birth
+          <label
+            className={`font-light text-gray-400 text-sm ${
+              touchedFields.placeOfBirth && !info?.placeOfBirth
+                ? "text-red-500"
+                : ""
+            }`}
+          >
+            Place of Birth *
           </label>
           <input
             type="text"
             value={info?.placeOfBirth}
             onChange={(e) => onChange("placeOfBirth", e.target.value)}
-            className={`${
-              isDisabled ? "bg-gray-200" : "bg-white"
+            className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+              touchedFields.placeOfBirth && !info?.placeOfBirth
+                ? "border-red-500"
+                : ""
             } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            onBlur={() => handleBlur("placeOfBirth")}
             disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col">
-          <label className="font-light text-gray-400 text-sm">Gender</label>
+          <label
+            className={`font-light text-gray-400 text-sm ${
+              touchedFields.gender && !info?.gender ? "text-red-500" : ""
+            }`}
+          >
+            Gender *
+          </label>
           <select
-            className={`${
-              isDisabled ? "bg-gray-200" : "bg-white"
+            className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+              touchedFields.gender && !info?.gender ? "border-red-500" : ""
             } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full`}
+            onBlur={() => handleBlur("gender")}
             disabled={isDisabled}
             value={info?.gender}
             onChange={(e) => onChange("gender", e.target.value)}
@@ -142,13 +201,22 @@ function PersonalInformation({ info, onChange, isDisabled }) {
           </select>
         </div>
         <div className="flex flex-col">
-          <label className="font-light text-gray-400 text-sm">
-            Civil Status
+          <label
+            className={`font-light text-gray-400 text-sm ${
+              touchedFields.civilStatus && !info?.civilStatus
+                ? "text-red-500"
+                : ""
+            }`}
+          >
+            Civil Status *
           </label>
           <select
-            className={`${
-              isDisabled ? "bg-gray-200" : "bg-white"
+            className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+              touchedFields.civilStatus && !info?.civilStatus
+                ? "border-red-500"
+                : ""
             } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full`}
+            onBlur={() => handleBlur("civilStatus")}
             disabled={isDisabled}
             value={info?.civilStatus}
             onChange={(e) => onChange("civilStatus", e.target.value)}
@@ -162,16 +230,25 @@ function PersonalInformation({ info, onChange, isDisabled }) {
           </select>
         </div>
         <div className="flex flex-col">
-          <label className=" font-light text-gray-400 text-sm">
-            Contact No.
+          <label
+            className={`font-light text-gray-400 text-sm ${
+              touchedFields.contactNumber && !info?.contactNumber
+                ? "text-red-500"
+                : ""
+            }`}
+          >
+            Contact No. *
           </label>
           <input
             type="text"
             value={info?.contactNumber}
             onChange={(e) => onChange("contactNumber", e.target.value)}
-            className={`${
-              isDisabled ? "bg-gray-200" : "bg-white"
+            className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+              touchedFields.contactNumber && !info?.contactNumber
+                ? "border-red-500"
+                : ""
             } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            onBlur={() => handleBlur("contactNumber")}
             disabled={isDisabled}
           />
         </div>
@@ -204,25 +281,43 @@ function PersonalInformation({ info, onChange, isDisabled }) {
           />
         </div>
         <div className="flex flex-col">
-          <label className=" font-light text-gray-400 text-sm">Religion</label>
+          <label
+            className={`font-light text-gray-400 text-sm ${
+              touchedFields.religion && !info?.religion ? "text-red-500" : ""
+            }`}
+          >
+            Religion *
+          </label>
           <input
             type="text"
             value={info?.religion}
             onChange={(e) => onChange("religion", e.target.value)}
-            className={`${
-              isDisabled ? "bg-gray-200" : "bg-white"
+            className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+              touchedFields.religion && !info?.religion ? "border-red-500" : ""
             } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            onBlur={() => handleBlur("religion")}
             disabled={isDisabled}
           />
         </div>
         <div className="flex flex-col w-[20%]">
-          <label className="font-light text-gray-400 text-sm">
-            Educational Attainment
+          <label
+            className={`font-light text-gray-400 text-sm ${
+              touchedFields.educationalAttainment &&
+              !info?.educationalAttainment
+                ? "text-red-500"
+                : ""
+            }`}
+          >
+            Educational Attainment *
           </label>
           <select
-            className={`${
-              isDisabled ? "bg-gray-200" : "bg-white"
+            className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+              touchedFields.educationalAttainment &&
+              !info?.educationalAttainment
+                ? "border-red-500"
+                : ""
             } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full`}
+            onBlur={() => handleBlur("educationalAttainment")}
             disabled={isDisabled}
             value={info?.educationalAttainment}
             onChange={(e) => onChange("educationalAttainment", e.target.value)}
@@ -235,16 +330,25 @@ function PersonalInformation({ info, onChange, isDisabled }) {
           </select>
         </div>
         <div className="flex flex-col flex-grow">
-          <label className=" font-light text-gray-400 text-sm">
-            Held in Trust For
+          <label
+            className={`font-light text-gray-400 text-sm ${
+              touchedFields.inTrustFor && !info?.inTrustFor
+                ? "text-red-500"
+                : ""
+            }`}
+          >
+            Held in Trust For *
           </label>
           <input
             type="text"
             value={info?.inTrustFor}
             onChange={(e) => onChange("inTrustFor", e.target.value)}
-            className={`${
-              isDisabled ? "bg-gray-200" : "bg-white"
+            className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+              touchedFields.inTrustFor && !info?.inTrustFor
+                ? "border-red-500"
+                : ""
             } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            onBlur={() => handleBlur("inTrustFor")}
             disabled={isDisabled}
           />
         </div>

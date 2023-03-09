@@ -7,6 +7,7 @@ import {
   handleChangeArray,
   handleAddItem,
   handleRemoveItem,
+  handleBlur,
 } from "../../../utils/helpers";
 
 import PersonalInformation from "./PersonalInformation";
@@ -18,6 +19,31 @@ import TermsAndConditions from "../TermsAndConditions";
 function AssociateApplication({ data, formData, setFormData, isDisabled }) {
   const { user } = useContext(UserContext);
 
+  const [touchedFields, setTouchedFields] = useState({
+    // Personal Info
+    lastName: true,
+    firstName: true,
+    address: true,
+    dateOfBirth: true,
+    age: true,
+    placeOfBirth: true,
+    gender: true,
+    civilStatus: true,
+    contactNumber: true,
+    religion: true,
+    educationalAttainment: true,
+    inTrustFor: true,
+    // Account Info
+    accountType: true,
+    barangay: true,
+    idType: true,
+    idNumber: true,
+    // Beneficiaries
+    fullName: true,
+    address: true,
+    relationship: true,
+    dateOfBirth: true,
+  });
   const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -83,17 +109,85 @@ function AssociateApplication({ data, formData, setFormData, isDisabled }) {
     console.log(res);
   };
 
+  const requiredFields = [
+    { subObjectName: "personalInformation", fieldName: "lastName" },
+    { subObjectName: "personalInformation", fieldName: "firstName" },
+    { subObjectName: "personalInformation", fieldName: "address" },
+    { subObjectName: "personalInformation", fieldName: "dateOfBirth" },
+    { subObjectName: "personalInformation", fieldName: "age" },
+    { subObjectName: "personalInformation", fieldName: "placeOfBirth" },
+    { subObjectName: "personalInformation", fieldName: "gender" },
+    { subObjectName: "personalInformation", fieldName: "civilStatus" },
+    { subObjectName: "personalInformation", fieldName: "contactNumber" },
+    { subObjectName: "personalInformation", fieldName: "religion" },
+    {
+      subObjectName: "personalInformation",
+      fieldName: "educationalAttainment",
+    },
+    { subObjectName: "accountInformation", fieldName: "accountType" },
+    { subObjectName: "accountInformation", fieldName: "barangay" },
+    { subObjectName: "accountInformation", fieldName: "idType" },
+    { subObjectName: "accountInformation", fieldName: "idNumber" },
+    {
+      subObjectFn: () => formData.beneficiariesDependents.beneficiaries,
+      fieldName: "fullName",
+    },
+    {
+      subObjectFn: () => formData.beneficiariesDependents.beneficiaries,
+      fieldName: "address",
+    },
+    {
+      subObjectFn: () => formData.beneficiariesDependents.beneficiaries,
+      fieldName: "relationship",
+    },
+    {
+      subObjectFn: () => formData.beneficiariesDependents.beneficiaries,
+      fieldName: "age",
+    },
+    {
+      subObjectFn: () => formData.beneficiariesDependents.beneficiaries,
+      fieldName: "dateOfBirth",
+    },
+  ];
+
+  let isFormValid;
+
+  if (!isDisabled) {
+    isFormValid = requiredFields.every(
+      ({ subObjectName, subObjectFn, fieldName }) => {
+        let subObject;
+        if (subObjectName) {
+          subObject = eval(`formData.${subObjectName}`);
+        } else if (subObjectFn) {
+          subObject = subObjectFn();
+        }
+
+        if (Array.isArray(subObject)) {
+          return subObject.every((item) => Boolean(item[fieldName]));
+        }
+        const fieldValue = subObject[fieldName];
+        return Boolean(fieldValue);
+      }
+    );
+  }
+
+  console.log(touchedFields);
+
   return (
     <div className="bg-white p-8 rounded-3xl">
       <h1 className="font-black text-3xl">Associate Membership Application</h1>
       {isDisabled && <span className="font-thin italic">View Only</span>}
-      <div>
+      <form>
         <PersonalInformation
           info={formData?.personalInformation}
           onChange={(field, value) =>
             handleChange("personalInformation", field, value, setFormData)
           }
           isDisabled={isDisabled}
+          handleBlur={(name) =>
+            handleBlur(name, touchedFields, setTouchedFields)
+          }
+          touchedFields={touchedFields}
         />
         <hr className="mt-4" />
         <CompanyInformation
@@ -126,6 +220,10 @@ function AssociateApplication({ data, formData, setFormData, isDisabled }) {
             handleRemoveItem("accountInformation", field, index, setFormData)
           }
           isDisabled={isDisabled}
+          handleBlur={(name) =>
+            handleBlur(name, touchedFields, setTouchedFields)
+          }
+          touchedFields={touchedFields}
         />
         <hr className="mt-4" />
         <BeneficiariesDependents
@@ -155,8 +253,12 @@ function AssociateApplication({ data, formData, setFormData, isDisabled }) {
             )
           }
           isDisabled={isDisabled}
+          handleBlur={(name) =>
+            handleBlur(name, touchedFields, setTouchedFields)
+          }
+          touchedFields={touchedFields}
         />
-      </div>
+      </form>
       {!isDisabled && (
         <div className="flex flex-wrap justify-between">
           <Link
@@ -173,8 +275,14 @@ function AssociateApplication({ data, formData, setFormData, isDisabled }) {
               Save Draft
             </button>
             <button
-              className="bg-shpccRed text-white p-2 rounded-lg my-4 px-8 hover:bg-shpccDarkRed active:bg-red-800"
+              className={`bg-shpccRed text-white p-2 rounded-lg my-4 px-8 ${
+                isFormValid
+                  ? "hover:bg-shpccDarkRed active:bg-red-800"
+                  : "hover:cursor-not-allowed opacity-50"
+              }`}
               onClick={() => setShowModal(true)}
+              disabled={isFormValid ? false : true}
+              type="submit"
             >
               Next
             </button>
@@ -262,6 +370,11 @@ function AssociateApplication({ data, formData, setFormData, isDisabled }) {
             </TermsAndConditions>
           )}
         </div>
+      )}
+      {!isFormValid && !isDisabled && (
+        <p className="italic text-red-500 flex justify-end">
+          Please make sure to fill up all required fields.
+        </p>
       )}
     </div>
   );

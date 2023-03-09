@@ -2,18 +2,11 @@ import Layout from "../../../components/dashboard/Layout";
 import AssociateApplication from "../../../components/forms/AssociateApplication";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../../context/userContext";
-import {
-  handleChange,
-  handleChangeArray,
-  handleAddItem,
-  handleRemoveItem,
-} from "../../../utils/helpers";
-import TermsAndConditions from "../../../components/forms/TermsAndConditions";
 
 function AssociateApplicationPage() {
   const { user } = useContext(UserContext);
 
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({});
 
   // grab initial form data if there's a draft
   useEffect(() => {
@@ -166,7 +159,7 @@ function AssociateApplicationPage() {
     },
   });
 
-  if (!data?.isDraft) {
+  if (data && !data?.isDraft) {
     return (
       <Layout>
         <div className="p-24">

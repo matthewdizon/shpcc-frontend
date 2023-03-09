@@ -4,6 +4,8 @@ function BeneficiariesDependents({
   addRow,
   removeRow,
   isDisabled,
+  handleBlur,
+  touchedFields,
 }) {
   return (
     <div className="grid gap-2 py-2">
@@ -35,8 +37,14 @@ function BeneficiariesDependents({
               className="flex flex-wrap gap-2 justify-between w-full items-center"
             >
               <div className="flex flex-col">
-                <label className=" font-light text-gray-400 text-sm">
-                  Full Name
+                <label
+                  className={`font-light text-gray-400 text-sm ${
+                    touchedFields.fullName && !beneficiary?.fullName
+                      ? "text-red-500"
+                      : ""
+                  }`}
+                >
+                  Full Name *
                 </label>
                 <input
                   type="text"
@@ -49,15 +57,24 @@ function BeneficiariesDependents({
                       index
                     )
                   }
-                  className={`${
-                    isDisabled ? "bg-gray-200" : "bg-white"
+                  className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+                    touchedFields.fullName && !beneficiary?.fullName
+                      ? "border-red-500"
+                      : ""
                   } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                  onBlur={() => handleBlur("fullName")}
                   disabled={isDisabled}
                 />
               </div>
               <div className="flex flex-col flex-grow">
-                <label className=" font-light text-gray-400 text-sm">
-                  Address
+                <label
+                  className={`font-light text-gray-400 text-sm ${
+                    touchedFields.address && !beneficiary?.address
+                      ? "text-red-500"
+                      : ""
+                  }`}
+                >
+                  Address *
                 </label>
                 <input
                   type="text"
@@ -70,15 +87,24 @@ function BeneficiariesDependents({
                       index
                     )
                   }
-                  className={`${
-                    isDisabled ? "bg-gray-200" : "bg-white"
+                  className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+                    touchedFields.address && !beneficiary?.address
+                      ? "border-red-500"
+                      : ""
                   } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                  onBlur={() => handleBlur("address")}
                   disabled={isDisabled}
                 />
               </div>
               <div className="flex flex-col">
-                <label className=" font-light text-gray-400 text-sm">
-                  Relationship
+                <label
+                  className={`font-light text-gray-400 text-sm ${
+                    touchedFields.relationship && !beneficiary?.relationship
+                      ? "text-red-500"
+                      : ""
+                  }`}
+                >
+                  Relationship *
                 </label>
                 <input
                   type="text"
@@ -91,29 +117,47 @@ function BeneficiariesDependents({
                       index
                     )
                   }
-                  className={`${
-                    isDisabled ? "bg-gray-200" : "bg-white"
+                  className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+                    touchedFields.relationship && !beneficiary?.relationship
+                      ? "border-red-500"
+                      : ""
                   } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                  onBlur={() => handleBlur("relationship")}
                   disabled={isDisabled}
                 />
               </div>
               <div className="flex flex-col w-16">
-                <label className=" font-light text-gray-400 text-sm">Age</label>
+                <label
+                  className={`font-light text-gray-400 text-sm ${
+                    touchedFields.age && !beneficiary?.age ? "text-red-500" : ""
+                  }`}
+                >
+                  Age *
+                </label>
                 <input
                   type="text"
                   value={beneficiary?.age}
                   onChange={(e) =>
                     onChangeArray("beneficiaries", "age", e.target.value, index)
                   }
-                  className={`${
-                    isDisabled ? "bg-gray-200" : "bg-white"
+                  className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+                    touchedFields.age && !beneficiary?.age
+                      ? "border-red-500"
+                      : ""
                   } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                  onBlur={() => handleBlur("age")}
                   disabled={isDisabled}
                 />
               </div>
               <div className="flex flex-col">
-                <label className=" font-light text-gray-400 text-sm">
-                  Date of Birth
+                <label
+                  className={`font-light text-gray-400 text-sm ${
+                    touchedFields.dateOfBirth && !beneficiary?.dateOfBirth
+                      ? "text-red-500"
+                      : ""
+                  }`}
+                >
+                  Date of Birth *
                 </label>
                 <input
                   type="date"
@@ -126,9 +170,12 @@ function BeneficiariesDependents({
                       index
                     )
                   }
-                  className={`${
-                    isDisabled ? "bg-gray-200" : "bg-white"
+                  className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+                    touchedFields.dateOfBirth && !beneficiary?.dateOfBirth
+                      ? "border-red-500"
+                      : ""
                   } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                  onBlur={() => handleBlur("dateOfBirth")}
                   disabled={isDisabled}
                 />
               </div>

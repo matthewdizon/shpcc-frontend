@@ -5,6 +5,8 @@ function AccountInformation({
   addRow,
   removeRow,
   isDisabled,
+  handleBlur,
+  touchedFields,
 }) {
   return (
     <div className="grid gap-2 py-2">
@@ -13,13 +15,22 @@ function AccountInformation({
       </h2>
       <div className="flex flex-wrap justify-between gap-4">
         <div className="flex flex-col">
-          <label className="font-light text-gray-400 text-sm">
-            Type of Accuont
+          <label
+            className={`font-light text-gray-400 text-sm ${
+              touchedFields.accountType && !info?.accountType
+                ? "text-red-500"
+                : ""
+            }`}
+          >
+            Type of Account *
           </label>
           <select
-            className={`${
-              isDisabled ? "bg-gray-200" : "bg-white"
-            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full`}
+            className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+              touchedFields.accountType && !info?.accountType
+                ? "border-red-500"
+                : ""
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            onBlur={() => handleBlur("accountType")}
             disabled={isDisabled}
             value={info?.accountType}
             onChange={(e) => onChange("accountType", e.target.value)}
@@ -70,14 +81,21 @@ function AccountInformation({
           />
         </div>
         <div className="flex flex-col">
-          <label className=" font-light text-gray-400 text-sm">Barangay</label>
+          <label
+            className={`font-light text-gray-400 text-sm ${
+              touchedFields.barangay && !info?.barangay ? "text-red-500" : ""
+            }`}
+          >
+            Barangay *
+          </label>
           <input
             type="text"
             value={info?.barangay}
             onChange={(e) => onChange("barangay", e.target.value)}
-            className={`${
-              isDisabled ? "bg-gray-200" : "bg-white"
+            className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+              touchedFields.barangay && !info?.barangay ? "border-red-500" : ""
             } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            onBlur={() => handleBlur("barangay")}
             disabled={isDisabled}
           />
         </div>
@@ -96,13 +114,18 @@ function AccountInformation({
           />
         </div>
         <div className="flex flex-col">
-          <label className="font-light text-gray-400 text-sm">
-            Type of Valid ID
+          <label
+            className={`font-light text-gray-400 text-sm ${
+              touchedFields.idType && !info?.idType ? "text-red-500" : ""
+            }`}
+          >
+            Type of Valid ID *
           </label>
           <select
-            className={`${
-              isDisabled ? "bg-gray-200" : "bg-white"
-            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full`}
+            className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+              touchedFields.idType && !info?.idType ? "border-red-500" : ""
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            onBlur={() => handleBlur("idType")}
             disabled={isDisabled}
             value={info?.idType}
             onChange={(e) => onChange("idType", e.target.value)}
@@ -113,14 +136,21 @@ function AccountInformation({
           </select>
         </div>
         <div className="flex flex-col">
-          <label className=" font-light text-gray-400 text-sm">ID Number</label>
+          <label
+            className={`font-light text-gray-400 text-sm ${
+              touchedFields.idNumber && !info?.idNumber ? "text-red-500" : ""
+            }`}
+          >
+            ID Number *
+          </label>
           <input
             type="text"
             value={info?.idNumber}
             onChange={(e) => onChange("idNumber", e.target.value)}
-            className={`${
-              isDisabled ? "bg-gray-200" : "bg-white"
+            className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+              touchedFields.idNumber && !info?.idNumber ? "border-red-500" : ""
             } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+            onBlur={() => handleBlur("idNumber")}
             disabled={isDisabled}
           />
         </div>

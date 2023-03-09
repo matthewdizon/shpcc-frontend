@@ -54,3 +54,11 @@ export function handleRemoveItem(subObject, field, indexToRemove, setFormData) {
     },
   }));
 }
+
+export function handleBlur(name, touchedFields, setTouchedFields) {
+  const fieldName = name;
+  setTouchedFields({
+    ...touchedFields,
+    [fieldName]: true,
+  });
+}
