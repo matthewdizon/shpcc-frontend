@@ -32,6 +32,7 @@ function AssociateApplication({ data, formData, setFormData, isDisabled }) {
       ...formData.beneficiariesDependents,
       user: user.email,
       isDraft: false,
+      dateSubmitted: new Date(),
     };
 
     const res = await fetch(
