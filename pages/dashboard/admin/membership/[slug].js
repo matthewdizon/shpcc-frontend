@@ -99,6 +99,7 @@ function AssociateApplicationView() {
               orNumber: data?.orNumber || "",
               initialDeposit: data?.initialDeposit || "",
               authenticatedBy: data?.authenticatedBy || "",
+              brNumber: data?.brNumber || "",
               approvedBy: data?.approvedBy || "",
               approvedDate: data?.approvedDate || "",
             },
@@ -193,6 +194,9 @@ function AssociateApplicationView() {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                  hour12: true,
                 }).format(new Date(data?.dateSubmitted))}
               </p>
             )}
@@ -326,7 +330,7 @@ function AssociateApplicationView() {
               <form className="bg-white rounded-xl p-4 shadow-lg">
                 <p className="font-bold text-2xl flex items-center gap-2">
                   Form Decision{" "}
-                  {formData?.adminInformation.authenticatedBy && (
+                  {formData?.adminInformation.approvedBy && (
                     <svg
                       width="24"
                       height="24"
@@ -354,11 +358,20 @@ function AssociateApplicationView() {
                     <input
                       type="text"
                       className={`${
-                        formData?.adminInformation.approvedBy
+                        formData?.adminInformation.brNumber
                           ? "bg-gray-200"
                           : "bg-white"
                       } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-                      disabled={formData?.adminInformation.approvedBy}
+                      disabled={formData?.adminInformation.brNumber}
+                      onChange={(e) =>
+                        handleChange(
+                          "adminInformation",
+                          "brNumber",
+                          e.target.value,
+                          setFormData
+                        )
+                      }
+                      value={formData?.adminInformation.brNumber}
                     />
                   </div>
                   <div className="grid grid-cols-2 items-center">
@@ -366,11 +379,20 @@ function AssociateApplicationView() {
                     <input
                       type="date"
                       className={`${
-                        formData?.adminInformation.approvedBy
+                        formData?.adminInformation.approvedDate
                           ? "bg-gray-200"
                           : "bg-white"
                       } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-                      disabled={formData?.adminInformation.approvedBy}
+                      disabled={formData?.adminInformation.approvedDate}
+                      onChange={(e) =>
+                        handleChange(
+                          "adminInformation",
+                          "approvedDate",
+                          e.target.value,
+                          setFormData
+                        )
+                      }
+                      value={formData?.adminInformation.approvedDate}
                     />
                   </div>
                 </div>
