@@ -46,6 +46,7 @@ function AssociateApplication({ data, formData, setFormData, isDisabled }) {
   });
   const [showModal, setShowModal] = useState(false);
 
+  // AUTOUPDATE DATA
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -74,6 +75,11 @@ function AssociateApplication({ data, formData, setFormData, isDisabled }) {
         },
       }
     );
+
+    if (res.ok) {
+      setShowModal(false);
+      window.location.reload();
+    }
 
     console.log(res);
   };
@@ -105,6 +111,10 @@ function AssociateApplication({ data, formData, setFormData, isDisabled }) {
         },
       }
     );
+
+    if (res.ok) {
+      window.location.reload();
+    }
 
     console.log(res);
   };
@@ -170,8 +180,6 @@ function AssociateApplication({ data, formData, setFormData, isDisabled }) {
       }
     );
   }
-
-  console.log(touchedFields);
 
   return (
     <div className="bg-white p-8 rounded-3xl">
