@@ -44,7 +44,7 @@ function MemberStory({ memberStory, allMemberStories }) {
                     alt={`Image of ${memberName}`}
                     fill
                     objectFit="cover"
-                    className="rounded-xl shadow-xl"
+                    className="rounded-xl shadow-xl hover:shadow-2xl"
                   />
                 </Link>
                 <div>
