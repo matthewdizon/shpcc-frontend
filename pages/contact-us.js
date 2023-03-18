@@ -1,16 +1,26 @@
 import Layout from "../components/Layout";
+import Image from "next/image";
 
 function ContactUs() {
   return (
     <Layout>
-      <div className="bg-cover !bg-[url('/images/hero.svg')] -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4">
-        <div className="text-white pb-6 grid gap-4">
+      <div className="-mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4 relative">
+        <div className="absolute w-full h-full inset-0">
+          <Image
+            src={"/images/contact_us.jpg"}
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
+            className="brightness-50"
+          />
+        </div>
+        <div className="text-white pb-6 grid gap-4 z-20 relative">
           <h1 className="text-5xl md:text-6xl font-bold">Contact Us</h1>
           <p className="text-xl">
             For all inquiries, please email us using the form below
           </p>
         </div>
-        <div className="bg-white md:max-w-max p-4 sm:p-8 rounded-xl">
+        <div className="bg-white md:max-w-max p-4 sm:p-8 rounded-xl z-20 relative">
           <form action="" className="grid gap-3">
             <div className="grid md:grid-cols-2 gap-6 text-black">
               <div className="grid">

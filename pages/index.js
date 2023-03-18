@@ -2,17 +2,27 @@ import Layout from "../components/Layout";
 import MemberStories from "../components/MemberStories";
 import { getMemberStories } from "../lib/api";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home({ members }) {
   return (
     <Layout>
-      <div className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4">
-        <p className="text-5xl lg:text-6xl font-bold lg:max-w-sm lg:leading-snug">
+      <div className="grid text-white -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4 relative">
+        <div className="absolute w-full h-full inset-0">
+          <Image
+            src={"/images/hero.jpg"}
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
+            className="brightness-50"
+          />
+        </div>
+        <p className="text-5xl lg:text-6xl font-bold lg:max-w-sm lg:leading-snug z-20">
           Together we fulfill our dreams
         </p>
         <Link
           href={`/signup`}
-          className="flex bg-shpccDarkRed max-w-max py-4 px-4 lg:px-6 rounded-full uppercase font-bold gap-2 hover:opacity-80 duration-200 transition"
+          className="flex bg-shpccDarkRed max-w-max py-4 px-4 lg:px-6 rounded-full uppercase font-bold gap-2 hover:opacity-80 duration-200 transition z-20"
         >
           Become a Member{" "}
           <svg
@@ -65,7 +75,16 @@ export default function Home({ members }) {
             ullamcorper purus nec enim molestie imperdiet.
           </p>
         </div>
-        <div className="bg-cover !bg-[url('/images/cogs.svg')] bg-center rounded-3xl text-white relative h-96 lg:h-auto">
+        <div className="bg-cover !bg-[url('/images/history.JPG')] bg-center rounded-3xl text-white relative h-96 lg:h-auto">
+          <div className="absolute w-full h-full inset-0">
+            <Image
+              src={"/images/history.jpg"}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="center"
+              className="brightness-75 rounded-3xl"
+            />
+          </div>
           <div className="absolute bottom-12 left-12">
             <p>Image Title</p>
             <p>Image Description</p>

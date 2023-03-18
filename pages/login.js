@@ -3,6 +3,7 @@ import Layout from "../components/Layout";
 import Router from "next/router";
 import { UserContext } from "../context/userContext";
 import Link from "next/link";
+import Image from "next/image";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -60,15 +61,23 @@ function Login() {
 
   return (
     <Layout>
-      <div className="h-[90vh] !bg-[url('/images/login.svg')] bg-cover -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 items-center flex">
-        <div className="grid lg:grid-cols-[2fr_1.2fr] items-center gap-8 lg:gap-24">
+      <div className="h-[90vh] -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 items-center flex relative">
+        <div className="absolute w-full h-full inset-0">
+          <Image
+            src={"/images/login.jpg"}
+            layout="fill"
+            objectFit="cover"
+            className="opacity-40 brightness-50"
+          />
+        </div>
+        <div className="grid lg:grid-cols-[2fr_1.2fr] items-center gap-8 lg:gap-24 w-full z-20">
           <div className="text-center lg:text-left grid gap-2">
             <h2 className="font-bold text-3xl lg:text-5xl">
-              Lorem ipsum dolor sit amet
+              Welcome back to <span className="text-shpccRed">SHPCC</span>
             </h2>
-            <p className="lg:text-xl">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Quibusdam, quisquam cum? Quisquam saepe nostrum ipsum libero.
+            <p className="text-xl">
+              It’s great to see you again fellow kamay-ari! Log in to access
+              your account.
             </p>
           </div>
           <div className="bg-white p-6 rounded-3xl shadow-2xl">

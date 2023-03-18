@@ -1,13 +1,23 @@
 import Layout from "../components/Layout";
+import Image from "next/image";
 
 function ServicesAndRequirements() {
   return (
     <Layout>
       <div
-        className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4"
+        className="grid text-white -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4 relative"
         id="requirements"
       >
-        <h1 className="text-4xl md:text-6xl font-bold">Requirements</h1>
+        <div className="absolute w-full h-full inset-0">
+          <Image
+            src={"/images/requirements.jpg"}
+            layout="fill"
+            objectFit="cover"
+            objectPosition="bottom"
+            className="brightness-50"
+          />
+        </div>
+        <h1 className="text-4xl md:text-6xl font-bold z-20">Requirements</h1>
       </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 py-16 gap-16">
         <div className="grid gap-8">
@@ -100,10 +110,21 @@ function ServicesAndRequirements() {
         </div>
       </div>
       <div
-        className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4"
+        className="grid text-white -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4 relative"
         id="products-services"
       >
-        <h1 className="text-4xl md:text-6xl font-bold">Products & Services</h1>
+        <div className="absolute w-full h-full inset-0">
+          <Image
+            src={"/images/products.jpg"}
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
+            className="brightness-50"
+          />
+        </div>
+        <h1 className="text-4xl md:text-6xl font-bold z-20">
+          Products & Services
+        </h1>
       </div>
       <div className="grid lg:grid-cols-2 py-16 gap-16">
         <div>
@@ -195,10 +216,19 @@ function ServicesAndRequirements() {
         </div>
       </div>
       <div
-        className="grid bg-cover !bg-[url('/images/hero.svg')] text-white -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4"
+        className="grid text-white -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4 relative"
         id="benefits-services"
       >
-        <h1 className="text-4xl md:text-6xl font-bold">
+        <div className="absolute w-full h-full inset-0">
+          <Image
+            src={"/images/community.jpg"}
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
+            className="brightness-50"
+          />
+        </div>
+        <h1 className="text-4xl md:text-6xl font-bold z-20">
           Community Benefits & Services
         </h1>
       </div>

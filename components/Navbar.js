@@ -9,7 +9,7 @@ function Navbar() {
   return (
     <>
       <nav
-        className={`bg-shpccRed justify-between px-12 relative xl:flex hidden`}
+        className={`bg-shpccRed justify-between px-12 relative xl:flex hidden z-30`}
       >
         <Link href={"/"} className="relative flex items-center gap-4">
           <Image src={Logo} alt="Logo" width={60} height={60} />
@@ -91,7 +91,7 @@ function Navbar() {
         </div>
       </nav>
       {/* mobile nav */}
-      <nav className="xl:hidden block bg-shpccRed px-6 md:px-12">
+      <nav className="xl:hidden block bg-shpccRed px-6 md:px-12 relative z-30">
         <div className="flex justify-between items-center">
           <Link href={"/"} className="relative flex items-center gap-4">
             <Image src={Logo} alt="Logo" width={60} height={60} />
