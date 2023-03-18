@@ -10,7 +10,7 @@ function ServicesAndRequirements() {
       >
         <div className="absolute w-full h-full inset-0">
           <Image
-            src={"/images/requirements.jpg"}
+            src={"/images/requirements.JPG"}
             layout="fill"
             objectFit="cover"
             objectPosition="bottom"

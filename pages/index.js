@@ -10,7 +10,7 @@ export default function Home({ members }) {
       <div className="grid text-white -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4 relative">
         <div className="absolute w-full h-full inset-0">
           <Image
-            src={"/images/hero.jpg"}
+            src={"/images/hero.JPG"}
             layout="fill"
             objectFit="cover"
             objectPosition="center"
