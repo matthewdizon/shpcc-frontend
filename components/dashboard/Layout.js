@@ -1,5 +1,5 @@
 import SideNav from "./SideNav";
-import Head from "next/head";
+import SEO from "../SEO";
 import { UserContext } from "../../context/userContext";
 import { useContext, useEffect } from "react";
 import Link from "next/link";
@@ -82,9 +82,7 @@ export default function Layout({ children }) {
 
   return (
     <div className="flex">
-      <Head>
-        <title>Sacred Heart Parish Credit Cooperative</title>
-      </Head>
+      <SEO />
       <SideNav />
       <div className="bg-[#F1F1F2] text-black min-h-screen w-[85vw] ml-[15vw] relative">
         <main>{children}</main>
