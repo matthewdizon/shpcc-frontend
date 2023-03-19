@@ -1,5 +1,6 @@
 import Layout from "../../../../components/dashboard/Layout";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 function Users() {
   const [data, setData] = useState([]);
@@ -55,25 +56,39 @@ function Users() {
                 <th className="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
                   Account Type
                 </th>
+                <th className="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
+                  Action
+                </th>
               </tr>
             </thead>
 
             <tbody>
               {data?.map((user, index) => {
-                console.log(user);
                 return (
                   <tr key={index}>
                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                       {user.email}
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
-                      Name
+                      {user.firstName && user.lastName
+                        ? `${user.firstName} ${user.lastName}`
+                        : "-"}
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
-                      Cellphone No.
+                      {user.contactNumber ?? "-"}
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
-                      Account Type
+                      {user.membershipType === "none"
+                        ? "-"
+                        : user.membershipType}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                      <Link
+                        href={`/dashboard/admin/users/${user.email}`}
+                        className="bg-[#FADB9F] py-2 px-4 rounded-md max-w-max hover:opacity-50 duration-200 transition"
+                      >
+                        View
+                      </Link>
                     </td>
                   </tr>
                 );

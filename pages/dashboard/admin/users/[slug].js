@@ -1,21 +1,23 @@
-import Layout from "../../../components/dashboard/Layout";
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../../context/userContext";
-import AccountOverview from "../../../components/dashboard/AccountOverview";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
-function Account() {
-  const { user } = useContext(UserContext);
+import Layout from "../../../../components/dashboard/Layout";
+import AccountOverview from "../../../../components/dashboard/AccountOverview";
+
+function UserView() {
+  const router = useRouter();
+  const { slug } = router.query;
 
   const [data, setData] = useState({});
 
   useEffect(() => {
     async function fetchData() {
-      if (user) {
+      if (slug) {
         // Retrieve the JWT from local storage
         const jwt = localStorage.getItem("accessToken");
 
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/users/` + user.email,
+          `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/users/` + slug,
           {
             headers: {
               Authorization: `Bearer ${jwt}`,
@@ -32,7 +34,7 @@ function Account() {
     }
 
     fetchData();
-  }, [user]);
+  }, [slug]);
 
   return (
     <Layout>
@@ -43,4 +45,4 @@ function Account() {
   );
 }
 
-export default Account;
+export default UserView;
