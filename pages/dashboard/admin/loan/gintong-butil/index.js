@@ -31,7 +31,7 @@ function GintongButilAdmin() {
 
   return (
     <Layout>
-      <div className="p-24">
+      <div className="p-12">
         <p className="font-black text-3xl pb-8">
           Gintong Butil Loan Application Overview
         </p>
