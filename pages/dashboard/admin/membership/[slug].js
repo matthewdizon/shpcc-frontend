@@ -135,7 +135,9 @@ function AssociateApplicationView() {
       }
     );
 
-    console.log(res);
+    if (res.ok) {
+      window.location.reload();
+    }
   };
 
   const handleDecision = async (e, decision) => {
@@ -162,7 +164,9 @@ function AssociateApplicationView() {
       }
     );
 
-    console.log(res);
+    if (res.ok) {
+      window.location.reload();
+    }
   };
 
   console.log(formData?.adminInformation);
@@ -358,11 +362,11 @@ function AssociateApplicationView() {
                     <input
                       type="text"
                       className={`${
-                        formData?.adminInformation.brNumber
+                        formData?.adminInformation.approvedBy
                           ? "bg-gray-200"
                           : "bg-white"
                       } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-                      disabled={formData?.adminInformation.brNumber}
+                      disabled={formData?.adminInformation.approvedBy}
                       onChange={(e) =>
                         handleChange(
                           "adminInformation",
@@ -379,11 +383,11 @@ function AssociateApplicationView() {
                     <input
                       type="date"
                       className={`${
-                        formData?.adminInformation.approvedDate
+                        formData?.adminInformation.approvedBy
                           ? "bg-gray-200"
                           : "bg-white"
                       } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-                      disabled={formData?.adminInformation.approvedDate}
+                      disabled={formData?.adminInformation.approvedBy}
                       onChange={(e) =>
                         handleChange(
                           "adminInformation",
