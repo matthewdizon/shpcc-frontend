@@ -41,6 +41,12 @@ function GintongButilAdmin() {
               <thead>
                 <tr>
                   <th className="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
+                    #
+                  </th>
+                  <th className="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
+                    Date
+                  </th>
+                  <th className="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
                     User
                   </th>
                   <th className="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
@@ -56,32 +62,41 @@ function GintongButilAdmin() {
               </thead>
 
               <tbody>
-                {data?.map((application, index) => {
-                  console.log(application);
+                {data?.map((loan, index) => {
                   return (
                     <tr key={index}>
                       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                        {application.user}
+                        {loan.loanNumber ?? "-"}
                       </td>
                       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                        {application.firstName} {application.lastName}
+                        {Intl.DateTimeFormat("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        }).format(new Date(loan.dateSubmitted))}
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                        {loan.user}
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                        {loan.firstName} {loan.lastName}
                       </td>
                       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                         <p
                           className={`${
-                            application.status === "Approved"
+                            loan.status === "Approved"
                               ? "bg-green-600"
-                              : application.status === "Pending"
+                              : loan.status === "Pending"
                               ? "bg-shpccYellow text-black"
                               : "bg-red-600"
                           } p-2 rounded-md max-w-max text-white`}
                         >
-                          {application.status}
+                          {loan.status}
                         </p>
                       </td>
                       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                         <Link
-                          href={`/dashboard/admin/loan/gintong-butil/${application.user}`}
+                          href={`/dashboard/admin/loan/gintong-butil/${loan.user}`}
                           className="bg-[#FADB9F] py-2 px-4 rounded-md max-w-max hover:opacity-50 duration-200 transition"
                         >
                           View

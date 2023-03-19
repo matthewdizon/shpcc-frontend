@@ -31,7 +31,7 @@ function MembershipAdmin() {
 
   return (
     <Layout>
-      <div className="p-24">
+      <div className="p-12">
         <p className="font-black text-3xl pb-8">
           Associate Application Overview
         </p>
@@ -40,6 +40,12 @@ function MembershipAdmin() {
             <table className="min-w-full divide-y-2 divide-gray-200">
               <thead>
                 <tr>
+                  <th className="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
+                    #
+                  </th>
+                  <th className="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
+                    Date
+                  </th>
                   <th className="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
                     User
                   </th>
@@ -60,6 +66,16 @@ function MembershipAdmin() {
                   console.log(application);
                   return (
                     <tr key={index}>
+                      <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                        {application.accountNumber ?? "-"}
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                        {Intl.DateTimeFormat("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        }).format(new Date(application.dateSubmitted))}
+                      </td>
                       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                         {application.user}
                       </td>
