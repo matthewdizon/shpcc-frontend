@@ -232,7 +232,7 @@ export default function SideNav() {
   ];
 
   return (
-    <nav className="bg-[#BE121A] w-[15vw] flex flex-col items-center justify-between py-6 fixed h-full">
+    <nav className="bg-[#BE121A] w-[15vw] flex flex-col items-center justify-between py-6 fixed h-full text-white">
       <Image src={Logo} alt="Logo" width={100} height={100} />
       <div className="grid gap-4">
         {links.map((link, index) => {

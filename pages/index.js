@@ -85,10 +85,6 @@ export default function Home({ members }) {
               className="brightness-75 rounded-3xl"
             />
           </div>
-          <div className="absolute bottom-12 left-12">
-            <p>Image Title</p>
-            <p>Image Description</p>
-          </div>
         </div>
       </div>
       <div
