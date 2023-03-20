@@ -21,12 +21,18 @@ function ContactUs() {
           </p>
         </div>
         <div className="bg-white md:max-w-max p-4 sm:p-8 rounded-xl z-20 relative">
-          <form action="" className="grid gap-3">
+          <form
+            action="https://formspree.io/f/mwkjnvyr"
+            method="POST"
+            className="grid gap-3"
+          >
             <div className="grid md:grid-cols-2 gap-6 text-black">
               <div className="grid">
                 <label className="font-bold text-lg">First Name</label>
                 <input
                   type="text"
+                  name="firstName"
+                  required
                   placeholder="Juan"
                   onChange={(e) => console.log(e.target.value)}
                   className="bg-white border-gray-400 border rounded-lg p-2"
@@ -36,6 +42,8 @@ function ContactUs() {
                 <label className="font-bold text-lg">Last Name</label>
                 <input
                   type="text"
+                  name="lastName"
+                  required
                   placeholder="Dela Cruz"
                   onChange={(e) => console.log(e.target.value)}
                   className="bg-white border-gray-400 border rounded-lg p-2"
@@ -45,7 +53,9 @@ function ContactUs() {
             <div className="grid">
               <label className="font-bold text-lg">Email Address</label>
               <input
-                type="text"
+                type="email"
+                name="email"
+                required
                 placeholder="email@gmail.com"
                 onChange={(e) => console.log(e.target.value)}
                 className="bg-white border-gray-400 border rounded-lg p-2"
@@ -55,6 +65,8 @@ function ContactUs() {
               <label className="font-bold text-lg">Type Of Concern</label>
               <input
                 type="text"
+                name="concernType"
+                required
                 placeholder="E.g. Question, Suggestion, Compliment, Others"
                 onChange={(e) => console.log(e.target.value)}
                 className="bg-white border-gray-400 border rounded-lg p-2"
@@ -64,6 +76,8 @@ function ContactUs() {
               <label className="font-bold text-lg">Message</label>
               <textarea
                 type="text"
+                name="message"
+                required
                 placeholder="Type your Message Here..."
                 onChange={(e) => console.log(e.target.value)}
                 className="bg-white border-gray-400 border rounded-lg p-2"
@@ -78,7 +92,7 @@ function ContactUs() {
                     Yes
                   </label>
                   <label className="flex gap-2">
-                    <input type="radio" name="isMember" />
+                    <input type="radio" name="isNotMember" />
                     No
                   </label>
                 </div>
