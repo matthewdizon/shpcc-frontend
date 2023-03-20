@@ -20,7 +20,7 @@ export default function Home({ members }) {
         <p className="text-5xl lg:text-6xl font-bold lg:max-w-sm lg:leading-snug z-20">
           Together we fulfill our dreams
         </p>
-        <Link
+        {/* <Link
           href={`/signup`}
           className="flex bg-shpccDarkRed max-w-max py-4 px-4 lg:px-6 rounded-full uppercase font-bold gap-2 hover:opacity-80 duration-200 transition z-20"
         >
@@ -37,7 +37,7 @@ export default function Home({ members }) {
               fill="currentColor"
             />
           </svg>
-        </Link>
+        </Link> */}
       </div>
       <div className="grid lg:grid-cols-2 text-black py-12 gap-8" id="history">
         <div className="grid gap-4">

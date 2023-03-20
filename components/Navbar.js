@@ -80,14 +80,14 @@ function Navbar() {
               Contact Us
             </Link>
           </div>
-          <button>
+          {/* <button>
             <Link
               href={"/login"}
               className="uppercase bg-white text-shpccDarkRed py-2 px-6 rounded-lg mx-4 hover:bg-shpccYellow font-bold"
             >
               Login
             </Link>
-          </button>
+          </button> */}
         </div>
       </nav>
       {/* mobile nav */}
@@ -126,14 +126,14 @@ function Navbar() {
               open ? "block" : "hidden"
             } flex flex-col absolute top-[86px] left-0 w-full bg-shpccRed gap-4 py-8 px-6 md:px-12 z-20`}
           >
-            <div className="flex justify-end">
+            {/* <div className="flex justify-end">
               <Link
                 href={"/login"}
                 className="text-white border-2 border-white py-2 px-6 rounded-lg hover:bg-white hover:text-shpccDarkRed font-bold max-w-max"
               >
                 Login
               </Link>
-            </div>
+            </div> */}
             <Link
               href={"/"}
               className="bg-white text-shpccDarkRed py-2 px-6 rounded-lg hover:bg-shpccYellow font-bold"
