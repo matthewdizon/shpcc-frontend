@@ -5,7 +5,7 @@ function ServicesAndRequirements() {
   return (
     <Layout>
       <div
-        className="grid text-white -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4 relative"
+        className="grid text-white -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4 relative bg-gray-600"
         id="requirements"
       >
         <div className="absolute w-full h-full inset-0">
@@ -110,7 +110,7 @@ function ServicesAndRequirements() {
         </div>
       </div>
       <div
-        className="grid text-white -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4 relative"
+        className="grid text-white -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4 relative bg-gray-600"
         id="products-services"
       >
         <div className="absolute w-full h-full inset-0">
@@ -216,7 +216,7 @@ function ServicesAndRequirements() {
         </div>
       </div>
       <div
-        className="grid text-white -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4 relative"
+        className="grid text-white -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4 relative bg-gray-600"
         id="benefits-services"
       >
         <div className="absolute w-full h-full inset-0">

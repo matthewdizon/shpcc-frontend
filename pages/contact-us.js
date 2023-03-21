@@ -4,7 +4,7 @@ import Image from "next/image";
 function ContactUs() {
   return (
     <Layout>
-      <div className="-mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4 relative">
+      <div className="-mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4 relative bg-gray-600">
         <div className="absolute w-full h-full inset-0">
           <Image
             src={"/images/contact_us.jpg"}

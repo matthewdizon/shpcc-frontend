@@ -7,7 +7,7 @@ import Image from "next/image";
 export default function Home({ members }) {
   return (
     <Layout>
-      <div className="grid text-white -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4 relative">
+      <div className="grid text-white -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 gap-4 relative bg-gray-600">
         <div className="absolute w-full h-full inset-0">
           <Image
             src={"/images/hero.JPG"}
@@ -86,7 +86,7 @@ export default function Home({ members }) {
             Quezon City.
           </p>
         </div>
-        <div className="bg-cover !bg-[url('/images/history.JPG')] bg-center rounded-3xl text-white relative h-96 lg:h-auto">
+        <div className="bg-cover !bg-[url('/images/history.JPG')] bg-center rounded-3xl text-white relative h-96 lg:h-auto bg-gray-600">
           <div className="absolute w-full h-full inset-0">
             <Image
               src={"/images/history.jpg"}
