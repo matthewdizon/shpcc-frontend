@@ -23,7 +23,7 @@ const Member = ({ name, description, image, slug }) => {
           alt={`Image of ${name}`}
           fill
           objectFit="cover"
-          className="opacity-60"
+          className="brightness-50"
         />
       </div>
       <div className="absolute bottom-0 md:top-0 left-0 p-4 lg:p-8 max-w-xl flex flex-col gap-4">
