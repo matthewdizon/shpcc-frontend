@@ -45,34 +45,45 @@ export default function Home({ members }) {
             History Of The Sacred Heart Of Parish Credit Cooperative
           </h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            mollis ultrices mauris quis tempor. Sed gravida porttitor nunc, a
-            placerat lacus tincidunt nec. Suspendisse viverra tellus eget orci
-            dapibus, a varius ipsum aliquam. Suspendisse enim sem, egestas sit
-            amet eleifend nec, accumsan eu sapien. Aliquam non turpis quis mi
-            gravida mattis fringilla ut magna. Praesent interdum odio purus, et
-            mollis purus euismod ac. Fusce ac neque vitae urna sagittis
-            pharetra.
+            Sacred Heart Parish Credit Cooperative (SHPCC) started out from
+            humble beginnings. With a capital of P560.00 and the optimistic help
+            of the Parish Priest, Fr. Fernando de Pedro, SVD, and the Legion of
+            Mary and some fifteen (15) incorporators and ten (10) charter
+            members, the cooperative was registered as Sacred Heart Parish
+            Cooperative Credit Union with the Cooperatives Administration Office
+            on August 2, 1967. It was in the early 70’s, during the incumbency
+            of Fr. Restituto Lumanlan, SVD, that the SHPCC became part of the
+            Parish Social Services.
           </p>
           <p>
-            Integer vel fringilla tellus. Ut pulvinar ipsum nec libero auctor
-            egestas. Duis mattis dolor metus, convallis fermentum elit varius
-            in. Cras maximus nulla in nibh blandit, id laoreet augue porta.
-            Proin fermentum elit neque, sit amet vestibulum ipsum scelerisque
-            ac. Mauris non neque lectus. Sed eget augue tortor. Etiam ac sodales
-            ligula. Curabitur bibendum faucibus lorem porta sollicitudin.
-            Vestibulum eleifend, lorem id pretium semper, lorem mi posuere nibh,
-            eget tempor massa massa et lacus.
+            The cooperative was re-registered on February 24, 1975 as Sacred
+            Heart Parish Kilusang Bayan for Credit, Inc. at the Bureau of
+            Cooperatives Development. When all the cooperatives were put under
+            the authority of the Cooperative Development Authority (CDA), the
+            cooperative obtained its confirmation of registration as Sacred
+            Heart Parish Development Cooperative (SHPDC) on February 20, 1991.
+            It amended its Articles of Cooperation and by-laws last January 7,
+            2022 with name Sacred Heart Parish Credit Cooperative (SHPCC). It is
+            an active member of its accredited federation, Philippine Federation
+            of Credit Cooperative-National Capital Region (PFCCO-NCR) and the
+            Asian Confederation of Credit Unions (ACCU).
           </p>
           <p>
-            Aliquam vitae porta eros. Sed sagittis dictum augue, non rhoncus
-            massa laoreet ut. Nullam ac ultricies arcu. Suspendisse potenti. Sed
-            sollicitudin quam sed metus tincidunt iaculis in vitae augue. Ut
-            purus risus, tristique eget odio ut, fermentum rhoncus urna.
-            Curabitur malesuada ex vitae leo feugiat mollis. Phasellus
-            tincidunt, libero hendrerit blandit fringilla, risus magna maximus
-            tortor, a hendrerit turpis sapien sed lectus. Pellentesque
-            ullamcorper purus nec enim molestie imperdiet.
+            SHPCC aims to promote not only the growth of its members but also
+            its organization with the tagline “together we fulfill our dreams”.
+            It aims to promote members’ growth through the development of its
+            products and services by teaching them learnings in cooperativism,
+            proper management of financial resources and cooperative values.
+          </p>
+          <p>
+            After 55 years of service, SHPCC is proud to have active 1,579
+            regular members and 2,172 associate members and more than P116
+            million assets including a three-storey building aptly called,
+            “Tahanang Koop.” A big part of the success of SHPCC is the spirit of
+            volunteerism. With the perseverance, dedication and active
+            participation of its leaders and members, the SHPCC ascended from
+            its humble beginnings to be one of the pillars of Cooperatives in
+            Quezon City.
           </p>
         </div>
         <div className="bg-cover !bg-[url('/images/history.JPG')] bg-center rounded-3xl text-white relative h-96 lg:h-auto">
