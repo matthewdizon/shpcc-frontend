@@ -71,16 +71,22 @@ function Footer() {
               <nav className="mt-4 flex flex-col space-y-2 text-sm text-gray-400">
                 <Link
                   className="hover:opacity-75"
-                  href="https://www.woccu.org/ "
+                  href="https://www.woccu.org/"
+                  target="_blank"
                 >
                   WCCU
                 </Link>
-                <Link className="hover:opacity-75" href="https://aaccu.coop/">
+                <Link
+                  className="hover:opacity-75"
+                  href="https://aaccu.coop/"
+                  target="_blank"
+                >
                   ACCU
                 </Link>
                 <Link
                   className="hover:opacity-75"
                   href="https://pfcco-ncr.coop/"
+                  target="_blank"
                 >
                   PFCCO-NCR
                 </Link>
@@ -94,6 +100,7 @@ function Footer() {
                 <Link
                   className="hover:opacity-75"
                   href="https://facebook.com/OfficialSHPCC"
+                  target="_blank"
                 >
                   Facebook
                 </Link>
