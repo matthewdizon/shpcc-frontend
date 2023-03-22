@@ -20,6 +20,35 @@ export default function SEO() {
       </Script>
       <Head>
         <title>Sacred Heart Parish Credit Cooperative</title>
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content="SHPCC aims to provide an avenue for growth for its members through cooperativism, proper management of financial resources and cooperative values. Together we fulfill our dreams. Start your journey with us today!"
+        />
+        <meta property="og:image" content="/images/hero.JPG" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://shpcc.vercel.app/" />
+        <meta
+          property="og:title"
+          content="Sacred Heart Parish Credit Cooperative"
+        />
+        <meta
+          property="og:description"
+          content="SHPCC aims to provide an avenue for growth for its members through cooperativism, proper management of financial resources and cooperative values. Together we fulfill our dreams. Start your journey with us today!"
+        />
+        <meta property="og:image" content=""></meta>
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+          property="twitter:title"
+          content="Sacred Heart Parish Credit Cooperative"
+        />
+        <meta
+          property="twitter:description"
+          content="SHPCC aims to provide an avenue for growth for its members through cooperativism, proper management of financial resources and cooperative values. Together we fulfill our dreams. Start your journey with us today!"
+        />
+        <meta property="twitter:image" content={"/images/hero.JPG"}></meta>
       </Head>
     </>
   );
