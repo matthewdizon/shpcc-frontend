@@ -25,7 +25,10 @@ export default function SEO() {
           name="description"
           content="SHPCC aims to provide an avenue for growth for its members through cooperativism, proper management of financial resources and cooperative values. Together we fulfill our dreams. Start your journey with us today!"
         />
-        <meta property="og:image" content="/images/hero.JPG" />
+        <meta
+          property="og:image"
+          content="https://shpcc.vercel.app/images/hero.JPG"
+        />
 
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://shpcc.vercel.app/" />
@@ -37,7 +40,10 @@ export default function SEO() {
           property="og:description"
           content="SHPCC aims to provide an avenue for growth for its members through cooperativism, proper management of financial resources and cooperative values. Together we fulfill our dreams. Start your journey with us today!"
         />
-        <meta property="og:image" content=""></meta>
+        <meta
+          property="og:image"
+          content="https://shpcc.vercel.app/images/hero.JPG"
+        ></meta>
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta
@@ -48,7 +54,10 @@ export default function SEO() {
           property="twitter:description"
           content="SHPCC aims to provide an avenue for growth for its members through cooperativism, proper management of financial resources and cooperative values. Together we fulfill our dreams. Start your journey with us today!"
         />
-        <meta property="twitter:image" content={"/images/hero.JPG"}></meta>
+        <meta
+          property="twitter:image"
+          content={"https://shpcc.vercel.app/images/hero.JPG"}
+        ></meta>
       </Head>
     </>
   );
