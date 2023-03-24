@@ -76,8 +76,8 @@ export default function Home({ members }) {
             proper management of financial resources and cooperative values.
           </p>
           <p>
-            After 55 years of service, SHPCC is proud to have active 1,579
-            regular members and 2,172 associate members and more than P116
+            After 55 years of service, SHPCC is proud to have more than 3700
+            members including the associate and regular and more than P116
             million assets including a three-storey building aptly called,
             “Tahanang Koop.” A big part of the success of SHPCC is the spirit of
             volunteerism. With the perseverance, dedication and active
