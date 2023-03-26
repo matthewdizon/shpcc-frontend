@@ -97,7 +97,7 @@ function GintongButilApplicationView() {
       <div className="p-24">
         <p className="font-black text-3xl bg-white p-8 rounded-3xl mb-8 flex justify-between items-center">
           Viewing Application:{" "}
-          {`${slug.substring(0, 4)}...${slug.substring(slug.length - 4)}`}{" "}
+          {`${slug?.substring(0, 4)}...${slug?.substring(slug?.length - 4)}`}{" "}
           <span
             className={`${
               data?.status === "Approved"
