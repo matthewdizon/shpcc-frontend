@@ -43,7 +43,7 @@ function GintongButilLoanApplication({
 
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/loans/gbl/${
-        data ? user.email : ""
+        data ? data._id : ""
       }`,
       {
         method: data ? "PATCH" : "POST",
@@ -56,6 +56,7 @@ function GintongButilLoanApplication({
     );
 
     if (res.ok) {
+      // user should be redirected to the route of the ID of the loan
       window.location.reload();
     }
 
@@ -77,7 +78,7 @@ function GintongButilLoanApplication({
 
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/loans/gbl/${
-        data ? user.email : ""
+        data ? data._id : ""
       }`,
       {
         method: data ? "PATCH" : "POST",
@@ -159,13 +160,7 @@ function GintongButilLoanApplication({
         />
       </form>
       {!isDisabled && (
-        <div className="flex flex-wrap justify-between">
-          <Link
-            href={`/dashboard/loan`}
-            className="bg-gray-200 text-black p-2 rounded-lg my-4 px-8 hover:bg-gray-300 active:bg-gray-400 transition duration-200"
-          >
-            Back
-          </Link>
+        <div className="flex flex-wrap justify-end">
           <div className="flex gap-4">
             <button
               className="bg-white text-shpccRed border-shpccRed border-2 p-2 rounded-lg my-4 px-8 hover:opacity-40"

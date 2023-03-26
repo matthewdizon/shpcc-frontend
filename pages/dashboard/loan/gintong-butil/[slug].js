@@ -1,23 +1,41 @@
-import Layout from "../../../components/dashboard/Layout";
-import GintongButilLoanApplication from "../../../components/forms/GintongButilLoanApplication";
-import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../../../context/userContext";
+import Layout from "../../../../components/dashboard/Layout";
+import GintongButilLoanApplication from "../../../../components/forms/GintongButilLoanApplication";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
-function GintongButil() {
-  const { user } = useContext(UserContext);
+function GintongButilHistoryView() {
+  const router = useRouter();
+  const { slug } = router.query;
 
-  const [data, setData] = useState({});
+  const [data, setData] = useState(null);
+  const [formData, setFormData] = useState({
+    financialInformation: {
+      business: "",
+      companyName: "",
+      monthlyIncome: "",
+      spouseBusiness: "",
+      spouseCompanyName: "",
+      spouseMonthlyIncome: "",
+    },
+    loanDetails: {
+      date: "",
+      amount: "",
+      duration: "",
+      paymentInterval: "",
+      reason: "",
+    },
+  });
 
   // grab initial form data if there's a draft
   useEffect(() => {
     async function fetchData() {
-      if (user) {
+      if (slug) {
         // Retrieve the JWT from local storage
         const jwt = localStorage.getItem("accessToken");
 
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/loans/gbl/` +
-            user.email,
+          `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/loans/gbl/` + slug,
           {
             headers: {
               Authorization: `Bearer ${jwt}`,
@@ -51,30 +69,20 @@ function GintongButil() {
     }
 
     fetchData();
-  }, [user]);
-
-  const [formData, setFormData] = useState({
-    financialInformation: {
-      business: "",
-      companyName: "",
-      monthlyIncome: "",
-      spouseBusiness: "",
-      spouseCompanyName: "",
-      spouseMonthlyIncome: "",
-    },
-    loanDetails: {
-      date: "",
-      amount: "",
-      duration: "",
-      paymentInterval: "",
-      reason: "",
-    },
-  });
+  }, [slug]);
 
   if (data && !data?.isDraft) {
     return (
       <Layout>
         <div className="p-24">
+          <div className="pb-4">
+            <Link
+              href={`/dashboard/loan/gintong-butil/history`}
+              className="bg-gray-200 text-black p-2 rounded-lg px-4 hover:bg-gray-300 active:bg-gray-400 transition duration-200"
+            >
+              Back
+            </Link>
+          </div>
           <p className="pb-8 italic">
             Your form has been submitted and is being reviewed by SHPCC, please
             wait for further instructions. Thank you!
@@ -93,10 +101,14 @@ function GintongButil() {
   return (
     <Layout>
       <div className="p-24 min-h-screen">
-        <p className="italic">
-          View your previous Gintong Butil Loan Applications (just show a list)
-        </p>
-        <p>Create a new Gintung Butil Loan Application</p>
+        <div className="pb-4">
+          <Link
+            href={`/dashboard/loan/gintong-butil/history`}
+            className="bg-gray-200 text-black p-2 rounded-lg px-4 hover:bg-gray-300 active:bg-gray-400 transition duration-200"
+          >
+            Back
+          </Link>
+        </div>
         <GintongButilLoanApplication
           data={data}
           formData={formData}
@@ -107,4 +119,4 @@ function GintongButil() {
   );
 }
 
-export default GintongButil;
+export default GintongButilHistoryView;

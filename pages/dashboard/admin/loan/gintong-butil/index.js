@@ -96,7 +96,7 @@ function GintongButilAdmin() {
                       </td>
                       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                         <Link
-                          href={`/dashboard/admin/loan/gintong-butil/${loan.user}`}
+                          href={`/dashboard/admin/loan/gintong-butil/${loan._id}`}
                           className="bg-[#FADB9F] py-2 px-4 rounded-md max-w-max hover:opacity-50 duration-200 transition"
                         >
                           View
@@ -107,6 +107,11 @@ function GintongButilAdmin() {
                 })}
               </tbody>
             </table>
+            {data.length === 0 && (
+              <div className="text-center font-light text-shpccRed text-3xl uppercase italic">
+                No Data
+              </div>
+            )}
           </div>
           <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-lg p-4">
             <p className="font-bold text-xl">Search and Filter</p>
