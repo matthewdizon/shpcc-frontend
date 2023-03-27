@@ -228,8 +228,8 @@ function PersonalInformation({
               </label>
               <input
                 type="text"
-                value={info?.middleName}
-                onChange={(e) => onChange("middleName", e.target.value)}
+                value={info?.barangay}
+                onChange={(e) => onChange("barangay", e.target.value)}
                 className={`${
                   isDisabled ? "bg-gray-200" : "bg-white"
                 } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
@@ -240,8 +240,8 @@ function PersonalInformation({
               <label className=" font-light text-gray-400 text-sm">City</label>
               <input
                 type="text"
-                value={info?.middleName}
-                onChange={(e) => onChange("middleName", e.target.value)}
+                value={info?.city}
+                onChange={(e) => onChange("city", e.target.value)}
                 className={`${
                   isDisabled ? "bg-gray-200" : "bg-white"
                 } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
@@ -372,8 +372,8 @@ function PersonalInformation({
           </label>
           <input
             type="text"
-            value={info?.middleName}
-            onChange={(e) => onChange("middleName", e.target.value)}
+            value={info?.undergraduateDegree}
+            onChange={(e) => onChange("undergraduateDegree", e.target.value)}
             className={`${
               isDisabled ? "bg-gray-200" : "bg-white"
             } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
@@ -386,8 +386,8 @@ function PersonalInformation({
           </label>
           <input
             type="text"
-            value={info?.middleName}
-            onChange={(e) => onChange("middleName", e.target.value)}
+            value={info?.yearGraduated}
+            onChange={(e) => onChange("yearGraduated", e.target.value)}
             className={`${
               isDisabled ? "bg-gray-200" : "bg-white"
             } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
@@ -400,8 +400,8 @@ function PersonalInformation({
           </label>
           <input
             type="text"
-            value={info?.middleName}
-            onChange={(e) => onChange("middleName", e.target.value)}
+            value={info?.schoolName}
+            onChange={(e) => onChange("schoolName", e.target.value)}
             className={`${
               isDisabled ? "bg-gray-200" : "bg-white"
             } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
@@ -414,8 +414,8 @@ function PersonalInformation({
           </label>
           <input
             type="text"
-            value={info?.middleName}
-            onChange={(e) => onChange("middleName", e.target.value)}
+            value={info?.schoolAddress}
+            onChange={(e) => onChange("schoolAddress", e.target.value)}
             className={`${
               isDisabled ? "bg-gray-200" : "bg-white"
             } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
