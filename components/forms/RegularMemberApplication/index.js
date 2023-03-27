@@ -1,17 +1,156 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../../../context/userContext";
+
+import {
+  handleChange,
+  handleChangeArray,
+  handleAddItem,
+  handleRemoveItem,
+  handleBlur,
+} from "../../../utils/helpers";
 
 import TermsAndConditions from "../TermsAndConditions";
+import PersonalInformation from "./PersonalInformation";
 
 function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
+  const { user } = useContext(UserContext);
+
   const [showModal, setShowModal] = useState(false);
+  const [touchedFields, setTouchedFields] = useState({
+    // Personal Info
+    lastName: true,
+    firstName: true,
+    nickname: true,
+    gender: true,
+    civilStatus: true,
+    associateAccountNumber: true,
+    dateOfBirth: true,
+    placeOfBirth: true,
+
+    houseNumber: true,
+    street: true,
+    zipCode: true,
+
+    religion: true,
+    educationalAttainment: true,
+    contactNumber: true,
+    emailAddress: true,
+    facebookName: true,
+
+    yearsInResidence: true,
+    residenceOwnerName: true,
+    residenceAddress: true,
+  });
+
+  const handleSaveDraft = async (e) => {
+    e.preventDefault();
+
+    const jwt = localStorage.getItem("accessToken");
+
+    const applicationDetails = {
+      ...formData.personalInformation,
+      // ...formData.companyInformation,
+      // ...formData.accountInformation,
+      // ...formData.beneficiariesDependents,
+      user: user.email,
+      isDraft: true,
+    };
+
+    const res = await fetch(
+      `${
+        process.env.NEXT_PUBLIC_BACKEND_SERVER
+      }/api/memberApplications/regular/${data ? user.email : ""}`,
+      {
+        method: data ? "PATCH" : "POST",
+        body: JSON.stringify(applicationDetails),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+
+    if (res.ok) {
+      window.location.reload();
+    }
+
+    console.log(res);
+  };
+
+  const requiredFields = [
+    { subObjectName: "personalInformation", fieldName: "lastName" },
+    { subObjectName: "personalInformation", fieldName: "firstName" },
+    { subObjectName: "personalInformation", fieldName: "nickname" },
+    { subObjectName: "personalInformation", fieldName: "gender" },
+    { subObjectName: "personalInformation", fieldName: "civilStatus" },
+    {
+      subObjectName: "personalInformation",
+      fieldName: "associateAccountNumber",
+    },
+    { subObjectName: "personalInformation", fieldName: "dateOfBirth" },
+    { subObjectName: "personalInformation", fieldName: "placeOfBirth" },
+    { subObjectName: "personalInformation", fieldName: "houseNumber" },
+    { subObjectName: "personalInformation", fieldName: "street" },
+    { subObjectName: "personalInformation", fieldName: "zipCode" },
+    { subObjectName: "personalInformation", fieldName: "religion" },
+    {
+      subObjectName: "personalInformation",
+      fieldName: "educationalAttainment",
+    },
+    { subObjectName: "personalInformation", fieldName: "contactNumber" },
+    { subObjectName: "personalInformation", fieldName: "emailAddress" },
+    { subObjectName: "personalInformation", fieldName: "facebookName" },
+    { subObjectName: "personalInformation", fieldName: "yearsInResidence" },
+  ];
+
+  if (
+    formData.personalInformation.residenceType === "renting" ||
+    formData.personalInformation.residenceType === "nakikitira"
+  ) {
+    requiredFields.push(
+      { subObjectName: "personalInformation", fieldName: "residenceOwnerName" },
+      { subObjectName: "personalInformation", fieldName: "residenceAddress" }
+    );
+  }
+
   let isFormValid;
+
+  if (!isDisabled) {
+    isFormValid = requiredFields.every(
+      ({ subObjectName, subObjectFn, fieldName }) => {
+        let subObject;
+        if (subObjectName) {
+          subObject = eval(`formData.${subObjectName}`);
+        } else if (subObjectFn) {
+          subObject = subObjectFn();
+        }
+
+        if (Array.isArray(subObject)) {
+          return subObject.every((item) => Boolean(item[fieldName]));
+        }
+        const fieldValue = subObject[fieldName];
+        return Boolean(fieldValue);
+      }
+    );
+  }
+
   return (
     <div className="bg-white p-8 rounded-3xl">
-      <h1 className="font-black text-3xl">Associate Membership Application</h1>
+      <h1 className="font-black text-3xl">Regular Membership Application</h1>
       {isDisabled && <span className="font-thin italic">View Only</span>}
       <form>
-        <div>hello</div>
+        <PersonalInformation
+          info={formData?.personalInformation}
+          onChange={(field, value) =>
+            handleChange("personalInformation", field, value, setFormData)
+          }
+          isDisabled={isDisabled}
+          handleBlur={(name) =>
+            handleBlur(name, touchedFields, setTouchedFields)
+          }
+          touchedFields={touchedFields}
+        />
       </form>
       {!isDisabled && (
         <div className="flex flex-wrap justify-between">
@@ -24,7 +163,7 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
           <div className="flex gap-4">
             <button
               className="bg-white text-shpccRed border-shpccRed border-2 p-2 rounded-lg my-4 px-8 hover:opacity-40"
-              //   onClick={handleSaveDraft}
+              onClick={handleSaveDraft}
             >
               Save Draft
             </button>
