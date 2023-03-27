@@ -12,6 +12,7 @@ import {
 
 import TermsAndConditions from "../TermsAndConditions";
 import PersonalInformation from "./PersonalInformation";
+import SpouseInformation from "./SpouseInformation";
 
 function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
   const { user } = useContext(UserContext);
@@ -41,6 +42,26 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
     yearsInResidence: true,
     residenceOwnerName: true,
     residenceAddress: true,
+
+    // Spouse Info
+    spouseLastName: true,
+    spouseFirstName: true,
+    spouseContactNumber: true,
+    spouseTin: true,
+    spousePensioner: true,
+    spouseSss: true,
+    spouseGsis: true,
+    spouseEmploymentType: true,
+    spouseIsEmployee: true,
+    spouseIsBusinessOwner: true,
+    spouseCompanyName: true,
+    spouseCompanyAddress: true,
+    spouseCompanyContactNumber: true,
+    spouseBusinessType: true,
+    spouseBusinessName: true,
+    spouseBusinessLocation: true,
+    spouseOfwCompanyName: true,
+    spouseOfwCompanyAddress: true,
   });
 
   const handleSaveDraft = async (e) => {
@@ -50,7 +71,7 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
 
     const applicationDetails = {
       ...formData.personalInformation,
-      // ...formData.companyInformation,
+      ...formData.spouseInformation,
       // ...formData.accountInformation,
       // ...formData.beneficiariesDependents,
       user: user.email,
@@ -102,8 +123,20 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
     { subObjectName: "personalInformation", fieldName: "emailAddress" },
     { subObjectName: "personalInformation", fieldName: "facebookName" },
     { subObjectName: "personalInformation", fieldName: "yearsInResidence" },
+    { subObjectName: "spouseInformation", fieldName: "spouseLastName" },
+    { subObjectName: "spouseInformation", fieldName: "spouseFirstName" },
+    { subObjectName: "spouseInformation", fieldName: "spouseContactNumber" },
+    { subObjectName: "spouseInformation", fieldName: "spouseTin" },
+    { subObjectName: "spouseInformation", fieldName: "spousePensioner" },
+    { subObjectName: "spouseInformation", fieldName: "spouseSss" },
+    { subObjectName: "spouseInformation", fieldName: "spouseGsis" },
   ];
 
+  let isFormValid;
+
+  // (add required fields only when they have been selected)
+  // this makes sure that the form can still be submitted
+  // even if the other radio buttons/checkboxes aren't selected
   if (
     formData.personalInformation.residenceType === "renting" ||
     formData.personalInformation.residenceType === "nakikitira"
@@ -114,7 +147,56 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
     );
   }
 
-  let isFormValid;
+  if (
+    formData.spouseInformation.spouseEmploymentType ===
+    "employedAndOrBusinessOwner"
+  ) {
+    // checks if both checkboxes are left unchecked
+    // ensures you can't click Next
+    if (
+      !formData.spouseInformation.spouseIsEmployee &&
+      !formData.spouseInformation.spouseIsBusinessOwner
+    ) {
+      requiredFields.push({
+        subObjectName: "spouseInformation",
+        fieldName: "anomaly",
+      });
+    }
+    // if Employee is checked, require these fields
+    if (formData.spouseInformation.spouseIsEmployee) {
+      requiredFields.push(
+        { subObjectName: "spouseInformation", fieldName: "spouseCompanyName" },
+        {
+          subObjectName: "spouseInformation",
+          fieldName: "spouseCompanyAddress",
+        },
+        {
+          subObjectName: "spouseInformation",
+          fieldName: "spouseCompanyContactNumber",
+        }
+      );
+    }
+    // if Own Business is checked, require these fields
+    if (formData.spouseInformation.spouseIsBusinessOwner) {
+      requiredFields.push(
+        { subObjectName: "spouseInformation", fieldName: "spouseBusinessType" },
+        { subObjectName: "spouseInformation", fieldName: "spouseBusinessName" },
+        {
+          subObjectName: "spouseInformation",
+          fieldName: "spouseBusinessLocation",
+        }
+      );
+    }
+  } else if (formData.spouseInformation.spouseEmploymentType === "ofw") {
+    // if OFW is selected, require these fields
+    requiredFields.push(
+      { subObjectName: "spouseInformation", fieldName: "spouseOfwCompanyName" },
+      {
+        subObjectName: "spouseInformation",
+        fieldName: "spouseOfwCompanyAddress",
+      }
+    );
+  }
 
   if (!isDisabled) {
     isFormValid = requiredFields.every(
@@ -144,6 +226,17 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
           info={formData?.personalInformation}
           onChange={(field, value) =>
             handleChange("personalInformation", field, value, setFormData)
+          }
+          isDisabled={isDisabled}
+          handleBlur={(name) =>
+            handleBlur(name, touchedFields, setTouchedFields)
+          }
+          touchedFields={touchedFields}
+        />
+        <SpouseInformation
+          info={formData?.spouseInformation}
+          onChange={(field, value) =>
+            handleChange("spouseInformation", field, value, setFormData)
           }
           isDisabled={isDisabled}
           handleBlur={(name) =>

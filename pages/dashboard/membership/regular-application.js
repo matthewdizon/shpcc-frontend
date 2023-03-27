@@ -61,10 +61,35 @@ function RegularMemberApplicationPage() {
               emailAddress: data?.emailAddress || "",
               facebookName: data?.facebookName || "",
               // ---type of residence
-              residenceType: data?.residenceType || "",
+              residenceType: data?.residenceType || "homeAndLandOwner",
               yearsInResidence: data?.yearsInResidence || "",
               residenceOwnerName: data?.residenceOwnerName || "",
               residenceAddress: data?.residenceAddress || "",
+            },
+            spouseInformation: {
+              // ---spouse's information
+              spouseLastName: data?.spouseLastName || "",
+              spouseFirstName: data?.spouseFirstName || "",
+              spouseMiddleName: data?.spouseMiddleName || "",
+              spouseSuffix: data?.spouseSuffix || "",
+              spouseContactNumber: data?.spouseContactNumber || "",
+              spouseTin: data?.spouseTin || "",
+              spousePensioner: data?.spousePensioner || "",
+              spouseSss: data?.spouseSss || "",
+              spouseGsis: data?.spouseGsis || "",
+              spouseEmploymentType:
+                data?.spouseEmploymentType || "employedAndOrBusinessOwner",
+              spouseIsEmployee: data?.spouseIsEmployee || false,
+              spouseIsBusinessOwner: data?.spouseIsBusinessOwner || false,
+              spouseCompanyName: data?.spouseCompanyName || "",
+              spouseCompanyAddress: data?.spouseCompanyAddress || "",
+              spouseCompanyContactNumber:
+                data?.spouseCompanyContactNumber || "",
+              spouseBusinessType: data?.spouseBusinessType || "",
+              spouseBusinessName: data?.spouseBusinessName || "",
+              spouseBusinessLocation: data?.spouseBusinessLocation || "",
+              spouseOfwCompanyName: data?.spouseOfwCompanyName || "",
+              spouseOfwCompanyAddress: data?.spouseOfwCompanyAddress || "",
             },
           });
         } catch (error) {
@@ -118,6 +143,29 @@ function RegularMemberApplicationPage() {
       yearsInResidence: "",
       residenceOwnerName: "",
       residenceAddress: "",
+    },
+    spouseInformation: {
+      // ---spouse's information
+      spouseLastName: "",
+      spouseFirstName: "",
+      spouseMiddleName: "",
+      spouseSuffix: "",
+      spouseContactNumber: "",
+      spouseTin: "",
+      spousePensioner: "",
+      spouseSss: "",
+      spouseGsis: "",
+      spouseEmploymentType: "employedAndOrBusinessOwner",
+      spouseIsEmployee: false,
+      spouseIsBusinessOwner: false,
+      spouseCompanyName: "",
+      spouseCompanyAddress: "",
+      spouseCompanyContactNumber: "",
+      spouseBusinessType: "",
+      spouseBusinessName: "",
+      spouseBusinessLocation: "",
+      spouseOfwCompanyName: "",
+      spouseOfwCompanyAddress: "",
     },
   });
 
