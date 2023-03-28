@@ -63,10 +63,10 @@ export default function Home({ members }) {
             cooperative obtained its confirmation of registration as Sacred
             Heart Parish Development Cooperative (SHPDC) on February 20, 1991.
             It amended its Articles of Cooperation and by-laws last January 7,
-            2022 with name Sacred Heart Parish Credit Cooperative (SHPCC). It is
-            an active member of its accredited federation, Philippine Federation
-            of Credit Cooperative-National Capital Region (PFCCO-NCR) and the
-            Asian Confederation of Credit Unions (ACCU).
+            2022 with the name Sacred Heart Parish Credit Cooperative (SHPCC).
+            It is an active member of its accredited federation, Philippine
+            Federation of Credit Cooperatives - National Capital Region
+            (PFCCO-NCR) and the Asian Confederation of Credit Unions (ACCU).
           </p>
           <p>
             SHPCC aims to promote not only the growth of its members but also
@@ -105,10 +105,7 @@ export default function Home({ members }) {
         <div className="grid gap-4 lg:px-12">
           <h2 className="font-bold text-3xl">Vision</h2>
           <p className="text-center font-thin">
-            The Sacred Heart Parish Credit Cooperative envisions itself that
-            every household member is part of the credit cooperative and forms a
-            community that aims to educate, empower, and improve the quality of
-            life.
+            A member in every home and business where the cooperative operates.
           </p>
         </div>
         <div className="grid gap-4 lg:px-12 pt-8 lg:pt-0">

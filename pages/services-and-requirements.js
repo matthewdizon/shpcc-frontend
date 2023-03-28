@@ -27,12 +27,12 @@ function ServicesAndRequirements() {
             </h2>
             <ol className="list-disc pl-4">
               <li>A Filipino Citizen</li>
-              <li>18 to 65 Years Old</li>
-              <li>Has An Occupation</li>
-              <li>Lives Within The Area Of District 4 To 6 Of Quezon City</li>
-              <li>Attended Pre-Membership Seminars</li>
+              <li>18 to 64 Years Old</li>
+              <li>Has an Occupation</li>
+              <li>Lives within NCR</li>
+              <li>Attended the Pre-Membership Seminar</li>
               <li>Lifetime Membership of Php 100.00</li>
-              <li>Seminar Fee Of Php 50.00</li>
+              <li>Seminar Fee of Php 50.00</li>
               <li>Approved membership application by the Board of Directors</li>
             </ol>
           </div>
@@ -41,8 +41,8 @@ function ServicesAndRequirements() {
               Must be submitted with the membership application
             </h2>
             <ol className="list-disc pl-4">
-              <li>2 Pcs. 1x1 And 2x2 Picture</li>
-              <li>Government Issued ID And TIN</li>
+              <li>2 Pcs. 1x1 and 2x2 Picture</li>
+              <li>Government Issued ID and TIN</li>
               <li>Barangay Clearance</li>
             </ol>
           </div>
@@ -54,12 +54,12 @@ function ServicesAndRequirements() {
             </h2>
             <h3 className="font-bold text-xl mb-4">Employee</h3>
             <ol className="list-disc pl-4">
-              <li>Certificate Of Employment</li>
-              <li>2 Months Lates Pay Slip</li>
+              <li>Certificate of Employment</li>
+              <li>2 Months Late Pay Slip</li>
             </ol>
             <h3 className="font-bold text-xl my-4">Owns A Business</h3>
             <ol className="list-disc pl-4">
-              <li>Business PErmit</li>
+              <li>Business Permit</li>
               <li>SEC, DTI Permit / Certificate</li>
               <li>CR & OR Of Vehicles</li>
             </ol>
@@ -69,7 +69,7 @@ function ServicesAndRequirements() {
               Associate Membership
             </h2>
             <h3 className="font-bold text-xl mb-4">
-              Adult, Kabataan And Special Depositors
+              Adult, Young Adults And Special Depositors
             </h3>
             <div className="flex gap-6">
               <div>
@@ -97,7 +97,7 @@ function ServicesAndRequirements() {
             </p>
           </div>
           <div>
-            <p className="font-bold">Wednesday and Thursday</p>
+            <p className="font-bold">Wednesday and Friday</p>
             <p className="font-bold">2:00 To 4:00 pm</p>
           </div>
           <div>
