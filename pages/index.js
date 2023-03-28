@@ -42,7 +42,7 @@ export default function Home({ members }) {
       <div className="grid lg:grid-cols-2 text-black py-12 gap-8" id="history">
         <div className="grid gap-4">
           <h2 className="text-shpccDarkRed font-bold text-3xl text-center max-w-xl mx-auto mb-8">
-            History Of The Sacred Heart Of Parish Credit Cooperative
+            History of the Sacred Heart Parish Credit Cooperative
           </h2>
           <p>
             Sacred Heart Parish Credit Cooperative (SHPCC) started out from
