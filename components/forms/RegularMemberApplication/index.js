@@ -13,6 +13,7 @@ import {
 import TermsAndConditions from "../TermsAndConditions";
 import PersonalInformation from "./PersonalInformation";
 import SpouseInformation from "./SpouseInformation";
+import BeneficiariesDependents from "./BeneficiariesDependents";
 
 function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
   const { user } = useContext(UserContext);
@@ -72,7 +73,7 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
     const applicationDetails = {
       ...formData.personalInformation,
       ...formData.spouseInformation,
-      // ...formData.accountInformation,
+      ...formData.beneficiariesDependents,
       // ...formData.beneficiariesDependents,
       user: user.email,
       isDraft: true,
@@ -98,6 +99,8 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
 
     console.log(res);
   };
+
+  console.log(data);
 
   const requiredFields = [
     { subObjectName: "personalInformation", fieldName: "lastName" },
@@ -237,6 +240,38 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
           info={formData?.spouseInformation}
           onChange={(field, value) =>
             handleChange("spouseInformation", field, value, setFormData)
+          }
+          isDisabled={isDisabled}
+          handleBlur={(name) =>
+            handleBlur(name, touchedFields, setTouchedFields)
+          }
+          touchedFields={touchedFields}
+        />
+        <BeneficiariesDependents
+          info={formData?.beneficiariesDependents}
+          onChange={(field, value) =>
+            handleChange("beneficiariesDependents", field, value, setFormData)
+          }
+          onChangeArray={(field, subfield, value, index) =>
+            handleChangeArray(
+              "beneficiariesDependents",
+              field,
+              subfield,
+              value,
+              index,
+              setFormData
+            )
+          }
+          addRow={(field, newRow) =>
+            handleAddItem("beneficiariesDependents", field, newRow, setFormData)
+          }
+          removeRow={(field, index) =>
+            handleRemoveItem(
+              "beneficiariesDependents",
+              field,
+              index,
+              setFormData
+            )
           }
           isDisabled={isDisabled}
           handleBlur={(name) =>

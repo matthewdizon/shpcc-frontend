@@ -91,6 +91,22 @@ function RegularMemberApplicationPage() {
               spouseOfwCompanyName: data?.spouseOfwCompanyName || "",
               spouseOfwCompanyAddress: data?.spouseOfwCompanyAddress || "",
             },
+            beneficiariesDependents: {
+              children: data?.children || [
+                {
+                  childFullName: data?.childFullName || "",
+                  childDateOfBirth: data?.childDateOfBirth || "",
+                  childContactNumber: data?.childContactNumber || "",
+                },
+              ],
+              otherRelatives: data?.otherRelatives || [
+                {
+                  relativeFullName: data?.relativeFullName || "",
+                  relativeRelationship: data?.relativeRelationship || "",
+                  relativeContactNumber: data?.relativeContactNumber || "",
+                },
+              ],
+            },
           });
         } catch (error) {
           console.log(error);
@@ -166,6 +182,18 @@ function RegularMemberApplicationPage() {
       spouseBusinessLocation: "",
       spouseOfwCompanyName: "",
       spouseOfwCompanyAddress: "",
+    },
+    beneficiariesDependents: {
+      children: [
+        { childFullName: "", childDateOfBirth: "", childContactNumber: "" },
+      ],
+      otherRelatives: [
+        {
+          relativeFullName: "",
+          relativeRelationship: "",
+          relativeContactNumber: "",
+        },
+      ],
     },
   });
 
