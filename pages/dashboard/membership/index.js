@@ -25,7 +25,8 @@ function Membership() {
           </Link>
           <Link
             href={"/dashboard/membership/regular-application"}
-            className="bg-white rounded-xl shadow-xl p-4 flex flex-col justify-between relative overflow-hidden opacity-40"
+            className="bg-white rounded-xl shadow-xl p-4 flex flex-col justify-between relative overflow-hidden hover:shadow-2xl hover:cursor-pointer"
+            // className="bg-white rounded-xl shadow-xl p-4 flex flex-col justify-between relative overflow-hidden opacity-40"
           >
             <span className="absolute right-0 -bottom-12 text-[300px] opacity-20 font-black leading-none">
               2

@@ -14,6 +14,7 @@ import TermsAndConditions from "../TermsAndConditions";
 import PersonalInformation from "./PersonalInformation";
 import SpouseInformation from "./SpouseInformation";
 import BeneficiariesDependents from "./BeneficiariesDependents";
+import EmploymentDetails from "./EmploymentDetails";
 
 function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
   const { user } = useContext(UserContext);
@@ -63,6 +64,22 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
     spouseBusinessLocation: true,
     spouseOfwCompanyName: true,
     spouseOfwCompanyAddress: true,
+
+    // Employment Details
+    pensioner: true,
+    sss: true,
+    gsis: true,
+    employmentType: true,
+    isCompany: true,
+    companyName: true,
+    companyAddress: true,
+    companyContactNumber: true,
+    isBusinessOwner: true,
+    businessType: true,
+    businessName: true,
+    businessLocation: true,
+    ofwCompanyName: true,
+    ofwCompanyAddress: true,
   });
 
   const handleSaveDraft = async (e) => {
@@ -74,6 +91,7 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
       ...formData.personalInformation,
       ...formData.spouseInformation,
       ...formData.beneficiariesDependents,
+      ...formData.employmentDetails,
       // ...formData.beneficiariesDependents,
       user: user.email,
       isDraft: true,
@@ -99,8 +117,6 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
 
     console.log(res);
   };
-
-  console.log(data);
 
   const requiredFields = [
     { subObjectName: "personalInformation", fieldName: "lastName" },
@@ -133,6 +149,9 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
     { subObjectName: "spouseInformation", fieldName: "spousePensioner" },
     { subObjectName: "spouseInformation", fieldName: "spouseSss" },
     { subObjectName: "spouseInformation", fieldName: "spouseGsis" },
+    { subObjectName: "employmentDetails", fieldName: "pensioner" },
+    { subObjectName: "employmentDetails", fieldName: "sss" },
+    { subObjectName: "employmentDetails", fieldName: "gsis" },
   ];
 
   let isFormValid;
@@ -201,6 +220,56 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
     );
   }
 
+  if (
+    formData.employmentDetails.employmentType === "employedAndOrBusinessOwner"
+  ) {
+    // checks if both checkboxes are left unchecked
+    // ensures you can't click Next
+    if (
+      !formData.employmentDetails.isEmployee &&
+      !formData.employmentDetails.isBusinessOwner
+    ) {
+      requiredFields.push({
+        subObjectName: "employmentDetails",
+        fieldName: "anomaly",
+      });
+    }
+    // if Employee is checked, require these fields
+    if (formData.employmentDetails.isEmployee) {
+      requiredFields.push(
+        { subObjectName: "employmentDetails", fieldName: "companyName" },
+        {
+          subObjectName: "employmentDetails",
+          fieldName: "companyAddress",
+        },
+        {
+          subObjectName: "employmentDetails",
+          fieldName: "companyContactNumber",
+        }
+      );
+    }
+    // if Own Business is checked, require these fields
+    if (formData.employmentDetails.isBusinessOwner) {
+      requiredFields.push(
+        { subObjectName: "employmentDetails", fieldName: "businessType" },
+        { subObjectName: "employmentDetails", fieldName: "businessName" },
+        {
+          subObjectName: "employmentDetails",
+          fieldName: "businessLocation",
+        }
+      );
+    }
+  } else if (formData.employmentDetails.employmentType === "ofw") {
+    // if OFW is selected, require these fields
+    requiredFields.push(
+      { subObjectName: "employmentDetails", fieldName: "ofwCompanyName" },
+      {
+        subObjectName: "employmentDetails",
+        fieldName: "ofwCompanyAddress",
+      }
+    );
+  }
+
   if (!isDisabled) {
     isFormValid = requiredFields.every(
       ({ subObjectName, subObjectFn, fieldName }) => {
@@ -236,6 +305,7 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
           }
           touchedFields={touchedFields}
         />
+        <hr className="mt-4" />
         <SpouseInformation
           info={formData?.spouseInformation}
           onChange={(field, value) =>
@@ -247,6 +317,7 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
           }
           touchedFields={touchedFields}
         />
+        <hr className="mt-4" />
         <BeneficiariesDependents
           info={formData?.beneficiariesDependents}
           onChange={(field, value) =>
@@ -272,6 +343,18 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
               index,
               setFormData
             )
+          }
+          isDisabled={isDisabled}
+          handleBlur={(name) =>
+            handleBlur(name, touchedFields, setTouchedFields)
+          }
+          touchedFields={touchedFields}
+        />
+        <hr className="mt-4" />
+        <EmploymentDetails
+          info={formData?.employmentDetails}
+          onChange={(field, value) =>
+            handleChange("employmentDetails", field, value, setFormData)
           }
           isDisabled={isDisabled}
           handleBlur={(name) =>

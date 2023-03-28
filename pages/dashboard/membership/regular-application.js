@@ -107,6 +107,23 @@ function RegularMemberApplicationPage() {
                 },
               ],
             },
+            employmentDetails: {
+              pensioner: data?.pensioner || "",
+              sss: data?.sss || "",
+              gsis: data?.gsis || "",
+              employmentType:
+                data?.employmentType || "employedAndOrBusinessOwner",
+              isEmployee: data?.isEmployee || false,
+              companyName: data?.companyName || "",
+              companyAddress: data?.companyAddress || "",
+              companyContactNumber: data?.companyContactNumber || "",
+              isBusinessOwner: data?.isBusinessOwner || false,
+              businessType: data?.businessType || "",
+              businessName: data?.businessName || "",
+              businessLocation: data?.businessLocation || "",
+              ofwCompanyName: data?.ofwCompanyName || "",
+              ofwCompanyAddress: data?.ofwCompanyAddress || "",
+            },
           });
         } catch (error) {
           console.log(error);
@@ -116,6 +133,9 @@ function RegularMemberApplicationPage() {
 
     fetchData();
   }, [user]);
+
+  console.log(data?.employmentDetails?.isEmployee);
+  console.log(data?.employmentDetails?.isBusinessOwner);
 
   const [formData, setFormData] = useState({
     personalInformation: {
@@ -161,7 +181,6 @@ function RegularMemberApplicationPage() {
       residenceAddress: "",
     },
     spouseInformation: {
-      // ---spouse's information
       spouseLastName: "",
       spouseFirstName: "",
       spouseMiddleName: "",
@@ -194,6 +213,22 @@ function RegularMemberApplicationPage() {
           relativeContactNumber: "",
         },
       ],
+    },
+    employmentDetails: {
+      pensioner: "",
+      sss: "",
+      gsis: "",
+      employmentType: "employedAndOrBusinessOwner",
+      isEmployee: false,
+      companyName: "",
+      companyAddress: "",
+      companyContactNumber: "",
+      isBusinessOwner: false,
+      businessType: "",
+      businessName: "",
+      businessLocation: "",
+      ofwCompanyName: "",
+      ofwCompanyAddress: "",
     },
   });
 

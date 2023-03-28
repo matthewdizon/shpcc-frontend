@@ -7,7 +7,6 @@ function BeneficiariesDependents({
   handleBlur,
   touchedFields,
 }) {
-  console.log("HERE", info);
   return (
     <div className="grid gap-2 py-2">
       <h2 className="text-gray-500 font-bold text-xl py-4">
