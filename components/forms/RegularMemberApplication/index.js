@@ -15,6 +15,7 @@ import PersonalInformation from "./PersonalInformation";
 import SpouseInformation from "./SpouseInformation";
 import BeneficiariesDependents from "./BeneficiariesDependents";
 import EmploymentDetails from "./EmploymentDetails";
+import IncomeInformation from "./IncomeInformation";
 
 function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
   const { user } = useContext(UserContext);
@@ -92,7 +93,7 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
       ...formData.spouseInformation,
       ...formData.beneficiariesDependents,
       ...formData.employmentDetails,
-      // ...formData.beneficiariesDependents,
+      ...formData.incomeInformation,
       user: user.email,
       isDraft: true,
     };
@@ -152,6 +153,15 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
     { subObjectName: "employmentDetails", fieldName: "pensioner" },
     { subObjectName: "employmentDetails", fieldName: "sss" },
     { subObjectName: "employmentDetails", fieldName: "gsis" },
+    { subObjectName: "incomeInformation", fieldName: "monthlySalary" },
+    { subObjectName: "incomeInformation", fieldName: "businessIncome" },
+    { subObjectName: "incomeInformation", fieldName: "otherIncomeSource" },
+    { subObjectName: "incomeInformation", fieldName: "spouseMonthlySalary" },
+    { subObjectName: "incomeInformation", fieldName: "spouseBusinessIncome" },
+    {
+      subObjectName: "incomeInformation",
+      fieldName: "spouseOtherIncomeSource",
+    },
   ];
 
   let isFormValid;
@@ -281,8 +291,17 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
         }
 
         if (Array.isArray(subObject)) {
+          // iterates through each array
           return subObject.every((item) => Boolean(item[fieldName]));
         }
+
+        if (subObjectName === "incomeInformation") {
+          // allow 0 values for monthly income data
+          if (subObject[fieldName] === 0) {
+            return true;
+          }
+        }
+
         const fieldValue = subObject[fieldName];
         return Boolean(fieldValue);
       }
@@ -355,6 +374,18 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
           info={formData?.employmentDetails}
           onChange={(field, value) =>
             handleChange("employmentDetails", field, value, setFormData)
+          }
+          isDisabled={isDisabled}
+          handleBlur={(name) =>
+            handleBlur(name, touchedFields, setTouchedFields)
+          }
+          touchedFields={touchedFields}
+        />
+        <hr className="mt-4" />
+        <IncomeInformation
+          info={formData?.incomeInformation}
+          onChange={(field, value) =>
+            handleChange("incomeInformation", field, value, setFormData)
           }
           isDisabled={isDisabled}
           handleBlur={(name) =>

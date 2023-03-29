@@ -124,6 +124,24 @@ function RegularMemberApplicationPage() {
               ofwCompanyName: data?.ofwCompanyName || "",
               ofwCompanyAddress: data?.ofwCompanyAddress || "",
             },
+            incomeInformation: {
+              monthlySalary:
+                data?.monthlySalary === 0 ? 0 : data?.monthlySalary,
+              businessIncome:
+                data?.businessIncome === 0 ? 0 : data?.businessIncome,
+              otherIncomeSource:
+                data?.otherIncomeSource === 0 ? 0 : data?.otherIncomeSource,
+              spouseMonthlySalary:
+                data?.spouseMonthlySalary === 0 ? 0 : data?.spouseMonthlySalary,
+              spouseBusinessIncome:
+                data?.spouseBusinessIncome === 0
+                  ? 0
+                  : data?.spouseBusinessIncome,
+              spouseOtherIncomeSource:
+                data?.spouseOtherIncomeSource === 0
+                  ? 0
+                  : data?.spouseOtherIncomeSource,
+            },
           });
         } catch (error) {
           console.log(error);
@@ -133,9 +151,6 @@ function RegularMemberApplicationPage() {
 
     fetchData();
   }, [user]);
-
-  console.log(data?.employmentDetails?.isEmployee);
-  console.log(data?.employmentDetails?.isBusinessOwner);
 
   const [formData, setFormData] = useState({
     personalInformation: {
@@ -229,6 +244,14 @@ function RegularMemberApplicationPage() {
       businessLocation: "",
       ofwCompanyName: "",
       ofwCompanyAddress: "",
+    },
+    incomeInformation: {
+      monthlySalary: "",
+      businessIncome: "",
+      otherIncomeSource: "",
+      spouseMonthlySalary: "",
+      spouseBusinessIncome: "",
+      spouseOtherIncomeSource: "",
     },
   });
 
