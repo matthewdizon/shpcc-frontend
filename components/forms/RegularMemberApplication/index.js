@@ -119,6 +119,44 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
     console.log(res);
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const jwt = localStorage.getItem("accessToken");
+
+    const applicationDetails = {
+      ...formData.personalInformation,
+      ...formData.spouseInformation,
+      ...formData.beneficiariesDependents,
+      ...formData.employmentDetails,
+      ...formData.incomeInformation,
+      user: user.email,
+      isDraft: false,
+      dateSubmitted: new Date(),
+    };
+
+    const res = await fetch(
+      `${
+        process.env.NEXT_PUBLIC_BACKEND_SERVER
+      }/api/memberApplications/regular/${data ? user.email : ""}`,
+      {
+        method: data ? "PATCH" : "POST",
+        body: JSON.stringify(applicationDetails),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+
+    if (res.ok) {
+      setShowModal(false);
+      window.location.reload();
+    }
+
+    console.log(res);
+  };
+
   const requiredFields = [
     { subObjectName: "personalInformation", fieldName: "lastName" },
     { subObjectName: "personalInformation", fieldName: "firstName" },

@@ -255,6 +255,25 @@ function RegularMemberApplicationPage() {
     },
   });
 
+  if (data && !data?.isDraft) {
+    return (
+      <Layout>
+        <div className="p-24">
+          <p className="pb-8 italic">
+            Your form has been submitted and is being reviewed by SHPCC, please
+            wait for further instructions. Thank you!
+          </p>
+          <RegularMemberApplication
+            data={data}
+            formData={formData}
+            setFormData={setFormData}
+            isDisabled={true}
+          />
+        </div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <div className="p-24">
