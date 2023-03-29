@@ -1,10 +1,10 @@
-import Layout from "../../../../components/dashboard/Layout";
+import Layout from "../../../../../components/dashboard/Layout";
 import { useRouter } from "next/router";
 import { useEffect, useState, useContext } from "react";
-import AssociateApplication from "../../../../components/forms/AssociateApplication";
+import AssociateApplication from "../../../../../components/forms/AssociateApplication";
 import Link from "next/link";
-import { handleChange } from "../../../../utils/helpers";
-import { UserContext } from "../../../../context/userContext";
+import { handleChange } from "../../../../../utils/helpers";
+import { UserContext } from "../../../../../context/userContext";
 
 function AssociateApplicationView() {
   const { user } = useContext(UserContext);
