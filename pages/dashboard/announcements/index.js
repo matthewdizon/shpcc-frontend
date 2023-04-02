@@ -2,10 +2,23 @@ import Layout from "../../../components/dashboard/Layout";
 import { getAnnouncements } from "../../../lib/api";
 import Link from "next/link";
 
-function Announcements({ announcements }) {
+function Announcements({ announcements, isAdmin }) {
   return (
     <Layout>
       <div className="p-24">
+        {isAdmin && (
+          <p className="py-4 italic">
+            To add announcements, login to{" "}
+            <a
+              href="https://app.contentful.com/spaces/wyf9kavyrcs5/entries?id=J60NXKd4c6b2qb5X&order.fieldId=updatedAt&order.direction=descending&contentTypeId=announcement&displayedFieldIds=contentType&displayedFieldIds=updatedAt&displayedFieldIds=author&folderId=PCcaaZW0xFqMdwwG&page=0"
+              rel="noreferrer"
+              target="_blank"
+              className="underline"
+            >
+              Contentful
+            </a>
+          </p>
+        )}
         <div className="bg-shpccDarkRed p-8 text-white rounded-xl shadow-lg flex justify-between items-center">
           <p className="font-bold text-3xl">Announcements</p>
           <input

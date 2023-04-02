@@ -2,7 +2,9 @@ import Announcements from "../../announcements/index";
 import { getAnnouncements } from "../../../../lib/api";
 
 const AnnouncementsAdmin = ({ announcements }) => {
-  return <Announcements announcements={announcements}></Announcements>;
+  return (
+    <Announcements isAdmin={true} announcements={announcements}></Announcements>
+  );
 };
 
 export default AnnouncementsAdmin;
