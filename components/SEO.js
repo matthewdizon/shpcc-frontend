@@ -19,7 +19,7 @@ export default function SEO() {
         `}
       </Script>
       <Head>
-        <title>Sacred Heart Parish Credit Cooperative</title>
+        <title>SHPCC | Sacred Heart Parish Credit Cooperative</title>
         <link rel="shortcut icon" href="/favicon.ico" />
         <meta
           name="description"
