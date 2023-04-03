@@ -55,6 +55,9 @@ function GintongButilApplicationView() {
               approvedDate: data?.approvedDate || "",
               approvedAmount: data?.approvedAmount || "",
               approvedBy: data?.approvedBy || "",
+              adminMonthlyDue: data?.adminMonthlyDue || "",
+              adminPaymentInterval: data?.adminPaymentInterval || "",
+              adminDuration: data?.adminDuration || "",
             },
           });
         } catch (error) {
@@ -97,6 +100,14 @@ function GintongButilApplicationView() {
   return (
     <Layout>
       <div className="p-24">
+        <div className="pb-4">
+          <Link
+            href={`/dashboard/admin/loan/gintong-butil`}
+            className="bg-gray-200 text-black p-2 rounded-lg px-4 hover:bg-gray-300 active:bg-gray-400 transition duration-200"
+          >
+            Back
+          </Link>
+        </div>
         <p className="font-black text-3xl bg-white p-8 rounded-3xl mb-8 flex justify-between items-center">
           Viewing Application:{" "}
           {`${slug?.substring(0, 4)}...${slug?.substring(slug?.length - 4)}`}{" "}
@@ -253,6 +264,69 @@ function GintongButilApplicationView() {
                       handleChange(
                         "adminInformation",
                         "approvedAmount",
+                        e.target.value,
+                        setFormData
+                      )
+                    }
+                  />
+                </div>
+                <div className="grid grid-cols-2 items-center">
+                  <label>Monthly Due</label>
+                  <input
+                    type="text"
+                    className={`${
+                      formData?.adminInformation.approvedBy
+                        ? "bg-gray-200"
+                        : "bg-white"
+                    } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                    disabled={formData?.adminInformation.approvedBy}
+                    value={formData?.adminInformation.adminMonthlyDue}
+                    onChange={(e) =>
+                      handleChange(
+                        "adminInformation",
+                        "adminMonthlyDue",
+                        e.target.value,
+                        setFormData
+                      )
+                    }
+                  />
+                </div>
+                <div className="grid grid-cols-2 items-center">
+                  <label>Payment Interval</label>
+                  <input
+                    type="text"
+                    className={`${
+                      formData?.adminInformation.approvedBy
+                        ? "bg-gray-200"
+                        : "bg-white"
+                    } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                    disabled={formData?.adminInformation.approvedBy}
+                    value={formData?.adminInformation.adminPaymentInterval}
+                    onChange={(e) =>
+                      handleChange(
+                        "adminInformation",
+                        "adminPaymentInterval",
+                        e.target.value,
+                        setFormData
+                      )
+                    }
+                  />
+                </div>
+                <div className="grid grid-cols-2 items-center">
+                  <label>Duration</label>
+                  <input
+                    type="text"
+                    className={`${
+                      formData?.adminInformation.approvedBy
+                        ? "bg-gray-200"
+                        : "bg-white"
+                    } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                    disabled={formData?.adminInformation.approvedBy}
+                    value={formData?.adminInformation.adminDuration}
+                    onChange={(e) =>
+                      handleChange(
+                        "adminInformation",
+                        "adminDuration",
                         e.target.value,
                         setFormData
                       )
