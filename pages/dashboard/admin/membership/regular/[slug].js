@@ -33,7 +33,6 @@ function RegularApplicationView() {
         );
         try {
           const data = await res.json();
-          console.log("HERE", data);
           setData(data);
           setFormData({
             personalInformation: {
@@ -150,6 +149,32 @@ function RegularApplicationView() {
                   ? 0
                   : data?.spouseOtherIncomeSource,
             },
+            // TODO: this still has to be edited, it was just copied from the Associate Application
+            adminInformation: {
+              pmesAttendanceAuthenticatedBy:
+                data?.pmesAttendanceAuthenticatedBy || "",
+              pmesAttendanceAuthenticatedDate:
+                data?.pmesAttendanceAuthenticatedDate || "",
+              backgroundInvestigationAuthenticatedBy:
+                data?.backgroundInvestigationAuthenticatedBy || "",
+              backgroundInvestigationAuthenticatedDate:
+                data?.backgroundInvestigationAuthenticatedDate || "",
+              commonShare: data?.commonShare || "",
+              preferredShare: data?.preferredShare || "",
+              savingsDeposit: data?.savingsDeposit || "",
+              membershipFee: data?.membershipFee || "",
+              seminarFee: data?.seminarFee || "",
+              damayan: data?.damayan || "",
+              gyrt: data?.gyrt || "",
+              accountNumber: data?.accountNumber || "",
+              orNumber: data?.orNumber || "",
+              dateEncoded: data?.dateEncoded || "",
+              encodedBy: data?.encodedBy || "",
+              boardResolutionNumber: data?.boardResolutionNumber || "",
+              boardDateEncoded: data?.boardDateEncoded || "",
+              approvedBy: data?.approvedBy || "",
+              approvedDate: data?.approvedDate || "",
+            },
           });
         } catch (error) {
           console.log(error);
@@ -160,18 +185,18 @@ function RegularApplicationView() {
     fetchData();
   }, [slug]);
 
-  const handleAuthenticate = async (e) => {
+  const handleStep1 = async (e) => {
     e.preventDefault();
 
     const jwt = localStorage.getItem("accessToken");
 
     const adminDetails = {
       ...formData.adminInformation,
-      authenticatedBy: user.email,
+      // authenticatedBy: user.email,
     };
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/memberApplications/associate/${data.user}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/memberApplications/regular/${data.user}`,
       {
         method: "PATCH",
         body: JSON.stringify(adminDetails),
@@ -187,7 +212,33 @@ function RegularApplicationView() {
     }
   };
 
-  const handleDecision = async (e, decision) => {
+  const handleStep2 = async (e) => {
+    e.preventDefault();
+
+    const jwt = localStorage.getItem("accessToken");
+
+    const adminDetails = {
+      ...formData.adminInformation,
+    };
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/memberApplications/regular/${data.user}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify(adminDetails),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+
+    if (res.ok) {
+      window.location.reload();
+    }
+  };
+
+  const handleStep3 = async (e, decision) => {
     e.preventDefault();
 
     const jwt = localStorage.getItem("accessToken");
@@ -200,7 +251,7 @@ function RegularApplicationView() {
     };
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/memberApplications/associate/${data.user}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/memberApplications/regular/${data.user}`,
       {
         method: "PATCH",
         body: JSON.stringify(adminDetails),
@@ -216,7 +267,14 @@ function RegularApplicationView() {
     }
   };
 
-  console.log(formData);
+  const total =
+    parseInt(formData?.adminInformation.commonShare) +
+    parseInt(formData?.adminInformation.preferredShare) +
+    parseInt(formData?.adminInformation.savingsDeposit) +
+    parseInt(formData?.adminInformation.membershipFee) +
+    parseInt(formData?.adminInformation.seminarFee) +
+    parseInt(formData?.adminInformation.damayan) +
+    parseInt(formData?.adminInformation.gyrt);
 
   return (
     <Layout>
@@ -237,7 +295,7 @@ function RegularApplicationView() {
         </p>
         <div className="grid grid-cols-[2fr_1fr] gap-8 relative">
           <RegularApplication formData={formData} isDisabled={true} />
-          {/* <div className="grid gap-8 sticky top-12 h-max">
+          <div className="grid gap-8 sticky top-12 h-max">
             {data?.dateSubmitted && (
               <p className="text-sm font-light">
                 Application Submission Date:{" "}
@@ -253,8 +311,8 @@ function RegularApplicationView() {
             )}
             <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-lg p-4">
               <p className="font-bold text-2xl flex items-center gap-2">
-                Form Authentication{" "}
-                {formData?.adminInformation.authenticatedBy && (
+                1. Initial Checks{" "}
+                {data?.pmesAttendanceAuthenticatedBy && (
                   <svg
                     width="24"
                     height="24"
@@ -277,110 +335,126 @@ function RegularApplicationView() {
                 )}
               </p>
               <form className="grid gap-4 py-4">
+                <p className="font-bold text-lg flex items-center gap-2">
+                  PMES Attendance
+                </p>
                 <div className="grid grid-cols-2 items-center">
-                  <label>Account No.</label>
+                  <label>Authenticated By</label>
                   <input
                     type="text"
                     className={`${
-                      formData?.adminInformation.authenticatedBy
+                      data?.pmesAttendanceAuthenticatedBy
                         ? "bg-gray-200"
                         : "bg-white"
                     } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-                    disabled={formData?.adminInformation.authenticatedBy}
+                    disabled={data?.pmesAttendanceAuthenticatedBy}
                     onChange={(e) =>
                       handleChange(
                         "adminInformation",
-                        "accountNumber",
+                        "pmesAttendanceAuthenticatedBy",
                         e.target.value,
                         setFormData
                       )
                     }
-                    value={formData?.adminInformation.accountNumber}
+                    value={
+                      formData?.adminInformation.pmesAttendanceAuthenticatedBy
+                    }
                   />
                 </div>
                 <div className="grid grid-cols-2 items-center">
-                  <label>Code No.</label>
+                  <label>Date</label>
                   <input
-                    type="text"
+                    type="date"
                     className={`${
-                      formData?.adminInformation.authenticatedBy
+                      data?.pmesAttendanceAuthenticatedBy
                         ? "bg-gray-200"
                         : "bg-white"
                     } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-                    disabled={formData?.adminInformation.authenticatedBy}
+                    disabled={data?.pmesAttendanceAuthenticatedBy}
                     onChange={(e) =>
                       handleChange(
                         "adminInformation",
-                        "codeNumber",
+                        "pmesAttendanceAuthenticatedDate",
                         e.target.value,
                         setFormData
                       )
                     }
-                    value={formData?.adminInformation.codeNumber}
+                    value={
+                      formData?.adminInformation.pmesAttendanceAuthenticatedDate
+                    }
                   />
                 </div>
+                <p className="font-bold text-lg flex items-center gap-2">
+                  Bakcground/Social Investigation
+                </p>
                 <div className="grid grid-cols-2 items-center">
-                  <label>O.R. No.</label>
+                  <label>Authenticated By</label>
                   <input
                     type="text"
                     className={`${
-                      formData?.adminInformation.authenticatedBy
+                      data?.pmesAttendanceAuthenticatedBy
                         ? "bg-gray-200"
                         : "bg-white"
                     } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-                    disabled={formData?.adminInformation.authenticatedBy}
+                    disabled={data?.pmesAttendanceAuthenticatedBy}
                     onChange={(e) =>
                       handleChange(
                         "adminInformation",
-                        "orNumber",
+                        "backgroundInvestigationAuthenticatedBy",
                         e.target.value,
                         setFormData
                       )
                     }
-                    value={formData?.adminInformation.orNumber}
+                    value={
+                      formData?.adminInformation
+                        .backgroundInvestigationAuthenticatedBy
+                    }
                   />
                 </div>
                 <div className="grid grid-cols-2 items-center">
-                  <label>Initial Deposit</label>
+                  <label>Date</label>
                   <input
-                    type="text"
+                    type="date"
                     className={`${
-                      formData?.adminInformation.authenticatedBy
+                      data?.pmesAttendanceAuthenticatedBy
                         ? "bg-gray-200"
                         : "bg-white"
                     } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-                    disabled={formData?.adminInformation.authenticatedBy}
+                    disabled={data?.pmesAttendanceAuthenticatedBy}
                     onChange={(e) =>
                       handleChange(
                         "adminInformation",
-                        "initialDeposit",
+                        "backgroundInvestigationAuthenticatedDate",
                         e.target.value,
                         setFormData
                       )
                     }
-                    value={formData?.adminInformation.initialDeposit}
+                    value={
+                      formData?.adminInformation
+                        .backgroundInvestigationAuthenticatedDate
+                    }
                   />
                 </div>
-                {formData?.adminInformation.authenticatedBy ? (
+                {data?.pmesAttendanceAuthenticatedBy ? (
                   <div className="grid grid-cols-2 text-sm text-green-600 items-center">
                     <label>Authenticated By:</label>
-                    <p>{formData?.adminInformation.authenticatedBy}</p>
+                    <p>{data?.pmesAttendanceAuthenticatedBy}</p>
                   </div>
                 ) : (
                   <button
                     type="submit"
-                    className="bg-shpccYellow text-black p-2 rounded-lg hover:bg-yellow-400 active:bg-yellow-500 w-full"
-                    onClick={(e) => handleAuthenticate(e)}
+                    className="bg-shpccRed text-white p-2 rounded-lg hover:bg-shpccDarkRed active:bg-red-900 w-full"
+                    onClick={(e) => handleStep1(e)}
                   >
-                    Authenticate
+                    Confirm
                   </button>
                 )}
               </form>
             </div>
-            {formData?.adminInformation.authenticatedBy ? (
+            {data?.pmesAttendanceAuthenticatedBy ? (
               <form className="bg-white rounded-xl p-4 shadow-lg">
                 <p className="font-bold text-2xl flex items-center gap-2">
-                  Form Decision{" "}
+                  2. Account Information
                   {formData?.adminInformation.approvedBy && (
                     <svg
                       width="24"
@@ -405,28 +479,317 @@ function RegularApplicationView() {
                 </p>
                 <div className="grid gap-4 py-4">
                   <div className="grid grid-cols-2 items-center">
-                    <label>B.R. No.</label>
+                    <label>Common Share</label>
                     <input
-                      type="text"
+                      type="number"
+                      inputMode="numeric"
+                      min={0}
+                      placeholder="PHP 0.00"
                       className={`${
-                        formData?.adminInformation.approvedBy
-                          ? "bg-gray-200"
-                          : "bg-white"
+                        data?.encodedBy ? "bg-gray-200" : "bg-white"
                       } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-                      disabled={formData?.adminInformation.approvedBy}
+                      disabled={data?.encodedBy}
                       onChange={(e) =>
                         handleChange(
                           "adminInformation",
-                          "brNumber",
+                          "commonShare",
                           e.target.value,
                           setFormData
                         )
                       }
-                      value={formData?.adminInformation.brNumber}
+                      value={formData?.adminInformation.commonShare}
                     />
                   </div>
                   <div className="grid grid-cols-2 items-center">
-                    <label>Approved Date</label>
+                    <label>Preferred Share</label>
+                    <input
+                      type="number"
+                      inputMode="numeric"
+                      min={0}
+                      placeholder="PHP 0.00"
+                      className={`${
+                        data?.encodedBy ? "bg-gray-200" : "bg-white"
+                      } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                      disabled={data?.encodedBy}
+                      onChange={(e) =>
+                        handleChange(
+                          "adminInformation",
+                          "preferredShare",
+                          e.target.value,
+                          setFormData
+                        )
+                      }
+                      value={formData?.adminInformation.preferredShare}
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 items-center">
+                    <label>Savings Deposit</label>
+                    <input
+                      type="number"
+                      inputMode="numeric"
+                      min={0}
+                      placeholder="PHP 0.00"
+                      className={`${
+                        data?.encodedBy ? "bg-gray-200" : "bg-white"
+                      } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                      disabled={data?.encodedBy}
+                      onChange={(e) =>
+                        handleChange(
+                          "adminInformation",
+                          "savingsDeposit",
+                          e.target.value,
+                          setFormData
+                        )
+                      }
+                      value={formData?.adminInformation.savingsDeposit}
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 items-center">
+                    <label>Membership Fee</label>
+                    <input
+                      type="number"
+                      inputMode="numeric"
+                      min={0}
+                      placeholder="PHP 0.00"
+                      className={`${
+                        data?.encodedBy ? "bg-gray-200" : "bg-white"
+                      } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                      disabled={data?.encodedBy}
+                      onChange={(e) =>
+                        handleChange(
+                          "adminInformation",
+                          "membershipFee",
+                          e.target.value,
+                          setFormData
+                        )
+                      }
+                      value={formData?.adminInformation.membershipFee}
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 items-center">
+                    <label>Seminar Fee</label>
+                    <input
+                      type="number"
+                      inputMode="numeric"
+                      min={0}
+                      placeholder="PHP 0.00"
+                      className={`${
+                        data?.encodedBy ? "bg-gray-200" : "bg-white"
+                      } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                      disabled={data?.encodedBy}
+                      onChange={(e) =>
+                        handleChange(
+                          "adminInformation",
+                          "seminarFee",
+                          e.target.value,
+                          setFormData
+                        )
+                      }
+                      value={formData?.adminInformation.seminarFee}
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 items-center">
+                    <label>Damayan</label>
+                    <input
+                      type="number"
+                      inputMode="numeric"
+                      min={0}
+                      placeholder="PHP 0.00"
+                      className={`${
+                        data?.encodedBy ? "bg-gray-200" : "bg-white"
+                      } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                      disabled={data?.encodedBy}
+                      onChange={(e) =>
+                        handleChange(
+                          "adminInformation",
+                          "damayan",
+                          e.target.value,
+                          setFormData
+                        )
+                      }
+                      value={formData?.adminInformation.damayan}
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 items-center">
+                    <label>GYRT</label>
+                    <input
+                      type="number"
+                      inputMode="numeric"
+                      min={0}
+                      placeholder="PHP 0.00"
+                      className={`${
+                        data?.encodedBy ? "bg-gray-200" : "bg-white"
+                      } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                      disabled={data?.encodedBy}
+                      onChange={(e) =>
+                        handleChange(
+                          "adminInformation",
+                          "gyrt",
+                          e.target.value,
+                          setFormData
+                        )
+                      }
+                      value={formData?.adminInformation.gyrt}
+                    />
+                  </div>
+                  <p
+                    className={`text-center text-lg font-bold italic ${
+                      isNaN(total) ? "text-shpccRed" : ""
+                    }`}
+                  >
+                    Total:{" "}
+                    {isNaN(total)
+                      ? "Invalid Amount"
+                      : `PHP ${total.toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                        })}`}
+                  </p>
+                  <div className="grid grid-cols-2 items-center">
+                    <label>Account Number</label>
+                    <input
+                      type="text"
+                      className={`${
+                        data?.encodedBy ? "bg-gray-200" : "bg-white"
+                      } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                      disabled={data?.encodedBy}
+                      onChange={(e) =>
+                        handleChange(
+                          "adminInformation",
+                          "accountNumber",
+                          e.target.value,
+                          setFormData
+                        )
+                      }
+                      value={formData?.adminInformation.accountNumber}
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 items-center">
+                    <label>OR Number</label>
+                    <input
+                      type="text"
+                      className={`${
+                        data?.encodedBy ? "bg-gray-200" : "bg-white"
+                      } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                      disabled={data?.encodedBy}
+                      onChange={(e) =>
+                        handleChange(
+                          "adminInformation",
+                          "orNumber",
+                          e.target.value,
+                          setFormData
+                        )
+                      }
+                      value={formData?.adminInformation.orNumber}
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 items-center">
+                    <label>Date Encoded</label>
+                    <input
+                      type="date"
+                      className={`${
+                        data?.encodedBy ? "bg-gray-200" : "bg-white"
+                      } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                      disabled={data?.encodedBy}
+                      onChange={(e) =>
+                        handleChange(
+                          "adminInformation",
+                          "dateEncoded",
+                          e.target.value,
+                          setFormData
+                        )
+                      }
+                      value={formData?.adminInformation.dateEncoded}
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 items-center">
+                    <label>Encoded By</label>
+                    <input
+                      type="text"
+                      className={`${
+                        data?.encodedBy ? "bg-gray-200" : "bg-white"
+                      } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                      disabled={data?.encodedBy}
+                      onChange={(e) =>
+                        handleChange(
+                          "adminInformation",
+                          "encodedBy",
+                          e.target.value,
+                          setFormData
+                        )
+                      }
+                      value={formData?.adminInformation.encodedBy}
+                    />
+                  </div>
+                </div>
+                {data?.encodedBy ? (
+                  <div className="grid grid-cols-2 text-sm text-green-600 items-center">
+                    <label>Encoded By:</label>
+                    <p>{data?.encodedBy}</p>
+                  </div>
+                ) : (
+                  <button
+                    type="submit"
+                    className="bg-shpccRed text-white p-2 rounded-lg hover:bg-shpccDarkRed active:bg-red-900 w-full"
+                    onClick={(e) => handleStep2(e)}
+                  >
+                    Confirm
+                  </button>
+                )}
+              </form>
+            ) : (
+              <div>
+                Before moving on to Step 2, a Member Care Assistant needs to
+                confirm the initial checks
+              </div>
+            )}
+            {data?.encodedBy ? (
+              <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-lg p-4">
+                <p className="font-bold text-2xl flex items-center gap-2">
+                  3. Form Decision{" "}
+                  {formData?.adminInformation.authenticatedBy && (
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="text-green-600"
+                    >
+                      <path
+                        d="M10.2426 16.3137L6 12.071L7.41421 10.6568L10.2426 13.4853L15.8995 7.8284L17.3137 9.24262L10.2426 16.3137Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12ZM12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  )}
+                </p>
+                <form className="grid gap-4 py-4">
+                  <div className="grid grid-cols-2 items-center">
+                    <label>Board Resolution No.</label>
+                    <input
+                      type="text"
+                      className={`${
+                        data?.approvedBy ? "bg-gray-200" : "bg-white"
+                      } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                      disabled={data?.approvedBy}
+                      onChange={(e) =>
+                        handleChange(
+                          "adminInformation",
+                          "boardResolutionNumber",
+                          e.target.value,
+                          setFormData
+                        )
+                      }
+                      value={formData?.adminInformation.boardResolutionNumber}
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 items-center">
+                    <label>Date Encoded</label>
                     <input
                       type="date"
                       className={`${
@@ -438,64 +801,68 @@ function RegularApplicationView() {
                       onChange={(e) =>
                         handleChange(
                           "adminInformation",
-                          "approvedDate",
+                          "dateEncoded",
                           e.target.value,
                           setFormData
                         )
                       }
-                      value={formData?.adminInformation.approvedDate}
+                      value={formData?.adminInformation.dateEncoded}
                     />
                   </div>
-                </div>
-                {formData?.adminInformation.approvedBy ? (
-                  <>
-                    <div className="grid grid-cols-2 text-sm text-green-600 items-center">
-                      <label>Approved By:</label>
-                      <p>{formData?.adminInformation.approvedBy}</p>
+                  {data?.approvedBy ? (
+                    <>
+                      <div className="grid grid-cols-2 text-sm text-green-600 items-center">
+                        <label>Authenticated By:</label>
+                        <p>{data?.approvedBy}</p>
+                      </div>
+                      <div
+                        className={`grid grid-cols-2 text-sm items-center ${
+                          data?.status === "Approved"
+                            ? "text-green-600"
+                            : "text-red-600"
+                        }`}
+                      >
+                        <label>Decision:</label>
+                        <p>{data?.status}</p>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="grid grid-cols-3 gap-4">
+                      <Link
+                        href={`/dashboard/admin/membership`}
+                        className="bg-gray-200 text-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-200 text-center"
+                      >
+                        Cancel
+                      </Link>
+                      <button
+                        type="submit"
+                        className="bg-shpccRed text-white p-2 rounded-lg hover:bg-shpccDarkRed active:bg-red-800"
+                        onClick={(e) => handleStep3(e, "Rejected")}
+                      >
+                        Reject
+                      </button>
+                      <button
+                        type="submit"
+                        className="bg-green-500 text-white p-2 rounded-lg hover:bg-green-600 active:bg-green-700"
+                        onClick={(e) => handleStep3(e, "Approved")}
+                      >
+                        Approve
+                      </button>
                     </div>
-                    <div
-                      className={`grid grid-cols-2 text-sm items-center ${
-                        data?.status === "Approved"
-                          ? "text-green-600"
-                          : "text-red-600"
-                      }`}
-                    >
-                      <label>Decision:</label>
-                      <p>{data?.status}</p>
-                    </div>
-                  </>
-                ) : (
-                  <div className="grid grid-cols-3 gap-4">
-                    <Link
-                      href={`/dashboard/admin/membership`}
-                      className="bg-gray-200 text-black p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-200 text-center"
-                    >
-                      Cancel
-                    </Link>
-                    <button
-                      type="submit"
-                      className="bg-shpccRed text-white p-2 rounded-lg hover:bg-shpccDarkRed active:bg-red-800"
-                      onClick={(e) => handleDecision(e, "Rejected")}
-                    >
-                      Reject
-                    </button>
-                    <button
-                      type="submit"
-                      className="bg-green-500 text-white p-2 rounded-lg hover:bg-green-600 active:bg-green-700"
-                      onClick={(e) => handleDecision(e, "Approved")}
-                    >
-                      Approve
-                    </button>
-                  </div>
-                )}
-              </form>
+                  )}
+                </form>
+              </div>
             ) : (
               <div>
-                Before finalizing the form decision, a Member Care Assistant
-                needs to authenticate the details
+                {data?.pmesAttendanceAuthenticatedBy && (
+                  <div>
+                    Before moving on to Step 3, a Member Care Assistant needs to
+                    confirm the account information
+                  </div>
+                )}
               </div>
             )}
-          </div> */}
+          </div>
         </div>
       </div>
     </Layout>
