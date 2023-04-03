@@ -34,7 +34,7 @@ export default function SEO() {
         <meta property="og:url" content="https://shpcc.vercel.app/" />
         <meta
           property="og:title"
-          content="Sacred Heart Parish Credit Cooperative"
+          content="SHPCC | Sacred Heart Parish Credit Cooperative"
         />
         <meta
           property="og:description"
@@ -48,7 +48,7 @@ export default function SEO() {
         <meta property="twitter:card" content="summary_large_image" />
         <meta
           property="twitter:title"
-          content="Sacred Heart Parish Credit Cooperative"
+          content="SHPCC | Sacred Heart Parish Credit Cooperative"
         />
         <meta
           property="twitter:description"
