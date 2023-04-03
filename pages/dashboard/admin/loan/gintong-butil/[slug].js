@@ -78,7 +78,7 @@ function GintongButilApplicationView() {
     };
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/loans/gbl/${data.user}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/loans/gbl/${slug}`,
       {
         method: "PATCH",
         body: JSON.stringify(adminDetails),
@@ -89,7 +89,9 @@ function GintongButilApplicationView() {
       }
     );
 
-    console.log(res);
+    if (res.ok) {
+      window.location.reload();
+    }
   };
 
   return (
