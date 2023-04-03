@@ -66,7 +66,7 @@ function GintongButilApplicationView() {
     fetchData();
   }, [slug]);
 
-  const handleApprove = async (e) => {
+  const handleApprove = async (e, decision) => {
     e.preventDefault();
 
     const jwt = localStorage.getItem("accessToken");
@@ -74,7 +74,7 @@ function GintongButilApplicationView() {
     const adminDetails = {
       ...formData.adminInformation,
       approvedBy: user.email,
-      status: "Approved",
+      status: decision,
     };
 
     const res = await fetch(
@@ -265,7 +265,7 @@ function GintongButilApplicationView() {
                     <p>{formData?.adminInformation.approvedBy}</p>
                   </div>
                 ) : (
-                  <div className="flex justify-end gap-4">
+                  <div className="grid grid-cols-3 gap-4">
                     <Link
                       href={`/dashboard/admin/loan/gintong-butil`}
                       className="bg-gray-200 text-black p-2 px-6 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-200 text-center"
@@ -274,8 +274,15 @@ function GintongButilApplicationView() {
                     </Link>
                     <button
                       type="submit"
-                      className="bg-shpccRed text-white p-2 px-6 rounded-lg hover:bg-shpccDarkRed active:bg-red-800"
-                      onClick={(e) => handleApprove(e)}
+                      className="bg-shpccRed text-white p-2 rounded-lg hover:bg-shpccDarkRed active:bg-red-800"
+                      onClick={(e) => handleApprove(e, "Rejected")}
+                    >
+                      Reject
+                    </button>
+                    <button
+                      type="submit"
+                      className="bg-green-500 text-white p-2 rounded-lg hover:bg-green-600 active:bg-green-700"
+                      onClick={(e) => handleApprove(e, "Approved")}
                     >
                       Approve
                     </button>
