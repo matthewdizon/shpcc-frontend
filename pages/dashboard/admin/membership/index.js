@@ -20,7 +20,7 @@ function MembershipAdmin() {
             </span>
             <p className="font-extralight"></p>
             <p className="flex flex-col text-2xl font-bold">
-              Reviewing Applications for{" "}
+              Review Applications for{" "}
               <span className="text-3xl">Associate Membership</span>
             </p>
           </Link>
@@ -34,7 +34,7 @@ function MembershipAdmin() {
             </span>
             <p className="font-extralight"></p>
             <p className="flex flex-col text-2xl font-bold">
-              Reviewing Applications for{" "}
+              Review Applications for{" "}
               <span className="text-3xl">Regular Membership</span>
             </p>
           </Link>

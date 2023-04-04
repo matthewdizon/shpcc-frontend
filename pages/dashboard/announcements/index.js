@@ -1,8 +1,25 @@
 import Layout from "../../../components/dashboard/Layout";
 import { getAnnouncements } from "../../../lib/api";
 import Link from "next/link";
+import { useState } from "react";
 
 function Announcements({ announcements, isAdmin }) {
+  const [filteredData, setFilteredData] = useState(announcements);
+  const [search, setSearch] = useState("");
+
+  function handleSearchCriteriaChange(search) {
+    setSearch(search);
+
+    const filteredData = announcements?.filter((data) => {
+      const searchContext = `${data.title} ${data.description}`.toLowerCase();
+      const hasSearchMatch = searchContext.includes(search.toLowerCase());
+
+      return hasSearchMatch;
+    });
+
+    setFilteredData(filteredData);
+  }
+
   return (
     <Layout>
       <div className="p-24">
@@ -24,11 +41,13 @@ function Announcements({ announcements, isAdmin }) {
           <input
             type="text"
             placeholder="Search..."
-            className="p-4 py-2 rounded-lg"
+            className="border-gray-400 border rounded-full px-2 py-2 my-2 lg:p-2 text-black"
+            value={search}
+            onChange={(e) => handleSearchCriteriaChange(e.target.value)}
           />
         </div>
         <div className="grid gap-8 mt-8">
-          {announcements.map((announcement, index) => {
+          {filteredData.map((announcement, index) => {
             const { title, dateAndTime, description, slug } = announcement;
             return (
               <Link

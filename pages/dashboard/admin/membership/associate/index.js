@@ -4,6 +4,9 @@ import Link from "next/link";
 
 function AssociateMembershipAdmin() {
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState(null);
+  const [search, setSearch] = useState("");
+  const [filterStatus, setFilterStatus] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -21,6 +24,7 @@ function AssociateMembershipAdmin() {
       try {
         const data = await res.json();
         setData(data);
+        setFilteredData(data);
       } catch (error) {
         console.log(error);
       }
@@ -29,14 +33,39 @@ function AssociateMembershipAdmin() {
     fetchData();
   }, []);
 
+  function handleSearchAndFilterCriteriaChange(search, status) {
+    setSearch(search);
+
+    // Check if the new status value is the same as the current filter status
+    const newFilterStatus = status === filterStatus ? "" : status;
+    setFilterStatus(newFilterStatus);
+
+    const filteredData = data?.filter((data) => {
+      const searchContext =
+        `${data.firstName} ${data.lastName} ${data.user}`.toLowerCase();
+      const hasSearchMatch = searchContext.includes(search.toLowerCase());
+
+      // Only apply the filter if the status value is not empty
+      const hasFilterMatch =
+        newFilterStatus === "" || data.status.includes(newFilterStatus);
+
+      return hasSearchMatch && hasFilterMatch;
+    });
+
+    setFilteredData(filteredData);
+  }
+
   return (
     <Layout>
       <div className="p-12">
         <p className="font-black text-3xl pb-8">
           Associate Application Overview
         </p>
+        <p className="pb-2 italic text-gray-500 text-sm">
+          Showing {filteredData?.length} of {data?.length} results
+        </p>
         <div className="grid grid-cols-[3fr_1fr] gap-8">
-          <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-lg p-4">
+          <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-lg p-4 h-max">
             <table className="min-w-full divide-y-2 divide-gray-200">
               <thead>
                 <tr>
@@ -62,8 +91,7 @@ function AssociateMembershipAdmin() {
               </thead>
 
               <tbody>
-                {data?.map((application, index) => {
-                  console.log(application);
+                {filteredData?.map((application, index) => {
                   return (
                     <tr key={index}>
                       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
@@ -108,9 +136,68 @@ function AssociateMembershipAdmin() {
                 })}
               </tbody>
             </table>
+            {filteredData?.length === 0 && (
+              <div className="text-center font-light text-shpccRed text-3xl uppercase italic">
+                No Data
+              </div>
+            )}
           </div>
-          <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-lg p-4">
+          <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-lg p-4 sticky top-12 h-max">
             <p className="font-bold text-xl">Search and Filter</p>
+            <input
+              type="text"
+              placeholder="Search Application"
+              className="border-gray-400 border rounded-sm pl-2 py-2 my-2 lg:p-2 w-full"
+              value={search}
+              onChange={(e) =>
+                handleSearchAndFilterCriteriaChange(
+                  e.target.value,
+                  filterStatus
+                )
+              }
+            />
+            <div className="grid gap-2">
+              <span className="text-gray-400">Statuses</span>
+              <div
+                className={`flex justify-between px-4 py-2 rounded-lg items-center hover:bg-gray-200 hover:cursor-pointer ${
+                  filterStatus === "Approved" ? "bg-gray-200" : ""
+                }`}
+                onClick={() =>
+                  handleSearchAndFilterCriteriaChange(search, "Approved")
+                }
+              >
+                <p>Approved</p>
+                <p className="rounded-lg bg-gray-300 py-1 px-3">
+                  {data?.filter((data) => data.status === "Approved").length}
+                </p>
+              </div>
+              <div
+                className={`flex justify-between px-4 py-2 rounded-lg items-center hover:bg-gray-200 hover:cursor-pointer ${
+                  filterStatus === "Pending" ? "bg-gray-200" : ""
+                }`}
+                onClick={() =>
+                  handleSearchAndFilterCriteriaChange(search, "Pending")
+                }
+              >
+                <p>Pending</p>
+                <p className="rounded-lg bg-gray-300 py-1 px-3">
+                  {data?.filter((data) => data.status === "Pending").length}
+                </p>
+              </div>
+              <div
+                className={`flex justify-between px-4 py-2 rounded-lg items-center hover:bg-gray-200 hover:cursor-pointer ${
+                  filterStatus === "Rejected" ? "bg-gray-200" : ""
+                }`}
+                onClick={() =>
+                  handleSearchAndFilterCriteriaChange(search, "Rejected")
+                }
+              >
+                <p>Rejected</p>
+                <p className="rounded-lg bg-gray-300 py-1 px-3">
+                  {data?.filter((data) => data.status === "Rejected").length}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

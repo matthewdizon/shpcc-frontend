@@ -4,6 +4,8 @@ import Link from "next/link";
 
 function Users() {
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -21,6 +23,7 @@ function Users() {
       try {
         const data = await res.json();
         setData(data);
+        setFilteredData(data);
       } catch (error) {
         console.log(error);
       }
@@ -28,14 +31,33 @@ function Users() {
 
     fetchData();
   }, []);
+
+  function handleSearchCriteriaChange(search) {
+    setSearch(search);
+
+    const filteredData = data?.filter((data) => {
+      const searchContext =
+        `${data.email} ${data.firstName} ${data.lastName} ${data.contactNumber} ${data.membershipType}`.toLowerCase();
+      const hasSearchMatch = searchContext.includes(search.toLowerCase());
+
+      return hasSearchMatch;
+    });
+
+    setFilteredData(filteredData);
+  }
+
   return (
     <Layout>
       <div className="p-24">
         <p className="font-black text-3xl bg-white p-8 rounded-3xl">Users</p>
         <div className="flex gap-4 py-4">
-          <div className="bg-white rounded-md shadow-md max-w-max p-2 px-4 hover:cursor-pointer">
-            <span className="font-thin text-sm">Find a member</span>
-          </div>
+          <input
+            type="text"
+            placeholder="Search..."
+            className="bg-white rounded-md shadow-md max-w-max p-2 px-4"
+            value={search}
+            onChange={(e) => handleSearchCriteriaChange(e.target.value)}
+          />
           <div className="bg-white rounded-md shadow-md max-w-max p-2 px-4 hover:cursor-pointer">
             <span className="font-thin text-sm">Sort by: Account Number</span>
           </div>
@@ -63,7 +85,7 @@ function Users() {
             </thead>
 
             <tbody>
-              {data?.map((user, index) => {
+              {filteredData?.map((user, index) => {
                 return (
                   <tr key={index}>
                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
