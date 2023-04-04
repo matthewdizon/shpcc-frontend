@@ -114,8 +114,6 @@ function RegularLoanApplication({ data, formData, setFormData, isDisabled }) {
     console.log(res);
   };
 
-  console.log(formData.chattelMortgage);
-
   const requiredFields = [
     { subObjectName: "financialInformation", fieldName: "business" },
     { subObjectName: "financialInformation", fieldName: "companyName" },
