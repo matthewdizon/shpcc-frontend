@@ -46,6 +46,7 @@ function RegularLoanApplicationView() {
               amount: data?.amount || "",
               duration: data?.duration || "",
               paymentInterval: data?.paymentInterval || "",
+              remainingLoanBalance: data?.remainingLoanBalance || "",
               reason: data?.reason || "",
             },
             collateralDetails: {

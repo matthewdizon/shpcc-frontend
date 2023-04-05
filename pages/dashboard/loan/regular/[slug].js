@@ -23,6 +23,7 @@ function RegularLoanHistoryView() {
       amount: "",
       duration: "",
       paymentInterval: "",
+      remainingLoanBalance: "",
       reason: "",
     },
     collateralDetails: {
@@ -78,6 +79,7 @@ function RegularLoanHistoryView() {
               amount: data?.amount || "",
               duration: data?.duration || "",
               paymentInterval: data?.paymentInterval || "",
+              remainingLoanBalance: data?.remainingLoanBalance || "",
               reason: data?.reason || "",
             },
             collateralDetails: {

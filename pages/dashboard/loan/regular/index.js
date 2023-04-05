@@ -18,6 +18,7 @@ function RegularLoan() {
       amount: "",
       duration: "",
       paymentInterval: "",
+      remainingLoanBalance: "",
       reason: "",
     },
     collateralDetails: {

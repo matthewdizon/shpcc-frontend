@@ -104,19 +104,23 @@ function LoanDetails({
         <div className="flex flex-col">
           <label
             className={`font-light text-gray-400 text-sm ${
-              touchedFields.reason && !info?.reason ? "text-red-500" : ""
+              touchedFields.remainingLoanBalance && !info?.remainingLoanBalance
+                ? "text-red-500"
+                : ""
             }`}
           >
-            Remaining Loan Balance
+            Remaining Loan Balance *
           </label>
           <input
             type="text"
-            value={info?.reason}
-            onChange={(e) => onChange("reason", e.target.value)}
+            value={info?.remainingLoanBalance}
+            onChange={(e) => onChange("remainingLoanBalance", e.target.value)}
             className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
-              touchedFields.reason && !info?.reason ? "border-red-500" : ""
+              touchedFields.remainingLoanBalance && !info?.remainingLoanBalance
+                ? "border-red-500"
+                : ""
             } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-            onBlur={() => handleBlur("reason")}
+            onBlur={() => handleBlur("remainingLoanBalance")}
             disabled={isDisabled}
           />
         </div>

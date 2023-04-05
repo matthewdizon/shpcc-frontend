@@ -29,6 +29,7 @@ function RegularLoanApplication({ data, formData, setFormData, isDisabled }) {
     amount: true,
     duration: true,
     paymentInterval: true,
+    remainingLoanBalance: true,
     reason: true,
     // Collateral Details
     gamitPanagot: true,
@@ -122,7 +123,36 @@ function RegularLoanApplication({ data, formData, setFormData, isDisabled }) {
     { subObjectName: "loanDetails", fieldName: "amount" },
     { subObjectName: "loanDetails", fieldName: "duration" },
     { subObjectName: "loanDetails", fieldName: "paymentInterval" },
+    { subObjectName: "loanDetails", fieldName: "remainingLoanBalance" },
     { subObjectName: "loanDetails", fieldName: "reason" },
+    {
+      subObjectFn: () => formData.collateralDetails.collaterals,
+      fieldName: "gamitPanagot",
+    },
+    {
+      subObjectFn: () => formData.collateralDetails.collaterals,
+      fieldName: "datePurchased",
+    },
+    {
+      subObjectFn: () => formData.collateralDetails.collaterals,
+      fieldName: "collateralAmount",
+    },
+    {
+      subObjectFn: () => formData.collateralDetails.collaterals,
+      fieldName: "serialNumber",
+    },
+    {
+      subObjectFn: () => formData.chattelMortgage.mortgages,
+      fieldName: "vehicle",
+    },
+    {
+      subObjectFn: () => formData.chattelMortgage.mortgages,
+      fieldName: "model",
+    },
+    {
+      subObjectFn: () => formData.chattelMortgage.mortgages,
+      fieldName: "motorNumber",
+    },
   ];
 
   let isFormValid;
