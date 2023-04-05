@@ -7,6 +7,7 @@ function GintongButilHistory() {
   const { user } = useContext(UserContext);
 
   const [data, setData] = useState([]);
+  const [userApplications, setUserApplications] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -32,7 +33,30 @@ function GintongButilHistory() {
       }
     }
 
+    async function fetchUserApplications() {
+      if (user) {
+        // Retrieve the JWT from local storage
+        const jwt = localStorage.getItem("accessToken");
+
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/users/` + user.email,
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        );
+        try {
+          const data = await res.json();
+          setUserApplications(data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
+
     fetchData();
+    fetchUserApplications();
   }, [user]);
 
   return (
@@ -57,7 +81,7 @@ function GintongButilHistory() {
                   Date
                 </th>
                 <th className="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
-                  Name
+                  Amount
                 </th>
                 <th className="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
                   Status
@@ -73,18 +97,21 @@ function GintongButilHistory() {
                 return (
                   <tr key={index}>
                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                      {loan.loanNumber ?? "-"}
+                      {userApplications[0]?.gintongButilLoanApplications.indexOf(
+                        loan._id
+                      ) + 1 ?? "-"}
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                      {loan.dateSubmitted &&
-                        Intl.DateTimeFormat("en-US", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        }).format(new Date(loan.dateSubmitted))}
+                      {loan.dateSubmitted
+                        ? Intl.DateTimeFormat("en-US", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          }).format(new Date(loan.dateSubmitted))
+                        : "-"}
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                      {loan.firstName} {loan.lastName}
+                      {loan.amount ? loan.amount : "-"}
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                       <p
