@@ -61,6 +61,9 @@ function RegularLoanAdmin() {
         <p className="font-black text-3xl pb-8">
           Regular Loan Application Overview
         </p>
+        <p className="pb-2 italic text-gray-500 text-sm">
+          Showing {filteredData?.length} of {data?.length} results
+        </p>
         <div className="grid grid-cols-[3fr_1fr] gap-8">
           <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-lg p-4 h-max">
             <table className="min-w-full divide-y-2 divide-gray-200">

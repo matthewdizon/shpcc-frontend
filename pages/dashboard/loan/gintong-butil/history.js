@@ -59,6 +59,10 @@ function GintongButilHistory() {
     fetchUserApplications();
   }, [user]);
 
+  const loans = userApplications[0]?.gintongButilLoanApplications.map(
+    (loan) => loan._id
+  );
+
   return (
     <Layout>
       <div className="p-24 min-h-screen">
@@ -97,9 +101,7 @@ function GintongButilHistory() {
                 return (
                   <tr key={index}>
                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                      {userApplications[0]?.gintongButilLoanApplications.indexOf(
-                        loan._id
-                      ) + 1 ?? "-"}
+                      {loans?.indexOf(loan._id) + 1 ?? "-"}
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                       {loan.dateSubmitted
