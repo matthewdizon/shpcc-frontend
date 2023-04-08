@@ -281,16 +281,64 @@ function RegularLoanApplication({ data, formData, setFormData, isDisabled }) {
               handleSubmit={handleSubmit}
             >
               <div className="mt-6 text-gray-500 grid gap-2 text-left">
-                <p>
-                  Ako ay nangangako na ang aking hinihiraming pondo na may
-                  tubong ISANG porsiyento (1%) kada buwan ay aking babayaran at
-                  huhulugan. Sumasang-ayon rin ako na agarang iaawas sa aking
-                  uutangin ang isang porsiyentong (1%) tubo at karapatang
-                  insurance. Ito ay papatawan ng dalawang porsiyentong (2%)
-                  multa kada buwan kung hindi mababayaran sa takdang buwanang
-                  hulog. Nakasaad din sa aking isusumite ang paggagamitan ng
-                  hihiraming halaga.
-                </p>
+                <ol className="list-decimal ml-8 grid gap-2">
+                  <li>
+                    Sa sandaling ang halagang aking inutang ay hindi ko
+                    mabayaran ayon sa Katibayan sa Pagkakautang at Pangako sa
+                    Pagbabayad, ang saping puhunan, deposito at anumang
+                    benepisyo na nakatalaga sa aking pangalan ay maaaring ibawas
+                    sa aking pagkakautang ayon sa batas at patakaran ng
+                    kooperatiba. Ang kabuuan ng natitirang balanse ay dapat
+                    mabayaran kong lahat, hindi lamang ang naantalang hulog
+                    kundi pati na rin ang multa at interes na hindi pa
+                    nababayaran o babawasin ito sa susunod na utang.
+                  </li>
+                  <li>
+                    Kung sakaling hindi ko maiayos ang pagbabayad sa loob ng
+                    isang buwan kahit hindi pa umabot sa maturity date ang aking
+                    utang, binibigyan ko ng kapangyarihan ang SHPCC na gawin ang
+                    sumusunod: a) bawasin sa anumang aking inimpok na Guarantee
+                    Time Deposit (GTD), time/term at savings deposit ang
+                    naantalang hulog b) awasin ang naantalang halaga sa impok ng
+                    aking mga anak na menor de edad na nasa aking pangangalaga
+                    kung meron man hanggang sa buong halaga ng aking
+                    pagkakautang at c) kung hindi ito mabayaran ay maaaring
+                    ilitin/kunin ang mga nabanggit na gamit o ng anumang
+                    kasangkapan / ari-arian na katumbas ng aking pagkakautang
+                    pagkatapos ng maturity date.
+                  </li>
+                  <li>
+                    Sa pagkukulang ko sa pagbabayad ayon sa kasunduang ito,
+                    magbabayad ako ng 1% multa sa naantalang hulog, 3% multa at
+                    dagdag na 1% - 3% interes sa balanse pagkalampas ng due date
+                    hanggang mabayaran ang utang ayon sa itinakdang patakaran ng
+                    Kooperatiba.
+                  </li>
+                  <li>
+                    Kapag hindi ako nakabayad sa takdang panahon, binibigyan ko
+                    ng karapatan ang SHPCC na gumawa ng anumang hakbanging legal
+                    at pananagutan ko ang anumang gugol sa abogado na hindi
+                    bababa sa 20% ng kabuuan ng natitirang pagkakautang kasama
+                    ang multa at di nabayarang tubo o pakinabang. Binibigyan ko
+                    rin ng pahintulot ang SHPCC na makipag-ugnayan sa mga ibang
+                    kooperatiba na ibigay o ilathala ang anumang impormasyon
+                    tungkol sa mga hindi ko mabayarang utang ng hindi lumalabag
+                    sa aking karapatang pantao.
+                  </li>
+                  <li>
+                    Kung ang aking inutang na back- to- back loan ay dadagdagan
+                    ko, ang interes ng aking utang ay magiging katulad ng
+                    regular loan.
+                  </li>
+                  <li>
+                    Nabasa ko, naintindihan at sumasang-ayon sa lahat ng
+                    nasasaad dito at kusang-loob na lumagda sa kasunduang ito.
+                  </li>
+                  <li>
+                    Narito sa baba ang aking lagda, kasama ng aking asawa /
+                    co-signor at bilang patunay ng aming pagsang-ayon.
+                  </li>
+                </ol>
               </div>
             </TermsAndConditions>
           )}

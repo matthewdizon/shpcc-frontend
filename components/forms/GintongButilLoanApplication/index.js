@@ -185,6 +185,7 @@ function GintongButilLoanApplication({
             <TermsAndConditions
               setShowModal={setShowModal}
               handleSubmit={handleSubmit}
+              isSmall={true}
             >
               <div className="mt-6 text-gray-500 grid gap-2 text-left">
                 <p>

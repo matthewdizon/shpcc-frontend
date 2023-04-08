@@ -1,14 +1,24 @@
 import { useState } from "react";
 
-function TermsAndConditions({ setShowModal, handleSubmit, children }) {
+function TermsAndConditions({ setShowModal, handleSubmit, children, isSmall }) {
   const [agree, setAgree] = useState(false);
 
   return (
-    <div className="w-full h-full fixed left-0 top-0 bg-[rgba(0,0,0,.5)] z-30 overflow-hidden grid items-center">
-      <div className="bg-white rounded-2xl shadow-xl transform transition-all absolute m-6 md:m-12">
+    <div className="w-full h-full fixed left-0 top-0 bg-[rgba(0,0,0,.5)] z-30 overflow-hidden grid items-center p-4">
+      <div
+        className={`bg-white rounded-2xl shadow-xl transform transition-all ${
+          isSmall ? "m-6 md:m-12 md:w-1/2 !mx-auto" : "md:m-12"
+        }`}
+      >
         <div className="text-center p-8">
           <span className="text-3xl font-black">Terms and Conditions</span>
-          <div className="overflow-auto h-[30rem] md:h-[40rem]">{children}</div>
+          <div
+            className={`overflow-auto ${
+              isSmall ? "" : "h-[30rem] md:max-h-[40rem]"
+            }`}
+          >
+            {children}
+          </div>
         </div>
         <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex justify-between items-center rounded-2xl">
           <div
