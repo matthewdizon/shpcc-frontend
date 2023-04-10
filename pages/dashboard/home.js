@@ -10,7 +10,7 @@ function Dashboard({ announcements }) {
   return (
     <Layout>
       <div className="flex justify-between min-h-screen">
-        <div className="w-[64vw] p-24 flex flex-col gap-12">
+        <div className="flex-grow p-24 flex flex-col gap-12">
           <div className="bg-white shadow-xl rounded-xl p-6 grid gap-6">
             <p className="font-extrabold text-4xl">Hello, {user?.email}!</p>
             <p>Welcome back!</p>
