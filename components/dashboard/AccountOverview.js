@@ -77,7 +77,9 @@ function AccountOverview({
                 </dt>
 
                 <dd class="text-4xl font-extrabold text-shpccRed md:text-xl">
-                  {associateMembershipData.accountNumber}
+                  {associateMembershipData.accountNumber
+                    ? associateMembershipData.accountNumber
+                    : "-"}
                 </dd>
               </div>
             </div>
@@ -144,7 +146,9 @@ function AccountOverview({
                 </dt>
 
                 <dd class="text-4xl font-extrabold text-shpccRed md:text-xl">
-                  {regularMembershipData.accountNumber}
+                  {regularMembershipData.accountNumber
+                    ? regularMembershipData.accountNumber
+                    : "-"}
                 </dd>
               </div>
             </div>
@@ -258,23 +262,23 @@ function AccountOverview({
         </div>
         <div className="grid gap-4">
           <p className="font-bold text-2xl">
-            {firstName} {lastName}
+            {firstName && lastName ? firstName + " " + lastName : "-"}
           </p>
           <div className="grid grid-cols-[1fr_2fr]">
             <p className="font-bold">Email</p>
-            <p className="font-light">{email}</p>
+            <p className="font-light">{email ? email : "-"}</p>
           </div>
           <div className="grid grid-cols-[1fr_2fr]">
             <p className="font-bold">Contact Number</p>
-            <p className="font-light">{contactNumber}</p>
+            <p className="font-light">{contactNumber ? contactNumber : "-"}</p>
           </div>
           <div className="grid grid-cols-[1fr_2fr]">
             <p className="font-bold">Address</p>
-            <p className="font-light">{address}</p>
+            <p className="font-light">{address ? address : "-"}</p>
           </div>
           <div className="grid grid-cols-[1fr_2fr]">
             <p className="font-bold">Facebook Name</p>
-            <p className="font-light">{facebookName}</p>
+            <p className="font-light">{facebookName ? facebookName : "-"}</p>
           </div>
         </div>
       </div>

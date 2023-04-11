@@ -330,25 +330,16 @@ function PersonalInformation({
           </select>
         </div>
         <div className="flex flex-col flex-grow">
-          <label
-            className={`font-light text-gray-400 text-sm ${
-              touchedFields.inTrustFor && !info?.inTrustFor
-                ? "text-red-500"
-                : ""
-            }`}
-          >
-            Held in Trust For *
+          <label className={`font-light text-gray-400 text-sm`}>
+            Held in Trust For
           </label>
           <input
             type="text"
             value={info?.inTrustFor}
             onChange={(e) => onChange("inTrustFor", e.target.value)}
-            className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
-              touchedFields.inTrustFor && !info?.inTrustFor
-                ? "border-red-500"
-                : ""
+            className={`${
+              isDisabled ? "bg-gray-200" : "bg-white"
             } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-            onBlur={() => handleBlur("inTrustFor")}
             disabled={isDisabled}
           />
         </div>

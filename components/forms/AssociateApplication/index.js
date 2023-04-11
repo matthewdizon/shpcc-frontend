@@ -32,7 +32,6 @@ function AssociateApplication({ data, formData, setFormData, isDisabled }) {
     contactNumber: true,
     religion: true,
     educationalAttainment: true,
-    inTrustFor: true,
     // Account Info
     accountType: true,
     barangay: true,

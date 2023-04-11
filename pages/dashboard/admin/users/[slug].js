@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 import Layout from "../../../../components/dashboard/Layout";
 import AccountOverview from "../../../../components/dashboard/AccountOverview";
@@ -89,6 +90,14 @@ function UserView() {
   return (
     <Layout>
       <div className="p-24">
+        <div className="pb-4">
+          <Link
+            href={`/dashboard/admin/users`}
+            className="bg-gray-200 text-black p-2 rounded-lg px-4 hover:bg-gray-300 active:bg-gray-400 transition duration-200"
+          >
+            Back
+          </Link>
+        </div>
         <AccountOverview
           data={data}
           gintongButilLoanApplications={data?.gintongButilLoanApplications}

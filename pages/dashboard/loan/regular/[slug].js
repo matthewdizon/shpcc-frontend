@@ -117,7 +117,7 @@ function RegularLoanHistoryView() {
         <div className="p-24">
           <div className="pb-4">
             <Link
-              href={`/dashboard/loan/gintong-butil/history`}
+              href={`/dashboard/loan/regular/history`}
               className="bg-gray-200 text-black p-2 rounded-lg px-4 hover:bg-gray-300 active:bg-gray-400 transition duration-200"
             >
               Back
