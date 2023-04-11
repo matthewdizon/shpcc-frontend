@@ -9,6 +9,7 @@ import Logo from "../../assets/images/logo.svg";
 
 export default function Layout({ children }) {
   const { user, setUser } = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -22,6 +23,7 @@ export default function Layout({ children }) {
 
   useEffect(() => {
     async function getUser() {
+      setLoading(true);
       const jwt = localStorage.getItem("accessToken");
 
       const res = await fetch(
@@ -40,20 +42,34 @@ export default function Layout({ children }) {
       } catch (error) {
         console.log(error);
       }
+
+      if (res.ok) {
+        setLoading(false);
+      } else {
+        setLoading(false);
+        console.log("Server Error");
+      }
     }
     getUser();
   }, []);
 
+  // fix this part -- upon refresh, it always defaults here
   if (!user)
     return (
       <div className="flex flex-col gap-4 items-center justify-center h-screen bg-[#f1f1f2] text-black">
-        <span className="font-bold text-3xl">Unauthorized Content</span>
-        <Link
-          className="bg-shpccRed text-white p-4 py-2 rounded-lg hover:cursor-pointer"
-          href={"/login"}
-        >
-          Login
-        </Link>
+        {loading ? (
+          <span className="font-bold text-3xl">Loading...</span>
+        ) : (
+          <>
+            <span className="font-bold text-3xl">Unauthorized Content</span>
+            <Link
+              className="bg-shpccRed text-white p-4 py-2 rounded-lg hover:cursor-pointer"
+              href={"/login"}
+            >
+              Login
+            </Link>
+          </>
+        )}
       </div>
     );
 
