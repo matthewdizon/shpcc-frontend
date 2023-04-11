@@ -233,14 +233,14 @@ export default function SideNav({ isOpen, reference, handleClick }) {
 
   return (
     <div
-      className={`w-full h-full fixed left-0 top-0 bg-[rgba(0,0,0,.5)] z-30 overflow-hidden grid items-center transition-opacity duration-1000 ${
+      className={`w-full h-full fixed left-0 top-0 bg-[rgba(0,0,0,.5)] z-30 overflow-hidden grid items-center transition-opacity duration-200 ${
         isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
       ref={reference}
       onClick={handleClick}
     >
       <nav
-        className={`bg-[#BE121A] w-64 flex flex-col items-center justify-between py-6 fixed h-full text-white z-40 transform transition-all ease-in-out duration-700 ${
+        className={`bg-[#BE121A] w-64 flex flex-col items-center justify-between py-6 fixed h-full text-white z-40 transform transition-all ease-in-out duration-300 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
