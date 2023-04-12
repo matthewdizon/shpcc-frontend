@@ -9,8 +9,18 @@ function AccountOverview({
   regularMembershipData,
   isAdmin,
 }) {
-  const { email, firstName, lastName, contactNumber, address, facebookName } =
-    data;
+  const {
+    email,
+    firstName,
+    lastName,
+    contactNumber,
+    address,
+    facebookName,
+    isAdmin: memberIsAdmin,
+    department,
+    associateAccountNumber,
+    regularAccountNumber,
+  } = data;
   const [showUpdateModal, setShowUpdateModal] = useState(null);
 
   const UserApplications = () => {
@@ -255,12 +265,26 @@ function AccountOverview({
     currContactNumber,
     currAddress,
     currFacebookName,
+    // Admin Info
+    currMemberIsAdmin,
+    currDepartment,
+    currAssociateAccountNumber,
+    currRegularAccountNumber,
   }) => {
     const [firstName, setFirstName] = useState(currFirstName);
     const [lastName, setLastName] = useState(currLastName);
     const [contactNumber, setContactNumber] = useState(currContactNumber);
     const [address, setAddress] = useState(currAddress);
     const [facebookName, setFacebookName] = useState(currFacebookName);
+    // Admin Info
+    const [memberIsAdmin, setMemberIsAdmin] = useState(currMemberIsAdmin);
+    const [department, setDepartment] = useState(currDepartment);
+    const [associateAccountNumber, setAssociateAccountNumber] = useState(
+      currAssociateAccountNumber
+    );
+    const [regularAccountNumber, setRegularAccountNumber] = useState(
+      currRegularAccountNumber
+    );
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -277,6 +301,11 @@ function AccountOverview({
             contactNumber,
             address,
             facebookName,
+            // Admin Info
+            isAdmin: memberIsAdmin,
+            department,
+            associateAccountNumber,
+            regularAccountNumber,
           }),
           headers: {
             "Content-Type": "application/json",
@@ -297,7 +326,7 @@ function AccountOverview({
         style={{ background: "rgba(50, 50, 50, 0.8)" }}
       >
         <form
-          className="bg-white p-16 rounded-2xl relative"
+          className="bg-white px-12 py-8 rounded-2xl relative"
           onSubmit={handleSubmit}
         >
           <svg
@@ -322,7 +351,7 @@ function AccountOverview({
           </svg>
           <p className="font-bold text-xl">Edit Profile</p>
           <div className="grid gap-4 py-8">
-            <div className="grid grid-cols-2">
+            <div className="grid grid-cols-2 items-center">
               <p>First Name</p>
               <input
                 type="text"
@@ -332,7 +361,7 @@ function AccountOverview({
                 className="px-4 py-2 rounded-xl border-2 border-gray-200"
               />
             </div>
-            <div className="grid grid-cols-2">
+            <div className="grid grid-cols-2 items-center">
               <p>Last Name</p>
               <input
                 type="text"
@@ -342,7 +371,7 @@ function AccountOverview({
                 className="px-4 py-2 rounded-xl border-2 border-gray-200"
               />
             </div>
-            <div className="grid grid-cols-2">
+            <div className="grid grid-cols-2 items-center">
               <p>Contact Number</p>
               <input
                 type="text"
@@ -352,7 +381,7 @@ function AccountOverview({
                 className="px-4 py-2 rounded-xl border-2 border-gray-200"
               />
             </div>
-            <div className="grid grid-cols-2">
+            <div className="grid grid-cols-2 items-center">
               <p>Address</p>
               <input
                 type="text"
@@ -362,7 +391,7 @@ function AccountOverview({
                 className="px-4 py-2 rounded-xl border-2 border-gray-200"
               />
             </div>
-            <div className="grid grid-cols-2">
+            <div className="grid grid-cols-2 items-center">
               <p>Facebook Name</p>
               <input
                 type="text"
@@ -372,6 +401,61 @@ function AccountOverview({
                 className="px-4 py-2 rounded-xl border-2 border-gray-200"
               />
             </div>
+            {isAdmin && (
+              // this checks if the currently logged in user is an admin
+              <>
+                <p className="font-bold text-xl">Admin Settings</p>
+                <p className="uppercase text-xs">Previous Member Data</p>
+                <div className="grid grid-cols-2 items-center">
+                  <p>Associate Account Number</p>
+                  <input
+                    type="text"
+                    onChange={(e) => setAssociateAccountNumber(e.target.value)}
+                    value={associateAccountNumber}
+                    placeholder="Associate Account #"
+                    className="px-4 py-2 rounded-xl border-2 border-gray-200"
+                  />
+                </div>
+                <div className="grid grid-cols-2 items-center">
+                  <p>Regular Account Number</p>
+                  <input
+                    type="text"
+                    onChange={(e) => setRegularAccountNumber(e.target.value)}
+                    value={regularAccountNumber}
+                    placeholder="Regular Account #"
+                    className="px-4 py-2 rounded-xl border-2 border-gray-200"
+                  />
+                </div>
+                <p className="uppercase text-xs">Admin Privileges</p>
+                <div className="grid grid-cols-2">
+                  <p>Set As Admin</p>
+                  <input
+                    type="checkbox"
+                    onChange={(e) => setMemberIsAdmin(!memberIsAdmin)}
+                    checked={memberIsAdmin}
+                    className="px-4 py-2 rounded-xl border-2 border-gray-200"
+                  />
+                </div>
+                {memberIsAdmin && (
+                  <>
+                    <div className="grid grid-cols-2 items-center">
+                      <p>Department</p>
+                      <select
+                        className={`border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full`}
+                        value={department}
+                        onChange={(e) => setDepartment(e.target.value)}
+                      >
+                        <option value="none" defaultValue>
+                          None
+                        </option>
+                        <option value="Loans">Loans</option>
+                        <option value="Memberships">Memberships</option>
+                      </select>
+                    </div>
+                  </>
+                )}
+              </>
+            )}
           </div>
           <div className="flex justify-end">
             <button
@@ -396,6 +480,10 @@ function AccountOverview({
           currContactNumber={contactNumber}
           currAddress={address}
           currFacebookName={facebookName}
+          currMemberIsAdmin={memberIsAdmin}
+          currDepartment={department}
+          currAssociateAccountNumber={associateAccountNumber}
+          currRegularAccountNumber={regularAccountNumber}
         />
       )}
       <div className="bg-white p-8 rounded-3xl">
