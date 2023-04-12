@@ -1,9 +1,11 @@
 import Layout from "../../../components/dashboard/Layout";
 import Link from "next/link";
+import { useContext } from "react";
+import { UserContext } from "../../../context/userContext";
 
 function Membership() {
-  // detect the membership type of the currently logged in user
-  // should show which links are disabled/enabled
+  const { user } = useContext(UserContext);
+
   return (
     <Layout>
       <div className="p-24 h-screen">
@@ -24,9 +26,18 @@ function Membership() {
             </p>
           </Link>
           <Link
-            href={"/dashboard/membership/regular-application"}
-            className="bg-white rounded-xl shadow-xl p-4 flex flex-col justify-between relative overflow-hidden hover:shadow-2xl hover:cursor-pointer"
-            // className="bg-white rounded-xl shadow-xl p-4 flex flex-col justify-between relative overflow-hidden opacity-40"
+            href={
+              user?.membershipType === "Associate" ||
+              user?.membershipType === "Regular"
+                ? "/dashboard/membership/regular-application"
+                : "/dashboard/membership"
+            }
+            className={`bg-white rounded-xl shadow-xl p-4 flex flex-col justify-between relative overflow-hidden ${
+              user?.membershipType === "Associate" ||
+              user?.membershipType === "Regular"
+                ? "hover:shadow-2xl hover:cursor-pointer"
+                : "opacity-40 hover:cursor-not-allowed"
+            }`}
           >
             <span className="absolute right-0 -bottom-12 text-[300px] opacity-20 font-black leading-none">
               2

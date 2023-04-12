@@ -1,17 +1,35 @@
 import Layout from "../../../components/dashboard/Layout";
 import Link from "next/link";
+import { useContext } from "react";
+import { UserContext } from "../../../context/userContext";
 
 function Loan() {
+  const { user } = useContext(UserContext);
   return (
     <Layout>
       <div className="p-24 h-screen">
-        <p className="pb-12 font-extrabold text-3xl">
+        <p className="font-extrabold text-3xl">
           What type of loan are you applying for?
+        </p>
+        <p className="py-6 italic">
+          Note: You need to be a{" "}
+          <Link href={`/dashboard/membership`} className="font-bold underline">
+            Regular Member
+          </Link>{" "}
+          to apply for loans
         </p>
         <div className="grid grid-cols-2 gap-8 h-1/2">
           <Link
-            href={"/dashboard/loan/gintong-butil"}
-            className="bg-white rounded-xl shadow-xl p-4 flex flex-col justify-between relative overflow-hidden hover:shadow-2xl hover:cursor-pointer"
+            href={
+              user?.membershipType === "Regular"
+                ? "/dashboard/loan/gintong-butil"
+                : "/dashboard/loan"
+            }
+            className={`bg-white rounded-xl shadow-xl p-4 flex flex-col justify-between relative overflow-hidden ${
+              user?.membershipType === "Regular"
+                ? "hover:shadow-2xl hover:cursor-pointer"
+                : "opacity-40 hover:cursor-not-allowed"
+            }`}
           >
             <span className="absolute right-0 -bottom-12 text-[300px] opacity-20 font-black leading-none">
               1
@@ -22,8 +40,16 @@ function Loan() {
             </p>
           </Link>
           <Link
-            href={"/dashboard/loan/regular"}
-            className="bg-white rounded-xl shadow-xl p-4 flex flex-col justify-between relative overflow-hidden hover:shadow-2xl hover:cursor-pointer"
+            href={
+              user?.membershipType === "Regular"
+                ? "/dashboard/loan/regular"
+                : "/dashboard/loan"
+            }
+            className={`bg-white rounded-xl shadow-xl p-4 flex flex-col justify-between relative overflow-hidden ${
+              user?.membershipType === "Regular"
+                ? "hover:shadow-2xl hover:cursor-pointer"
+                : "opacity-40 hover:cursor-not-allowed"
+            }`}
           >
             <span className="absolute right-0 -bottom-12 text-[300px] opacity-20 font-black leading-none">
               2
