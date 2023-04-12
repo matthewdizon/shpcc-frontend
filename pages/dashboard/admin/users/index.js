@@ -36,8 +36,9 @@ function Users() {
     setSearch(search);
 
     const filteredData = data?.filter((data) => {
+      const isAdminString = data.isAdmin ? "admin" : "";
       const searchContext =
-        `${data.email} ${data.firstName} ${data.lastName} ${data.contactNumber} ${data.membershipType}`.toLowerCase();
+        `${data.email} ${data.firstName} ${data.lastName} ${data.contactNumber} ${data.membershipType} ${data.associateAccountNumber} ${data.regularAccountNumber} ${data.department} ${isAdminString}`.toLowerCase();
       const hasSearchMatch = searchContext.includes(search.toLowerCase());
 
       return hasSearchMatch;
@@ -58,9 +59,6 @@ function Users() {
             value={search}
             onChange={(e) => handleSearchCriteriaChange(e.target.value)}
           />
-          <div className="bg-white rounded-md shadow-md max-w-max p-2 px-4 hover:cursor-pointer">
-            <span className="font-thin text-sm">Sort by: Account Number</span>
-          </div>
         </div>
         <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-lg p-4">
           <table className="min-w-full divide-y-2 divide-gray-200">
@@ -77,6 +75,9 @@ function Users() {
                 </th>
                 <th className="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
                   Account Type
+                </th>
+                <th className="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
+                  Admin
                 </th>
                 <th className="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
                   Action
@@ -97,12 +98,29 @@ function Users() {
                         : "-"}
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
-                      {user.contactNumber ?? "-"}
+                      {user.contactNumber ? user.contactNumber : "-"}
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
                       {user.membershipType === "none"
                         ? "-"
-                        : user.membershipType}
+                        : user.membershipType === "Associate"
+                        ? `${user.membershipType}: ${
+                            user.associateAccountNumber
+                              ? user.associateAccountNumber
+                              : ""
+                          }`
+                        : `${user.membershipType}: ${
+                            user.regularAccountNumber
+                              ? user.regularAccountNumber
+                              : ""
+                          }`}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
+                      {user.isAdmin
+                        ? user.department === "none"
+                          ? "Admin"
+                          : `${user.department} Officer`
+                        : "-"}
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                       <Link
