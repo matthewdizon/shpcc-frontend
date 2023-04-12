@@ -198,13 +198,17 @@ export default function SideNav({ isOpen, reference, handleClick }) {
 
   const links = [
     {
+      link: "Users",
+      svg: <UserSVG />,
+    },
+    {
       link: "Account",
       svg: <ProfileSVG />,
     },
-    {
-      link: "Home",
-      svg: <HomeSVG />,
-    },
+    // {
+    //   link: "Home",
+    //   svg: <HomeSVG />,
+    // },
     {
       link: "Membership",
       svg: <MembershipSVG />,
@@ -216,10 +220,6 @@ export default function SideNav({ isOpen, reference, handleClick }) {
     {
       link: "Announcements",
       svg: <AnnouncementSVG />,
-    },
-    {
-      link: "Users",
-      svg: <UserSVG />,
     },
     // {
     //   link: "Request",
@@ -248,6 +248,7 @@ export default function SideNav({ isOpen, reference, handleClick }) {
         <div className="grid gap-4">
           {links.map((link, index) => {
             if (!user.isAdmin && link.link === "Users") return null;
+            if (user.isAdmin && link.link === "Account") return null;
             return (
               <Link
                 className={`flex items-center gap-2 hover:text-shpccYellow hover:cursor-pointer hover:bg-black p-4 rounded-lg font-semibold uppercase transition duration-200 ${

@@ -2,8 +2,10 @@ import Layout from "../../../components/dashboard/Layout";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../context/userContext";
 import AccountOverview from "../../../components/dashboard/AccountOverview";
+import { getAnnouncements } from "../../../lib/api";
+import Link from "next/link";
 
-function Account() {
+function Account({ announcements }) {
   const { user } = useContext(UserContext);
 
   const [data, setData] = useState({});
@@ -86,17 +88,56 @@ function Account() {
 
   return (
     <Layout>
-      <div className="p-24">
-        <AccountOverview
-          data={data}
-          gintongButilLoanApplications={data?.gintongButilLoanApplications}
-          regularLoanApplications={data?.regularLoanApplications}
-          associateMembershipData={associateMembershipData}
-          regularMembershipData={regularMembershipData}
-        />
+      <div className="flex justify-between min-h-screen">
+        <div className="p-24 flex-grow">
+          <AccountOverview
+            data={data}
+            gintongButilLoanApplications={data?.gintongButilLoanApplications}
+            regularLoanApplications={data?.regularLoanApplications}
+            associateMembershipData={associateMembershipData}
+            regularMembershipData={regularMembershipData}
+          />
+        </div>
+        <div className="bg-[#D9D9D9] p-8 w-[20vw]">
+          <p className="font-bold text-2xl">Announcements</p>
+          <hr className="bg-black h-[2px] my-2" />
+          <div className="grid gap-4">
+            {announcements?.map((announcement, index) => {
+              const { title, dateAndTime, description, slug } = announcement;
+              return (
+                <Link key={index} href={`/dashboard/announcements/${slug}`}>
+                  <div className="grid gap-2 hover:bg-gray-200 rounded-lg p-2">
+                    <h2 className="font-bold text-lg">{title}</h2>
+                    <span className="font-thin">
+                      {Intl.DateTimeFormat("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                        hour: "numeric",
+                        minute: "numeric",
+                        hour12: true,
+                      }).format(new Date(dateAndTime))}
+                    </span>
+                    <p className="font-thin">{description}</p>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </Layout>
   );
 }
 
 export default Account;
+
+export async function getServerSideProps() {
+  const announcements = (await getAnnouncements()) ?? [];
+
+  return {
+    props: {
+      announcements,
+    },
+  };
+}

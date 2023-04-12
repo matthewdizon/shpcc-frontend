@@ -80,7 +80,7 @@ export default function Layout({ children }) {
         <p>You are not an adminstrator</p>
         <Link
           className="bg-shpccRed text-white p-4 py-2 rounded-lg hover:cursor-pointer"
-          href={"/dashboard/home"}
+          href={"/dashboard/account"}
         >
           Go Home
         </Link>
@@ -119,7 +119,9 @@ export default function Layout({ children }) {
       <nav className="block bg-shpccRed px-6 md:px-12 relative z-20 text-white">
         <div className="flex justify-between items-center">
           <Link
-            href={user?.isAdmin ? "/dashboard/admin/home" : "/dashboard/home"}
+            href={
+              user?.isAdmin ? "/dashboard/admin/home" : "/dashboard/account"
+            }
             className="relative flex items-center gap-4"
           >
             <Image src={Logo} alt="Logo" width={60} height={60} />

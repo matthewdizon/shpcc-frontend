@@ -49,8 +49,8 @@ function Login() {
 
       // Redirect the user to the home page
       isAdmin
-        ? Router.push("/dashboard/admin/home")
-        : Router.push("/dashboard/home");
+        ? Router.push("/dashboard/admin/users")
+        : Router.push("/dashboard/account");
     } else {
       console.log("error", res);
       // Set error message
