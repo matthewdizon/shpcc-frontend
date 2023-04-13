@@ -110,7 +110,7 @@ function PersonalInformation({
             disabled={isDisabled}
           />
         </div>
-        <div className="flex flex-col w-[20%]">
+        <div className="flex flex-col">
           <label
             className={`font-light text-gray-400 text-sm ${
               touchedFields.dateOfBirth && !info?.dateOfBirth
@@ -299,7 +299,7 @@ function PersonalInformation({
             disabled={isDisabled}
           />
         </div>
-        <div className="flex flex-col w-[20%]">
+        <div className="flex flex-col">
           <label
             className={`font-light text-gray-400 text-sm ${
               touchedFields.educationalAttainment &&

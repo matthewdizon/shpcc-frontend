@@ -12,7 +12,7 @@ function IncomeInformation({ info, onChange, isDisabled, handleBlur }) {
   const total = applicantTotal + spouseTotal;
 
   return (
-    <div className="grid grid-cols-2 gap-8">
+    <div className="grid md:grid-cols-2 gap-8">
       <div className="grid gap-2 py-2">
         <h2 className="text-gray-500 font-bold text-xl py-4">
           Applicant&apos;s Monthly Income
@@ -162,7 +162,7 @@ function IncomeInformation({ info, onChange, isDisabled, handleBlur }) {
         </div>
       </div>
       <p
-        className={`col-span-2 text-center text-2xl font-bold italic ${
+        className={`md:col-span-2 text-center text-2xl font-bold italic ${
           isNaN(total) ? "text-shpccRed" : ""
         }`}
       >

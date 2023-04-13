@@ -15,7 +15,7 @@ function CompanyInformation({ info, onChange, isDisabled }) {
             onChange={(e) => onChange("business", e.target.value)}
             className={`${
               isDisabled ? "bg-gray-200" : "bg-white"
-            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 w-1/2`}
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 lg:w-1/2`}
             disabled={isDisabled}
           />
         </div>

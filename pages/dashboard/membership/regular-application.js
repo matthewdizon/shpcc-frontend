@@ -2,6 +2,7 @@ import Layout from "../../../components/dashboard/Layout";
 import RegularMemberApplication from "../../../components/forms/RegularMemberApplication";
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../../../context/userContext";
+import Link from "next/link";
 
 function RegularMemberApplicationPage() {
   const { user } = useContext(UserContext);
@@ -258,8 +259,16 @@ function RegularMemberApplicationPage() {
   if (data && !data?.isDraft) {
     return (
       <Layout>
-        <div className="p-24">
-          <p className="pb-8 italic">
+        <div className="p-4 sm:p-6 md:p-12 lg:p-16">
+          <div className="flex justify-between">
+            <Link
+              href={`/dashboard/membership`}
+              className="bg-gray-200 text-black p-2 rounded-lg px-4 hover:bg-gray-300 active:bg-gray-400 transition duration-200"
+            >
+              Back
+            </Link>
+          </div>
+          <p className="pt-4 pb-8 italic">
             Your form has been submitted and is being reviewed by SHPCC, please
             wait for further instructions. Thank you!
           </p>
@@ -276,7 +285,15 @@ function RegularMemberApplicationPage() {
 
   return (
     <Layout>
-      <div className="p-24">
+      <div className="p-4 sm:p-6 md:p-12 lg:p-16">
+        <div className="flex justify-between pb-4">
+          <Link
+            href={`/dashboard/membership`}
+            className="bg-gray-200 text-black p-2 rounded-lg px-4 hover:bg-gray-300 active:bg-gray-400 transition duration-200"
+          >
+            Back
+          </Link>
+        </div>
         <RegularMemberApplication
           data={data}
           formData={formData}

@@ -232,7 +232,13 @@ function SpouseInformation({
           </div>
           {info?.spouseEmploymentType === "employedAndOrBusinessOwner" ? (
             <div className="flex flex-wrap gap-4 col-span-4">
-              <label className="flex gap-2 font-medium text-gray-400 text-sm items-center w-full">
+              <label
+                className={`flex gap-2 font-medium text-gray-400 text-sm items-center w-full ${
+                  !info?.spouseIsEmployee && !info?.spouseIsBusinessOwner
+                    ? "text-red-500"
+                    : ""
+                }`}
+              >
                 <input
                   type="checkbox"
                   name="spouseIsEmployee"
@@ -330,7 +336,13 @@ function SpouseInformation({
                   </div>
                 </>
               )}
-              <label className="flex gap-2 font-medium text-gray-400 text-sm items-center w-full">
+              <label
+                className={`flex gap-2 font-medium text-gray-400 text-sm items-center w-full ${
+                  !info?.spouseIsEmployee && !info?.spouseIsBusinessOwner
+                    ? "text-red-500"
+                    : ""
+                }`}
+              >
                 <input
                   type="checkbox"
                   name="spouseIsBusinessOwner"

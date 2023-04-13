@@ -220,7 +220,7 @@ function BeneficiariesDependents({
         {info?.shpccFamilyMembers.map((familyMember, index) => {
           return (
             <div key={index} className="flex justify-between w-full">
-              <div className="flex flex-col w-1/2">
+              <div className="flex flex-col lg:w-1/2">
                 <label className=" font-light text-gray-400 text-sm">
                   Name of Family Members Who Are Part Of SHPCC
                 </label>

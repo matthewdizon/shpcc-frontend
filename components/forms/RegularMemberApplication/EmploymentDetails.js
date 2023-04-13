@@ -103,7 +103,13 @@ function EmploymentDetails({
           </div>
           {info?.employmentType === "employedAndOrBusinessOwner" ? (
             <div className="flex flex-wrap gap-4 col-span-4">
-              <label className="flex gap-2 font-medium text-gray-400 text-sm items-center w-full">
+              <label
+                className={`flex gap-2 font-medium text-gray-400 text-sm items-center w-full ${
+                  !info?.isEmployee && !info?.isBusinessOwner
+                    ? "text-red-500"
+                    : ""
+                }`}
+              >
                 <input
                   type="checkbox"
                   name="isEmployee"
@@ -193,7 +199,13 @@ function EmploymentDetails({
                   </div>
                 </>
               )}
-              <label className="flex gap-2 font-medium text-gray-400 text-sm items-center w-full">
+              <label
+                className={`flex gap-2 font-medium text-gray-400 text-sm items-center w-full ${
+                  !info?.isEmployee && !info?.isBusinessOwner
+                    ? "text-red-500"
+                    : ""
+                }`}
+              >
                 <input
                   type="checkbox"
                   name="isBusinessOwner"

@@ -267,14 +267,14 @@ function AssociateApplication({ data, formData, setFormData, isDisabled }) {
         />
       </form>
       {!isDisabled && (
-        <div className="flex flex-wrap justify-between">
+        <div className="flex flex-wrap flex-col md:flex-row justify-between">
           <Link
             href={`/dashboard/membership`}
-            className="bg-gray-200 text-black p-2 rounded-lg my-4 px-8 hover:bg-gray-300 active:bg-gray-400 transition duration-200"
+            className="bg-gray-200 text-black p-2 rounded-lg my-4 px-8 hover:bg-gray-300 active:bg-gray-400 transition duration-200 text-center"
           >
             Back
           </Link>
-          <div className="flex gap-4">
+          <div className="flex flex-col md:flex-row md:gap-4">
             <button
               className="bg-white text-shpccRed border-shpccRed border-2 p-2 rounded-lg my-4 px-8 hover:opacity-40"
               onClick={handleSaveDraft}

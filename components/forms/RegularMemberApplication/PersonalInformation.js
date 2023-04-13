@@ -271,7 +271,7 @@ function PersonalInformation({
             </div>
           </div>
         </div>
-        <div className="flex flex-col w-[20%]">
+        <div className="flex flex-col">
           <label
             className={`font-light text-gray-400 text-sm ${
               touchedFields.dateOfBirth && !info?.dateOfBirth
@@ -336,7 +336,7 @@ function PersonalInformation({
             disabled={isDisabled}
           />
         </div>
-        <div className="flex flex-col w-[20%]">
+        <div className="flex flex-col">
           <label
             className={`font-light text-gray-400 text-sm ${
               touchedFields.educationalAttainment &&
@@ -498,7 +498,7 @@ function PersonalInformation({
             Type of Residence
           </label>
           <div
-            className="grid grid-cols-4 col-span-4"
+            className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 col-span-4"
             onChange={(e) => onChange("residenceType", e.target.value)}
           >
             <label className="flex gap-2 font-medium text-gray-400 text-sm items-center">
@@ -544,7 +544,7 @@ function PersonalInformation({
           </div>
           {info?.residenceType === "homeAndLandOwner" ||
           info?.residenceType === "homeOwner" ? (
-            <div className="flex flex-col">
+            <div className="flex flex-col col-span-4 sm:col-span-1">
               <label
                 className={`font-light text-gray-400 text-sm ${
                   touchedFields.yearsInResidence && !info?.yearsInResidence
@@ -569,7 +569,7 @@ function PersonalInformation({
             </div>
           ) : (
             <div className="flex flex-wrap gap-4 col-span-4">
-              <div className="flex flex-col">
+              <div className="flex flex-col w-full md:w-auto">
                 <label
                   className={`font-light text-gray-400 text-sm ${
                     touchedFields.residenceOwnerName &&
@@ -596,7 +596,7 @@ function PersonalInformation({
                   disabled={isDisabled}
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col w-full md:w-auto">
                 <label
                   className={`font-light text-gray-400 text-sm ${
                     touchedFields.residenceAddress && !info?.residenceAddress
@@ -619,7 +619,7 @@ function PersonalInformation({
                   disabled={isDisabled}
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col w-full md:w-auto">
                 <label
                   className={`font-light text-gray-400 text-sm ${
                     touchedFields.yearsInResidence && !info?.yearsInResidence
