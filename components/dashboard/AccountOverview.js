@@ -25,9 +25,9 @@ function AccountOverview({
 
   const UserApplications = () => {
     return (
-      <div className="py-4 grid gap-4 grid-cols-2">
+      <div className="py-4 grid gap-4 lg:grid-cols-2">
         <div className="bg-white rounded-2xl p-8">
-          <div className="flex justify-between items-center pb-4">
+          <div className="flex flex-col gap-4 xl:flex-row justify-between items-center pb-4 text-center">
             <p className="font-bold text-lg">
               Associate Membership Application
             </p>
@@ -38,34 +38,34 @@ function AccountOverview({
                     ? `/dashboard/admin/membership/associate/${email}`
                     : "/dashboard/membership/associate-application"
                 }`}
-                className="bg-shpccRed text-white p-2 px-4 rounded-md hover:underline text-xs"
+                className="bg-shpccRed text-white p-2 px-4 rounded-md hover:underline text-xs w-full xl:max-w-max"
               >
                 {!associateMembershipData ? "Apply" : "View"}
               </Link>
             )}
           </div>
           {!associateMembershipData ? (
-            <dd class="text-4xl font-extrabold text-shpccRed md:text-xl">
+            <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
               No Application Data
             </dd>
           ) : associateMembershipData.isDraft === true ? (
-            <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center col-span-2">
+            <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center md:col-span-2">
               <dt class="order-last text-xs font-medium text-gray-400">
                 Status
               </dt>
 
-              <dd class="text-4xl font-extrabold text-shpccRed md:text-xl">
+              <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
                 Draft
               </dd>
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-2">
-              <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center col-span-2">
+            <div className="grid md:grid-cols-2 gap-2">
+              <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center md:col-span-2">
                 <dt class="order-last text-xs font-medium text-gray-400">
                   Status
                 </dt>
 
-                <dd class="text-4xl font-extrabold text-shpccRed md:text-xl">
+                <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
                   {associateMembershipData.status}
                 </dd>
               </div>
@@ -74,7 +74,7 @@ function AccountOverview({
                   Submission Date
                 </dt>
 
-                <dd class="text-4xl font-extrabold text-shpccRed md:text-xl">
+                <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
                   {associateMembershipData?.dateSubmitted &&
                     Intl.DateTimeFormat("en-US", {
                       year: "numeric",
@@ -88,7 +88,7 @@ function AccountOverview({
                   Associate Account Number
                 </dt>
 
-                <dd class="text-4xl font-extrabold text-shpccRed md:text-xl">
+                <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
                   {associateMembershipData.accountNumber
                     ? associateMembershipData.accountNumber
                     : "-"}
@@ -98,7 +98,7 @@ function AccountOverview({
           )}
         </div>
         <div className="bg-white rounded-2xl p-8">
-          <div className="flex justify-between items-center pb-4">
+          <div className="flex flex-col gap-4 xl:flex-row justify-between items-center pb-4 text-center">
             <p className="font-bold text-lg">Regular Membership Application</p>
             {isAdmin && !regularMembershipData?.dateSubmitted ? null : (
               <Link
@@ -107,34 +107,34 @@ function AccountOverview({
                     ? `/dashboard/admin/membership/regular/${email}`
                     : "/dashboard/membership/regular-application"
                 }`}
-                className="bg-shpccRed text-white p-2 px-4 rounded-md hover:underline text-xs"
+                className="bg-shpccRed text-white p-2 px-4 rounded-md hover:underline text-xs w-full xl:max-w-max"
               >
                 {!regularMembershipData ? "Apply" : "View"}
               </Link>
             )}
           </div>
           {!regularMembershipData ? (
-            <dd class="text-4xl font-extrabold text-shpccRed md:text-xl">
+            <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
               No Application Data
             </dd>
           ) : regularMembershipData.isDraft === true ? (
-            <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center col-span-2">
+            <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center md:col-span-2">
               <dt class="order-last text-xs font-medium text-gray-400">
                 Status
               </dt>
 
-              <dd class="text-4xl font-extrabold text-shpccRed md:text-xl">
+              <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
                 Draft
               </dd>
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-2">
-              <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center col-span-2">
+            <div className="grid md:grid-cols-2 gap-2">
+              <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center md:col-span-2">
                 <dt class="order-last text-xs font-medium text-gray-400">
                   Status
                 </dt>
 
-                <dd class="text-4xl font-extrabold text-shpccRed md:text-xl">
+                <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
                   {regularMembershipData.status}
                 </dd>
               </div>
@@ -143,7 +143,7 @@ function AccountOverview({
                   Submission Date
                 </dt>
 
-                <dd class="text-4xl font-extrabold text-shpccRed md:text-xl">
+                <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
                   {regularMembershipData?.dateSubmitted &&
                     Intl.DateTimeFormat("en-US", {
                       year: "numeric",
@@ -157,7 +157,7 @@ function AccountOverview({
                   Associate Account Number
                 </dt>
 
-                <dd class="text-4xl font-extrabold text-shpccRed md:text-xl">
+                <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
                   {regularMembershipData.accountNumber
                     ? regularMembershipData.accountNumber
                     : "-"}
@@ -322,7 +322,7 @@ function AccountOverview({
 
     return (
       <div
-        className={`fixed inset-0 flex items-center justify-center`}
+        className={`fixed inset-0 flex items-center justify-center p-8 z-40`}
         style={{ background: "rgba(50, 50, 50, 0.8)" }}
       >
         <form
@@ -351,7 +351,7 @@ function AccountOverview({
           </svg>
           <p className="font-bold text-xl">Edit Profile</p>
           <div className="grid gap-4 py-8">
-            <div className="grid grid-cols-2 items-center">
+            <div className="grid sm:grid-cols-2 items-center">
               <p>First Name</p>
               <input
                 type="text"
@@ -361,7 +361,7 @@ function AccountOverview({
                 className="px-4 py-2 rounded-xl border-2 border-gray-200"
               />
             </div>
-            <div className="grid grid-cols-2 items-center">
+            <div className="grid sm:grid-cols-2 items-center">
               <p>Last Name</p>
               <input
                 type="text"
@@ -371,7 +371,7 @@ function AccountOverview({
                 className="px-4 py-2 rounded-xl border-2 border-gray-200"
               />
             </div>
-            <div className="grid grid-cols-2 items-center">
+            <div className="grid sm:grid-cols-2 items-center">
               <p>Contact Number</p>
               <input
                 type="text"
@@ -381,7 +381,7 @@ function AccountOverview({
                 className="px-4 py-2 rounded-xl border-2 border-gray-200"
               />
             </div>
-            <div className="grid grid-cols-2 items-center">
+            <div className="grid sm:grid-cols-2 items-center">
               <p>Address</p>
               <input
                 type="text"
@@ -391,7 +391,7 @@ function AccountOverview({
                 className="px-4 py-2 rounded-xl border-2 border-gray-200"
               />
             </div>
-            <div className="grid grid-cols-2 items-center">
+            <div className="grid sm:grid-cols-2 items-center">
               <p>Facebook Name</p>
               <input
                 type="text"
@@ -406,7 +406,7 @@ function AccountOverview({
               <>
                 <p className="font-bold text-xl">Admin Settings</p>
                 <p className="uppercase text-xs">Previous Member Data</p>
-                <div className="grid grid-cols-2 items-center">
+                <div className="grid sm:grid-cols-2 items-center">
                   <p>Associate Account Number</p>
                   <input
                     type="text"
@@ -416,7 +416,7 @@ function AccountOverview({
                     className="px-4 py-2 rounded-xl border-2 border-gray-200"
                   />
                 </div>
-                <div className="grid grid-cols-2 items-center">
+                <div className="grid sm:grid-cols-2 items-center">
                   <p>Regular Account Number</p>
                   <input
                     type="text"
@@ -438,7 +438,7 @@ function AccountOverview({
                 </div>
                 {memberIsAdmin && (
                   <>
-                    <div className="grid grid-cols-2 items-center">
+                    <div className="grid sm:grid-cols-2 items-center">
                       <p>Department</p>
                       <select
                         className={`border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full`}
@@ -487,16 +487,16 @@ function AccountOverview({
         />
       )}
       <div className="bg-white p-8 rounded-3xl">
-        <div className="flex justify-between items-center">
-          <p className="font-bold text-3xl pb-4">Profile Overview</p>
-          <div className="flex gap-4">
+        <div className="flex flex-col lg:flex-row justify-between items-center gap-4 pb-8">
+          <p className="font-bold text-3xl">Profile Overview</p>
+          <div className="flex flex-col md:flex-row gap-4 w-full lg:w-auto">
             <div
-              className="bg-gray-200 text-black p-2 px-6 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-200 text-center hover:cursor-pointer"
+              className="bg-gray-200 text-black p-2 px-6 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-200 text-center hover:cursor-pointer w-full lg:w-auto"
               onClick={() => setShowUpdateModal(true)}
             >
               Edit Profile
             </div>
-            <div className="bg-gray-200 text-black p-2 px-6 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-200 text-center">
+            <div className="bg-gray-200 text-black p-2 px-6 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-200 text-center w-full lg:w-auto">
               Change Password
             </div>
           </div>
@@ -505,19 +505,19 @@ function AccountOverview({
           <p className="font-bold text-2xl">
             {firstName && lastName ? firstName + " " + lastName : "-"}
           </p>
-          <div className="grid grid-cols-[1fr_2fr]">
+          <div className="grid md:grid-cols-[1fr_2fr]">
             <p className="font-bold">Email</p>
             <p className="font-light">{email ? email : "-"}</p>
           </div>
-          <div className="grid grid-cols-[1fr_2fr]">
+          <div className="grid md:grid-cols-[1fr_2fr]">
             <p className="font-bold">Contact Number</p>
             <p className="font-light">{contactNumber ? contactNumber : "-"}</p>
           </div>
-          <div className="grid grid-cols-[1fr_2fr]">
+          <div className="grid md:grid-cols-[1fr_2fr]">
             <p className="font-bold">Address</p>
             <p className="font-light">{address ? address : "-"}</p>
           </div>
-          <div className="grid grid-cols-[1fr_2fr]">
+          <div className="grid md:grid-cols-[1fr_2fr]">
             <p className="font-bold">Facebook Name</p>
             <p className="font-light">{facebookName ? facebookName : "-"}</p>
           </div>

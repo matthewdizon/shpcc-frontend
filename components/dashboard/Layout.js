@@ -120,7 +120,7 @@ export default function Layout({ children }) {
         <div className="flex justify-between items-center">
           <Link
             href={
-              user?.isAdmin ? "/dashboard/admin/home" : "/dashboard/account"
+              user?.isAdmin ? "/dashboard/admin/users" : "/dashboard/account"
             }
             className="relative flex items-center gap-4"
           >

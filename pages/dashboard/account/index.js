@@ -88,8 +88,8 @@ function Account({ announcements }) {
 
   return (
     <Layout>
-      <div className="flex justify-between min-h-screen">
-        <div className="p-24 flex-grow">
+      <div className="flex flex-col-reverse lg:flex-row justify-between min-h-screen">
+        <div className="p-4 sm:p-6 md:p-12 lg:p-16 flex-grow">
           <AccountOverview
             data={data}
             gintongButilLoanApplications={data?.gintongButilLoanApplications}
@@ -98,11 +98,16 @@ function Account({ announcements }) {
             regularMembershipData={regularMembershipData}
           />
         </div>
-        <div className="bg-[#D9D9D9] p-8 w-[20vw]">
-          <p className="font-bold text-2xl">Announcements</p>
+        <div className="bg-[#D9D9D9] p-8 lg:w-[30vw]">
+          <Link
+            href={"/dashboard/announcements"}
+            className="font-bold text-2xl"
+          >
+            Announcements
+          </Link>
           <hr className="bg-black h-[2px] my-2" />
           <div className="grid gap-4">
-            {announcements?.map((announcement, index) => {
+            {announcements?.slice(0, 2)?.map((announcement, index) => {
               const { title, dateAndTime, description, slug } = announcement;
               return (
                 <Link key={index} href={`/dashboard/announcements/${slug}`}>
