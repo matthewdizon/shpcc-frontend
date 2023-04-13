@@ -278,8 +278,8 @@ function RegularApplicationView() {
 
   return (
     <Layout>
-      <div className="p-24">
-        <p className="font-black text-3xl bg-white p-8 rounded-3xl mb-8 flex justify-between items-center">
+      <div className="p-4 sm:p-6 md:p-12 lg:p-16">
+        <p className="font-black text-md sm:text-xl lg:text-3xl bg-white p-8 rounded-3xl mb-8 flex flex-col-reverse lg:flex-row justify-between lg:items-center gap-4">
           Viewing Application: {slug}{" "}
           <span
             className={`${
@@ -293,9 +293,9 @@ function RegularApplicationView() {
             {data?.status}
           </span>
         </p>
-        <div className="grid grid-cols-[2fr_1fr] gap-8 relative">
+        <div className="grid lg:grid-cols-[2fr_1fr] gap-8 relative">
           <RegularApplication formData={formData} isDisabled={true} />
-          <div className="grid gap-8 sticky top-12 h-max">
+          <div className="grid gap-8 lg:sticky lg:top-12 h-max order-first lg:-order-first">
             {data?.dateSubmitted && (
               <p className="text-sm font-light">
                 Application Submission Date:{" "}

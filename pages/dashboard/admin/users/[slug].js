@@ -89,7 +89,7 @@ function UserView() {
 
   return (
     <Layout>
-      <div className="p-24">
+      <div className="p-4 sm:p-6 md:p-12 lg:p-16">
         <div className="pb-4">
           <Link
             href={`/dashboard/admin/users`}

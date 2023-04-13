@@ -4,11 +4,11 @@ import Link from "next/link";
 function LoanAdmin() {
   return (
     <Layout>
-      <div className="p-24 h-screen">
+      <div className="p-4 sm:p-6 md:p-12 lg:p-16 min-h-screen flex flex-col">
         <p className="font-black text-3xl bg-white p-8 rounded-3xl mb-12">
           Loan
         </p>
-        <div className="grid grid-cols-2 gap-8 h-1/2">
+        <div className="grid md:grid-cols-2 gap-8 flex-grow">
           <Link
             href={"/dashboard/admin/loan/gintong-butil"}
             className="bg-white rounded-xl shadow-xl p-4 flex flex-col justify-between relative overflow-hidden hover:shadow-2xl hover:cursor-pointer"

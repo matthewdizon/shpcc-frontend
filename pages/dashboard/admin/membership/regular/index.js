@@ -57,14 +57,14 @@ function RegularMembershipAdmin() {
 
   return (
     <Layout>
-      <div className="p-12">
+      <div className="p-4 sm:p-6 md:p-12 lg:p-16">
         <p className="font-black text-3xl pb-8">
           Regular Membership Application Overview
         </p>
         <p className="pb-2 italic text-gray-500 text-sm">
           Showing {filteredData?.length} of {data?.length} results
         </p>
-        <div className="grid grid-cols-[3fr_1fr] gap-8">
+        <div className="grid lg:grid-cols-[3fr_1fr] gap-8">
           <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-lg p-4 h-max">
             <table className="min-w-full divide-y-2 divide-gray-200">
               <thead>
@@ -142,7 +142,7 @@ function RegularMembershipAdmin() {
               </div>
             )}
           </div>
-          <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-lg p-4 sticky top-12 h-max">
+          <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-lg p-4 lg:sticky lg:top-12 h-max order-first lg:-order-first">
             <p className="font-bold text-xl">Search and Filter</p>
             <input
               type="text"

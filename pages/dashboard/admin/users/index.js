@@ -49,7 +49,7 @@ function Users() {
 
   return (
     <Layout>
-      <div className="p-24">
+      <div className="p-4 sm:p-6 md:p-12 lg:p-16">
         <p className="font-black text-3xl bg-white p-8 rounded-3xl">Users</p>
         <div className="flex gap-4 py-4">
           <input

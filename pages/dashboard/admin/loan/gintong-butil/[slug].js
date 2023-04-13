@@ -11,6 +11,7 @@ function GintongButilApplicationView() {
 
   const [data, setData] = useState(null);
   const [formData, setFormData] = useState(null);
+  const [isEditable, setIsEditable] = useState(false);
 
   const router = useRouter();
   const { slug } = router.query;
@@ -99,7 +100,7 @@ function GintongButilApplicationView() {
 
   return (
     <Layout>
-      <div className="p-24">
+      <div className="p-4 sm:p-6 md:p-12 lg:p-16">
         <div className="pb-4">
           <Link
             href={`/dashboard/admin/loan/gintong-butil`}
@@ -108,7 +109,7 @@ function GintongButilApplicationView() {
             Back
           </Link>
         </div>
-        <p className="font-black text-3xl bg-white p-8 rounded-3xl mb-8 flex justify-between items-center">
+        <p className="font-black text-md sm:text-xl lg:text-3xl bg-white p-8 rounded-3xl mb-8 flex flex-col-reverse lg:flex-row justify-between lg:items-center gap-4">
           Viewing Application:{" "}
           {`${slug?.substring(0, 4)}...${slug?.substring(slug?.length - 4)}`}{" "}
           <span
@@ -123,9 +124,9 @@ function GintongButilApplicationView() {
             {data?.status}
           </span>
         </p>
-        <div className="grid grid-cols-[2fr_1fr] gap-8 relative">
+        <div className="grid lg:grid-cols-[2fr_1fr] gap-8 relative">
           <GintongButilLoanApplication formData={formData} isDisabled={true} />
-          <div className="grid gap-8 sticky top-12 h-max">
+          <div className="grid gap-8 lg:sticky lg:top-12 h-max order-first lg:-order-first">
             {data?.dateSubmitted && (
               <p className="text-sm font-light">
                 Application Submission Date:{" "}
@@ -170,11 +171,13 @@ function GintongButilApplicationView() {
                   <input
                     type="text"
                     className={`${
-                      formData?.adminInformation.approvedBy
+                      !isEditable && formData?.adminInformation.approvedBy
                         ? "bg-gray-200"
                         : "bg-white"
                     } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-                    disabled={formData?.adminInformation.approvedBy}
+                    disabled={
+                      isEditable ? false : formData?.adminInformation.approvedBy
+                    }
                     value={formData?.adminInformation.loanNumber}
                     onChange={(e) =>
                       handleChange(
@@ -191,11 +194,13 @@ function GintongButilApplicationView() {
                   <input
                     type="text"
                     className={`${
-                      formData?.adminInformation.approvedBy
+                      !isEditable && formData?.adminInformation.approvedBy
                         ? "bg-gray-200"
                         : "bg-white"
                     } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-                    disabled={formData?.adminInformation.approvedBy}
+                    disabled={
+                      isEditable ? false : formData?.adminInformation.approvedBy
+                    }
                     value={formData?.adminInformation.voucherNumber}
                     onChange={(e) =>
                       handleChange(
@@ -212,11 +217,13 @@ function GintongButilApplicationView() {
                   <input
                     type="text"
                     className={`${
-                      formData?.adminInformation.approvedBy
+                      !isEditable && formData?.adminInformation.approvedBy
                         ? "bg-gray-200"
                         : "bg-white"
                     } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-                    disabled={formData?.adminInformation.approvedBy}
+                    disabled={
+                      isEditable ? false : formData?.adminInformation.approvedBy
+                    }
                     value={formData?.adminInformation.bankAndCheckNumber}
                     onChange={(e) =>
                       handleChange(
@@ -233,11 +240,13 @@ function GintongButilApplicationView() {
                   <input
                     type="date"
                     className={`${
-                      formData?.adminInformation.approvedBy
+                      !isEditable && formData?.adminInformation.approvedBy
                         ? "bg-gray-200"
                         : "bg-white"
                     } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-                    disabled={formData?.adminInformation.approvedBy}
+                    disabled={
+                      isEditable ? false : formData?.adminInformation.approvedBy
+                    }
                     value={formData?.adminInformation.approvedDate}
                     onChange={(e) =>
                       handleChange(
@@ -254,11 +263,13 @@ function GintongButilApplicationView() {
                   <input
                     type="text"
                     className={`${
-                      formData?.adminInformation.approvedBy
+                      !isEditable && formData?.adminInformation.approvedBy
                         ? "bg-gray-200"
                         : "bg-white"
                     } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-                    disabled={formData?.adminInformation.approvedBy}
+                    disabled={
+                      isEditable ? false : formData?.adminInformation.approvedBy
+                    }
                     value={formData?.adminInformation.approvedAmount}
                     onChange={(e) =>
                       handleChange(
@@ -275,11 +286,13 @@ function GintongButilApplicationView() {
                   <input
                     type="text"
                     className={`${
-                      formData?.adminInformation.approvedBy
+                      !isEditable && formData?.adminInformation.approvedBy
                         ? "bg-gray-200"
                         : "bg-white"
                     } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-                    disabled={formData?.adminInformation.approvedBy}
+                    disabled={
+                      isEditable ? false : formData?.adminInformation.approvedBy
+                    }
                     value={formData?.adminInformation.adminMonthlyDue}
                     onChange={(e) =>
                       handleChange(
@@ -296,11 +309,13 @@ function GintongButilApplicationView() {
                   <input
                     type="text"
                     className={`${
-                      formData?.adminInformation.approvedBy
+                      !isEditable && formData?.adminInformation.approvedBy
                         ? "bg-gray-200"
                         : "bg-white"
                     } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-                    disabled={formData?.adminInformation.approvedBy}
+                    disabled={
+                      isEditable ? false : formData?.adminInformation.approvedBy
+                    }
                     value={formData?.adminInformation.adminPaymentInterval}
                     onChange={(e) =>
                       handleChange(
@@ -317,11 +332,13 @@ function GintongButilApplicationView() {
                   <input
                     type="text"
                     className={`${
-                      formData?.adminInformation.approvedBy
+                      !isEditable && formData?.adminInformation.approvedBy
                         ? "bg-gray-200"
                         : "bg-white"
                     } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-                    disabled={formData?.adminInformation.approvedBy}
+                    disabled={
+                      isEditable ? false : formData?.adminInformation.approvedBy
+                    }
                     value={formData?.adminInformation.adminDuration}
                     onChange={(e) =>
                       handleChange(
@@ -333,34 +350,46 @@ function GintongButilApplicationView() {
                     }
                   />
                 </div>
-                {formData?.adminInformation?.approvedBy ? (
-                  <div className="grid grid-cols-2 text-sm text-green-600 items-center">
-                    <label>Approved By:</label>
-                    <p>{formData?.adminInformation.approvedBy}</p>
-                  </div>
+                {formData?.adminInformation.approvedBy ? (
+                  <>
+                    <div className="grid grid-cols-2 text-sm text-green-600 items-center">
+                      <label>Approved By:</label>
+                      <p>{formData?.adminInformation.approvedBy}</p>
+                    </div>
+                    {/* <div className="flex items-center gap-4">
+                      <label>Edit</label>
+                      <input
+                        type="checkbox"
+                        value={isEditable}
+                        onChange={() => setIsEditable(!isEditable)}
+                      />
+                    </div> */}
+                  </>
                 ) : (
-                  <div className="grid grid-cols-3 gap-4">
-                    <Link
-                      href={`/dashboard/admin/loan/gintong-butil`}
-                      className="bg-gray-200 text-black p-2 px-6 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-200 text-center"
-                    >
-                      Cancel
-                    </Link>
-                    <button
-                      type="submit"
-                      className="bg-shpccRed text-white p-2 rounded-lg hover:bg-shpccDarkRed active:bg-red-800"
-                      onClick={(e) => handleApprove(e, "Rejected")}
-                    >
-                      Reject
-                    </button>
-                    <button
-                      type="submit"
-                      className="bg-green-500 text-white p-2 rounded-lg hover:bg-green-600 active:bg-green-700"
-                      onClick={(e) => handleApprove(e, "Approved")}
-                    >
-                      Approve
-                    </button>
-                  </div>
+                  <>
+                    <div className="grid grid-cols-3 gap-4">
+                      <Link
+                        href={`/dashboard/admin/loan/gintong-butil`}
+                        className="bg-gray-200 text-black p-2 px-6 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-200 text-center"
+                      >
+                        Cancel
+                      </Link>
+                      <button
+                        type="submit"
+                        className="bg-shpccRed text-white p-2 rounded-lg hover:bg-shpccDarkRed active:bg-red-800"
+                        onClick={(e) => handleApprove(e, "Rejected")}
+                      >
+                        Reject
+                      </button>
+                      <button
+                        type="submit"
+                        className="bg-green-500 text-white p-2 rounded-lg hover:bg-green-600 active:bg-green-700"
+                        onClick={(e) => handleApprove(e, "Approved")}
+                      >
+                        Approve
+                      </button>
+                    </div>
+                  </>
                 )}
               </form>
             </div>
