@@ -22,7 +22,7 @@ function Announcements({ announcements, isAdmin }) {
 
   return (
     <Layout>
-      <div className="p-24">
+      <div className="p-4 sm:p-6 md:p-12 lg:p-16">
         {isAdmin && (
           <p className="py-4 italic">
             To add announcements, login to{" "}
@@ -36,12 +36,12 @@ function Announcements({ announcements, isAdmin }) {
             </a>
           </p>
         )}
-        <div className="bg-shpccDarkRed p-8 text-white rounded-xl shadow-lg flex justify-between items-center">
+        <div className="bg-shpccDarkRed p-8 text-white rounded-xl shadow-lg flex flex-col gap-4 md:flex-row justify-between items-center">
           <p className="font-bold text-3xl">Announcements</p>
           <input
             type="text"
             placeholder="Search..."
-            className="border-gray-400 border rounded-full px-2 py-2 my-2 lg:p-2 text-black"
+            className="border-gray-400 border rounded-full px-2 py-2 my-2 lg:p-2 text-black w-full md:max-w-max"
             value={search}
             onChange={(e) => handleSearchCriteriaChange(e.target.value)}
           />
@@ -53,7 +53,7 @@ function Announcements({ announcements, isAdmin }) {
               <Link
                 key={index}
                 href={`/dashboard/announcements/${slug}`}
-                className="grid grid-cols-[2fr_1fr] gap-2 bg-white rounded-xl shadow-xl hover:shadow-2xl p-12 pl-16 relative"
+                className="grid lg:grid-cols-[2fr_1fr] gap-8 bg-white rounded-xl shadow-xl hover:shadow-2xl p-12 pl-16 relative"
               >
                 <div className="grid gap-4">
                   <h2 className="font-bold text-2xl text-shpccDarkRed">
@@ -61,7 +61,7 @@ function Announcements({ announcements, isAdmin }) {
                   </h2>
                   <p className="font-thin">{description}</p>
                 </div>
-                <div className="flex flex-col justify-end items-end">
+                <div className="flex flex-col lg:justify-end lg:items-end lg:text-right">
                   <p className="font-bold">Posted on:</p>
                   <span className="font-thin">
                     {Intl.DateTimeFormat("en-US", {
@@ -74,7 +74,7 @@ function Announcements({ announcements, isAdmin }) {
                     }).format(new Date(dateAndTime))}
                   </span>
                 </div>
-                <div className="absolute h-2/3 bottom-0 top-0 my-auto left-8 w-2 bg-shpccDarkRed"></div>
+                <div className="absolute h-full lg:h-2/3 bottom-0 top-0 my-auto left-8 w-2 bg-shpccDarkRed"></div>
               </Link>
             );
           })}
