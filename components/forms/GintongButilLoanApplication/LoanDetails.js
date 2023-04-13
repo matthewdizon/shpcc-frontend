@@ -23,7 +23,7 @@ function LoanDetails({
             onChange={(e) => onChange("date", e.target.value)}
             className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
               touchedFields.date && !info?.date ? "border-red-500" : ""
-            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 w-1/4`}
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 lg:w-1/4`}
             onBlur={() => handleBlur("date")}
             disabled={isDisabled}
           />

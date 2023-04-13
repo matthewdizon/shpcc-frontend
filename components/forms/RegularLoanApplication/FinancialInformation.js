@@ -11,7 +11,7 @@ function FinancialInformation({
         Financial Information
       </h2>
       <div className="flex flex-wrap justify-between gap-4">
-        <div className="flex flex-col w-1/2">
+        <div className="flex flex-col lg:w-1/2">
           <label
             className={`font-light text-gray-400 text-sm ${
               touchedFields.business && !info?.business ? "text-red-500" : ""
@@ -76,7 +76,7 @@ function FinancialInformation({
             disabled={isDisabled}
           />
         </div>
-        <div className="flex flex-col w-1/2">
+        <div className="flex flex-col lg:w-1/2">
           <label className=" font-light text-gray-400 text-sm">
             Spouse&apos;s Occupation / Business
           </label>

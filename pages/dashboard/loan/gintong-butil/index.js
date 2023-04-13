@@ -24,7 +24,7 @@ function GintongButil() {
 
   return (
     <Layout>
-      <div className="p-24 min-h-screen">
+      <div className="p-4 sm:p-6 md:p-12 lg:p-16 min-h-screen">
         <div className="flex justify-between pb-4">
           <Link
             href={`/dashboard/loan`}

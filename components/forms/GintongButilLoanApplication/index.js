@@ -161,9 +161,9 @@ function GintongButilLoanApplication({
       </form>
       {!isDisabled && (
         <div className="flex flex-wrap justify-end">
-          <div className="flex gap-4">
+          <div className="flex flex-col md:flex-row md:gap-4 w-full md:w-auto">
             <button
-              className="bg-white text-shpccRed border-shpccRed border-2 p-2 rounded-lg my-4 px-8 hover:opacity-40"
+              className="bg-white text-shpccRed border-shpccRed border-2 p-2 rounded-lg mt-4 md:my-4 px-8 hover:opacity-40"
               onClick={handleSaveDraft}
             >
               Save Draft

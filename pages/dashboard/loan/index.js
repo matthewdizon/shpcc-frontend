@@ -7,7 +7,7 @@ function Loan() {
   const { user } = useContext(UserContext);
   return (
     <Layout>
-      <div className="p-24 h-screen">
+      <div className="p-4 sm:p-6 md:p-12 lg:p-16 min-h-screen flex flex-col">
         <p className="font-extrabold text-3xl">
           What type of loan are you applying for?
         </p>
@@ -18,7 +18,7 @@ function Loan() {
           </Link>{" "}
           to apply for loans
         </p>
-        <div className="grid grid-cols-2 gap-8 h-1/2">
+        <div className="grid md:grid-cols-2 gap-8 flex-grow">
           <Link
             href={
               user?.membershipType === "Regular"
