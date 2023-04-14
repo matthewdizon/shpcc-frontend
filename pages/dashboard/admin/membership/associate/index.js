@@ -23,10 +23,10 @@ function AssociateMembershipAdmin() {
         }
       );
       try {
-        setLoading(false);
         const data = await res.json();
         setData(data);
         setFilteredData(data);
+        setLoading(false);
       } catch (error) {
         setLoading(false);
         console.log(error);

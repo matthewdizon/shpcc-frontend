@@ -34,9 +34,9 @@ function RegularApplicationView() {
           }
         );
         try {
-          setLoading(false);
           const data = await res.json();
           setData(data);
+          setLoading(false);
           setFormData({
             personalInformation: {
               lastName: data?.lastName || "",

@@ -26,9 +26,9 @@ function GintongButilHistory() {
           }
         );
         try {
-          setLoading(false);
           const data = await res.json();
           setData(data);
+          setLoading(false);
         } catch (error) {
           setLoading(false);
           console.log(error);
@@ -50,9 +50,9 @@ function GintongButilHistory() {
           }
         );
         try {
-          setLoading(false);
           const data = await res.json();
           setUserApplications(data);
+          setLoading(false);
         } catch (error) {
           setLoading(false);
           console.log(error);

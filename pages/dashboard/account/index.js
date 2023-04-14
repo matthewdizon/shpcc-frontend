@@ -29,9 +29,9 @@ function Account({ announcements }) {
           }
         );
         try {
-          setLoading(false);
           const data = await res.json();
           setData(data[0]);
+          setLoading(false);
         } catch (error) {
           setLoading(false);
           console.log(error);

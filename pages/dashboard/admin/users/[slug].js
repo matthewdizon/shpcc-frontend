@@ -30,9 +30,9 @@ function UserView() {
           }
         );
         try {
-          setLoading(false);
           const data = await res.json();
           setData(data[0]);
+          setLoading(false);
         } catch (error) {
           setLoading(false);
           console.log(error);
@@ -55,9 +55,9 @@ function UserView() {
           }
         );
         try {
-          setLoading(false);
           const data = await res.json();
           setAssociateMembershipData(data);
+          setLoading(false);
         } catch (error) {
           setLoading(false);
           console.log(error);
@@ -80,9 +80,9 @@ function UserView() {
           }
         );
         try {
-          setLoading(false);
           const data = await res.json();
           setregularMembershipData(data);
+          setLoading(false);
         } catch (error) {
           setLoading(false);
           console.log(error);

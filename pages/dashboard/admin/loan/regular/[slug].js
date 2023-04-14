@@ -32,9 +32,9 @@ function RegularLoanApplicationView() {
           }
         );
         try {
-          setLoading(false);
           const data = await res.json();
           setData(data);
+          setLoading(false);
           setFormData({
             financialInformation: {
               business: data?.business || "",
