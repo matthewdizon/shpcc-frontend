@@ -1,4 +1,5 @@
 import Layout from "../../../../../components/dashboard/Layout";
+import Loading from "../../../../../components/dashboard/Loading";
 import { useRouter } from "next/router";
 import { useEffect, useState, useContext } from "react";
 import AssociateApplication from "../../../../../components/forms/AssociateApplication";
@@ -9,6 +10,7 @@ import { UserContext } from "../../../../../context/userContext";
 function AssociateApplicationView() {
   const { user } = useContext(UserContext);
 
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   const [formData, setFormData] = useState(null);
 
@@ -31,6 +33,7 @@ function AssociateApplicationView() {
           }
         );
         try {
+          setLoading(false);
           const data = await res.json();
           setData(data);
           setFormData({
@@ -105,6 +108,7 @@ function AssociateApplicationView() {
             },
           });
         } catch (error) {
+          setLoading(false);
           console.log(error);
         }
       }
@@ -169,11 +173,25 @@ function AssociateApplicationView() {
     }
   };
 
-  console.log(formData?.adminInformation);
+  if (loading) {
+    return (
+      <Layout>
+        <Loading />
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
       <div className="p-4 sm:p-6 md:p-12 lg:p-16">
+        <div className="pb-4">
+          <Link
+            href={`/dashboard/admin/membership/associate`}
+            className="bg-gray-200 text-black p-2 rounded-lg px-4 hover:bg-gray-300 active:bg-gray-400 transition duration-200"
+          >
+            Back
+          </Link>
+        </div>
         <p className="font-black text-md sm:text-xl lg:text-3xl bg-white p-8 rounded-3xl mb-8 flex flex-col-reverse lg:flex-row justify-between lg:items-center gap-4">
           Viewing Application: {slug}{" "}
           <span

@@ -1,5 +1,6 @@
 import Layout from "../../../../../components/dashboard/Layout";
 import RegularLoanApplication from "../../../../../components/forms/RegularLoanApplication";
+import Loading from "../../../../../components/dashboard/Loading";
 import { useRouter } from "next/router";
 import { useEffect, useState, useContext } from "react";
 import Link from "next/link";
@@ -9,6 +10,7 @@ import { handleChange } from "../../../../../utils/helpers";
 function RegularLoanApplicationView() {
   const { user } = useContext(UserContext);
 
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   const [formData, setFormData] = useState(null);
 
@@ -30,6 +32,7 @@ function RegularLoanApplicationView() {
           }
         );
         try {
+          setLoading(false);
           const data = await res.json();
           setData(data);
           setFormData({
@@ -81,6 +84,7 @@ function RegularLoanApplicationView() {
             },
           });
         } catch (error) {
+          setLoading(false);
           console.log(error);
         }
       }
@@ -116,6 +120,14 @@ function RegularLoanApplicationView() {
       window.location.reload();
     }
   };
+
+  if (loading) {
+    return (
+      <Layout>
+        <Loading />
+      </Layout>
+    );
+  }
 
   return (
     <Layout>

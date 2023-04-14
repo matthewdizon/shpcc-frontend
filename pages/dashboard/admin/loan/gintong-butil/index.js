@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 
 function GintongButilAdmin() {
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState(null);
   const [search, setSearch] = useState("");
@@ -22,10 +23,12 @@ function GintongButilAdmin() {
         }
       );
       try {
+        setLoading(false);
         const data = await res.json();
         setData(data);
         setFilteredData(data);
       } catch (error) {
+        setLoading(false);
         console.log(error);
       }
     }
@@ -58,6 +61,14 @@ function GintongButilAdmin() {
   return (
     <Layout>
       <div className="p-4 sm:p-6 md:p-12 lg:p-16">
+        <div className="pb-4">
+          <Link
+            href={`/dashboard/admin/loan`}
+            className="bg-gray-200 text-black p-2 rounded-lg px-4 hover:bg-gray-300 active:bg-gray-400 transition duration-200"
+          >
+            Back
+          </Link>
+        </div>
         <p className="font-black text-3xl pb-8">
           Gintong Butil Loan Application Overview
         </p>
@@ -136,7 +147,12 @@ function GintongButilAdmin() {
                 })}
               </tbody>
             </table>
-            {filteredData?.length === 0 && (
+            {loading && (
+              <div className="text-center font-light text-shpccRed text-3xl uppercase italic">
+                Loading Data...
+              </div>
+            )}
+            {!loading && filteredData?.length === 0 && (
               <div className="text-center font-light text-shpccRed text-3xl uppercase italic">
                 No Data
               </div>

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 function Users() {
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [search, setSearch] = useState("");
@@ -21,10 +22,12 @@ function Users() {
         }
       );
       try {
+        setLoading(false);
         const data = await res.json();
         setData(data);
         setFilteredData(data);
       } catch (error) {
+        setLoading(false);
         console.log(error);
       }
     }
@@ -135,6 +138,16 @@ function Users() {
               })}
             </tbody>
           </table>
+          {loading && (
+            <div className="text-center font-light text-shpccRed text-3xl uppercase italic">
+              Loading Data...
+            </div>
+          )}
+          {!loading && data.length === 0 && (
+            <div className="text-center font-light text-shpccRed text-3xl uppercase italic">
+              No Data
+            </div>
+          )}
         </div>
       </div>
     </Layout>
