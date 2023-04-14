@@ -9,6 +9,7 @@ import Link from "next/link";
 function Account({ announcements }) {
   const { user } = useContext(UserContext);
 
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState({});
   const [associateMembershipData, setAssociateMembershipData] = useState({});
   const [regularMembershipData, setregularMembershipData] = useState({});
@@ -28,9 +29,11 @@ function Account({ announcements }) {
           }
         );
         try {
+          setLoading(false);
           const data = await res.json();
           setData(data[0]);
         } catch (error) {
+          setLoading(false);
           console.log(error);
         }
       }
@@ -51,9 +54,11 @@ function Account({ announcements }) {
           }
         );
         try {
+          setLoading(false);
           const data = await res.json();
           setAssociateMembershipData(data);
         } catch (error) {
+          setLoading(false);
           console.log(error);
         }
       }
@@ -74,9 +79,11 @@ function Account({ announcements }) {
           }
         );
         try {
+          setLoading(false);
           const data = await res.json();
           setregularMembershipData(data);
         } catch (error) {
+          setLoading(false);
           console.log(error);
         }
       }
@@ -91,7 +98,9 @@ function Account({ announcements }) {
     <Layout>
       <div className="flex flex-col-reverse lg:flex-row justify-between min-h-screen">
         <div className="p-4 sm:p-6 md:p-12 lg:p-16 flex-grow">
-          {data ? (
+          {loading ? (
+            <Loading />
+          ) : (
             <AccountOverview
               data={data}
               gintongButilLoanApplications={data?.gintongButilLoanApplications}
@@ -99,8 +108,6 @@ function Account({ announcements }) {
               associateMembershipData={associateMembershipData}
               regularMembershipData={regularMembershipData}
             />
-          ) : (
-            <Loading />
           )}
         </div>
         <div className="bg-[#D9D9D9] p-8 lg:w-[30vw]">
