@@ -1,5 +1,6 @@
 import Layout from "../../../components/dashboard/Layout";
 import AssociateApplication from "../../../components/forms/AssociateApplication";
+import Loading from "../../../components/dashboard/Loading";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../../context/userContext";
 import Link from "next/link";
@@ -8,6 +9,7 @@ function AssociateApplicationPage() {
   const { user } = useContext(UserContext);
 
   const [data, setData] = useState({});
+  const [loading, setLoading] = useState(true);
 
   // grab initial form data if there's a draft
   useEffect(() => {
@@ -26,6 +28,7 @@ function AssociateApplicationPage() {
           }
         );
         try {
+          setLoading(false);
           const data = await res.json();
           setData(data);
           setFormData({
@@ -90,6 +93,7 @@ function AssociateApplicationPage() {
             },
           });
         } catch (error) {
+          setLoading(false);
           console.log(error);
         }
       }
@@ -278,6 +282,14 @@ function AssociateApplicationPage() {
       </div>
     );
   };
+
+  if (loading) {
+    return (
+      <Layout>
+        <Loading />
+      </Layout>
+    );
+  }
 
   if (data && !data?.isDraft) {
     return (

@@ -8,6 +8,7 @@ function RegularLoanHistory() {
 
   const [data, setData] = useState([]);
   const [userApplications, setUserApplications] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -25,9 +26,11 @@ function RegularLoanHistory() {
           }
         );
         try {
+          setLoading(false);
           const data = await res.json();
           setData(data);
         } catch (error) {
+          setLoading(false);
           console.log(error);
         }
       }
@@ -47,9 +50,11 @@ function RegularLoanHistory() {
           }
         );
         try {
+          setLoading(false);
           const data = await res.json();
           setUserApplications(data);
         } catch (error) {
+          setLoading(false);
           console.log(error);
         }
       }
@@ -141,7 +146,12 @@ function RegularLoanHistory() {
               })}
             </tbody>
           </table>
-          {data.length === 0 && (
+          {loading && (
+            <div className="text-center font-light text-shpccRed text-3xl uppercase italic">
+              Loading Data...
+            </div>
+          )}
+          {!loading && data.length === 0 && (
             <div className="text-center font-light text-shpccRed text-3xl uppercase italic">
               No Data
             </div>

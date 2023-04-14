@@ -1,4 +1,5 @@
 import Layout from "../../../components/dashboard/Layout";
+import Loading from "../../../components/dashboard/Loading";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../context/userContext";
 import AccountOverview from "../../../components/dashboard/AccountOverview";
@@ -90,13 +91,17 @@ function Account({ announcements }) {
     <Layout>
       <div className="flex flex-col-reverse lg:flex-row justify-between min-h-screen">
         <div className="p-4 sm:p-6 md:p-12 lg:p-16 flex-grow">
-          <AccountOverview
-            data={data}
-            gintongButilLoanApplications={data?.gintongButilLoanApplications}
-            regularLoanApplications={data?.regularLoanApplications}
-            associateMembershipData={associateMembershipData}
-            regularMembershipData={regularMembershipData}
-          />
+          {data ? (
+            <AccountOverview
+              data={data}
+              gintongButilLoanApplications={data?.gintongButilLoanApplications}
+              regularLoanApplications={data?.regularLoanApplications}
+              associateMembershipData={associateMembershipData}
+              regularMembershipData={regularMembershipData}
+            />
+          ) : (
+            <Loading />
+          )}
         </div>
         <div className="bg-[#D9D9D9] p-8 lg:w-[30vw]">
           <Link

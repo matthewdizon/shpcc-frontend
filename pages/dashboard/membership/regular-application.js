@@ -1,5 +1,6 @@
 import Layout from "../../../components/dashboard/Layout";
 import RegularMemberApplication from "../../../components/forms/RegularMemberApplication";
+import Loading from "../../../components/dashboard/Loading";
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../../../context/userContext";
 import Link from "next/link";
@@ -8,6 +9,7 @@ function RegularMemberApplicationPage() {
   const { user } = useContext(UserContext);
 
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // grab initial form data if there's a draft
   useEffect(() => {
@@ -26,6 +28,7 @@ function RegularMemberApplicationPage() {
           }
         );
         try {
+          setLoading(false);
           const data = await res.json();
           setData(data);
           setFormData({
@@ -145,6 +148,7 @@ function RegularMemberApplicationPage() {
             },
           });
         } catch (error) {
+          setLoading(false);
           console.log(error);
         }
       }
@@ -255,6 +259,14 @@ function RegularMemberApplicationPage() {
       spouseOtherIncomeSource: "",
     },
   });
+
+  if (loading) {
+    return (
+      <Layout>
+        <Loading />
+      </Layout>
+    );
+  }
 
   if (data && !data?.isDraft) {
     return (
