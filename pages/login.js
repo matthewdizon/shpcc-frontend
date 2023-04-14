@@ -32,34 +32,44 @@ function Login() {
       }),
       {
         pending: "Verifying Credentials",
-        success: "Success 👌",
-        error: "Error 🤯",
       }
     );
 
     if (res.ok) {
-      // Get the JWT from the response
-      const {
-        accessToken,
-        firstName,
-        lastName,
-        isAdmin,
-        membershipType,
-        status,
-      } = await res.json();
+      toast.success("Successful Login");
+      // Delay for 3 seconds
+      setTimeout(async () => {
+        // Get the JWT from the response
+        const {
+          accessToken,
+          firstName,
+          lastName,
+          isAdmin,
+          membershipType,
+          status,
+        } = await res.json();
 
-      // Set the JWT in local storage
-      localStorage.setItem("accessToken", accessToken);
+        // Set the JWT in local storage
+        localStorage.setItem("accessToken", accessToken);
 
-      // Update User Context
-      setUser({ email, firstName, lastName, isAdmin, membershipType, status });
+        // Update User Context
+        setUser({
+          email,
+          firstName,
+          lastName,
+          isAdmin,
+          membershipType,
+          status,
+        });
 
-      // Redirect the user to the home page
-      isAdmin
-        ? Router.push("/dashboard/admin/users")
-        : Router.push("/dashboard/account");
+        // Redirect the user to the home page
+        isAdmin
+          ? Router.push("/dashboard/admin/users")
+          : Router.push("/dashboard/account");
+      }, 2000);
     } else {
       console.log("error", res);
+      toast.error("Invalid Login");
       // Set error message
       // setMessage("Error: Invalid email or password");
       // setShowMessage(true);
