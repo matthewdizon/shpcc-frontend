@@ -18,6 +18,8 @@ function ResetPassword() {
   }
 
   const handleSubmit = async () => {
+    e.preventDefault();
+
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/users/reset-password/` +
         token,
