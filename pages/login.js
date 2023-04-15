@@ -140,9 +140,12 @@ function Login() {
                 Sign Up
               </Link>
             </div>
-            <div className="hover:underline max-w-max hover:cursor-pointer">
+            <Link
+              href={`/forgot-password`}
+              className="hover:underline max-w-max hover:cursor-pointer"
+            >
               Forgot Password?
-            </div>
+            </Link>
           </div>
         </div>
       </div>
