@@ -5,7 +5,7 @@ import Router from "next/router";
 function ForgotPassword() {
   const [email, setEmail] = useState("");
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const res = await fetch(
@@ -36,7 +36,7 @@ function ForgotPassword() {
           Enter your email and we&apos;ll send you instructions on how to reset
           your password.
         </p>
-        <form className="grid py-4" onSubmit={handleSubmit}>
+        <form className="grid py-4">
           <input
             type="email"
             placeholder="Email"
@@ -44,7 +44,10 @@ function ForgotPassword() {
             required
             className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 text-black"
           />
-          <button className="bg-shpccDarkRed rounded-lg text-white text-xl py-2 mt-4 font-thin hover:cursor-pointer">
+          <button
+            className="bg-shpccDarkRed rounded-lg text-white text-xl py-2 mt-4 font-thin hover:cursor-pointer"
+            onClick={(e) => handleSubmit(e)}
+          >
             Send Instructions
           </button>
         </form>

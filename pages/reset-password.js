@@ -17,7 +17,7 @@ function ResetPassword() {
     isEqual = false;
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const res = await fetch(
@@ -45,7 +45,7 @@ function ResetPassword() {
         <h1 className="text-2xl font-medium text-center text-gray-900">
           Create New Password
         </h1>
-        <form className="grid py-4" onSubmit={handleSubmit}>
+        <form className="grid py-4">
           <div className="grid gap-4">
             <div className="grid">
               <input
@@ -81,6 +81,7 @@ function ResetPassword() {
             className={`bg-shpccDarkRed rounded-lg text-white text-xl py-2 mt-4 font-thin ${
               !isEqual ? "opacity-50" : "hover:cursor-pointer"
             }`}
+            onClick={(e) => handleSubmit(e)}
           >
             Reset Password
           </button>
