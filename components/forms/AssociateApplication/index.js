@@ -298,6 +298,9 @@ function AssociateApplication({ data, formData, setFormData, isDisabled }) {
             <TermsAndConditions
               setShowModal={setShowModal}
               handleSubmit={handleSubmit}
+              agreement={
+                "I agree to the opening of this account and shall abide by the rules and regulations of the Sacred Heart Parish Credit Cooperative"
+              }
             >
               <div className="mt-6 text-gray-500 grid gap-2 text-left">
                 <p>
@@ -307,13 +310,13 @@ function AssociateApplication({ data, formData, setFormData, isDisabled }) {
                   naunawaan ko ang layunin at hangarin ng ating samahan.
                 </p>
                 <p>
-                  Bilang kasaping depositor ng SHPCC, ako ay
-                  nangangakongsasailalim sa mga sumusunod:
+                  Bilang kasaping depositor ng SHPCC, ako ay nangangakong
+                  sumailalim sa mga sumusunod:
                 </p>
                 <ol className="list-decimal ml-8 grid gap-2">
                   <li>
                     Susunod ng buong katapatan sa lahat ng mga regulasyong
-                    nakasaad sa Artikulo ng Kooperasyon, Saligang Batas ng
+                    nakasaad sa Artikulo ng Kooperasyon at Saligang Batas ng
                     SHPCC, at mga Resolusyong ipinasa ng Lupon ng Patnugutan at
                     maaaring dadalo sa Pangkalahatang Kapulungan sa itinakdang
                     Sabado ng Marso bawat taon.
@@ -321,19 +324,6 @@ function AssociateApplication({ data, formData, setFormData, isDisabled }) {
                   <li>
                     Magbabayad ng bayad sa pagsapi (membership fee) na
                     nagkakahalaga ng Limampung Piso (Php50.00).
-                  </li>
-                  <li>
-                    Sa unang taon kinakailangan kong bayaran ng dalawang daan at
-                    limampung piso (Php 250.00) bilang preferred share at ito ay
-                    bibigyan ng interes batay sa ihahayag na interes ng Lupon ng
-                    Patnugutan. Ang preferred share na ito ay mananatili habang
-                    ako ay depositor ng kooperatiba.
-                  </li>
-                  <li>
-                    Pagbayad ng ikalawang preferred share sa halagang dalawang
-                    daan at limampung piso (P250.00) sa ikalawang taon ng
-                    pagsapi at maaaring magiging regular na kasapi pagkatapos ng
-                    dalawang taon.
                   </li>
                   <li>
                     Lalahok sa pagpapalago ng kapital ng SHPCC sa pamamagitan ng
@@ -354,10 +344,18 @@ function AssociateApplication({ data, formData, setFormData, isDisabled }) {
                     para sa pagsapi at pag-ambag ng deposito;
                   </li>
                   <li>
+                    Hihikayatin ang aking kapamilya o kaibigan na sumapi sa
+                    SHPCC;
+                  </li>
+                  <li>
+                    Susunod sa lahat ng mga kondisyong nakasaad sa kasunduan
+                    para sa pagsapi at pag-ambag ng deposito;
+                  </li>
+                  <li>
                     Sakaling ako ay lumabag sa anumang batas na itinakda ng
                     SHPCC, tatanggapin ko ang kaparusahan na maaaring ipataw sa
                     akin tulad ng multa, suspensyon o pagpapatalsik bilang
-                    kasapi.{" "}
+                    kasapi.
                   </li>
                 </ol>
                 <p>

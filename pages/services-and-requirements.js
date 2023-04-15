@@ -22,28 +22,43 @@ function ServicesAndRequirements() {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 py-16 gap-16">
         <div className="grid gap-8">
           <div>
+            <h2 className="text-shpccDarkRed font-bold text-3xl mb-4">
+              Associate Member
+            </h2>
+            <h3 className="font-bold text-xl mb-4">
+              Young Adults, Adults And Special Depositors
+            </h3>
+            <div className="grid gap-6">
+              <div>
+                <h4 className="italic font-semibold">Membership Fee</h4>
+                <p>Young Adults Savings/Held in Trust - Php 50.00</p>
+                <p>Adult Savings - Php 50.00</p>
+              </div>
+              <div>
+                <h4 className="italic font-semibold">
+                  Initial Savings Deposit
+                </h4>
+                <p>Young Adults Savings - Php 50.00</p>
+                <p>Adult Savings - Php 100.00</p>
+              </div>
+            </div>
+          </div>
+          <div>
             <h2 className="text-shpccDarkRed font-bold text-3xl mb-6">
               Regular Member
             </h2>
             <ol className="list-disc pl-4">
-              <li>A Filipino Citizen</li>
+              <li>A Filipino citizen</li>
               <li>18 to 64 Years Old</li>
-              <li>Has an Occupation</li>
-              <li>Lives within NCR</li>
+              <li>Has an occupation or business</li>
+              <li>Lives or works within NCR</li>
               <li>Attended the Pre-Membership Seminar</li>
-              <li>Lifetime Membership of Php 100.00</li>
-              <li>Seminar Fee of Php 50.00</li>
+              <li>Lifetime Membership Fee of Php 100.00</li>
               <li>Approved membership application by the Board of Directors</li>
-            </ol>
-          </div>
-          <div>
-            <h2 className="text-shpccDarkRed font-bold text-3xl mb-6">
-              Must be submitted with the membership application
-            </h2>
-            <ol className="list-disc pl-4">
-              <li>2 Pcs. 1x1 and 2x2 Picture</li>
-              <li>Government Issued ID and TIN</li>
-              <li>Barangay Clearance</li>
+              <li>Minimum Savings of P1,000.00</li>
+              <li>Minimum Share Capital of P4,000.00</li>
+              <li>Preferred Share Capital of P500.00</li>
+              <li>Damayan Fund of P300.00</li>
             </ol>
           </div>
         </div>
@@ -59,32 +74,23 @@ function ServicesAndRequirements() {
             </ol>
             <h3 className="font-bold text-xl my-4">Owns A Business</h3>
             <ol className="list-disc pl-4">
-              <li>Business Permit</li>
-              <li>SEC, DTI Permit / Certificate</li>
-              <li>CR & OR Of Vehicles</li>
+              <li>DTI/SEC Certificate, Mayor&apos;s/Business Permit</li>
+            </ol>
+            <h3 className="font-bold text-xl my-4">PUJ/TNVS Operator</h3>
+            <ol className="list-disc pl-4">
+              <li>CR & OR of vehicle</li>
+              <li>CPC/Franchies</li>
             </ol>
           </div>
           <div>
-            <h2 className="text-shpccDarkRed font-bold text-3xl mb-4">
-              Associate Membership
+            <h2 className="text-shpccDarkRed font-bold text-3xl mb-6">
+              Must be submitted with the membership application
             </h2>
-            <h3 className="font-bold text-xl mb-4">
-              Adult, Young Adults And Special Depositors
-            </h3>
-            <div className="flex gap-6">
-              <div>
-                <h4 className="italic font-semibold">Membership Fee</h4>
-                <p>Adult Savings</p>
-                <p>Kabataan Savings</p>
-              </div>
-              <div>
-                <h4 className="italic font-semibold">
-                  Initial Savings Deposit
-                </h4>
-                <p>Adult Savings Php 100.00</p>
-                <p>Kabataan Savings Php 50.00</p>
-              </div>
-            </div>
+            <ol className="list-disc pl-4">
+              <li>2 pcs. ID Picture (1x1 and 2x2)</li>
+              <li>Government-issued ID and TIN</li>
+              <li>Barangay Clearance</li>
+            </ol>
           </div>
         </div>
         <div className="border border-shpccDarkRed text-center grid gap-8 mb-auto py-4">
@@ -98,7 +104,7 @@ function ServicesAndRequirements() {
           </div>
           <div>
             <p className="font-bold">Wednesday and Friday</p>
-            <p className="font-bold">2:00 To 4:00 pm</p>
+            <p className="font-bold">2:00 - 4:00 pm</p>
           </div>
           <div>
             <p className="font-bold">Every Saturday</p>
@@ -126,70 +132,79 @@ function ServicesAndRequirements() {
           Products & Services
         </h1>
       </div>
-      <div className="grid lg:grid-cols-2 py-16 gap-16">
+      <div className="grid py-16 gap-16">
         <div>
           <h2 className="text-shpccDarkRed font-bold text-3xl mb-6">
             Low-Interest Loans
           </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="list-disc grid gap-4 pl-4">
+          <div className="grid gap-8">
+            <div className="list-decimal grid lg:grid-cols-3 gap-4">
               <div>
-                <li className="font-bold">Loan Products</li>
-                <p className="indent-6">Basic Loans</p>
-                <p className="indent-6">Productive</p>
-                <p className="indent-6">Provident</p>
-                <p className="indent-6 italic">
-                  *Repayment Term - Max. Of 48 Months
+                <p className="font-bold">Basic Loans</p>
+                <li className="ml-4">Productive</li>
+                <li className="ml-4">Provident</li>
+                <p className="ml-12 italic">
+                  *Repayment Term - maximum of 48 Months
+                </p>
+                <li className="ml-4">Back To Back/Scured Loan</li>
+                <p className="ml-12 italic">
+                  *Repayment Term - maximum of 12 Months
+                </p>
+                <li className="ml-4">Pangkabuhayan/Investment</li>
+                <p className="ml-12 italic">
+                  Maximum of Php 2.0 Million Loanable Amount
+                </p>
+                <p className="ml-16 italic">
+                  *Repayment Term - maximum of 48 Months
                 </p>
               </div>
               <div>
-                <li className="font-bold">Additional Loans</li>
-                <p className="indent-6">Appliance</p>
-                <p className="indent-6">Educational</p>
-                <p className="indent-6">House Repair</p>
-                <p className="indent-6">Transport Repair</p>
-                <p className="indent-6 italic">
-                  *Repayment Term - Max. Of 48 Months
+                <p className="font-bold">On-Top Loans</p>
+                <li className="ml-4">Appliance</li>
+                <li className="ml-4">Educational</li>
+                <li className="ml-4">House Repair</li>
+                <li className="ml-4">Transport Repair</li>
+                <p className="ml-12 italic">
+                  *Repayment Term - maximum of 12 months
+                </p>
+                <li className="ml-4">Bridge Fund</li>
+                <p className="ml-12 italic">
+                  Minimum Loan of Php 2,000.00 (1st cycle)
+                </p>
+                <p className="ml-16 italic">
+                  *Repayment Term - maximum of 1 month
+                </p>
+                <p className="ml-12 italic">Maximum Loan of Php 30,000.00</p>
+                <p className="ml-16 italic">
+                  *Repayment Term - maximum of 6 months
+                </p>
+                <li className="ml-4">Gintong Butil Loan</li>
+                <p className="ml-12 italic">Maximum Loan of Php 45,000.00</p>
+                <p className="ml-16 italic">
+                  *Repayment Term - maximum of 6 months
+                </p>
+                <li className="ml-4">Business Opportunity Loan</li>
+                <p className="ml-12 italic">
+                  Capacity-based loan (with business plan)
+                </p>
+                <p className="ml-12 italic">Maximum Loan of Php 250,000.00</p>
+                <p className="ml-16 italic">
+                  *Repayment Term - maximum of 48 months
+                </p>
+                <li className="ml-4">Memorial Loan</li>
+                <p className="ml-12 italic">
+                  *Repayment Term - maximum of 12 months
                 </p>
               </div>
               <div>
-                <li className="font-bold">Bridge Fund</li>
-                <p className="indent-6">Minimum Loan Of Php 2,000</p>
-                <p className="indent-12 italic">
-                  *Repayment Term - Max. Of 1 Month
+                <p className="font-bold">Special Loans</p>
+                <li className="ml-4">Credit Line</li>
+                <p className="ml-12 italic">
+                  *Repayment Term - maximum of 48 Months
                 </p>
-                <p className="indent-6">Maximum Loan Of Php 20,000</p>
-                <p className="indent-12 italic">
-                  *Repayment Term - Max. Of 6 Months
-                </p>
-              </div>
-            </div>
-            <div className="grid px-4 md:px-0">
-              <div>
-                <li className="font-bold">Back To Back/Scured Loan</li>
-                <p className="indent-6 italic">
-                  *Repayment Term - Max. Of 12 Months
-                </p>
-              </div>
-              <div>
-                <li className="font-bold">Business Opportunity Loan</li>
-                <p className="indent-6 italic">
-                  *Repayment Term - Max. Of 48 Months
-                </p>
-              </div>
-              <div>
-                <li className="font-bold">Credit Line</li>
-                <p className="indent-6 italic">
-                  *Repayment Term - Max. Of 48 Months
-                </p>
-              </div>
-              <div>
-                <li className="font-bold">Pangkabuhayan/Investment</li>
-                <p className="indent-6">
-                  Max. Of Php 1.5 Million Loanable Amount
-                </p>
-                <p className="indent-6 italic">
-                  *Repayment Term - Max. Of 12 Months
+                <li className="ml-4">Construction Loan/Housing Loan</li>
+                <p className="ml-12 italic">
+                  *Repayment Term - maximum of 120 Months
                 </p>
               </div>
             </div>
@@ -199,18 +214,16 @@ function ServicesAndRequirements() {
           <h2 className="text-shpccDarkRed font-bold text-3xl mb-6">
             High Interest On Deposits
           </h2>
-          <div className="grid pl-4">
+          <div className="grid gap-4">
             <div>
-              <li className="font-bold">Savings Deposit</li>
-              <p className="indent-6 italic">
-                Higher By .15% From Banks (Computed Quarterly)
+              <p className="font-bold">Savings Deposit</p>
+              <p className="ml-4 italic">
+                higher by .15% from banks (computed quarterly)
               </p>
             </div>
             <div>
-              <li className="font-bold">Time Deposit</li>
-              <p className="indent-6 italic">
-                From 0.06 To 1.00% Per Annum Depending On The Amount
-              </p>
+              <p className="font-bold">Time Deposit</p>
+              <p className="ml-4 italic">depending on the amount and term</p>
             </div>
           </div>
         </div>
@@ -239,23 +252,25 @@ function ServicesAndRequirements() {
               <h2 className="text-shpccDarkRed font-bold text-3xl mb-4">
                 Group yearly Renewable Term Insurance (GYRT) And Pondong Damayan
               </h2>
-              <p className="capitalize">
-                Donating and helping families of deceased members. The maximum
-                benefit amount is Php 40,000.00 from CISP and first aid to
-                owners based on membership duration.
-              </p>
+              <div className="list-disc">
+                <li>Donating and helping families of deceased members</li>
+                <li>The maximum benefit amount for GYRT is Php 40,000.00</li>
+                <li>
+                  The maximum benefit amount for Damayan depends on length of
+                  membership with the fund
+                </li>
+              </div>
             </div>
           </div>
           <div className="grid gap-16">
             <div>
               <h2 className="text-shpccDarkRed font-bold text-3xl mb-4">
-                Loan Protection Plan Insurance (LPPI)/Loan Guarantee Fund (LGF)
+                Loan Protection Plan Insurance (LPPI)
               </h2>
-              <p className="capitalize">
-                All members who are indebted are provided with LGF or insurance
-                for the amount owed. This is to provide protection to the member
-                and the surviving family while he or she is in debt which is
-                paid based on the repayment term.
+              <p>
+                All loans are insured with SHPCC’s accredited insurance
+                providers to protect the member and his family in case of death
+                of insured/member.
               </p>
             </div>
           </div>
@@ -263,29 +278,29 @@ function ServicesAndRequirements() {
             <h2 className="text-shpccDarkRed font-bold text-3xl mb-4">
               Taunang Medical Mission
             </h2>
-            <p className="capitalize">
-              Provides free medical, dental, and optical check-ups for all
-              members including all residents within the cooperative’s area of
-              ​​operation. It is held on the anniversary of the cooperative and
-              on other important occasions in collaboration with some
-              professional members and the local barangays.
+            <p>
+              Provides free medical, dental and optical check-ups for all
+              members Including all residents within the cooperative’s area of
+              ​operation. It is held on the Anniversary month of the cooperative
+              and on other important occasions. This is in collaboration with
+              some professional members and the Local Government Units.
             </p>
           </div>
           <div>
             <h2 className="text-shpccDarkRed font-bold text-3xl mb-4">
               Scholarship Assistance
             </h2>
-            <p className="capitalize">
+            <p>
               For qualified members or their children who want to study in
-              college, technical, or vocational courses at any state
-              universities or colleges.
+              college, technical or vocational courses at any state universities
+              or colleges.
             </p>
           </div>
           <div>
             <h2 className="text-shpccDarkRed font-bold text-3xl mb-4">
               On-The-Job Training (OJT)
             </h2>
-            <p className="capitalize">
+            <p>
               The cooperative welcomes students who wish to serve as trainees to
               expand and hone their office skills and introduce them to the
               cooperative movement.
