@@ -4,11 +4,13 @@ import Link from "next/link";
 
 import Layout from "../../../../components/dashboard/Layout";
 import AccountOverview from "../../../../components/dashboard/AccountOverview";
+import Loading from "../../../../components/dashboard/Loading";
 
 function UserView() {
   const router = useRouter();
   const { slug } = router.query;
 
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState({});
   const [associateMembershipData, setAssociateMembershipData] = useState({});
   const [regularMembershipData, setregularMembershipData] = useState({});
@@ -30,7 +32,9 @@ function UserView() {
         try {
           const data = await res.json();
           setData(data[0]);
+          setLoading(false);
         } catch (error) {
+          setLoading(false);
           console.log(error);
         }
       }
@@ -53,7 +57,9 @@ function UserView() {
         try {
           const data = await res.json();
           setAssociateMembershipData(data);
+          setLoading(false);
         } catch (error) {
+          setLoading(false);
           console.log(error);
         }
       }
@@ -76,7 +82,9 @@ function UserView() {
         try {
           const data = await res.json();
           setregularMembershipData(data);
+          setLoading(false);
         } catch (error) {
+          setLoading(false);
           console.log(error);
         }
       }
@@ -86,6 +94,14 @@ function UserView() {
     fetchAssociateMembershipData();
     fetchRegularMembershipData();
   }, [slug]);
+
+  if (loading) {
+    return (
+      <Layout>
+        <Loading />
+      </Layout>
+    );
+  }
 
   return (
     <Layout>

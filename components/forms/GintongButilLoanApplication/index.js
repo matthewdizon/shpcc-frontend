@@ -186,10 +186,11 @@ function GintongButilLoanApplication({
               setShowModal={setShowModal}
               handleSubmit={handleSubmit}
               isSmall={true}
+              agreement={"Sumasang-ayon ako sa mga tuntunin at kondisyon."}
             >
               <div className="mt-6 text-gray-500 grid gap-2 text-left">
                 <p>
-                  Ako ay nangangako na ang aking hinihiraming pondo na may
+                  Ako ay nangangako na ang aking hinihiram na halaga na may
                   tubong ISANG porsiyento (1%) kada buwan ay aking babayaran at
                   huhulugan. Sumasang-ayon rin ako na agarang iaawas sa aking
                   uutangin ang isang porsiyentong (1%) tubo at karapatang

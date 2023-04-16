@@ -464,13 +464,18 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
             <TermsAndConditions
               setShowModal={setShowModal}
               handleSubmit={handleSubmit}
+              agreement={
+                "I agree to the opening of this account and shall abide by the rules and regulations of the Sacred Heart Parish Credit Cooperative"
+              }
             >
               <div className="mt-6 text-gray-500 grid gap-2 text-left">
                 <p>
-                  Ako ay sumasang-ayon na maging Kasaping Depositor ng SACRED
-                  HEART PARISH CREDIT COOPERATIVE dito ay tinutukoy na SHPCC.
-                  Ako ay nabigyan ng kaalaman tungkol sa SHPCC at dahil dito,
-                  naunawaan ko ang layunin at hangarin ng ating samahan.
+                  Ako ay sumasang-ayon na maging kasapi at kamay-ari ng SACRED
+                  HEART PARISH CREDIT COOPERATIVE dito ay makikilala bilang
+                  SHPCC sa kasunduang ito. Ako ay nakadalo sa Sama-aralan para
+                  sa Pagsapi (Pre-membership Seminar) at dahil dito, naunawaan
+                  ko ang layunin at hangarin ng SHPCC. Bilang kasapi at
+                  kamay-ari ng kooperatiba ng SHPCC, ako ay nangangakong:
                 </p>
                 <p>
                   Bilang kasaping depositor ng SHPCC, ako ay
@@ -481,12 +486,47 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
                     Susunod ng buong katapatan sa lahat ng mga regulasyong
                     nakasaad sa Artikulo ng Kooperasyon, Saligang Batas ng
                     SHPCC, at mga Resolusyong ipinasa ng Lupon ng Patnugutan at
-                    maaaring dadalo sa Pangkalahatang Kapulungan sa itinakdang
-                    Sabado ng Marso bawat taon.
+                    aktibong lumahok sa mga pagpapasyang gagawin ng
+                    Pangkalahatang Kapulungan.
+                  </li>
+                  <li>
+                    Sakaling ako ay lumabag sa anumang batas na itinakda ng
+                    SHPCC, tatanggapin ko ang kaparusahan na maaaring ipataw sa
+                    akin tulad ng multa, suspensyon o pagpapatalsik bilang
+                    kamay-ari. Ang aking lagak na puhunan ay pinapahintulot kong
+                    maging panagot sa anumang natitirang obligasyon o
+                    pagkakautang ko sa SHPCC.
+                  </li>
+                  <li>
+                    Dadalo sa anumang pagpupulong at pagsasanay para sa aking
+                    patuloy na pag-aaral at pagsikapang matutunan ang lahat ng
+                    katuruan, alinsunod sa tagubilin ng Lupon ng Patnugutan.
+                    Sakaling hindi ako makadalo, ako ay magmumulta ng halagang
+                    katumbas ng gastos ng SHPCC para sa nasabing pagsasanay,
+                    maliban ako ay pinatawad ng Lupon.
                   </li>
                   <li>
                     Magbabayad ng bayad sa pagsapi (membership fee) na
-                    nagkakahalaga ng Limampung Piso (Php50.00).
+                    nagkakahalaga ng Isang Daan at Limampung Piso (Php150.00).
+                  </li>
+                  <li>
+                    Lalahok sa pagpapalago ng Kapital ng SHPCC sa pamamagitan
+                    ng: (a) Agarang paglagak ng saping puhunan (share capital)
+                    na hindi bababa sa 5 bahagi (share) na nagkakahalaga ng
+                    Php200.00/bahagi na may kabuuang halagang P1,000.00 at 2
+                    preferred share nagkakahalaga ng P250.00/bahagi na may
+                    kabuuang halaga ng P500.00; (b) Pagbayad ng kabuuan o
+                    paghulog sa loob ng dalawang taon ng pinakamababang saping
+                    puhunan na hindi bababa sa 20 bahagi (shares) ng puhunan na
+                    nagkakahalaga ng Php200.00/bahagi na may kabuuang halagang
+                    P4,000.00; (c) Pagkakaloob ng saping puhunan na hindi bababa
+                    sa 50% mula sa aking taunang interes at balik tangkilik; (d)
+                    Pagbibigay ng awtorisasyon sa SHPCC na awasin ang 2% mula sa
+                    aking utang upang idagdag sa aking saping puhunan, 1% sa
+                    Guarantee Time Deposit (GTD) at 2% para sa aking lagak na
+                    impok (savings deposit); (e) Pag-ambag ng buwanan na hindi
+                    bababa sa 2% ng aking kita o suweldo o sa P100.00 para sa
+                    Guarantee Time Deposit (GTD) o Time Deposit;
                   </li>
                   <li>
                     Sa unang taon kinakailangan kong bayaran ng dalawang daan at
@@ -502,28 +542,18 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
                     dalawang taon.
                   </li>
                   <li>
-                    Lalahok sa pagpapalago ng kapital ng SHPCC sa pamamagitan ng
-                    pagdagdag ng deposito.
-                  </li>
-                  <li>
                     Walang pasubali at di-mababawi na pangangalagaan ko ang
                     lahat ng mga lihim at “confidential” na impormasyon ng SHPCC
                     bilang pagsunod sa mga probisyon ng “Philippine Bank Secrecy
                     Laws” na nakasaad sa Batas Pambansa Blg. 1405, 6426 at 8791;
                   </li>
                   <li>
-                    Hihikayatin ang aking kapamilya o kaibigan na sumapi sa
-                    SHPCC;
+                    Hindi magkakalat ng malisyoso o maling impormasyon tungkol
+                    sa sinumang opisyal, kawani at kasapi ng SHPCC;
                   </li>
                   <li>
                     Susunod sa lahat ng mga kondisyong nakasaad sa kasunduan
-                    para sa pagsapi at pag-ambag ng deposito;
-                  </li>
-                  <li>
-                    Sakaling ako ay lumabag sa anumang batas na itinakda ng
-                    SHPCC, tatanggapin ko ang kaparusahan na maaaring ipataw sa
-                    akin tulad ng multa, suspensyon o pagpapatalsik bilang
-                    kasapi.{" "}
+                    para sa pagsapi at pag-ambag ng saping puhunan.
                   </li>
                 </ol>
                 <p>

@@ -1,6 +1,12 @@
 import { useState } from "react";
 
-function TermsAndConditions({ setShowModal, handleSubmit, children, isSmall }) {
+function TermsAndConditions({
+  setShowModal,
+  handleSubmit,
+  children,
+  isSmall,
+  agreement,
+}) {
   const [agree, setAgree] = useState(false);
 
   return (
@@ -26,11 +32,7 @@ function TermsAndConditions({ setShowModal, handleSubmit, children, isSmall }) {
             onClick={() => setAgree(!agree)}
           >
             <input type="checkbox" checked={agree} />
-            <label className="uppercase font-bold text-xs">
-              I agree to the opening of this account and shall abide by the
-              rules and regulations of the Sacred Heart Parish Credit
-              Cooperative
-            </label>
+            <label className="uppercase font-bold text-xs">{agreement}</label>
           </div>
           <div className="flex gap-2 items-center py-2">
             <span className="lex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">

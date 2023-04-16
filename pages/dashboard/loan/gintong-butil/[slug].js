@@ -1,5 +1,6 @@
 import Layout from "../../../../components/dashboard/Layout";
 import GintongButilLoanApplication from "../../../../components/forms/GintongButilLoanApplication";
+import Loading from "../../../../components/dashboard/Loading";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -8,6 +9,7 @@ function GintongButilHistoryView() {
   const router = useRouter();
   const { slug } = router.query;
 
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   const [formData, setFormData] = useState({
     financialInformation: {
@@ -45,6 +47,7 @@ function GintongButilHistoryView() {
         try {
           const data = await res.json();
           setData(data);
+          setLoading(false);
           setFormData({
             financialInformation: {
               business: data?.business || "",
@@ -63,6 +66,7 @@ function GintongButilHistoryView() {
             },
           });
         } catch (error) {
+          setLoading(false);
           console.log(error);
         }
       }
@@ -70,6 +74,14 @@ function GintongButilHistoryView() {
 
     fetchData();
   }, [slug]);
+
+  if (loading) {
+    return (
+      <Layout>
+        <Loading />
+      </Layout>
+    );
+  }
 
   if (data && !data?.isDraft) {
     return (

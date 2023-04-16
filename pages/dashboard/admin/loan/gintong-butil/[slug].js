@@ -1,5 +1,6 @@
 import Layout from "../../../../../components/dashboard/Layout";
 import GintongButilLoanApplication from "../../../../../components/forms/GintongButilLoanApplication";
+import Loading from "../../../../../components/dashboard/Loading";
 import { useRouter } from "next/router";
 import { useEffect, useState, useContext } from "react";
 import Link from "next/link";
@@ -9,6 +10,7 @@ import { handleChange } from "../../../../../utils/helpers";
 function GintongButilApplicationView() {
   const { user } = useContext(UserContext);
 
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   const [formData, setFormData] = useState(null);
   const [isEditable, setIsEditable] = useState(false);
@@ -33,6 +35,7 @@ function GintongButilApplicationView() {
         try {
           const data = await res.json();
           setData(data);
+          setLoading(false);
           setFormData({
             financialInformation: {
               business: data?.business || "",
@@ -62,6 +65,7 @@ function GintongButilApplicationView() {
             },
           });
         } catch (error) {
+          setLoading(false);
           console.log(error);
         }
       }
@@ -97,6 +101,14 @@ function GintongButilApplicationView() {
       window.location.reload();
     }
   };
+
+  if (loading) {
+    return (
+      <Layout>
+        <Loading />
+      </Layout>
+    );
+  }
 
   return (
     <Layout>

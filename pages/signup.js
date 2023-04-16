@@ -4,10 +4,21 @@ import { useState } from "react";
 import Router from "next/router";
 import Image from "next/image";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  let isEqual = false;
+
+  if (password === confirmPassword) {
+    isEqual = true;
+  } else {
+    isEqual = false;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,24 +28,30 @@ function SignUp() {
       password,
     };
 
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/users/signup`,
-      {
+    const res = await toast.promise(
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/users/signup`, {
         method: "POST",
         body: JSON.stringify(userDetails),
         headers: {
           "Content-Type": "application/json",
         },
+      }),
+      {
+        pending: "Verifying Credentials",
       }
     );
 
     if (res.ok) {
-      const json = await res.json();
-      const { email } = json.user;
-      localStorage.setItem("email", email);
-      Router.push("/verifyEmail");
+      toast.success("Successfuly Created Account");
+      setTimeout(async () => {
+        const json = await res.json();
+        const { email } = json.user;
+        localStorage.setItem("email", email);
+        Router.push("/verifyEmail");
+      }, 2000);
     } else {
       console.log(res);
+      toast.error("Invalid Account");
       // Set error message
       // setMessage("Error: Invalid email or password");
       // setShowMessage(true);
@@ -43,6 +60,17 @@ function SignUp() {
 
   return (
     <Layout>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="h-[90vh] -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 items-center flex relative">
         <div className="absolute w-full h-full inset-0">
           <Image
@@ -97,7 +125,20 @@ function SignUp() {
                 />
               </div>
 
-              <button className="bg-shpccDarkRed rounded-lg text-white text-xl py-2 mt-4 font-thin hover:cursor-pointer">
+              {isEqual ? (
+                ""
+              ) : (
+                <p className="text-sm text-shpccRed italic">
+                  Passwords do not match
+                </p>
+              )}
+
+              <button
+                disabled={!isEqual}
+                className={`bg-shpccDarkRed rounded-lg text-white text-xl py-2 mt-4 font-thin ${
+                  !isEqual ? "opacity-50" : "hover:cursor-pointer"
+                }`}
+              >
                 Create Account
               </button>
             </form>

@@ -5,6 +5,9 @@ import { UserContext } from "../context/userContext";
 import Link from "next/link";
 import Image from "next/image";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,40 +22,54 @@ function Login() {
       password,
     };
 
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/users/login`,
-      {
+    const res = await toast.promise(
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/users/login`, {
         method: "POST",
         body: JSON.stringify(userDetails),
         headers: {
           "Content-Type": "application/json",
         },
+      }),
+      {
+        pending: "Verifying Credentials",
       }
     );
 
     if (res.ok) {
-      // Get the JWT from the response
-      const {
-        accessToken,
-        firstName,
-        lastName,
-        isAdmin,
-        membershipType,
-        status,
-      } = await res.json();
+      toast.success("Successful Login");
+      // Delay for 3 seconds
+      setTimeout(async () => {
+        // Get the JWT from the response
+        const {
+          accessToken,
+          firstName,
+          lastName,
+          isAdmin,
+          membershipType,
+          status,
+        } = await res.json();
 
-      // Set the JWT in local storage
-      localStorage.setItem("accessToken", accessToken);
+        // Set the JWT in local storage
+        localStorage.setItem("accessToken", accessToken);
 
-      // Update User Context
-      setUser({ email, firstName, lastName, isAdmin, membershipType, status });
+        // Update User Context
+        setUser({
+          email,
+          firstName,
+          lastName,
+          isAdmin,
+          membershipType,
+          status,
+        });
 
-      // Redirect the user to the home page
-      isAdmin
-        ? Router.push("/dashboard/admin/users")
-        : Router.push("/dashboard/account");
+        // Redirect the user to the home page
+        isAdmin
+          ? Router.push("/dashboard/admin/users")
+          : Router.push("/dashboard/account");
+      }, 2000);
     } else {
       console.log("error", res);
+      toast.error("Invalid Login");
       // Set error message
       // setMessage("Error: Invalid email or password");
       // setShowMessage(true);
@@ -61,6 +78,17 @@ function Login() {
 
   return (
     <Layout>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="h-[90vh] -mx-6 md:-mx-12 lg:-mx-24 p-6 md:p-12 lg:p-24 items-center flex relative">
         <div className="absolute w-full h-full inset-0">
           <Image
@@ -112,9 +140,12 @@ function Login() {
                 Sign Up
               </Link>
             </div>
-            <div className="hover:underline max-w-max hover:cursor-pointer">
+            <Link
+              href={`/forgot-password`}
+              className="hover:underline max-w-max hover:cursor-pointer"
+            >
               Forgot Password?
-            </div>
+            </Link>
           </div>
         </div>
       </div>

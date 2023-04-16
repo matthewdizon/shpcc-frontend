@@ -1,5 +1,6 @@
 import Layout from "../../../../components/dashboard/Layout";
 import RegularLoanApplication from "../../../../components/forms/RegularLoanApplication";
+import Loading from "../../../../components/dashboard/Loading";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -8,6 +9,7 @@ function RegularLoanHistoryView() {
   const router = useRouter();
   const { slug } = router.query;
 
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   const [formData, setFormData] = useState({
     financialInformation: {
@@ -65,6 +67,7 @@ function RegularLoanHistoryView() {
         try {
           const data = await res.json();
           setData(data);
+          setLoading(false);
           setFormData({
             financialInformation: {
               business: data?.business || "",
@@ -103,6 +106,7 @@ function RegularLoanHistoryView() {
             },
           });
         } catch (error) {
+          setLoading(false);
           console.log(error);
         }
       }
@@ -110,6 +114,14 @@ function RegularLoanHistoryView() {
 
     fetchData();
   }, [slug]);
+
+  if (loading) {
+    return (
+      <Layout>
+        <Loading />
+      </Layout>
+    );
+  }
 
   if (data && !data?.isDraft) {
     return (
