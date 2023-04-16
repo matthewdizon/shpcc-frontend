@@ -2,32 +2,55 @@ import Link from "next/link";
 import { useState } from "react";
 import Router from "next/router";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function ForgotPassword() {
   const [email, setEmail] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/users/forgot-password`,
+    const res = await toast.promise(
+      fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/users/forgot-password`,
+        {
+          method: "POST",
+          body: JSON.stringify({ email }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      ),
       {
-        method: "POST",
-        body: JSON.stringify({ email }),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        pending: "Sending Instructions",
       }
     );
 
     if (res.ok) {
-      Router.push("/login");
+      toast.success("Instructions Sent");
+      setTimeout(async () => {
+        Router.push("/login");
+      }, 2000);
     } else {
+      toast.error("An Error Occured");
       console.error(err);
     }
   };
 
   return (
     <div className="flex items-center h-screen bg-gray-50">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="w-full max-w-sm mx-auto p-10 bg-white rounded-lg shadow-md">
         <h1 className="text-2xl font-medium text-center text-gray-900">
           Reset Your Password
