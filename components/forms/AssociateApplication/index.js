@@ -344,14 +344,6 @@ function AssociateApplication({ data, formData, setFormData, isDisabled }) {
                     para sa pagsapi at pag-ambag ng deposito;
                   </li>
                   <li>
-                    Hihikayatin ang aking kapamilya o kaibigan na sumapi sa
-                    SHPCC;
-                  </li>
-                  <li>
-                    Susunod sa lahat ng mga kondisyong nakasaad sa kasunduan
-                    para sa pagsapi at pag-ambag ng deposito;
-                  </li>
-                  <li>
                     Sakaling ako ay lumabag sa anumang batas na itinakda ng
                     SHPCC, tatanggapin ko ang kaparusahan na maaaring ipataw sa
                     akin tulad ng multa, suspensyon o pagpapatalsik bilang
