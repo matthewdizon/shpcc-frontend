@@ -478,6 +478,12 @@ function AccountOverview({
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
 
+    const [touchedFields, setTouchedFields] = useState({
+      oldPassword: true,
+      newPassword: true,
+      confirmNewPassword: true,
+    });
+
     const handleSubmit = async (event) => {
       event.preventDefault();
 
@@ -550,16 +556,21 @@ function AccountOverview({
             />
           </svg>
           {message && <p>{message}</p>}
-          {error && <p>{error}</p>}
+          {error && <p className="text-shpccRed">{error}</p>}
           <div className="grid gap-4 py-8">
             <div className="grid sm:grid-cols-2 items-center">
               <p>Old Password</p>
               <input
                 type="password"
                 value={oldPassword}
+                required
                 onChange={(event) => setOldPassword(event.target.value)}
                 placeholder="Old Password"
-                className="px-4 py-2 rounded-xl border-2 border-gray-200"
+                className={`px-4 py-2 rounded-xl border-2 border-gray-200 ${
+                  touchedFields.oldPassword && !oldPassword
+                    ? "border-red-500"
+                    : ""
+                }`}
               />
             </div>
             <div className="grid sm:grid-cols-2 items-center">
@@ -567,9 +578,14 @@ function AccountOverview({
               <input
                 type="password"
                 value={newPassword}
+                required
                 onChange={(event) => setNewPassword(event.target.value)}
                 placeholder="New Password"
-                className="px-4 py-2 rounded-xl border-2 border-gray-200"
+                className={`px-4 py-2 rounded-xl border-2 border-gray-200 ${
+                  touchedFields.newPassword && !newPassword
+                    ? "border-red-500"
+                    : ""
+                }`}
               />
             </div>
             <div className="grid sm:grid-cols-2 items-center">
@@ -577,9 +593,14 @@ function AccountOverview({
               <input
                 type="password"
                 value={confirmNewPassword}
+                required
                 onChange={(event) => setConfirmNewPassword(event.target.value)}
                 placeholder="Confirm New Password"
-                className="px-4 py-2 rounded-xl border-2 border-gray-200"
+                className={`px-4 py-2 rounded-xl border-2 border-gray-200 ${
+                  touchedFields.confirmNewPassword && !confirmNewPassword
+                    ? "border-red-500"
+                    : ""
+                }`}
               />
             </div>
           </div>
