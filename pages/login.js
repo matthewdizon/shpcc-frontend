@@ -47,6 +47,9 @@ function Login() {
           isAdmin,
           membershipType,
           status,
+          department,
+          associateAccountNumber,
+          regularAccountNumber,
         } = await res.json();
 
         // Set the JWT in local storage
@@ -60,11 +63,16 @@ function Login() {
           isAdmin,
           membershipType,
           status,
+          department,
+          associateAccountNumber,
+          regularAccountNumber,
         });
 
         // Redirect the user to the home page
         isAdmin
-          ? Router.push("/dashboard/admin/users")
+          ? department === "Memberships"
+            ? Router.push("/dashboard/admin/membership")
+            : Router.push("/dashboard/admin/loan")
           : Router.push("/dashboard/account");
       }, 2000);
     } else {
