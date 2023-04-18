@@ -157,7 +157,7 @@ function RegularLoanApplicationView() {
         </p>
         <div className="grid lg:grid-cols-[2fr_1fr] gap-8 relative">
           <RegularLoanApplication formData={formData} isDisabled={true} />
-          <div className="grid gap-8 lg:sticky lg:top-12 h-max order-first lg:-order-first">
+          <div className="grid gap-8 lg:sticky lg:top-12 h-max">
             {data?.dateSubmitted && (
               <p className="text-sm font-light">
                 Application Submission Date:{" "}
