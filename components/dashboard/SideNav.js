@@ -249,6 +249,26 @@ export default function SideNav({ isOpen, reference, handleClick }) {
           {links.map((link, index) => {
             if (!user.isAdmin && link.link === "Users") return null;
             if (user.isAdmin && link.link === "Account") return null;
+            if (user.isAdmin) {
+              if (user.department === "Loans") {
+                if (
+                  link.link === "Users" ||
+                  link.link === "Membership" ||
+                  link.link === "Announcements"
+                ) {
+                  return null;
+                }
+              }
+              if (user.department === "Memberships") {
+                if (
+                  link.link === "Users" ||
+                  link.link === "Loan" ||
+                  link.link === "Announcements"
+                ) {
+                  return null;
+                }
+              }
+            }
             return (
               <Link
                 className={`flex items-center gap-2 hover:text-shpccYellow hover:cursor-pointer hover:bg-black p-4 rounded-lg font-semibold uppercase transition duration-200 ${
