@@ -40,6 +40,8 @@ function Login() {
       // Delay for 3 seconds
       setTimeout(async () => {
         // Get the JWT from the response
+        const data = await res.json();
+
         const {
           accessToken,
           firstName,
@@ -50,7 +52,7 @@ function Login() {
           department,
           associateAccountNumber,
           regularAccountNumber,
-        } = await res.json();
+        } = data;
 
         // Set the JWT in local storage
         localStorage.setItem("accessToken", accessToken);
@@ -70,7 +72,9 @@ function Login() {
 
         // Redirect the user to the home page
         isAdmin
-          ? department === "Memberships"
+          ? department === "none"
+            ? Router.push("/dashboard/admin/users")
+            : department === "Memberships"
             ? Router.push("/dashboard/admin/membership")
             : Router.push("/dashboard/admin/loan")
           : Router.push("/dashboard/account");
