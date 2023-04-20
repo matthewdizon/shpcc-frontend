@@ -311,8 +311,7 @@ function ServicesAndRequirements() {
           <div className="relative flex items-center justify-center gap-4 bg-shpccYellow px-4 py-3 text-black rounded-md">
             <p className="text-sm font-medium text-center px-8 italic">
               The information on this page is intended to be accurate and
-              up-to-date, but may be subject to change or revision without prior
-              notification.
+              up-to-date, but may be subject to change or revision.
             </p>
           </div>
         </div>
