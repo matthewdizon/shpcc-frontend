@@ -102,7 +102,9 @@ function AccountOverview({
         <div className="bg-white rounded-2xl p-8">
           <div className="flex flex-col gap-4 xl:flex-row justify-between items-center pb-4 text-center">
             <p className="font-bold text-lg">Regular Membership Application</p>
-            {isAdmin && !regularMembershipData?.dateSubmitted ? null : (
+            {isAdmin &&
+            !regularMembershipData?.dateSubmitted ? null : membershipType !==
+              "Associate" ? null : (
               <Link
                 href={`${
                   isAdmin
