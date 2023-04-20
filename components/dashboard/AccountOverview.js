@@ -4,6 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../assets/images/logo.svg";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function AccountOverview({
   data,
   gintongButilLoanApplications,
@@ -312,21 +315,25 @@ function AccountOverview({
       imageData.append("file", selectedImage);
       imageData.append("upload_preset", "hefqbi5t"); // comes from upload preset -- settings in cloudinary
 
-      const imageRes = await fetch(
-        `https://api.cloudinary.com/v1_1/${`dqyjdscpt`}/image/upload`, // cloud name comes from dashboard in cloudinary
+      const imageRes = await toast.promise(
+        fetch(
+          `https://api.cloudinary.com/v1_1/${`dqyjdscpt`}/image/upload`, // cloud name comes from dashboard in cloudinary
+          {
+            method: "POST",
+            body: imageData,
+          }
+        ).then((res) => {
+          return res.json();
+        }),
         {
-          method: "POST",
-          body: imageData,
+          pending: "Uploading Image",
         }
-      ).then((res) => {
-        return res.json();
-      });
+      );
 
       const imageUrl = imageRes.secure_url;
 
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/users/` + email,
-        {
+      const res = await toast.promise(
+        fetch(`${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/users/` + email, {
           method: "PATCH",
           body: JSON.stringify({
             imageUrl,
@@ -345,12 +352,19 @@ function AccountOverview({
             "Content-Type": "application/json",
             Authorization: `Bearer ${jwt}`,
           },
+        }),
+        {
+          pending: "Updating Profile",
         }
       );
 
       if (res.ok) {
-        console.log(res);
-        window.location.reload();
+        toast.success("Successfuly Updated Profile");
+        setTimeout(async () => {
+          window.location.reload();
+        }, 2000);
+      } else {
+        toast.error("An Error Occured");
       }
     };
 
@@ -359,6 +373,17 @@ function AccountOverview({
         className={`fixed inset-0 flex items-center justify-center p-8 z-40`}
         style={{ background: "rgba(50, 50, 50, 0.8)" }}
       >
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <form
           className="bg-white px-12 py-8 rounded-2xl relative"
           onSubmit={handleSubmit}
@@ -738,15 +763,15 @@ function AccountOverview({
               </div>
             </div>
           </div>
-          <div className="grid md:grid-cols-[1fr_2fr] md:gap-6">
+          <div className="grid md:grid-cols-[1fr_2fr] lg:grid-cols-[1fr_4fr] md:gap-6">
             <p className="font-bold">Contact Number</p>
             <p className="font-light">{contactNumber ? contactNumber : "-"}</p>
           </div>
-          <div className="grid md:grid-cols-[1fr_2fr] md:gap-6">
+          <div className="grid md:grid-cols-[1fr_2fr] lg:grid-cols-[1fr_4fr] md:gap-6">
             <p className="font-bold">Address</p>
             <p className="font-light">{address ? address : "-"}</p>
           </div>
-          <div className="grid md:grid-cols-[1fr_2fr] md:gap-6">
+          <div className="grid md:grid-cols-[1fr_2fr] lg:grid-cols-[1fr_4fr] md:gap-6">
             <p className="font-bold">Facebook Name</p>
             <p className="font-light">{facebookName ? facebookName : "-"}</p>
           </div>
