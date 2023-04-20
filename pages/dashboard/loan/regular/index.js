@@ -15,6 +15,7 @@ function RegularLoan() {
     },
     loanDetails: {
       date: "",
+      type: "",
       amount: "",
       duration: "",
       paymentInterval: "",

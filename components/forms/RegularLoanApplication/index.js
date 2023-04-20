@@ -27,6 +27,7 @@ function RegularLoanApplication({ data, formData, setFormData, isDisabled }) {
     monthlyIncome: true,
     // Loan Details
     date: true,
+    type: true,
     amount: true,
     duration: true,
     paymentInterval: true,

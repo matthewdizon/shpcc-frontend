@@ -79,6 +79,7 @@ function RegularLoanHistoryView() {
             },
             loanDetails: {
               date: data?.date || "",
+              type: data?.type || "",
               amount: data?.amount || "",
               duration: data?.duration || "",
               paymentInterval: data?.paymentInterval || "",
