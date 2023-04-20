@@ -49,36 +49,36 @@ function AccountOverview({
             )}
           </div>
           {!associateMembershipData ? (
-            <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
+            <dd className="text-3xl font-extrabold text-shpccRed md:text-xl">
               No Application Data
             </dd>
           ) : associateMembershipData.isDraft === true ? (
-            <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center md:col-span-2">
-              <dt class="order-last text-xs font-medium text-gray-400">
+            <div className="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center md:col-span-2">
+              <dt className="order-last text-xs font-medium text-gray-400">
                 Status
               </dt>
 
-              <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
+              <dd className="text-3xl font-extrabold text-shpccRed md:text-xl">
                 Draft
               </dd>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 gap-2">
-              <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center md:col-span-2">
-                <dt class="order-last text-xs font-medium text-gray-400">
+              <div className="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center md:col-span-2">
+                <dt className="order-last text-xs font-medium text-gray-400">
                   Status
                 </dt>
 
-                <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
+                <dd className="text-3xl font-extrabold text-shpccRed md:text-xl">
                   {associateMembershipData.status}
                 </dd>
               </div>
-              <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center">
-                <dt class="order-last text-xs font-medium text-gray-400">
+              <div className="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center">
+                <dt className="order-last text-xs font-medium text-gray-400">
                   Submission Date
                 </dt>
 
-                <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
+                <dd className="text-3xl font-extrabold text-shpccRed md:text-xl">
                   {associateMembershipData?.dateSubmitted &&
                     Intl.DateTimeFormat("en-US", {
                       year: "numeric",
@@ -87,12 +87,12 @@ function AccountOverview({
                     }).format(new Date(associateMembershipData.dateSubmitted))}
                 </dd>
               </div>
-              <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center">
-                <dt class="order-last text-xs font-medium text-gray-400">
+              <div className="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center">
+                <dt className="order-last text-xs font-medium text-gray-400">
                   Associate Account Number
                 </dt>
 
-                <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
+                <dd className="text-3xl font-extrabold text-shpccRed md:text-xl">
                   {associateMembershipData.accountNumber
                     ? associateMembershipData.accountNumber
                     : "-"}
@@ -104,52 +104,52 @@ function AccountOverview({
         <div className="bg-white rounded-2xl p-8">
           <div className="flex flex-col gap-4 xl:flex-row justify-between items-center pb-4 text-center">
             <p className="font-bold text-lg">Regular Membership Application</p>
-            {isAdmin &&
-            !regularMembershipData?.dateSubmitted ? null : membershipType !==
-              "Associate" ? null : (
+            {isAdmin && !regularMembershipData?.dateSubmitted ? null : (
               <Link
                 href={`${
                   isAdmin
                     ? `/dashboard/admin/membership/regular/${email}`
                     : "/dashboard/membership/regular-application"
                 }`}
-                className="bg-shpccRed text-white p-2 px-4 rounded-md hover:underline text-xs w-full xl:max-w-max"
+                className={`bg-shpccRed text-white p-2 px-4 rounded-md hover:underline text-xs w-full xl:max-w-max ${
+                  membershipType === "None" ? "hidden" : ""
+                }`}
               >
                 {!regularMembershipData ? "Apply" : "View"}
               </Link>
             )}
           </div>
           {!regularMembershipData ? (
-            <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
+            <dd className="text-3xl font-extrabold text-shpccRed md:text-xl">
               No Application Data
             </dd>
           ) : regularMembershipData.isDraft === true ? (
-            <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center md:col-span-2">
-              <dt class="order-last text-xs font-medium text-gray-400">
+            <div className="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center md:col-span-2">
+              <dt className="order-last text-xs font-medium text-gray-400">
                 Status
               </dt>
 
-              <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
+              <dd className="text-3xl font-extrabold text-shpccRed md:text-xl">
                 Draft
               </dd>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 gap-2">
-              <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center md:col-span-2">
-                <dt class="order-last text-xs font-medium text-gray-400">
+              <div className="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center md:col-span-2">
+                <dt className="order-last text-xs font-medium text-gray-400">
                   Status
                 </dt>
 
-                <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
+                <dd className="text-3xl font-extrabold text-shpccRed md:text-xl">
                   {regularMembershipData.status}
                 </dd>
               </div>
-              <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center">
-                <dt class="order-last text-xs font-medium text-gray-400">
+              <div className="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center">
+                <dt className="order-last text-xs font-medium text-gray-400">
                   Submission Date
                 </dt>
 
-                <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
+                <dd className="text-3xl font-extrabold text-shpccRed md:text-xl">
                   {regularMembershipData?.dateSubmitted &&
                     Intl.DateTimeFormat("en-US", {
                       year: "numeric",
@@ -158,12 +158,12 @@ function AccountOverview({
                     }).format(new Date(regularMembershipData.dateSubmitted))}
                 </dd>
               </div>
-              <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center">
-                <dt class="order-last text-xs font-medium text-gray-400">
+              <div className="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center">
+                <dt className="order-last text-xs font-medium text-gray-400">
                   Regular Account Number
                 </dt>
 
-                <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
+                <dd className="text-3xl font-extrabold text-shpccRed md:text-xl">
                   {regularMembershipData.accountNumber
                     ? regularMembershipData.accountNumber
                     : "-"}
@@ -176,7 +176,7 @@ function AccountOverview({
           <p className="font-bold text-lg">Gintong Butil Loan Applications</p>
           <div className="grid divide-y-2 h-64 pr-4 overflow-auto">
             {gintongButilLoanApplications?.length === 0 ? (
-              <dd class="text-4xl font-extrabold text-shpccRed md:text-xl pt-4">
+              <dd className="text-4xl font-extrabold text-shpccRed md:text-xl pt-4">
                 No Loan Data
               </dd>
             ) : (
@@ -220,7 +220,7 @@ function AccountOverview({
           <p className="font-bold text-lg">Regular Loan Applications</p>
           <div className="grid divide-y-2 h-64 pr-4 overflow-auto">
             {regularLoanApplications?.length === 0 ? (
-              <dd class="text-4xl font-extrabold text-shpccRed md:text-xl pt-4">
+              <dd className="text-4xl font-extrabold text-shpccRed md:text-xl pt-4">
                 No Loan Data
               </dd>
             ) : (
@@ -383,7 +383,8 @@ function AccountOverview({
                 type="text"
                 onChange={(e) => setContactNumber(e.target.value)}
                 value={contactNumber}
-                placeholder="Contact Number"
+                placeholder="09xx-xxx-xxxx"
+                pattern="09[0-9]{2}-[0-9]{3}-[0-9]{4}"
                 className="px-4 py-2 rounded-xl border-2 border-gray-200"
               />
             </div>
