@@ -20,6 +20,7 @@ function AccountOverview({
     department,
     associateAccountNumber,
     regularAccountNumber,
+    membershipType,
   } = data;
   const [showUpdateModal, setShowUpdateModal] = useState(null);
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(null);
@@ -155,7 +156,7 @@ function AccountOverview({
               </div>
               <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center">
                 <dt class="order-last text-xs font-medium text-gray-400">
-                  Associate Account Number
+                  Regular Account Number
                 </dt>
 
                 <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
@@ -671,6 +672,24 @@ function AccountOverview({
           <div className="grid md:grid-cols-[1fr_2fr]">
             <p className="font-bold">Facebook Name</p>
             <p className="font-light">{facebookName ? facebookName : "-"}</p>
+          </div>
+          <div className="grid md:grid-cols-[1fr_2fr]">
+            <p className="font-bold">Membership Type</p>
+            <p className="font-light">
+              {membershipType ? membershipType : "-"}
+            </p>
+          </div>
+          <div className="grid md:grid-cols-[1fr_2fr]">
+            <p className="font-bold">Associate Account Number</p>
+            <p className="font-light">
+              {associateAccountNumber ? associateAccountNumber : "-"}
+            </p>
+          </div>
+          <div className="grid md:grid-cols-[1fr_2fr]">
+            <p className="font-bold">Regular Account Number</p>
+            <p className="font-light">
+              {regularAccountNumber ? regularAccountNumber : "-"}
+            </p>
           </div>
         </div>
       </div>
