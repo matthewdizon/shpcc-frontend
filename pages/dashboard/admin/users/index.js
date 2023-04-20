@@ -91,7 +91,7 @@ function Users() {
             <tbody>
               {filteredData?.map((user, index) => {
                 return (
-                  <tr key={index}>
+                  <tr key={index} className="hover:bg-gray-100">
                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                       {user.email}
                     </td>
