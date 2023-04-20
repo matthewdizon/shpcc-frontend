@@ -208,8 +208,8 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
   // this makes sure that the form can still be submitted
   // even if the other radio buttons/checkboxes aren't selected
   if (
-    formData?.personalInformation.residenceType === "renting" ||
-    formData?.personalInformation.residenceType === "nakikitira"
+    formData?.personalInformation?.residenceType === "renting" ||
+    formData?.personalInformation?.residenceType === "nakikitira"
   ) {
     requiredFields.push(
       { subObjectName: "personalInformation", fieldName: "residenceOwnerName" },
@@ -218,14 +218,14 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
   }
 
   if (
-    formData?.spouseInformation.spouseEmploymentType ===
+    formData?.spouseInformation?.spouseEmploymentType ===
     "employedAndOrBusinessOwner"
   ) {
     // checks if both checkboxes are left unchecked
     // ensures you can't click Next
     if (
-      !formData?.spouseInformation.spouseIsEmployee &&
-      !formData?.spouseInformation.spouseIsBusinessOwner
+      !formData?.spouseInformation?.spouseIsEmployee &&
+      !formData?.spouseInformation?.spouseIsBusinessOwner
     ) {
       requiredFields.push({
         subObjectName: "spouseInformation",
@@ -233,7 +233,7 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
       });
     }
     // if Employee is checked, require these fields
-    if (formData?.spouseInformation.spouseIsEmployee) {
+    if (formData?.spouseInformation?.spouseIsEmployee) {
       requiredFields.push(
         { subObjectName: "spouseInformation", fieldName: "spouseCompanyName" },
         {
@@ -247,7 +247,7 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
       );
     }
     // if Own Business is checked, require these fields
-    if (formData?.spouseInformation.spouseIsBusinessOwner) {
+    if (formData?.spouseInformation?.spouseIsBusinessOwner) {
       requiredFields.push(
         { subObjectName: "spouseInformation", fieldName: "spouseBusinessType" },
         { subObjectName: "spouseInformation", fieldName: "spouseBusinessName" },
@@ -257,7 +257,7 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
         }
       );
     }
-  } else if (formData?.spouseInformation.spouseEmploymentType === "ofw") {
+  } else if (formData?.spouseInformation?.spouseEmploymentType === "ofw") {
     // if OFW is selected, require these fields
     requiredFields.push(
       { subObjectName: "spouseInformation", fieldName: "spouseOfwCompanyName" },
@@ -269,13 +269,13 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
   }
 
   if (
-    formData?.employmentDetails.employmentType === "employedAndOrBusinessOwner"
+    formData?.employmentDetails?.employmentType === "employedAndOrBusinessOwner"
   ) {
     // checks if both checkboxes are left unchecked
     // ensures you can't click Next
     if (
-      !formData?.employmentDetails.isEmployee &&
-      !formData?.employmentDetails.isBusinessOwner
+      !formData?.employmentDetails?.isEmployee &&
+      !formData?.employmentDetails?.isBusinessOwner
     ) {
       requiredFields.push({
         subObjectName: "employmentDetails",
@@ -283,7 +283,7 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
       });
     }
     // if Employee is checked, require these fields
-    if (formData?.employmentDetails.isEmployee) {
+    if (formData?.employmentDetails?.isEmployee) {
       requiredFields.push(
         { subObjectName: "employmentDetails", fieldName: "companyName" },
         {
@@ -297,7 +297,7 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
       );
     }
     // if Own Business is checked, require these fields
-    if (formData?.employmentDetails.isBusinessOwner) {
+    if (formData?.employmentDetails?.isBusinessOwner) {
       requiredFields.push(
         { subObjectName: "employmentDetails", fieldName: "businessType" },
         { subObjectName: "employmentDetails", fieldName: "businessName" },
@@ -307,7 +307,7 @@ function RegularMemberApplication({ data, formData, setFormData, isDisabled }) {
         }
       );
     }
-  } else if (formData?.employmentDetails.employmentType === "ofw") {
+  } else if (formData?.employmentDetails?.employmentType === "ofw") {
     // if OFW is selected, require these fields
     requiredFields.push(
       { subObjectName: "employmentDetails", fieldName: "ofwCompanyName" },

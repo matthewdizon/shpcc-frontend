@@ -11,6 +11,69 @@ function RegularMemberApplicationPage() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const fetchAssociateApplicationData = async () => {
+    const jwt = localStorage.getItem("accessToken");
+
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/memberApplications/associate/` +
+        user.email,
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+    const assocData = await response.json();
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      personalInformation: {
+        ...prevFormData.personalInformation,
+        lastName: assocData?.lastName || "",
+        firstName: assocData?.firstName || "",
+        middleName: assocData?.middleName || "",
+        suffix: assocData?.suffix || "",
+        maidenName: assocData?.maidenName || "",
+        address: assocData?.address || "",
+        dateOfBirth: assocData?.dateOfBirth || "",
+        age: assocData?.age || "",
+        placeOfBirth: assocData?.placeOfBirth || "",
+        gender: assocData?.gender || "",
+        civilStatus: assocData?.civilStatus || "",
+        contactNumber: assocData?.contactNumber || "",
+        facebookName: assocData?.facebookName || "",
+        viberMessenger: assocData?.viberMessenger || "",
+        religion: assocData?.religion || "",
+        educationalAttainment: assocData?.educationalAttainment || "",
+        inTrustFor: assocData?.inTrustFor || "",
+        associateAccountNumber: assocData?.accountNumber, // new field
+        emailAddress: user?.email,
+      },
+      beneficiariesDependents: {
+        children: assocData?.beneficiaries?.map((beneficiary) => ({
+          childFullName: beneficiary.fullName,
+          childDateOfBirth: beneficiary.dateOfBirth,
+        })) || [
+          {
+            childFullName: "",
+            childDateOfBirth: "",
+            childContactNumber: "",
+          },
+        ],
+        otherRelatives: assocData?.shpccFamilyMembers?.map((member) => ({
+          relativeFullName: member.name,
+        })) || [
+          {
+            relativeFullName: "",
+            relativeRelationship: "",
+            relativeContactNumber: "",
+          },
+        ],
+      },
+    }));
+
+    console.log("ASSOC APP", assocData);
+  };
+
   // grab initial form data if there's a draft
   useEffect(() => {
     async function fetchData() {
@@ -298,13 +361,19 @@ function RegularMemberApplicationPage() {
   return (
     <Layout>
       <div className="p-4 sm:p-6 md:p-12 lg:p-16">
-        <div className="flex justify-between pb-4">
+        <div className="flex flex-col gap-4 md:flex-row justify-between pb-4">
           <Link
             href={`/dashboard/membership`}
-            className="bg-gray-200 text-black p-2 rounded-lg px-4 hover:bg-gray-300 active:bg-gray-400 transition duration-200"
+            className="bg-gray-200 text-black p-2 rounded-lg px-4 hover:bg-gray-300 active:bg-gray-400 transition duration-200 max-w-max"
           >
             Back
           </Link>
+          <button
+            onClick={fetchAssociateApplicationData}
+            className="bg-shpccRed text-white p-2 rounded-lg px-4 hover:bg-shpccDarkRed active:opacity-75 transition duration-200 max-w-max"
+          >
+            Fetch Associate Application Data
+          </button>
         </div>
         <RegularMemberApplication
           data={data}
