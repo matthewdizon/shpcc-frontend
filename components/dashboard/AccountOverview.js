@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../../context/userContext";
 import Link from "next/link";
 
 function AccountOverview({
@@ -24,6 +25,7 @@ function AccountOverview({
   } = data;
   const [showUpdateModal, setShowUpdateModal] = useState(null);
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(null);
+  const user = useContext(UserContext);
 
   const UserApplications = () => {
     return (
@@ -647,12 +649,14 @@ function AccountOverview({
             >
               Edit Profile
             </div>
-            <div
-              className="bg-gray-200 text-black p-2 px-6 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-200 text-center w-full lg:w-auto"
-              onClick={() => setShowChangePasswordModal(true)}
-            >
-              Change Password
-            </div>
+            {user.user.email === email && (
+              <div
+                className="bg-gray-200 text-black p-2 px-6 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-200 text-center w-full lg:w-auto"
+                onClick={() => setShowChangePasswordModal(true)}
+              >
+                Change Password
+              </div>
+            )}
           </div>
         </div>
         <div className="grid gap-4">
