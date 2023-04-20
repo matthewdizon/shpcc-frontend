@@ -68,6 +68,16 @@ function RegularLoanApplicationView() {
                   vehicle: "",
                   model: "",
                   motorNumber: "",
+                  brand: "",
+                },
+              ],
+            },
+            realMortgage: {
+              realMortgages: data?.realMortgages || [
+                {
+                  realEstate: "",
+                  tcdNumber: "",
+                  location: "",
                 },
               ],
             },

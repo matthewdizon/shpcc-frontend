@@ -15,6 +15,7 @@ import LoanDetails from "./LoanDetails";
 import TermsAndConditions from "../TermsAndConditions";
 import CollateralDetails from "./CollateralDetails";
 import ChattelMortgage from "./ChattelMortgage";
+import RealMortgage from "./RealMortgage";
 
 function RegularLoanApplication({ data, formData, setFormData, isDisabled }) {
   const { user } = useContext(UserContext);
@@ -40,6 +41,11 @@ function RegularLoanApplication({ data, formData, setFormData, isDisabled }) {
     vehicle: true,
     model: true,
     motorNumber: true,
+    brand: true,
+    // Real Mortgage
+    realEstate: true,
+    tcdNumber: true,
+    location: true,
   });
 
   const handleSaveDraft = async (e) => {
@@ -52,6 +58,7 @@ function RegularLoanApplication({ data, formData, setFormData, isDisabled }) {
       ...formData.loanDetails,
       ...formData.collateralDetails,
       ...formData.chattelMortgage,
+      ...formData.realMortgage,
       user: user.email,
       isDraft: true,
     };
@@ -88,6 +95,7 @@ function RegularLoanApplication({ data, formData, setFormData, isDisabled }) {
       ...formData.loanDetails,
       ...formData.collateralDetails,
       ...formData.chattelMortgage,
+      ...formData.realMortgage,
       user: user.email,
       isDraft: false,
       dateSubmitted: new Date(),
@@ -141,21 +149,47 @@ function RegularLoanApplication({ data, formData, setFormData, isDisabled }) {
       subObjectFn: () => formData.collateralDetails.collaterals,
       fieldName: "serialNumber",
     },
-    {
-      subObjectFn: () => formData.chattelMortgage.mortgages,
-      fieldName: "vehicle",
-    },
-    {
-      subObjectFn: () => formData.chattelMortgage.mortgages,
-      fieldName: "model",
-    },
-    {
-      subObjectFn: () => formData.chattelMortgage.mortgages,
-      fieldName: "motorNumber",
-    },
   ];
 
   let isFormValid;
+
+  if (formData?.loanDetails.amount > 50000) {
+    requiredFields.push(
+      {
+        subObjectFn: () => formData.chattelMortgage.mortgages,
+        fieldName: "vehicle",
+      },
+      {
+        subObjectFn: () => formData.chattelMortgage.mortgages,
+        fieldName: "model",
+      },
+      {
+        subObjectFn: () => formData.chattelMortgage.mortgages,
+        fieldName: "motorNumber",
+      },
+      {
+        subObjectFn: () => formData.chattelMortgage.mortgages,
+        fieldName: "brand",
+      }
+    );
+  }
+
+  if (formData?.loanDetails.amount > 300000) {
+    requiredFields.push(
+      {
+        subObjectFn: () => formData.realMortgage.realMortgages,
+        fieldName: "realEstate",
+      },
+      {
+        subObjectFn: () => formData.realMortgage.realMortgages,
+        fieldName: "tcdNumber",
+      },
+      {
+        subObjectFn: () => formData.realMortgage.realMortgages,
+        fieldName: "location",
+      }
+    );
+  }
 
   if (!isDisabled) {
     isFormValid = requiredFields.every(
@@ -228,30 +262,58 @@ function RegularLoanApplication({ data, formData, setFormData, isDisabled }) {
           }
           touchedFields={touchedFields}
         />
-        <ChattelMortgage
-          info={formData?.chattelMortgage}
-          onChangeArray={(field, subfield, value, index) =>
-            handleChangeArray(
-              "chattelMortgage",
-              field,
-              subfield,
-              value,
-              index,
-              setFormData
-            )
-          }
-          addRow={(field, newRow) =>
-            handleAddItem("chattelMortgage", field, newRow, setFormData)
-          }
-          removeRow={(field, index) =>
-            handleRemoveItem("chattelMortgage", field, index, setFormData)
-          }
-          isDisabled={isDisabled}
-          handleBlur={(name) =>
-            handleBlur(name, touchedFields, setTouchedFields)
-          }
-          touchedFields={touchedFields}
-        />
+        {parseFloat(formData?.loanDetails.amount) > 50000 && (
+          <ChattelMortgage
+            info={formData?.chattelMortgage}
+            onChangeArray={(field, subfield, value, index) =>
+              handleChangeArray(
+                "chattelMortgage",
+                field,
+                subfield,
+                value,
+                index,
+                setFormData
+              )
+            }
+            addRow={(field, newRow) =>
+              handleAddItem("chattelMortgage", field, newRow, setFormData)
+            }
+            removeRow={(field, index) =>
+              handleRemoveItem("chattelMortgage", field, index, setFormData)
+            }
+            isDisabled={isDisabled}
+            handleBlur={(name) =>
+              handleBlur(name, touchedFields, setTouchedFields)
+            }
+            touchedFields={touchedFields}
+          />
+        )}
+        {parseFloat(formData?.loanDetails.amount) > 300000 && (
+          <RealMortgage
+            info={formData?.realMortgage}
+            onChangeArray={(field, subfield, value, index) =>
+              handleChangeArray(
+                "realMortgage",
+                field,
+                subfield,
+                value,
+                index,
+                setFormData
+              )
+            }
+            addRow={(field, newRow) =>
+              handleAddItem("realMortgage", field, newRow, setFormData)
+            }
+            removeRow={(field, index) =>
+              handleRemoveItem("realMortgage", field, index, setFormData)
+            }
+            isDisabled={isDisabled}
+            handleBlur={(name) =>
+              handleBlur(name, touchedFields, setTouchedFields)
+            }
+            touchedFields={touchedFields}
+          />
+        )}
       </form>
       {!isDisabled && (
         <div className="flex flex-wrap justify-end">

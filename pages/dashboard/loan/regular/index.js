@@ -37,6 +37,16 @@ function RegularLoan() {
           vehicle: "",
           model: "",
           motorNumber: "",
+          brand: "",
+        },
+      ],
+    },
+    realMortgage: {
+      realMortgages: [
+        {
+          realEstate: "",
+          tcdNumber: "",
+          location: "",
         },
       ],
     },
