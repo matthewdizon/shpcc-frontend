@@ -1,6 +1,8 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 import { UserContext } from "../../context/userContext";
 import Link from "next/link";
+import Image from "next/image";
+import Logo from "../../assets/images/logo.svg";
 
 function AccountOverview({
   data,
@@ -22,6 +24,7 @@ function AccountOverview({
     associateAccountNumber,
     regularAccountNumber,
     membershipType,
+    imageUrl,
   } = data;
   const [showUpdateModal, setShowUpdateModal] = useState(null);
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(null);
@@ -291,17 +294,42 @@ function AccountOverview({
     const [regularAccountNumber, setRegularAccountNumber] = useState(
       currRegularAccountNumber
     );
+    const [selectedImage, setSelectedImage] = useState();
+
+    const imageRef = useRef();
+
+    const handleFileChange = (event) => {
+      setSelectedImage(event.target.files[0]);
+      console.log(event.target.files[0]);
+    };
 
     const handleSubmit = async (e) => {
       e.preventDefault();
 
       const jwt = localStorage.getItem("accessToken");
 
+      const imageData = new FormData();
+      imageData.append("file", selectedImage);
+      imageData.append("upload_preset", "hefqbi5t"); // comes from upload preset -- settings in cloudinary
+
+      const imageRes = await fetch(
+        `https://api.cloudinary.com/v1_1/${`dqyjdscpt`}/image/upload`, // cloud name comes from dashboard in cloudinary
+        {
+          method: "POST",
+          body: imageData,
+        }
+      ).then((res) => {
+        return res.json();
+      });
+
+      const imageUrl = imageRes.secure_url;
+
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/users/` + email,
         {
           method: "PATCH",
           body: JSON.stringify({
+            imageUrl,
             firstName,
             lastName,
             contactNumber,
@@ -357,6 +385,16 @@ function AccountOverview({
           </svg>
           <p className="font-bold text-xl">Edit Profile</p>
           <div className="grid gap-4 py-8">
+            <div className="grid sm:grid-cols-2 items-center">
+              <p>Profile Picture</p>
+              <input
+                className="w-full text-sm border-gray-200 bg-gray-100 rounded-lg"
+                accept=".jpg, .png, .jpeg"
+                type="file"
+                onChange={handleFileChange}
+                ref={imageRef}
+              />
+            </div>
             <div className="grid sm:grid-cols-2 items-center">
               <p>First Name</p>
               <input
@@ -642,7 +680,7 @@ function AccountOverview({
       {showChangePasswordModal && <ChangePasswordModal />}
       <div className="bg-white p-8 rounded-3xl">
         <div className="flex flex-col lg:flex-row justify-between items-center gap-4 pb-8">
-          <p className="font-bold text-3xl">Profile Overview</p>
+          <p className="font-bold text-4xl">Profile Overview</p>
           <div className="flex flex-col md:flex-row gap-4 w-full lg:w-auto">
             <div
               className="bg-gray-200 text-black p-2 px-6 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-200 text-center hover:cursor-pointer w-full lg:w-auto"
@@ -661,42 +699,56 @@ function AccountOverview({
           </div>
         </div>
         <div className="grid gap-4">
-          <p className="font-bold text-2xl">
-            {firstName && lastName ? firstName + " " + lastName : "-"}
-          </p>
-          <div className="grid md:grid-cols-[1fr_2fr]">
-            <p className="font-bold">Email</p>
-            <p className="font-light">{email ? email : "-"}</p>
+          <div className="flex flex-col lg:flex-row lg:items-center gap-8">
+            <div className="relative h-56 w-56 mx-auto lg:mx-0">
+              <Image
+                className="rounded-full border-2"
+                src={imageUrl || Logo}
+                layout="fill"
+                objectFit="cover"
+                alt="Profile image"
+              />
+            </div>
+            <div className="grid gap-4">
+              <p className="font-bold text-3xl">
+                {firstName && lastName ? firstName + " " + lastName : "-"}
+              </p>
+              <div className="grid md:grid-cols-[1fr_2fr] md:gap-6 lg:grid-cols-2 lg:gap-10">
+                <p className="font-bold">Email</p>
+                <p className="font-light">{email ? email : "-"}</p>
+              </div>
+
+              <div className="grid md:grid-cols-[1fr_2fr] md:gap-6 lg:grid-cols-2 lg:gap-10">
+                <p className="font-bold">Membership Type</p>
+                <p className="font-light">
+                  {membershipType ? membershipType : "-"}
+                </p>
+              </div>
+              <div className="grid md:grid-cols-[1fr_2fr] md:gap-6 lg:grid-cols-2 lg:gap-10">
+                <p className="font-bold">Associate Account Number</p>
+                <p className="font-light">
+                  {associateAccountNumber ? associateAccountNumber : "-"}
+                </p>
+              </div>
+              <div className="grid md:grid-cols-[1fr_2fr] md:gap-6 lg:grid-cols-2 lg:gap-10">
+                <p className="font-bold">Regular Account Number</p>
+                <p className="font-light">
+                  {regularAccountNumber ? regularAccountNumber : "-"}
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="grid md:grid-cols-[1fr_2fr]">
+          <div className="grid md:grid-cols-[1fr_2fr] md:gap-6">
             <p className="font-bold">Contact Number</p>
             <p className="font-light">{contactNumber ? contactNumber : "-"}</p>
           </div>
-          <div className="grid md:grid-cols-[1fr_2fr]">
+          <div className="grid md:grid-cols-[1fr_2fr] md:gap-6">
             <p className="font-bold">Address</p>
             <p className="font-light">{address ? address : "-"}</p>
           </div>
-          <div className="grid md:grid-cols-[1fr_2fr]">
+          <div className="grid md:grid-cols-[1fr_2fr] md:gap-6">
             <p className="font-bold">Facebook Name</p>
             <p className="font-light">{facebookName ? facebookName : "-"}</p>
-          </div>
-          <div className="grid md:grid-cols-[1fr_2fr]">
-            <p className="font-bold">Membership Type</p>
-            <p className="font-light">
-              {membershipType ? membershipType : "-"}
-            </p>
-          </div>
-          <div className="grid md:grid-cols-[1fr_2fr]">
-            <p className="font-bold">Associate Account Number</p>
-            <p className="font-light">
-              {associateAccountNumber ? associateAccountNumber : "-"}
-            </p>
-          </div>
-          <div className="grid md:grid-cols-[1fr_2fr]">
-            <p className="font-bold">Regular Account Number</p>
-            <p className="font-light">
-              {regularAccountNumber ? regularAccountNumber : "-"}
-            </p>
           </div>
         </div>
       </div>
