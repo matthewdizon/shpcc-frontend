@@ -23,7 +23,7 @@ export default function SEO() {
         <link rel="shortcut icon" href="/favicon.ico" />
         <meta
           name="description"
-          content="SHPCC aims to provide an avenue for growth for its members through cooperativism, proper management of financial resources and cooperative values. Together we fulfill our dreams. Start your journey with us today!"
+          content="SHPCC is a credit cooperative based in Quezon City. It aims to provide an avenue for growth for its members through cooperativism, proper management of financial resources and cooperative values. Together we fulfill our dreams. Start your journey with us today!"
         />
         <meta
           property="og:image"
@@ -38,7 +38,7 @@ export default function SEO() {
         />
         <meta
           property="og:description"
-          content="SHPCC aims to provide an avenue for growth for its members through cooperativism, proper management of financial resources and cooperative values. Together we fulfill our dreams. Start your journey with us today!"
+          content="SHPCC is a credit cooperative based in Quezon City. It aims to provide an avenue for growth for its members through cooperativism, proper management of financial resources and cooperative values. Together we fulfill our dreams. Start your journey with us today!"
         />
         <meta
           property="og:image"
@@ -52,7 +52,7 @@ export default function SEO() {
         />
         <meta
           property="twitter:description"
-          content="SHPCC aims to provide an avenue for growth for its members through cooperativism, proper management of financial resources and cooperative values. Together we fulfill our dreams. Start your journey with us today!"
+          content="SHPCC is a credit cooperative based in Quezon City. It aims to provide an avenue for growth for its members through cooperativism, proper management of financial resources and cooperative values. Together we fulfill our dreams. Start your journey with us today!"
         />
         <meta
           property="twitter:image"
