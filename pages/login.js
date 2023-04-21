@@ -130,6 +130,7 @@ function Login() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+                  autocomplete="email"
                 />
               </div>
               <div className="grid">
@@ -139,6 +140,8 @@ function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   className="bg-white border-gray-400 border rounded-lg pl-2 py-2 lg:p-2"
+                  autocomplete="current-password"
+                  name="password"
                 />
               </div>
 
