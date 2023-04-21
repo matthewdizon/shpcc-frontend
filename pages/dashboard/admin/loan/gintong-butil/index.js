@@ -90,7 +90,10 @@ function GintongButilAdmin() {
                     User
                   </th>
                   <th className="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
-                    Name
+                    Reason
+                  </th>
+                  <th className="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
+                    Amount
                   </th>
                   <th className="whitespace-nowrap px-4 py-2 text-left font-black text-gray-900">
                     Status
@@ -119,7 +122,10 @@ function GintongButilAdmin() {
                         {loan.user}
                       </td>
                       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                        {loan.firstName} {loan.lastName}
+                        {loan.reason}
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                        ₱{loan.amount}
                       </td>
                       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                         <p

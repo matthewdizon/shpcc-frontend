@@ -140,17 +140,28 @@ function GintongButilApplicationView() {
           <GintongButilLoanApplication formData={formData} isDisabled={true} />
           <div className="grid gap-8 lg:sticky lg:top-12 h-max">
             {data?.dateSubmitted && (
-              <p className="text-sm font-light">
-                Application Submission Date:{" "}
-                {Intl.DateTimeFormat("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                  hour: "numeric",
-                  minute: "numeric",
-                  hour12: true,
-                }).format(new Date(data?.dateSubmitted))}
-              </p>
+              <>
+                <p className="text-sm font-light">
+                  Application Submission Date:{" "}
+                  {Intl.DateTimeFormat("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                    hour: "numeric",
+                    minute: "numeric",
+                    hour12: true,
+                  }).format(new Date(data?.dateSubmitted))}
+                </p>
+                <p className="text-sm font-light">
+                  Submitted by:{" "}
+                  <Link
+                    href={`/dashboard/admin/users/${data?.user}`}
+                    className="underline hover:font-normal"
+                  >
+                    {data?.user}
+                  </Link>
+                </p>
+              </>
             )}
             <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-lg p-4">
               <p className="font-bold text-2xl flex items-center gap-2">
