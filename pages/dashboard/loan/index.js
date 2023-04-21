@@ -34,7 +34,7 @@ function Loan() {
             <span className="absolute right-0 -bottom-12 text-[300px] opacity-20 font-black leading-none">
               1
             </span>
-            <p className="font-extralight">Lorem ipsum</p>
+            <p></p>
             <p className="flex flex-col text-2xl font-bold">
               Apply for <span className="text-3xl">Gintong Butil</span>
             </p>
@@ -54,7 +54,7 @@ function Loan() {
             <span className="absolute right-0 -bottom-12 text-[300px] opacity-20 font-black leading-none">
               2
             </span>
-            <p className="font-extralight">Lorem ipsum</p>
+            <p></p>
             <p className="flex flex-col text-2xl font-bold">
               Apply for a <span className="text-3xl">Regular Loan</span>
             </p>

@@ -1,4 +1,4 @@
-function ChattelMortgage({
+function RealMortgage({
   info,
   onChangeArray,
   addRow,
@@ -9,16 +9,15 @@ function ChattelMortgage({
 }) {
   return (
     <div className="grid gap-2 py-2">
-      <h2 className="text-gray-500 font-bold text-xl py-4">Chattel Mortgage</h2>
+      <h2 className="text-gray-500 font-bold text-xl py-4">Real Mortgage</h2>
       {!isDisabled && (
         <button
           type="button"
           onClick={() =>
-            addRow("mortgages", {
+            addRow("realMortgages", {
               vehicle: "",
               model: "",
               motorNumber: "",
-              brand: "",
             })
           }
           className="bg-gray-200 rounded-xl p-2 px-6 max-w-max hover:opacity-50"
@@ -27,7 +26,7 @@ function ChattelMortgage({
         </button>
       )}
       <div className="flex flex-wrap justify-between gap-4">
-        {info?.mortgages?.map((mortgage, index) => {
+        {info?.realMortgages?.map((mortgage, index) => {
           return (
             <div
               key={index}
@@ -36,116 +35,101 @@ function ChattelMortgage({
               <div className="flex flex-col flex-grow">
                 <label
                   className={`font-light text-gray-400 text-sm ${
-                    touchedFields.vehicle && !mortgage?.vehicle
+                    touchedFields.realEstate && !mortgage?.realEstate
                       ? "text-red-500"
                       : ""
                   }`}
                 >
-                  Motor Vehicle / Equipment *
+                  Real Estate *
                 </label>
                 <input
                   type="text"
-                  value={mortgage?.vehicle}
-                  onChange={(e) =>
-                    onChangeArray("mortgages", "vehicle", e.target.value, index)
-                  }
-                  className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
-                    touchedFields.vehicle && !mortgage?.vehicle
-                      ? "border-red-500"
-                      : ""
-                  } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-                  onBlur={() => handleBlur("vehicle")}
-                  disabled={isDisabled}
-                />
-              </div>
-              <div className="flex flex-col">
-                <label
-                  className={`font-light text-gray-400 text-sm ${
-                    touchedFields.model && !mortgage?.model
-                      ? "text-red-500"
-                      : ""
-                  }`}
-                >
-                  Make / Model *
-                </label>
-                <input
-                  type="text"
-                  value={mortgage?.model}
-                  onChange={(e) =>
-                    onChangeArray("mortgages", "model", e.target.value, index)
-                  }
-                  className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
-                    touchedFields.model && !mortgage?.model
-                      ? "border-red-500"
-                      : ""
-                  } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-                  onBlur={() => handleBlur("model")}
-                  disabled={isDisabled}
-                />
-              </div>
-              <div className="flex flex-col">
-                <label
-                  className={`font-light text-gray-400 text-sm ${
-                    touchedFields.motorNumber && !mortgage?.motorNumber
-                      ? "text-red-500"
-                      : ""
-                  }`}
-                >
-                  Motor No. / Serial No. *
-                </label>
-                <input
-                  type="text"
-                  value={mortgage?.motorNumber}
+                  value={mortgage?.realEstate}
                   onChange={(e) =>
                     onChangeArray(
-                      "mortgages",
-                      "motorNumber",
+                      "realMortgages",
+                      "realEstate",
                       e.target.value,
                       index
                     )
                   }
                   className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
-                    touchedFields.motorNumber && !mortgage?.motorNumber
+                    touchedFields.realEstate && !mortgage?.realEstate
                       ? "border-red-500"
                       : ""
                   } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-                  onBlur={() => handleBlur("motorNumber")}
+                  onBlur={() => handleBlur("realEstate")}
                   disabled={isDisabled}
                 />
               </div>
               <div className="flex flex-col">
                 <label
                   className={`font-light text-gray-400 text-sm ${
-                    touchedFields.brand && !mortgage?.brand
+                    touchedFields.tcdNumber && !mortgage?.tcdNumber
                       ? "text-red-500"
                       : ""
                   }`}
                 >
-                  Brand *
+                  TCT No. *
                 </label>
                 <input
                   type="text"
-                  value={mortgage?.brand}
+                  value={mortgage?.tcdNumber}
                   onChange={(e) =>
-                    onChangeArray("mortgages", "brand", e.target.value, index)
+                    onChangeArray(
+                      "realMortgages",
+                      "tcdNumber",
+                      e.target.value,
+                      index
+                    )
                   }
                   className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
-                    touchedFields.brand && !mortgage?.brand
+                    touchedFields.tcdNumber && !mortgage?.tcdNumber
                       ? "border-red-500"
                       : ""
                   } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
-                  onBlur={() => handleBlur("brand")}
+                  onBlur={() => handleBlur("tcdNumber")}
                   disabled={isDisabled}
                 />
               </div>
-              {!isDisabled && info?.mortgages.length > 1 && (
+              <div className="flex flex-col">
+                <label
+                  className={`font-light text-gray-400 text-sm ${
+                    touchedFields.location && !mortgage?.location
+                      ? "text-red-500"
+                      : ""
+                  }`}
+                >
+                  Location *
+                </label>
+                <input
+                  type="text"
+                  value={mortgage?.location}
+                  onChange={(e) =>
+                    onChangeArray(
+                      "realMortgages",
+                      "location",
+                      e.target.value,
+                      index
+                    )
+                  }
+                  className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+                    touchedFields.location && !mortgage?.location
+                      ? "border-red-500"
+                      : ""
+                  } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
+                  onBlur={() => handleBlur("location")}
+                  disabled={isDisabled}
+                />
+              </div>
+              {!isDisabled && info?.realMortgages.length > 1 && (
                 <svg
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  onClick={() => removeRow("mortgages", index)}
+                  onClick={() => removeRow("realMortgages", index)}
                   className="hover:cursor-pointer text-shpccRed hover:opacity-50"
                 >
                   <path
@@ -168,4 +152,4 @@ function ChattelMortgage({
   );
 }
 
-export default ChattelMortgage;
+export default RealMortgage;

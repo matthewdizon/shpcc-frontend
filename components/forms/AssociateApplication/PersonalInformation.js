@@ -250,6 +250,9 @@ function PersonalInformation({
             } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
             onBlur={() => handleBlur("contactNumber")}
             disabled={isDisabled}
+            placeholder="09xx-xxx-xxxx"
+            pattern="09[0-9]{2}-[0-9]{3}-[0-9]{4}"
+            id="contactNumber"
           />
         </div>
         <div className="flex flex-col">

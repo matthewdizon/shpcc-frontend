@@ -9,7 +9,7 @@ function LoanDetails({
     <div className="grid gap-2 py-2">
       <h2 className="text-gray-500 font-bold text-xl py-4">Loan Details</h2>
       <div className="flex flex-wrap justify-between gap-4">
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col flex-grow">
           <label
             className={`font-light text-gray-400 text-sm ${
               touchedFields.date && !info?.date ? "text-red-500" : ""
@@ -23,10 +23,33 @@ function LoanDetails({
             onChange={(e) => onChange("date", e.target.value)}
             className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
               touchedFields.date && !info?.date ? "border-red-500" : ""
-            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 lg:w-1/4`}
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2`}
             onBlur={() => handleBlur("date")}
             disabled={isDisabled}
           />
+        </div>
+        <div className="flex flex-col">
+          <label
+            className={`font-light text-gray-400 text-sm ${
+              touchedFields.type && !info?.type ? "text-red-500" : ""
+            }`}
+          >
+            Type *
+          </label>
+          <select
+            className={`${isDisabled ? "bg-gray-200" : "bg-white"} ${
+              touchedFields.type && !info?.type ? "border-red-500" : ""
+            } border-gray-400 border rounded-lg pl-2 py-2 lg:p-2 h-full`}
+            onBlur={() => handleBlur("type")}
+            disabled={isDisabled}
+            value={info?.type}
+            onChange={(e) => onChange("type", e.target.value)}
+          >
+            <option value="" disabled defaultValue></option>
+            <option value="productive">Productive</option>
+            <option value="provident">Provident</option>
+            <option value="others">Others</option>
+          </select>
         </div>
         <div className="flex flex-col">
           <label
@@ -65,12 +88,17 @@ function LoanDetails({
             onChange={(e) => onChange("duration", e.target.value)}
           >
             <option value="" disabled defaultValue></option>
-            <option value="one">One Month</option>
-            <option value="two">Two Months</option>
-            <option value="three">Three Months</option>
-            <option value="four">Four Months</option>
-            <option value="five">Five Months</option>
-            <option value="six">Six Months</option>
+            <option value="oneMonth">One Month</option>
+            <option value="twoMonths">Two Months</option>
+            <option value="threeMonths">Three Months</option>
+            <option value="fourMonths">Four Months</option>
+            <option value="fiveMonths">Five Months</option>
+            <option value="sixMonths">Six Months</option>
+            <option value="oneYear">One Year</option>
+            <option value="twoYears">Two Years</option>
+            <option value="threeYears">Three Years</option>
+            <option value="fourYears">Four Years</option>
+            <option value="fiveYears">Five Years</option>
           </select>
         </div>
         <div className="flex flex-col flex-grow">

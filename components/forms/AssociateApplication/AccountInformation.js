@@ -131,8 +131,30 @@ function AccountInformation({
             onChange={(e) => onChange("idType", e.target.value)}
           >
             <option value="" disabled selected></option>
+            <option value="philippinePassport">Philippine Passport</option>
+            <option value="sssID">SSS ID</option>
+            <option value="gsisID">GSIS ID</option>
             <option value="driversLicense">Driver&apos;s License</option>
-            <option value="passport">Passport</option>
+            <option value="prcID">PRC ID</option>
+            <option value="owwaID">OWWA ID</option>
+            <option value="idoleCard">iDOLE Card</option>
+            <option value="votersID">Voter&apos;s ID</option>
+            <option value="votersCertification">
+              Voter&apos;s Certification
+            </option>
+            <option value="firearmsLicense">Firearms License</option>
+            <option value="seniorCitizenID">Senior Citizen ID</option>
+            <option value="pwdID">PWD ID</option>
+            <option value="nbiClearance">NBI Clearance</option>
+            <option value="alienCertification">
+              Immigrant Certificate of Registration
+            </option>
+            <option value="philhealthID">PhilHealth ID</option>
+            <option value="govtID">Government/GOCC ID</option>
+            <option value="ibpID">Integrated Bar of the Philippines ID</option>
+            <option value="schoolID">School ID</option>
+            <option value="epassport">ePassport</option>
+            <option value="hostGovtID">Host Government Issued ID</option>
           </select>
         </div>
         <div className="flex flex-col">

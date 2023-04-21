@@ -1,6 +1,8 @@
 import Layout from "../../../../components/dashboard/Layout";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import Logo from "../../../../assets/images/logo.svg";
 
 function Users() {
   const [loading, setLoading] = useState(true);
@@ -91,8 +93,18 @@ function Users() {
             <tbody>
               {filteredData?.map((user, index) => {
                 return (
-                  <tr key={index}>
-                    <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                  <tr key={index} className="hover:bg-gray-100">
+                    <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 flex items-center gap-4">
+                      <div className="relative h-12 w-12">
+                        <Image
+                          class="inline object-cover w-16 h-16 mr-2 rounded-full"
+                          src={user.imageUrl || Logo}
+                          layout="fill"
+                          objectFit="cover"
+                          alt="Profile image"
+                        />
+                      </div>
+
                       {user.email}
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700">

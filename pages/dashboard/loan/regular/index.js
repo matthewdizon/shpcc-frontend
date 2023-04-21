@@ -15,6 +15,7 @@ function RegularLoan() {
     },
     loanDetails: {
       date: "",
+      type: "",
       amount: "",
       duration: "",
       paymentInterval: "",
@@ -37,6 +38,16 @@ function RegularLoan() {
           vehicle: "",
           model: "",
           motorNumber: "",
+          brand: "",
+        },
+      ],
+    },
+    realMortgage: {
+      realMortgages: [
+        {
+          realEstate: "",
+          tcdNumber: "",
+          location: "",
         },
       ],
     },

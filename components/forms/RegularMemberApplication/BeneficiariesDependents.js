@@ -28,7 +28,7 @@ function BeneficiariesDependents({
         </button>
       )}
       <div className="flex flex-wrap justify-between gap-4">
-        {info?.children.map((child, index) => {
+        {info?.children?.map((child, index) => {
           return (
             <div
               key={index}
@@ -140,7 +140,7 @@ function BeneficiariesDependents({
             Add Another Relative
           </button>
         )}
-        {info?.otherRelatives.map((familyMember, index) => {
+        {info?.otherRelatives?.map((familyMember, index) => {
           return (
             <div
               key={index}

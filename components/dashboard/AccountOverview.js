@@ -1,5 +1,11 @@
-import { useState } from "react";
+import { useState, useContext, useRef } from "react";
+import { UserContext } from "../../context/userContext";
 import Link from "next/link";
+import Image from "next/image";
+import Logo from "../../assets/images/logo.svg";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AccountOverview({
   data,
@@ -20,9 +26,12 @@ function AccountOverview({
     department,
     associateAccountNumber,
     regularAccountNumber,
+    membershipType,
+    imageUrl,
   } = data;
   const [showUpdateModal, setShowUpdateModal] = useState(null);
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(null);
+  const user = useContext(UserContext);
 
   const UserApplications = () => {
     return (
@@ -46,36 +55,36 @@ function AccountOverview({
             )}
           </div>
           {!associateMembershipData ? (
-            <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
+            <dd className="text-3xl font-extrabold text-shpccRed md:text-xl">
               No Application Data
             </dd>
           ) : associateMembershipData.isDraft === true ? (
-            <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center md:col-span-2">
-              <dt class="order-last text-xs font-medium text-gray-400">
+            <div className="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center md:col-span-2">
+              <dt className="order-last text-xs font-medium text-gray-400">
                 Status
               </dt>
 
-              <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
+              <dd className="text-3xl font-extrabold text-shpccRed md:text-xl">
                 Draft
               </dd>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 gap-2">
-              <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center md:col-span-2">
-                <dt class="order-last text-xs font-medium text-gray-400">
+              <div className="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center md:col-span-2">
+                <dt className="order-last text-xs font-medium text-gray-400">
                   Status
                 </dt>
 
-                <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
+                <dd className="text-3xl font-extrabold text-shpccRed md:text-xl">
                   {associateMembershipData.status}
                 </dd>
               </div>
-              <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center">
-                <dt class="order-last text-xs font-medium text-gray-400">
+              <div className="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center">
+                <dt className="order-last text-xs font-medium text-gray-400">
                   Submission Date
                 </dt>
 
-                <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
+                <dd className="text-3xl font-extrabold text-shpccRed md:text-xl">
                   {associateMembershipData?.dateSubmitted &&
                     Intl.DateTimeFormat("en-US", {
                       year: "numeric",
@@ -84,12 +93,12 @@ function AccountOverview({
                     }).format(new Date(associateMembershipData.dateSubmitted))}
                 </dd>
               </div>
-              <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center">
-                <dt class="order-last text-xs font-medium text-gray-400">
+              <div className="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center">
+                <dt className="order-last text-xs font-medium text-gray-400">
                   Associate Account Number
                 </dt>
 
-                <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
+                <dd className="text-3xl font-extrabold text-shpccRed md:text-xl">
                   {associateMembershipData.accountNumber
                     ? associateMembershipData.accountNumber
                     : "-"}
@@ -108,43 +117,45 @@ function AccountOverview({
                     ? `/dashboard/admin/membership/regular/${email}`
                     : "/dashboard/membership/regular-application"
                 }`}
-                className="bg-shpccRed text-white p-2 px-4 rounded-md hover:underline text-xs w-full xl:max-w-max"
+                className={`bg-shpccRed text-white p-2 px-4 rounded-md hover:underline text-xs w-full xl:max-w-max ${
+                  membershipType === "None" ? "hidden" : ""
+                }`}
               >
                 {!regularMembershipData ? "Apply" : "View"}
               </Link>
             )}
           </div>
           {!regularMembershipData ? (
-            <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
+            <dd className="text-3xl font-extrabold text-shpccRed md:text-xl">
               No Application Data
             </dd>
           ) : regularMembershipData.isDraft === true ? (
-            <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center md:col-span-2">
-              <dt class="order-last text-xs font-medium text-gray-400">
+            <div className="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center md:col-span-2">
+              <dt className="order-last text-xs font-medium text-gray-400">
                 Status
               </dt>
 
-              <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
+              <dd className="text-3xl font-extrabold text-shpccRed md:text-xl">
                 Draft
               </dd>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 gap-2">
-              <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center md:col-span-2">
-                <dt class="order-last text-xs font-medium text-gray-400">
+              <div className="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center md:col-span-2">
+                <dt className="order-last text-xs font-medium text-gray-400">
                   Status
                 </dt>
 
-                <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
+                <dd className="text-3xl font-extrabold text-shpccRed md:text-xl">
                   {regularMembershipData.status}
                 </dd>
               </div>
-              <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center">
-                <dt class="order-last text-xs font-medium text-gray-400">
+              <div className="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center">
+                <dt className="order-last text-xs font-medium text-gray-400">
                   Submission Date
                 </dt>
 
-                <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
+                <dd className="text-3xl font-extrabold text-shpccRed md:text-xl">
                   {regularMembershipData?.dateSubmitted &&
                     Intl.DateTimeFormat("en-US", {
                       year: "numeric",
@@ -153,12 +164,12 @@ function AccountOverview({
                     }).format(new Date(regularMembershipData.dateSubmitted))}
                 </dd>
               </div>
-              <div class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center">
-                <dt class="order-last text-xs font-medium text-gray-400">
-                  Associate Account Number
+              <div className="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center">
+                <dt className="order-last text-xs font-medium text-gray-400">
+                  Regular Account Number
                 </dt>
 
-                <dd class="text-3xl font-extrabold text-shpccRed md:text-xl">
+                <dd className="text-3xl font-extrabold text-shpccRed md:text-xl">
                   {regularMembershipData.accountNumber
                     ? regularMembershipData.accountNumber
                     : "-"}
@@ -171,7 +182,7 @@ function AccountOverview({
           <p className="font-bold text-lg">Gintong Butil Loan Applications</p>
           <div className="grid divide-y-2 h-64 pr-4 overflow-auto">
             {gintongButilLoanApplications?.length === 0 ? (
-              <dd class="text-4xl font-extrabold text-shpccRed md:text-xl pt-4">
+              <dd className="text-4xl font-extrabold text-shpccRed md:text-xl pt-4">
                 No Loan Data
               </dd>
             ) : (
@@ -215,7 +226,7 @@ function AccountOverview({
           <p className="font-bold text-lg">Regular Loan Applications</p>
           <div className="grid divide-y-2 h-64 pr-4 overflow-auto">
             {regularLoanApplications?.length === 0 ? (
-              <dd class="text-4xl font-extrabold text-shpccRed md:text-xl pt-4">
+              <dd className="text-4xl font-extrabold text-shpccRed md:text-xl pt-4">
                 No Loan Data
               </dd>
             ) : (
@@ -286,17 +297,46 @@ function AccountOverview({
     const [regularAccountNumber, setRegularAccountNumber] = useState(
       currRegularAccountNumber
     );
+    const [selectedImage, setSelectedImage] = useState();
+
+    const imageRef = useRef();
+
+    const handleFileChange = (event) => {
+      setSelectedImage(event.target.files[0]);
+      console.log(event.target.files[0]);
+    };
 
     const handleSubmit = async (e) => {
       e.preventDefault();
 
       const jwt = localStorage.getItem("accessToken");
 
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/users/` + email,
+      const imageData = new FormData();
+      imageData.append("file", selectedImage);
+      imageData.append("upload_preset", "hefqbi5t"); // comes from upload preset -- settings in cloudinary
+
+      const imageRes = await toast.promise(
+        fetch(
+          `https://api.cloudinary.com/v1_1/${`dqyjdscpt`}/image/upload`, // cloud name comes from dashboard in cloudinary
+          {
+            method: "POST",
+            body: imageData,
+          }
+        ).then((res) => {
+          return res.json();
+        }),
         {
+          pending: "Uploading Image",
+        }
+      );
+
+      const imageUrl = imageRes.secure_url;
+
+      const res = await toast.promise(
+        fetch(`${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/users/` + email, {
           method: "PATCH",
           body: JSON.stringify({
+            imageUrl,
             firstName,
             lastName,
             contactNumber,
@@ -312,12 +352,19 @@ function AccountOverview({
             "Content-Type": "application/json",
             Authorization: `Bearer ${jwt}`,
           },
+        }),
+        {
+          pending: "Updating Profile",
         }
       );
 
       if (res.ok) {
-        console.log(res);
-        window.location.reload();
+        toast.success("Successfuly Updated Profile");
+        setTimeout(async () => {
+          window.location.reload();
+        }, 2000);
+      } else {
+        toast.error("An Error Occured");
       }
     };
 
@@ -326,6 +373,17 @@ function AccountOverview({
         className={`fixed inset-0 flex items-center justify-center p-8 z-40`}
         style={{ background: "rgba(50, 50, 50, 0.8)" }}
       >
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <form
           className="bg-white px-12 py-8 rounded-2xl relative"
           onSubmit={handleSubmit}
@@ -353,6 +411,16 @@ function AccountOverview({
           <p className="font-bold text-xl">Edit Profile</p>
           <div className="grid gap-4 py-8">
             <div className="grid sm:grid-cols-2 items-center">
+              <p>Profile Picture</p>
+              <input
+                className="w-full text-sm border-gray-200 bg-gray-100 rounded-lg"
+                accept=".jpg, .png, .jpeg"
+                type="file"
+                onChange={handleFileChange}
+                ref={imageRef}
+              />
+            </div>
+            <div className="grid sm:grid-cols-2 items-center">
               <p>First Name</p>
               <input
                 type="text"
@@ -378,7 +446,8 @@ function AccountOverview({
                 type="text"
                 onChange={(e) => setContactNumber(e.target.value)}
                 value={contactNumber}
-                placeholder="Contact Number"
+                placeholder="09xx-xxx-xxxx"
+                pattern="09[0-9]{2}-[0-9]{3}-[0-9]{4}"
                 className="px-4 py-2 rounded-xl border-2 border-gray-200"
               />
             </div>
@@ -478,6 +547,12 @@ function AccountOverview({
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
 
+    const [touchedFields, setTouchedFields] = useState({
+      oldPassword: true,
+      newPassword: true,
+      confirmNewPassword: true,
+    });
+
     const handleSubmit = async (event) => {
       event.preventDefault();
 
@@ -550,16 +625,21 @@ function AccountOverview({
             />
           </svg>
           {message && <p>{message}</p>}
-          {error && <p>{error}</p>}
+          {error && <p className="text-shpccRed">{error}</p>}
           <div className="grid gap-4 py-8">
             <div className="grid sm:grid-cols-2 items-center">
               <p>Old Password</p>
               <input
                 type="password"
                 value={oldPassword}
+                required
                 onChange={(event) => setOldPassword(event.target.value)}
                 placeholder="Old Password"
-                className="px-4 py-2 rounded-xl border-2 border-gray-200"
+                className={`px-4 py-2 rounded-xl border-2 border-gray-200 ${
+                  touchedFields.oldPassword && !oldPassword
+                    ? "border-red-500"
+                    : ""
+                }`}
               />
             </div>
             <div className="grid sm:grid-cols-2 items-center">
@@ -567,9 +647,14 @@ function AccountOverview({
               <input
                 type="password"
                 value={newPassword}
+                required
                 onChange={(event) => setNewPassword(event.target.value)}
                 placeholder="New Password"
-                className="px-4 py-2 rounded-xl border-2 border-gray-200"
+                className={`px-4 py-2 rounded-xl border-2 border-gray-200 ${
+                  touchedFields.newPassword && !newPassword
+                    ? "border-red-500"
+                    : ""
+                }`}
               />
             </div>
             <div className="grid sm:grid-cols-2 items-center">
@@ -577,9 +662,14 @@ function AccountOverview({
               <input
                 type="password"
                 value={confirmNewPassword}
+                required
                 onChange={(event) => setConfirmNewPassword(event.target.value)}
                 placeholder="Confirm New Password"
-                className="px-4 py-2 rounded-xl border-2 border-gray-200"
+                className={`px-4 py-2 rounded-xl border-2 border-gray-200 ${
+                  touchedFields.confirmNewPassword && !confirmNewPassword
+                    ? "border-red-500"
+                    : ""
+                }`}
               />
             </div>
           </div>
@@ -615,7 +705,7 @@ function AccountOverview({
       {showChangePasswordModal && <ChangePasswordModal />}
       <div className="bg-white p-8 rounded-3xl">
         <div className="flex flex-col lg:flex-row justify-between items-center gap-4 pb-8">
-          <p className="font-bold text-3xl">Profile Overview</p>
+          <p className="font-bold text-4xl">Profile Overview</p>
           <div className="flex flex-col md:flex-row gap-4 w-full lg:w-auto">
             <div
               className="bg-gray-200 text-black p-2 px-6 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-200 text-center hover:cursor-pointer w-full lg:w-auto"
@@ -623,31 +713,65 @@ function AccountOverview({
             >
               Edit Profile
             </div>
-            <div
-              className="bg-gray-200 text-black p-2 px-6 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-200 text-center w-full lg:w-auto"
-              onClick={() => setShowChangePasswordModal(true)}
-            >
-              Change Password
-            </div>
+            {user.user.email === email && (
+              <div
+                className="bg-gray-200 text-black p-2 px-6 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-200 text-center w-full lg:w-auto"
+                onClick={() => setShowChangePasswordModal(true)}
+              >
+                Change Password
+              </div>
+            )}
           </div>
         </div>
         <div className="grid gap-4">
-          <p className="font-bold text-2xl">
-            {firstName && lastName ? firstName + " " + lastName : "-"}
-          </p>
-          <div className="grid md:grid-cols-[1fr_2fr]">
-            <p className="font-bold">Email</p>
-            <p className="font-light">{email ? email : "-"}</p>
+          <div className="flex flex-col lg:flex-row lg:items-center gap-8">
+            <div className="relative h-56 w-56 mx-auto lg:mx-0">
+              <Image
+                className="rounded-full border-2"
+                src={imageUrl || Logo}
+                layout="fill"
+                objectFit="cover"
+                alt="Profile image"
+              />
+            </div>
+            <div className="grid gap-4">
+              <p className="font-bold text-3xl">
+                {firstName && lastName ? firstName + " " + lastName : "-"}
+              </p>
+              <div className="grid md:grid-cols-[1fr_2fr] md:gap-6 lg:grid-cols-2 lg:gap-10">
+                <p className="font-bold">Email</p>
+                <p className="font-light">{email ? email : "-"}</p>
+              </div>
+
+              <div className="grid md:grid-cols-[1fr_2fr] md:gap-6 lg:grid-cols-2 lg:gap-10">
+                <p className="font-bold">Membership Type</p>
+                <p className="font-light">
+                  {membershipType ? membershipType : "-"}
+                </p>
+              </div>
+              <div className="grid md:grid-cols-[1fr_2fr] md:gap-6 lg:grid-cols-2 lg:gap-10">
+                <p className="font-bold">Associate Account Number</p>
+                <p className="font-light">
+                  {associateAccountNumber ? associateAccountNumber : "-"}
+                </p>
+              </div>
+              <div className="grid md:grid-cols-[1fr_2fr] md:gap-6 lg:grid-cols-2 lg:gap-10">
+                <p className="font-bold">Regular Account Number</p>
+                <p className="font-light">
+                  {regularAccountNumber ? regularAccountNumber : "-"}
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="grid md:grid-cols-[1fr_2fr]">
+          <div className="grid md:grid-cols-[1fr_2fr] lg:grid-cols-[1fr_4fr] md:gap-6">
             <p className="font-bold">Contact Number</p>
             <p className="font-light">{contactNumber ? contactNumber : "-"}</p>
           </div>
-          <div className="grid md:grid-cols-[1fr_2fr]">
+          <div className="grid md:grid-cols-[1fr_2fr] lg:grid-cols-[1fr_4fr] md:gap-6">
             <p className="font-bold">Address</p>
             <p className="font-light">{address ? address : "-"}</p>
           </div>
-          <div className="grid md:grid-cols-[1fr_2fr]">
+          <div className="grid md:grid-cols-[1fr_2fr] lg:grid-cols-[1fr_4fr] md:gap-6">
             <p className="font-bold">Facebook Name</p>
             <p className="font-light">{facebookName ? facebookName : "-"}</p>
           </div>

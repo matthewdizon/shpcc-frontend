@@ -104,7 +104,7 @@ function RegularMembershipAdmin() {
               <tbody>
                 {filteredData?.map((application, index) => {
                   return (
-                    <tr key={index}>
+                    <tr key={index} className="hover:bg-gray-100">
                       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                         {application.accountNumber ?? "-"}
                       </td>
