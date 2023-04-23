@@ -49,7 +49,7 @@ function ServicesAndRequirements() {
             </h2>
             <ol className="list-disc pl-4">
               <li>A Filipino citizen</li>
-              <li>18 to 64 Years Old</li>
+              <li>18 to 64 years old</li>
               <li>Has an occupation or business</li>
               <li>Lives or works within NCR</li>
               <li>Attended the Pre-Membership Seminar</li>
@@ -70,7 +70,7 @@ function ServicesAndRequirements() {
             <h3 className="font-bold text-xl mb-4">Employee</h3>
             <ol className="list-disc pl-4">
               <li>Certificate of Employment</li>
-              <li>2 Months Late Pay Slip</li>
+              <li>2 months latest payslip</li>
             </ol>
             <h3 className="font-bold text-xl my-4">Owns A Business</h3>
             <ol className="list-disc pl-4">
@@ -79,7 +79,7 @@ function ServicesAndRequirements() {
             <h3 className="font-bold text-xl my-4">PUJ/TNVS Operator</h3>
             <ol className="list-disc pl-4">
               <li>CR & OR of vehicle</li>
-              <li>CPC/Franchies</li>
+              <li>Certificate of Public Conveyance/Franchise</li>
             </ol>
           </div>
           <div>
@@ -250,7 +250,7 @@ function ServicesAndRequirements() {
           <div className="grid gap-16">
             <div>
               <h2 className="text-shpccDarkRed font-bold text-3xl mb-4">
-                Group yearly Renewable Term Insurance (GYRT) And Pondong Damayan
+                Group Yearly Renewable Term Insurance (GYRT) and Pondong Damayan
               </h2>
               <div className="list-disc">
                 <li>Donating and helping families of deceased members</li>
