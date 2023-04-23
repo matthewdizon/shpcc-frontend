@@ -146,7 +146,7 @@ function ServicesAndRequirements() {
                 <p className="ml-12 italic">
                   *Repayment Term - maximum of 48 Months
                 </p>
-                <li className="ml-4">Back To Back/Scured Loan</li>
+                <li className="ml-4">Back To Back/Secured Loan</li>
                 <p className="ml-12 italic">
                   *Repayment Term - maximum of 12 Months
                 </p>
